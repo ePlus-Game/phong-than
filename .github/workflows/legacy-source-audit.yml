@@ -10,6 +10,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # The byte-exact PT.zip mirror is enormous: download only sources
+          # needed for portable build and tests, not runtime game assets.
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /Base/
+            /Client/
+            /Server/
+            /Share/
+            /tools/
+            /tests/
+            /CMakeLists.txt
+            /source/PT/PhongThanSource/Sources/MultiServer/GameServer/GameServer.cpp
+            /source/PT/PhongThanSource/Sources/AccountServices/AccountServer/S3PDBSocketPool.cpp
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -20,6 +35,12 @@ jobs:
           python tools/audit_legacy_projects.py \
             --json legacy-audit.json \
             --markdown legacy-audit.md
+      - name: Inventory potential public-archive risks (informational)
+        run: |
+          python tools/audit_sensitive_paths.py \
+            --json public-risk-audit.json \
+            --markdown public-risk-audit.md
+          cat public-risk-audit.md >> "$GITHUB_STEP_SUMMARY"
       - name: Upload reports
         uses: actions/upload-artifact@v4
         with:
@@ -27,3 +48,5 @@ jobs:
           path: |
             legacy-audit.json
             legacy-audit.md
+            public-risk-audit.json
+            public-risk-audit.md
