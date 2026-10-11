@@ -1,0 +1,240 @@
+{
+  "schema_version": 1,
+  "tool": {
+    "name": "PhongThanUnpack2.Orchestrator",
+    "version": "2.0.0-rc.3"
+  },
+  "profile_name": "RuntimePriority",
+  "description": "Preserves the numeric priority order from the official package.ini.",
+  "source": {
+    "official_package_ini": "D:\\Lam game phong than\\PhongThanRuntime-Staging\\Client\\package.ini",
+    "official_package_ini_sha256": "379DEC990B69C963D7332916BCBB466BE54CF28E13A7E9A0EF9D2065B5C554D9",
+    "official_package_root": "D:\\Lam game phong than\\PhongThanRuntime-Staging\\Client\\data"
+  },
+  "generated_package_ini": "D:\\Lam game phong than\\PhongThanSource\\Output\\MapMetadataVng\\run\\manifests\\package-profile.ini",
+  "generated_package_ini_sha256": "C68B9AFBA220BA3AB45C0E42714ACD3C768A8620F9425D5CD115371B90426D5C",
+  "package_count": 22,
+  "missing_package_count": 0,
+  "entries": [
+    {
+      "profile_priority": 0,
+      "official_priority": 0,
+      "file_name": "vng00.pak",
+      "resolved_path": "D:\\Lam game phong than\\PhongThanRuntime-Staging\\Client\\data\\vng00.pak",
+      "registry_value": "vng00.pak",
+      "exists": true,
+      "length": 222248737,
+      "last_write_utc": "2026-08-19T17:00:00.0000000Z"
+    },
+    {
+      "profile_priority": 1,
+      "official_priority": 1,
+      "file_name": "vng.pak",
+      "resolved_path": "D:\\Lam game phong than\\PhongThanRuntime-Staging\\Client\\data\\vng.pak",
+      "registry_value": "vng.pak",
+      "exists": true,
+      "length": 90088,
+      "last_write_utc": "2017-02-27T02:53:00.0000000Z"
+    },
+    {
+      "profile_priority": 2,
+      "official_priority": 2,
+      "file_name": "update0_171-171.pak",
+      "resolved_path": "D:\\Lam game phong than\\PhongThanRuntime-Staging\\Client\\data\\update0_171-171.pak",
+      "registry_value": "update0_171-171.pak",
+      "exists": true,
+      "length": 1662493508,
+      "last_write_utc": "2026-08-12T17:00:00.0000000Z"
+    },
+    {
+      "profile_priority": 3,
+      "official_priority": 3,
+      "file_name": "update0_170-170.pak",
+      "resolved_path": "D:\\Lam game phong than\\PhongThanRuntime-Staging\\Client\\data\\update0_170-170.pak",
+      "registry_value": "update0_170-170.pak",
+      "exists": true,
+      "length": 1236,
+      "last_write_utc": "2022-02-18T05:31:55.0000000Z"
+    },
+    {
+      "profile_priority": 4,
+      "official_priority": 4,
+      "file_name": "update0_169-169.pak",
+      "resolved_path": "D:\\Lam game phong than\\PhongThanRuntime-Staging\\Client\\data\\update0_169-169.pak",
+      "registry_value": "update0_169-169.pak",
+      "exists": true,
+      "length": 451138,
+      "last_write_utc": "2015-07-01T05:23:15.0000000Z"
+    },
+    {
+      "profile_priority": 5,
+      "official_priority": 5,
+      "file_name": "update0_167-168.pak",
+      "resolved_path": "D:\\Lam game phong than\\PhongThanRuntime-Staging\\Client\\data\\update0_167-168.pak",
+      "registry_value": "update0_167-168.pak",
+      "exists": true,
+      "length": 110194078,
+      "last_write_utc": "2015-07-01T05:23:14.0000000Z"
+    },
+    {
+      "profile_priority": 6,
+      "official_priority": 6,
+      "file_name": "update0_167-167.pak",
+      "resolved_path": "D:\\Lam game phong than\\PhongThanRuntime-Staging\\Client\\data\\update0_167-167.pak",
+      "registry_value": "update0_167-167.pak",
+      "exists": true,
+      "length": 109770878,
+      "last_write_utc": "2013-09-18T03:28:44.0000000Z"
+    },
+    {
+      "profile_priority": 7,
+      "official_priority": 7,
+      "file_name": "update0_164-166.pak",
+      "resolved_path": "D:\\Lam game phong than\\PhongThanRuntime-Staging\\Client\\data\\update0_164-166.pak",
+      "registry_value": "update0_164-166.pak",
+      "exists": true,
+      "length": 515706512,
+      "last_write_utc": "2015-07-01T05:21:19.0000000Z"
+    },
+    {
+      "profile_priority": 8,
+      "official_priority": 8,
+      "file_name": "update0_164-165.pak",
+      "resolved_path": "D:\\Lam game phong than\\PhongThanRuntime-Staging\\Client\\data\\update0_164-165.pak",
+      "registry_value": "update0_164-165.pak",
+      "exists": true,
+      "length": 528833,
+      "last_write_utc": "2012-09-19T07:52:22.0000000Z"
+    },
+    {
+      "profile_priority": 9,
+      "official_priority": 9,
+      "file_name": "update0_164-164.pak",
+      "resolved_path": "D:\\Lam game phong than\\PhongThanRuntime-Staging\\Client\\data\\update0_164-164.pak",
+      "registry_value": "update0_164-164.pak",
+      "exists": true,
+      "length": 131188,
+      "last_write_utc": "2012-09-19T07:52:22.0000000Z"
+    },
+    {
+      "profile_priority": 10,
+      "official_priority": 10,
+      "file_name": "update0_122-163.pak",
+      "resolved_path": "D:\\Lam game phong than\\PhongThanRuntime-Staging\\Client\\data\\update0_122-163.pak",
+      "registry_value": "update0_122-163.pak",
+      "exists": true,
+      "length": 698863622,
+      "last_write_utc": "2015-07-01T05:12:28.0000000Z"
+    },
+    {
+      "profile_priority": 11,
+      "official_priority": 11,
+      "file_name": "update1.pak",
+      "resolved_path": "D:\\Lam game phong than\\PhongThanRuntime-Staging\\Client\\data\\update1.pak",
+      "registry_value": "update1.pak",
+      "exists": true,
+      "length": 7620540,
+      "last_write_utc": "2012-09-19T07:52:56.0000000Z"
+    },
+    {
+      "profile_priority": 12,
+      "official_priority": 12,
+      "file_name": "update.pak",
+      "resolved_path": "D:\\Lam game phong than\\PhongThanRuntime-Staging\\Client\\data\\update.pak",
+      "registry_value": "update.pak",
+      "exists": true,
+      "length": 36257427,
+      "last_write_utc": "2012-09-19T07:51:32.0000000Z"
+    },
+    {
+      "profile_priority": 13,
+      "official_priority": 13,
+      "file_name": "blaze.pak",
+      "resolved_path": "D:\\Lam game phong than\\PhongThanRuntime-Staging\\Client\\data\\blaze.pak",
+      "registry_value": "blaze.pak",
+      "exists": true,
+      "length": 124242410,
+      "last_write_utc": "2012-09-19T07:50:42.0000000Z"
+    },
+    {
+      "profile_priority": 14,
+      "official_priority": 14,
+      "file_name": "serverlist.pak",
+      "resolved_path": "D:\\Lam game phong than\\PhongThanRuntime-Staging\\Client\\data\\serverlist.pak",
+      "registry_value": "serverlist.pak",
+      "exists": true,
+      "length": 23615107,
+      "last_write_utc": "2026-08-12T17:00:00.0000000Z"
+    },
+    {
+      "profile_priority": 15,
+      "official_priority": 15,
+      "file_name": "spr.pak",
+      "resolved_path": "D:\\Lam game phong than\\PhongThanRuntime-Staging\\Client\\data\\spr.pak",
+      "registry_value": "spr.pak",
+      "exists": true,
+      "length": 454317275,
+      "last_write_utc": "2012-09-19T07:51:28.0000000Z"
+    },
+    {
+      "profile_priority": 16,
+      "official_priority": 16,
+      "file_name": "maps.pak",
+      "resolved_path": "D:\\Lam game phong than\\PhongThanRuntime-Staging\\Client\\data\\maps.pak",
+      "registry_value": "maps.pak",
+      "exists": true,
+      "length": 55468990,
+      "last_write_utc": "2012-09-19T07:50:48.0000000Z"
+    },
+    {
+      "profile_priority": 17,
+      "official_priority": 17,
+      "file_name": "settings.pak",
+      "resolved_path": "D:\\Lam game phong than\\PhongThanRuntime-Staging\\Client\\data\\settings.pak",
+      "registry_value": "settings.pak",
+      "exists": true,
+      "length": 484862,
+      "last_write_utc": "2012-09-19T07:50:48.0000000Z"
+    },
+    {
+      "profile_priority": 18,
+      "official_priority": 18,
+      "file_name": "ui.pak",
+      "resolved_path": "D:\\Lam game phong than\\PhongThanRuntime-Staging\\Client\\data\\ui.pak",
+      "registry_value": "ui.pak",
+      "exists": true,
+      "length": 128735,
+      "last_write_utc": "2012-09-19T07:51:28.0000000Z"
+    },
+    {
+      "profile_priority": 19,
+      "official_priority": 19,
+      "file_name": "script.pak",
+      "resolved_path": "D:\\Lam game phong than\\PhongThanRuntime-Staging\\Client\\data\\script.pak",
+      "registry_value": "script.pak",
+      "exists": true,
+      "length": 725489,
+      "last_write_utc": "2012-09-19T07:50:48.0000000Z"
+    },
+    {
+      "profile_priority": 20,
+      "official_priority": 20,
+      "file_name": "font.pak",
+      "resolved_path": "D:\\Lam game phong than\\PhongThanRuntime-Staging\\Client\\data\\font.pak",
+      "registry_value": "font.pak",
+      "exists": true,
+      "length": 8916,
+      "last_write_utc": "2012-09-19T07:50:44.0000000Z"
+    },
+    {
+      "profile_priority": 21,
+      "official_priority": 21,
+      "file_name": "sound.pak",
+      "resolved_path": "D:\\Lam game phong than\\PhongThanRuntime-Staging\\Client\\data\\sound.pak",
+      "registry_value": "sound.pak",
+      "exists": true,
+      "length": 9307575,
+      "last_write_utc": "2016-09-15T02:16:00.0000000Z"
+    }
+  ]
+}

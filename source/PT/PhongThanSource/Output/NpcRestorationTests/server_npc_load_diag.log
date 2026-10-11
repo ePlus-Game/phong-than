@@ -1,0 +1,6 @@
+map=1052 region=00000001 declared=1 added=1 failed=0 missing_dialog_script=0
+map=1052 region=00000001 declared=1 added=1 failed=0 missing_dialog_script=0
+restored_region=\settings\phongthan\npc_regions\1052\v_000\001_region_s.dat source=authored_npc_section added=1
+map=1052 region=00000001 declared=1 added=1 failed=0 missing_dialog_script=0
+restored_region=\settings\phongthan\npc_regions\1052\v_000\001_npc_s.dat source=authored_npc_section added=1
+map=1052 region=00000001 declared=1 added=1 failed=0 missing_dialog_script=0

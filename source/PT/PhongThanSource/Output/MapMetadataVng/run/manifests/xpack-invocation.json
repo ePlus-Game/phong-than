@@ -1,0 +1,18 @@
+{
+  "executable": "D:\\Lam game phong than\\SourceMigration\\tools\\phongthan-unpack2\\bin\\Release\\XPackBatch.exe",
+  "executable_sha256": "491E13A5F84F628F057297346A60C6B5E3F5D6F97EE1CD3439C92D17FDBEC327",
+  "pe_machine": "0x014C",
+  "arguments": [
+    "--package-ini",
+    "D:\\Lam game phong than\\PhongThanSource\\Output\\MapMetadataVng\\run\\manifests\\package-profile.ini",
+    "--requests",
+    "D:\\Lam game phong than\\PhongThanSource\\Output\\MapMetadataVng\\requests.tsv",
+    "--output-root",
+    "D:\\Lam game phong than\\PhongThanSource\\Output\\MapMetadataVng\\run\\content",
+    "--manifest",
+    "D:\\Lam game phong than\\PhongThanSource\\Output\\MapMetadataVng\\run\\manifests\\extraction-manifest.json",
+    "--ucl-dir",
+    "D:\\Lam game phong than\\PhongThanRuntime-Staging\\Client"
+  ],
+  "derive_region_s": false
+}
