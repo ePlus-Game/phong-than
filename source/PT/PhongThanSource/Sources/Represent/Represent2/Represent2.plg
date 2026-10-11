@@ -1,0 +1,68 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: Represent2 - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\Users\UCT\AppData\Local\Temp\RSPF834.tmp" with contents
+[
+/nologo /MD /W3 /GX /O2 /I "..\..\engine\include" /I "../../../ThirdParty/WindowsSDK/GDIPlus/Include" /FI"../../../ThirdParty/WindowsSDK/GDIPlus/Include/GdiPlusVc6Compat.h" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "REPRESENT2_EXPORTS" /Fp"Release/Represent2.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"D:\Lam game phong than\PhongThanSource\Sources\Represent\Represent2\KRepresentShell2.cpp"
+]
+Creating command line "cl.exe @C:\Users\UCT\AppData\Local\Temp\RSPF834.tmp" 
+Creating temporary file "C:\Users\UCT\AppData\Local\Temp\RSPF835.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib GdiPlus.lib /nologo /dll /incremental:no /pdb:"Release/Represent2.pdb" /map:"Release/Represent2.map" /debug /machine:I386 /out:"Release/Represent2.dll" /implib:"Release/Represent2.lib" /libpath:"../../../ThirdParty/WindowsSDK/GDIPlus/Lib/x86" 
+".\Release\KImageStore2.obj"
+".\Release\RepresentUtility.obj"
+".\Release\KRepresentShell2.obj"
+".\Release\KFont2.obj"
+".\Release\KFontData.obj"
+".\Release\TextProcess.obj"
+".\Release\ImageOperation.obj"
+"..\..\..\Lib\release\engine.lib"
+]
+Creating command line "link.exe @C:\Users\UCT\AppData\Local\Temp\RSPF835.tmp"
+<h3>Output Window</h3>
+Compiling...
+KRepresentShell2.cpp
+D:\Lam game phong than\PhongThanSource\Sources\Represent\Represent2\../../Engine/Src/KDInput.h(12) : warning C4005: 'DIRECTINPUT_VERSION' : macro redefinition
+        D:\Lam game phong than\PhongThanSource\Sources\Represent\Represent2\../../Engine/Src/KWin32.h(29) : see previous definition of 'DIRECTINPUT_VERSION'
+Linking...
+   Creating library Release/Represent2.lib and object Release/Represent2.exp
+Creating temporary file "C:\Users\UCT\AppData\Local\Temp\RSPFC1E.bat" with contents
+[
+@echo off
+md ..\..\..\Output\Client\release\
+copy Release\Represent2.dll ..\..\..\Output\Client\Represent2.dll
+copy Release\Represent2.pdb ..\..\..\Output\Client\Represent2.pdb
+copy Release\Represent2.map ..\..\..\Output\Client\Represent2.map
+copy Release\Represent2.dll ..\..\..\Output\Client\release\Represent2.dll
+copy Release\Represent2.pdb ..\..\..\Output\Client\release\Represent2.pdb
+copy Release\Represent2.map ..\..\..\Output\Client\release\Represent2.map
+md ..\..\..\Output\Server\release\
+copy Release\Represent2.dll ..\..\..\Output\Server\Represent2.dll
+copy Release\Represent2.dll ..\..\..\Output\Server\release\Represent2.dll
+]
+Creating command line "C:\Users\UCT\AppData\Local\Temp\RSPFC1E.bat"
+
+A subdirectory or file ..\..\..\Output\Client\release\ already exists.
+        1 file(s) copied.
+        1 file(s) copied.
+        1 file(s) copied.
+        1 file(s) copied.
+        1 file(s) copied.
+        1 file(s) copied.
+A subdirectory or file ..\..\..\Output\Server\release\ already exists.
+        1 file(s) copied.
+        1 file(s) copied.
+
+
+
+<h3>Results</h3>
+Represent2.dll - 0 error(s), 1 warning(s)
+</pre>
+</body>
+</html>
