@@ -47,8 +47,8 @@ PATCHES = {
             b"\tshort Port = (short)endpoint.port;",
         ),
         (
-            b'#include "S3PDBSocketPool.h"',
-            b'#include "S3PDBSocketPool.h"\n#include "GatewayEndpointParser.h"',
+            b'#include "S3PDBSocketPool.h"\n#include "S3PAccount.h"',
+            b'#include "S3PDBSocketPool.h"\n#include "GatewayEndpointParser.h"\n#include "S3PAccount.h"',
         ),
     ),
 }
