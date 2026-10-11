@@ -1,0 +1,95 @@
+﻿== Common 2026-10-02T16:08:23
+> cl.exe /nologo /c /EHsc /Zc:forScope- /Zc:wchar_t- /Zc:strictStrings- /Zc:threadSafeInit- /permissive /W1 /wd4996 /wd4700 /Zi /Oy- /GS- /FS /D_CRT_SECURE_NO_WARNINGS /D_CRT_NONSTDC_NO_DEPRECATE /D_WINSOCK_DEPRECATED_NO_WARNINGS /D_USE_32BIT_TIME_T /D_CRT_NO_VA_START_VALIDATION /DPHONGTHAN_MODERN_BUILD=1 /D_WINSOCKAPI_ /Zc:sizedDealloc- /MT /O2 /DWIN32 /DNDEBUG /D_MBCS /D_LIB /D_WIN32_WINNT=0x0400 /MP24 /FoE:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\Modern\Win32Release\ /FdE:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\Modern\Win32Release\vc143.pdb E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\Buffer.cpp E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\Console.cpp E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\CRC32.C E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\Event.cpp E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\EventSelect.cpp E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\Exception.cpp E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\IniFile.cpp E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\IOBuffer.cpp E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\IOCompletionPort.cpp E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\KSG_EncodeDecode.cpp E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\KSocketClient2.cpp E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\Library.cpp E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\Macro.cpp E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\ManualResetEvent.cpp E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\Mutex.cpp E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\NodeList.cpp E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\Socket.cpp E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\SocketAddress.cpp E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\SocketClient.cpp E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\SocketServer.cpp E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\stdafx.cpp E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\Thread.cpp E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\UsesWinsock.cpp E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\Utils.cpp E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\Win32Exception.cpp
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+Buffer.cpp
+Console.cpp
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+CRC32.C
+Event.cpp
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+EventSelect.cpp
+Exception.cpp
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+IniFile.cpp
+IOBuffer.cpp
+IOCompletionPort.cpp
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+KSG_EncodeDecode.cpp
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+KSocketClient2.cpp
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+Library.cpp
+Macro.cpp
+ManualResetEvent.cpp
+Mutex.cpp
+NodeList.cpp
+Socket.cpp
+SocketAddress.cpp
+SocketClient.cpp
+SocketServer.cpp
+stdafx.cpp
+Thread.cpp
+UsesWinsock.cpp
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+Utils.cpp
+E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\CRC32.C(229) : warning C4731: 'CRC32': frame pointer register 'ebp' modified by inline assembly code
+E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\CRC32.C(252) : warning C4731: 'CRC32': frame pointer register 'ebp' modified by inline assembly code
+E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\CRC32.C(252) : warning C4731: 'CRC32': frame pointer register 'ebp' modified by inline assembly code
+Win32Exception.cpp
+C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\um\winsock2.h(17): warning C4005: '_WINSOCKAPI_': macro redefinition (compiling source file E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\IOBuffer.cpp)
+C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\um\winsock2.h(17): note: '_WINSOCKAPI_' previously declared on the command line (compiling source file E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\IOBuffer.cpp)
+C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\um\winsock2.h(17): warning C4005: '_WINSOCKAPI_': macro redefinition (compiling source file E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\Buffer.cpp)
+C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\um\winsock2.h(17): note: '_WINSOCKAPI_' previously declared on the command line (compiling source file E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\Buffer.cpp)
+C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\um\winsock2.h(17): warning C4005: '_WINSOCKAPI_': macro redefinition (compiling source file E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\EventSelect.cpp)
+C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\um\winsock2.h(17): note: '_WINSOCKAPI_' previously declared on the command line (compiling source file E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\EventSelect.cpp)
+C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\um\winsock2.h(17): warning C4005: '_WINSOCKAPI_': macro redefinition (compiling source file E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\KSocketClient2.cpp)
+C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\um\winsock2.h(17): note: '_WINSOCKAPI_' previously declared on the command line (compiling source file E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\KSocketClient2.cpp)
+C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\um\winsock2.h(17): warning C4005: '_WINSOCKAPI_': macro redefinition (compiling source file E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\SocketClient.cpp)
+C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\um\winsock2.h(17): note: '_WINSOCKAPI_' previously declared on the command line (compiling source file E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\SocketClient.cpp)
+C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\um\winsock2.h(17): warning C4005: '_WINSOCKAPI_': macro redefinition (compiling source file E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\SocketServer.cpp)
+C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\um\winsock2.h(17): note: '_WINSOCKAPI_' previously declared on the command line (compiling source file E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\SocketServer.cpp)
+C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\um\winsock2.h(17): warning C4005: '_WINSOCKAPI_': macro redefinition (compiling source file E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\Socket.cpp)
+C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\um\winsock2.h(17): note: '_WINSOCKAPI_' previously declared on the command line (compiling source file E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\Socket.cpp)
+C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\um\winsock2.h(17): warning C4005: '_WINSOCKAPI_': macro redefinition (compiling source file E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\UsesWinsock.cpp)
+C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\um\winsock2.h(17): note: '_WINSOCKAPI_' previously declared on the command line (compiling source file E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\UsesWinsock.cpp)
+C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\um\winsock2.h(17): warning C4005: '_WINSOCKAPI_': macro redefinition (compiling source file E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\SocketAddress.cpp)
+C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\um\winsock2.h(17): note: '_WINSOCKAPI_' previously declared on the command line (compiling source file E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\SocketAddress.cpp)
+C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\um\winsock2.h(17): warning C4005: '_WINSOCKAPI_': macro redefinition (compiling source file E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\Utils.cpp)
+C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\um\winsock2.h(17): note: '_WINSOCKAPI_' previously declared on the command line (compiling source file E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\Utils.cpp)
+C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\um\winsock2.h(17): warning C4005: '_WINSOCKAPI_': macro redefinition (compiling source file E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\IniFile.cpp)
+C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\um\winsock2.h(17): note: '_WINSOCKAPI_' previously declared on the command line (compiling source file E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\IniFile.cpp)
+C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\um\winsock2.h(17): warning C4005: '_WINSOCKAPI_': macro redefinition (compiling source file E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\Win32Exception.cpp)
+C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\um\winsock2.h(17): note: '_WINSOCKAPI_' previously declared on the command line (compiling source file E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\Win32Exception.cpp)
+NOTE : --------------------OnlineGameLib [Client] : Announcement--------------------
+NOTE : The lib be used for socket communicate that it is base on
+NOTE : Windows 95 and Windows NT 3.51 and later
+NOTE :
+NOTE : liupeng xishanju.zhuhai.china 2003.1
+NOTE : -----------------------------------------------------------------------------
+NOTE : --------------------OnlineGame [Server] : Announcement--------------------
+NOTE : Developing a truly scalable Winsock Server using IO Completion Ports(IOCP)
+NOTE : But this module depend on the microsoft platform
+NOTE : Requirements :
+NOTE :    * Windows NT/2000/XP: Included in Windows NT 4.0 and later.
+NOTE :    * Windows 95/98/Me: Unsupported.
+NOTE :
+NOTE : liupeng xishanju.zhuhai.china 2003.1
+NOTE : -----------------------------------------------------------------------------
+> lib.exe /nologo /OUT:E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\Modern\Win32Release\Common.lib E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\Modern\Win32Release\buffer.obj E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\Modern\Win32Release\console.obj E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\Modern\Win32Release\crc32.obj E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\Modern\Win32Release\event.obj E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\Modern\Win32Release\eventselect.obj E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\Modern\Win32Release\exception.obj E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\Modern\Win32Release\inifile.obj E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\Modern\Win32Release\iobuffer.obj E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\Modern\Win32Release\iocompletionport.obj E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\Modern\Win32Release\ksg_encodedecode.obj E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\Modern\Win32Release\ksocketclient2.obj E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\Modern\Win32Release\library.obj E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\Modern\Win32Release\macro.obj E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\Modern\Win32Release\manualresetevent.obj E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\Modern\Win32Release\mutex.obj E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\Modern\Win32Release\nodelist.obj E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\Modern\Win32Release\socket.obj E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\Modern\Win32Release\socketaddress.obj E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\Modern\Win32Release\socketclient.obj E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\Modern\Win32Release\socketserver.obj E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\Modern\Win32Release\stdafx.obj E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\Modern\Win32Release\thread.obj E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\Modern\Win32Release\useswinsock.obj E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\Modern\Win32Release\utils.obj E:\VL\Phong than\PT\PhongThanSource\Sources\MultiServer\Common\Modern\Win32Release\win32exception.obj

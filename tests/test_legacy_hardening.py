@@ -4,7 +4,7 @@ import unittest
 from pathlib import Path
 from tools.legacy_hardening import PATCHES, harden, stage
 
-ROOT = Path(__file__).resolve().parents[1] / "source/PT/PhongThanSource"
+ROOT = Path(__file__).resolve().parents[1] / "PhongThanSource"
 
 
 class HardeningTests(unittest.TestCase):

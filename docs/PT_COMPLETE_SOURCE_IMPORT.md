@@ -1,3 +1,5 @@
+> **Historical import notes:** Paths below describe the initial import. The exact PT.zip source tree now lives at the repository root, with original `PT/docs/` under `docs/original-pt/`. See [current layout](REPOSITORY_LAYOUT.md).
+
 # PT complete source mirror — no file filtering
 
 Source: original `PT.zip` in Google Drive.

@@ -1,3 +1,5 @@
+> **Historical analysis of a different, much smaller PT.rar archive.** The source tree described below is not the current full PT.zip repository. See [current layout](REPOSITORY_LAYOUT.md).
+
 # BÁO CÁO PHÂN TÍCH TĨNH — PHONG THẦN 2 / PT.rar
 
 **Ngày phân tích:** 09/10/2026  

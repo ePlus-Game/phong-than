@@ -1,42 +1,67 @@
-# Phong Thần 2 — exact PT.zip archive and recovery tools
+# Phong Thần 2 — source & original PT.zip archive
 
-This repository preserves the **original PT.zip archive**, byte-verified, under
-`source/PT/`. The original contains **99,352 entries**. It is **not a
-proven playable Client/Server build**.
+Repository này lưu trữ **bộ PT.zip gốc** (99.352 mục) cùng công cụ kiểm tra,
+phục hồi và nghiên cứu build. **Chưa xác nhận Client/Server có thể chạy game.**
 
-## Repository layout
+## Cấu trúc
 
-- `source/PT/` — sole canonical archive source tree, including the original
-  PhongThanSource project, packaged runtime data and all split PAK parts.
-- `source/PT_EXACT_ZIP_MANIFEST.csv` — original file sizes and SHA-256 inventory.
-- `source/PT_EXACT_ZIP_DIRECTORIES.txt` — original empty directories.
-- `source/PT_RESTORE_SPLIT_FILES.py` — restore the 16 large PAK files from
-  102 Git parts, with size and SHA-256 verification.
-- `tools/`, `tests/`, `docs/`, `.github/` — recovery tooling, tests,
-  documentation and CI for the original source mirror.
-
-The earlier standalone source subset at the repository root (`Base/`,
-`Client/`, `Server/`, `Share/`) and the obsolete `recovered/` import
-were removed to avoid confusing them with the canonical PT.zip source.
-**These removed files may still exist in earlier Git commits.**
-
-## Restore the 16 large PAK files
-
-After cloning the repository, from the repository root run:
-
-```powershell
-python source/PT_RESTORE_SPLIT_FILES.py --repo-root .
+```text
+pt/
+├── PhongThanSource/           # Source C/C++, build scripts gốc
+├── PhongThanRuntime-Staging/  # Runtime Client/Server gốc
+├── PhongThanRuntime-State/    # Dữ liệu trạng thái trong PT.zip gốc
+├── AdminWeb/                  # Công cụ quản trị gốc
+├── Setup/                     # Bộ cài đặt gốc
+├── _backup/                   # Bản lưu trong PT.zip gốc
+├── PhongThan-*.cmd            # Script khởi chạy gốc (chưa xác minh an toàn)
+├── CHANGELOG.md               # Changelog gốc
+├── docs/
+│   ├── original-pt/           # Nội dung PT/docs/ của ZIP gốc
+│   └── REPOSITORY_LAYOUT.md   # Giải thích tổ chức source mới
+├── archive/                    # Manifest SHA-256 và đường dẫn lịch sử
+├── tools/                      # Công cụ kiểm tra, ghép PAK, thử build
+├── tests/                      # Kiểm thử công cụ
+└── .github/workflows/          # Kiểm thử CI
 ```
 
-The archive source tree is intentionally unmodified. To experiment with fixes,
-copy `source/PT/PhongThanSource/` **outside** the checkout and follow
-`docs/LEGACY_HARDENING.md`. No complete game build, login, or gameplay
-test is established.
+Nội dung trước đây tại `source/PT/` đã được đưa lên **ngay thư mục gốc**.
+Không sao chép lại source cũ. Toàn bộ blob gốc được giữ nguyên SHA Git;
+riêng thư mục `PT/docs/` được chuyển sang `docs/original-pt/`
+để không trùng với tài liệu duy trì repository.
 
-## Security and licensing
+## Tải source về máy
 
-**This repository is PUBLIC.** The original archive may contain account
-backups, character records, logs, server settings, historical Git objects and
-third-party proprietary material. Public access does not grant redistribution
-rights. Review any personal data and credentials before sharing. Deleting
-old files in a new commit does not erase their Git history.
+Mở trang repository và chọn **Code → Download ZIP**. Do dữ liệu rất lớn,
+GitHub có thể gặp giới hạn khi tạo/tải ZIP; dùng Git nếu cần độ tin cậy cao.
+
+Sau khi clone hoặc tải và giải nén toàn bộ dữ liệu, để ghép và kiểm tra
+**16 PAK lớn** đang chia thành **102 phần**, mở terminal tại thư mục `pt`:
+
+```powershell
+python tools/restore_split_files.py --repo-root .
+```
+
+Các PAK được khôi phục về vị trí trực tiếp dưới root và được kiểm tra SHA-256.
+Phải có đủ các file `*.pak.parts/part-*.bin` và đủ dung lượng ổ đĩa.
+
+Để chạy bộ kiểm thử công cụ:
+
+```powershell
+python -m unittest discover -s tests -v
+```
+
+Muốn thử build có kiểm soát, xem [hướng dẫn hardening](docs/LEGACY_HARDENING.md).
+Source gốc không được chỉnh sửa trực tiếp; hãy build trên một **bản sao**
+ở ngoài checkout, tốt nhất trong Windows x86 VM cách ly.
+
+## Chứng thực và bảo mật
+
+Manifest SHA-256 gốc còn nguyên trong `archive/`, có nhãn đường dẫn lịch sử
+`source/PT/...` để giữ bằng chứng import; công cụ restore sẽ tự chuyển sang
+đường dẫn hiện tại. Xem [chi tiết ánh xạ](docs/REPOSITORY_LAYOUT.md).
+
+**Cảnh báo:** Đây là repository PUBLIC, có thể chứa sao lưu tài khoản,
+dữ liệu nhân vật, cấu hình cũ, nhật ký và tài liệu thuộc sở hữu bên thứ ba.
+Không dùng bản này trên hệ thống production, không chạy các file thực thi cũ
+trực tiếp và không giả định việc công khai repository là cho phép phân phối
+nội dung. Di chuyển/xóa file ở commit mới cũng không xóa chúng khỏi lịch sử Git.

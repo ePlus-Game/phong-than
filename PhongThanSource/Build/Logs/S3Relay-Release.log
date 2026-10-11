@@ -1,0 +1,59 @@
+Deleting intermediate files and output files for project 'S3Relay - Win32 Release'.
+--------------------Configuration: S3Relay - Win32 Release--------------------
+Compiling resources...
+Compiling...
+StdAfx.cpp
+Compiling...
+ChannelMgr.cpp
+ChatConnect.cpp
+ChatServer.cpp
+DBConnect.cpp
+DBTable.cpp
+DealRelay.cpp
+DoScript.cpp
+FriendMgr.cpp
+GatewayCenter.cpp
+GatewayClient.cpp
+Global.cpp
+GlobalFun.cpp
+HeavenLib.cpp
+HostConnect.cpp
+HostServer.cpp
+KThread.cpp
+Lock.cpp
+LogFile.cpp
+Memory.cpp
+NetCenter.cpp
+Generating Code...
+Compiling...
+NetClient.cpp
+NetConnect.cpp
+NetServer.cpp
+NetSockDupEx.cpp
+RainbowLib.cpp
+RelayCenter.cpp
+RelayClient.cpp
+RelayConnect.cpp
+RelayServer.cpp
+RootCenter.cpp
+RootClient.cpp
+S3P_MSSQLServer_Result.cpp
+S3PDB_MSSQLServer_Connection.cpp
+S3PDBConVBC.cpp
+S3PResultVBC.cpp
+S3Relay.cpp
+SockThread.cpp
+TongConnect.cpp
+TongServer.cpp
+KTongControl.cpp
+Generating Code...
+Compiling...
+KTongSet.cpp
+TONGDB.CPP
+Generating Code...
+Linking...
+A subdirectory or file ..\..\..\Output\Server\release\ already exists.
+        1 file(s) copied.
+        1 file(s) copied.
+
+S3Relay.exe - 0 error(s), 0 warning(s)

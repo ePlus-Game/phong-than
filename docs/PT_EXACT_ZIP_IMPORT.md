@@ -1,3 +1,5 @@
+> **Historical import notes:** This page describes the initial import paths. Since the repository layout change, the contents of `source/PT/` are at the repository root, original PT docs are under `docs/original-pt/`, the unchanged manifests are under `archive/`, and the restore command is `python tools/restore_split_files.py --repo-root .`. See [current layout](REPOSITORY_LAYOUT.md).
+
 # Full PT.zip import — ordinary Git chunks, no LFS
 
 ## Goal

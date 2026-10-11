@@ -1,0 +1,17 @@
+\Ui\Ui3\UiSuperShop.ini
+\Ui\Ui3\UiShop.ini
+\Ui\Ui3\UiShopPing.ini
+\Ui\Ui4\UiPubLicSetting.ini
+\Ui\Ui4\UiInit.ini
+\Ui\Ui4\UiPlayerBar.ini
+\Ui\Ui4\UiPlayerControlBar.ini
+\Ui\Ui4\UiHeaderControlBar.ini
+\Ui\Ui4\UiMsgCentrePad.ini
+\Ui\Ui4\UiChatCentre.ini
+\Ui\Ui4\UiSuperShop.ini
+\Ui\Ui4\UiShop.ini
+\Ui\Ui4\UiShopPing.ini
+\Ui\Ui4\UiItem.ini
+\Ui\Ui4\UiStatus.ini
+\Ui\Ui4\UiMiniMapSmall.ini
+\Ui\Ui4\UiMiniMapBig.ini

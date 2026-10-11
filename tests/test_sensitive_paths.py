@@ -6,12 +6,12 @@ from tools.audit_sensitive_paths import audit, categorize, markdown
 class SensitivePathTests(unittest.TestCase):
     def test_flags_runtime_private_data_without_reading_it(self):
         samples = [
-            "source/PT/PhongThanRuntime-Staging/Server/database/account.bak",
-            "source/PT/PhongThanRuntime-Staging/Server/CharacterStore/role_abc.pthc",
-            "source/PT/PhongThanRuntime-Staging/Server/admin_bridge/token.log",
-            "source/PT/PhongThanRuntime-Staging/Server/DataBase.ini",
-            "source/PT/PhongThanSource/__historical_git__/original-dot-git.zip",
-            "source/PT/PhongThanSource/Sources/MultiServer/GameServer/GameServer.cpp",
+            "PhongThanRuntime-Staging/Server/database/account.bak",
+            "PhongThanRuntime-Staging/Server/CharacterStore/role_abc.pthc",
+            "PhongThanRuntime-Staging/Server/admin_bridge/token.log",
+            "PhongThanRuntime-Staging/Server/DataBase.ini",
+            "PhongThanSource/__historical_git__/original-dot-git.zip",
+            "PhongThanSource/Sources/MultiServer/GameServer/GameServer.cpp",
         ]
         result = audit(samples)
         self.assertEqual(result["tracked_files"], 6)

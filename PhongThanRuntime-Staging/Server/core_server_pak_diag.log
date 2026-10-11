@@ -1,0 +1,7 @@
+package_ini=\package.ini opened=1 priority=pak_then_loose
+entry=\settings\item\itemversion.ini found=1 package_index=15 bytes=376
+entry=\settings\Skills.txt found=1 package_index=0 bytes=598259
+entry=\settings\phongthan\Npcs.txt found=0 package_index=-1 bytes=0
+entry=\maps\WorldSet.ini found=0 package_index=-1 bytes=0
+entry=\script\serverscript.lua found=0 package_index=-1 bytes=0
+result=ready

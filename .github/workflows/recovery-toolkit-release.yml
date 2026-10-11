@@ -27,10 +27,10 @@ jobs:
             /tests/
             /docs/LEGACY_HARDENING.md
             /docs/releases/v0.1.0-recovery.1.md
-            /source/PT/PhongThanSource/Sources/MultiServer/GameServer/GameServer.cpp
-            /source/PT/PhongThanSource/Sources/AccountServices/AccountServer/S3PDBSocketPool.cpp
-            /source/PT/PhongThanSource/Build/Build-Modern.ps1
-            /source/PT/PhongThanSource/Build/Build-PhongThan.ps1
+            /PhongThanSource/Sources/MultiServer/GameServer/GameServer.cpp
+            /PhongThanSource/Sources/AccountServices/AccountServer/S3PDBSocketPool.cpp
+            /PhongThanSource/Build/Build-Modern.ps1
+            /PhongThanSource/Build/Build-PhongThan.ps1
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -39,7 +39,7 @@ jobs:
       - name: Check source preflight without running game binaries
         run: |
           python -m tools.release_preflight \
-            --source-root source/PT/PhongThanSource \
+            --source-root PhongThanSource \
             --workspace "$RUNNER_TEMP/pt-release-build" \
             --toolchain Modern
       - name: Package verified developer toolkit only

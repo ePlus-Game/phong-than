@@ -5,7 +5,7 @@ from pathlib import Path
 from tools.release_preflight import check_source
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE = ROOT / "source/PT/PhongThanSource"
+SOURCE = ROOT / "PhongThanSource"
 
 
 class ReleasePreflightTests(unittest.TestCase):
