@@ -1,0 +1,6 @@
+{
+  "schema_version": 1,
+  "promotion_ready": false,
+  "rule": "Quarantine copies are evidence only. They are never promoted by this orchestrator.",
+  "records": []
+}

@@ -1,0 +1,127 @@
+﻿{
+  "Result": "PASS",
+  "Policy": "VNG_PAK_ONLY_NO_SYNTHETIC_FALLBACK",
+  "DataRoot": "D:\\Lam game phong than\\PhongThanRuntime-Staging",
+  "UniqueReferences": 3974,
+  "PakEntries": 3470,
+  "LooseEntries": 0,
+  "MissingBacklog": 504,
+  "CriticalEquipmentTablesComplete": [
+    "armor.txt",
+    "helm.txt",
+    "boot.txt",
+    "belt.txt",
+    "amulet.txt",
+    "pendant.txt",
+    "horse.txt"
+  ],
+  "Tables": [
+    {
+      "Table": "amulet.txt",
+      "ReferencedRows": 860,
+      "ReferencedUnique": 54,
+      "MissingRows": 0,
+      "MissingUnique": 0
+    },
+    {
+      "Table": "armor.txt",
+      "ReferencedRows": 2610,
+      "ReferencedUnique": 39,
+      "MissingRows": 0,
+      "MissingUnique": 0
+    },
+    {
+      "Table": "belt.txt",
+      "ReferencedRows": 2610,
+      "ReferencedUnique": 39,
+      "MissingRows": 0,
+      "MissingUnique": 0
+    },
+    {
+      "Table": "boot.txt",
+      "ReferencedRows": 2610,
+      "ReferencedUnique": 39,
+      "MissingRows": 0,
+      "MissingUnique": 0
+    },
+    {
+      "Table": "cuff.txt",
+      "ReferencedRows": 20,
+      "ReferencedUnique": 20,
+      "MissingRows": 20,
+      "MissingUnique": 20
+    },
+    {
+      "Table": "helm.txt",
+      "ReferencedRows": 2610,
+      "ReferencedUnique": 39,
+      "MissingRows": 0,
+      "MissingUnique": 0
+    },
+    {
+      "Table": "horse.txt",
+      "ReferencedRows": 1150,
+      "ReferencedUnique": 27,
+      "MissingRows": 0,
+      "MissingUnique": 0
+    },
+    {
+      "Table": "ibitem.txt",
+      "ReferencedRows": 219,
+      "ReferencedUnique": 128,
+      "MissingRows": 11,
+      "MissingUnique": 11
+    },
+    {
+      "Table": "magicscript.txt",
+      "ReferencedRows": 5692,
+      "ReferencedUnique": 2018,
+      "MissingRows": 429,
+      "MissingUnique": 387
+    },
+    {
+      "Table": "material.txt",
+      "ReferencedRows": 5740,
+      "ReferencedUnique": 1548,
+      "MissingRows": 70,
+      "MissingUnique": 54
+    },
+    {
+      "Table": "meleeweapon.txt",
+      "ReferencedRows": 3411,
+      "ReferencedUnique": 78,
+      "MissingRows": 20,
+      "MissingUnique": 2
+    },
+    {
+      "Table": "pendant.txt",
+      "ReferencedRows": 2610,
+      "ReferencedUnique": 39,
+      "MissingRows": 0,
+      "MissingUnique": 0
+    },
+    {
+      "Table": "questkey.txt",
+      "ReferencedRows": 317,
+      "ReferencedUnique": 197,
+      "MissingRows": 9,
+      "MissingUnique": 9
+    },
+    {
+      "Table": "rangeweapon.txt",
+      "ReferencedRows": 30,
+      "ReferencedUnique": 12,
+      "MissingRows": 30,
+      "MissingUnique": 12
+    },
+    {
+      "Table": "ring.txt",
+      "ReferencedRows": 10,
+      "ReferencedUnique": 10,
+      "MissingRows": 10,
+      "MissingUnique": 10
+    }
+  ],
+  "Catalog": "D:\\Lam game phong than\\PhongThanSource\\Output\\ItemIconPolicy-IBItem-Final\\VngItemIcon.paths.txt",
+  "MissingCatalog": "D:\\Lam game phong than\\PhongThanSource\\Output\\ItemIconPolicy-IBItem-Final\\VngItemIcon.missing.txt"
+}

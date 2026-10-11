@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "run_root": "D:\\Lam game phong than\\PhongThanSource\\Output\\MapMetadataActiveVng\\run",
+  "directories": {
+    "content": "D:\\Lam game phong than\\PhongThanSource\\Output\\MapMetadataActiveVng\\run\\content",
+    "manifests": "D:\\Lam game phong than\\PhongThanSource\\Output\\MapMetadataActiveVng\\run\\manifests",
+    "reports": "D:\\Lam game phong than\\PhongThanSource\\Output\\MapMetadataActiveVng\\run\\reports",
+    "quarantine": "D:\\Lam game phong than\\PhongThanSource\\Output\\MapMetadataActiveVng\\run\\quarantine",
+    "logs": "D:\\Lam game phong than\\PhongThanSource\\Output\\MapMetadataActiveVng\\run\\logs"
+  },
+  "immutable_inputs": {
+    "official_package_ini": "D:\\Lam game phong than\\PhongThanRuntime-Staging\\Client\\package.ini",
+    "requests_tsv": "D:\\Lam game phong than\\PhongThanSource\\Output\\MapMetadataActiveVng\\requests.tsv",
+    "xpack_batch": "D:\\Lam game phong than\\SourceMigration\\tools\\phongthan-unpack2\\bin\\Release\\XPackBatch.exe",
+    "ucl1_dll": "D:\\Lam game phong than\\PhongThanRuntime-Staging\\Client\\ucl1.dll"
+  },
+  "promotion_ready": false
+}
