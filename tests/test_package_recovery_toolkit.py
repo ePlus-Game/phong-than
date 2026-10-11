@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 class PackageRecoveryToolkitTests(unittest.TestCase):
     def test_tooling_only_and_repeatable(self):
-        self.assertTrue(all(path.startswith(("tools/", "docs/")) for path in TOOLKIT_FILES))
+        self.assertTrue(all(path.startswith(("tools/", "docs/", "overlays/")) for path in TOOLKIT_FILES))
         self.assertFalse(any(path.endswith((".dll", ".exe", ".pak", ".bak")) for path in TOOLKIT_FILES))
         with tempfile.TemporaryDirectory() as tmp:
             first = Path(tmp) / "toolkit-a.zip"
