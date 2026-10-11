@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Phong Thần Admin</title>
+<style>
+:root{--bg:#f4f1ea;--panel:#fff;--ink:#23201b;--muted:#6b6459;--line:#e2dccf;--accent:#9a3b1f;--accent-2:#c9771c;--ok:#2f7d4a;--warn:#b7791f;--bad:#b3261e;--chip:#f1ebe0}
+@media (prefers-color-scheme:dark){:root{--bg:#17150f;--panel:#211e17;--ink:#eee7da;--muted:#a79f90;--line:#3a3428;--accent:#e0794f;--accent-2:#e7a64a;--ok:#5cc07f;--warn:#e5b04b;--bad:#ef6b62;--chip:#2c271e}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 "Segoe UI",system-ui,sans-serif}
+header{display:flex;align-items:center;gap:16px;padding:14px 20px;border-bottom:1px solid var(--line);background:var(--panel);position:sticky;top:0;z-index:5;flex-wrap:wrap}
+header h1{font-size:18px;margin:0;color:var(--accent);letter-spacing:.3px}
+#bridge{font-size:13px;color:var(--muted)}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:middle;background:var(--muted)}
+nav{display:flex;gap:4px;flex-wrap:wrap;margin-left:auto}
+nav button{background:none;border:1px solid transparent;color:var(--ink);padding:6px 12px;border-radius:6px;cursor:pointer;font:inherit}
+nav button.on{background:var(--accent);color:#fff}
+main{max-width:1180px;margin:0 auto;padding:20px 16px 60px}
+section{display:none}section.on{display:block}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px}
+.card h2{font-size:15px;margin:0 0 12px}
+.hint{color:var(--muted);font-size:12.5px;margin:4px 0 10px}
+label{display:block;font-size:12.5px;color:var(--muted);margin:10px 0 4px}
+input,select,textarea{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);font:inherit}
+textarea{min-height:80px;resize:vertical}
+.row{display:flex;gap:10px;flex-wrap:wrap}.row>*{flex:1;min-width:110px}
+button.btn{margin-top:12px;padding:8px 14px;border:0;border-radius:6px;background:var(--accent);color:#fff;cursor:pointer;font:inherit;font-weight:600}
+button.btn.alt{background:var(--chip);color:var(--ink);border:1px solid var(--line)}
+button.btn.small{margin:0;padding:4px 9px;font-size:12.5px;font-weight:500}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--muted);font-weight:600;font-size:12px}
+.list{max-height:280px;overflow:auto;border:1px solid var(--line);border-radius:6px;margin-top:8px}
+.list div{padding:6px 10px;border-bottom:1px solid var(--line);cursor:pointer;display:flex;justify-content:space-between;gap:10px}
+.list div:hover{background:var(--chip)}
+.list small{color:var(--muted);white-space:nowrap}
+.picked{margin-top:8px;padding:8px 10px;border-radius:6px;background:var(--chip);font-weight:600;min-height:20px}
+.tag{display:inline-block;padding:1px 8px;border-radius:10px;font-size:12px;background:var(--chip)}
+.tag.OK{background:var(--ok);color:#fff}.tag.FAIL{background:var(--bad);color:#fff}.tag.PENDING{background:var(--warn);color:#fff}
+#toast{position:fixed;right:16px;bottom:16px;max-width:420px;padding:12px 16px;border-radius:8px;background:var(--ink);color:var(--bg);display:none;z-index:9;box-shadow:0 6px 24px rgba(0,0,0,.25)}
+#toast.err{background:var(--bad);color:#fff}
+.days label{display:inline-flex;align-items:center;gap:4px;margin:0 10px 0 0;color:var(--ink)}
+.days input{width:auto}
+.act{border:1px dashed var(--line);border-radius:8px;padding:10px;margin-top:10px}
+.muted{color:var(--muted)}
+@media (max-width:600px){nav{margin-left:0}header{padding:10px 16px}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Phong Thần Admin</h1>
+  <span id="bridge"><span class="dot"></span>Đang kiểm tra server…</span>
+  <nav id="tabs">
+    <button data-t="overview" class="on">Tổng quan</button>
+    <button data-t="give">Phát đồ</button>
+    <button data-t="skills">Bí kíp / Kỹ năng</button>
+    <button data-t="boss">Boss / NPC</button>
+    <button data-t="news">Thông báo</button>
+    <button data-t="events">Sự kiện</button>
+    <button data-t="accounts">Tài khoản</button>
+    <button data-t="history">Lịch sử lệnh</button>
+  </nav>
+</header>
+<main>
+
+<section id="overview" class="on">
+  <div class="grid">
+    <div class="card"><h2>Trạng thái server</h2><div id="svc"></div>
+      <p class="hint">Lệnh trong game (phát đồ, tạo boss, thông báo) được server xử lý <b>mỗi phút một lần</b>, vào giây 00. Nhịp cầu nối cập nhật mỗi phút; nếu quá 2 phút không cập nhật thì server chưa chạy hoặc chưa nạp script cầu nối.</p></div>
+    <div class="card"><h2>Người chơi đang online <span id="onlineStamp" class="muted" style="font-weight:400;font-size:12px"></span></h2>
+      <table><thead><tr><th>Nhân vật</th><th>Tài khoản</th><th>Cấp</th><th>Vị trí</th><th></th></tr></thead><tbody id="onlineBody"></tbody></table></div>
+  </div>
+</section>
+
+<section id="give">
+  <div class="grid">
+    <div class="card"><h2>1. Chọn vật phẩm</h2>
+      <div class="row"><div><label>Nhóm</label><select id="itemGroup"><option value="">Tất cả nhóm</option></select></div>
+      <div><label>Tìm theo tên (không dấu cũng được) hoặc mã</label><input id="itemQ" placeholder="VD: trảm, than binh, 272"></div></div>
+      <div class="list" id="itemList"></div>
+      <div class="picked" id="itemPicked">Chưa chọn vật phẩm</div>
+    </div>
+    <div class="card"><h2>2. Phát cho người chơi</h2>
+      <label>Tên nhân vật (phải đang online)</label><input id="givePlayer" list="playerNames" placeholder="VD: EmLaAi">
+      <label>Số lượng (1–50)</label><input id="giveCount" type="number" min="1" max="50" value="1">
+      <div class="row"><button class="btn" id="btnGive">Phát cho nhân vật</button><button class="btn alt" id="btnGiveAll">Phát cho tất cả đang online</button></div>
+      <p class="hint">Món đồ được tạo theo thuộc tính gốc trong bảng dữ liệu và đưa vào hành trang (F4). Hành trang đầy thì món đồ có thể không vào được.</p>
+      <h2 style="margin-top:18px">Lệnh bài admin (Túi tân thủ)</h2>
+      <p class="hint">Túi dùng nhiều lần, không mất: click phải trong F4 → chọn nhóm → nhập mã → nhận đồ ngay trong game. Mỗi nhân vật chỉ cần 1 túi.</p>
+      <button class="btn" id="btnBag" style="margin-top:0">Phát Túi tân thủ cho nhân vật trên</button>
+      <h2 style="margin-top:18px">Tăng level nhân vật</h2>
+      <div class="row"><div><label>Level mới (1–200)</label><input id="charLevel" type="number" min="1" max="200" value="90"></div></div>
+      <button class="btn" id="btnLevel">Đặt level cho nhân vật trên</button>
+      <p class="hint">Điểm tiềm năng được hoàn lại để phân phối lại theo level mới; cấp các kỹ năng đã học được giữ nguyên.</p>
+      <h2 style="margin-top:18px">Tiền đồng / Kim Nguyên Bảo</h2>
+      <div class="row"><div><label>Số Xu (tiền đồng, 1–50 món/lần)</label><input id="xuCount" type="number" min="1" max="50" value="10"></div></div>
+      <div class="row"><button class="btn" id="btnXu">Phát Xu (tiền đồng)</button><button class="btn alt" id="btnKnb">Chọn nhanh: Kim Nguyên Bảo</button></div>
+      <div class="row"><div><label>Điểm xu tài khoản (Kỳ Trân Các)</label><input id="coin" type="number" min="1" value="10000"></div></div>
+      <button class="btn alt" id="btnCoin">Cộng điểm xu tài khoản</button>
+      <p class="hint">“Xu” là vật phẩm tiền đồng (Nhiệm vụ, mã 47) vào hành trang. Điểm xu tài khoản là số dư dùng ở Kỳ Trân Các. Kim Nguyên Bảo: Nguyên liệu mã 1183.</p>
+      <h2 style="margin-top:18px">Tặng tiền / kinh nghiệm</h2>
+      <div class="row"><div><label>Lượng (tiền)</label><input id="money" type="number" min="1" value="100000"></div><div><label>Kinh nghiệm</label><input id="exp" type="number" min="1" value="100000"></div></div>
+      <div class="row"><button class="btn alt" id="btnMoney">Tặng lượng</button><button class="btn alt" id="btnExp">Tặng kinh nghiệm</button></div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="grid">
+    <div class="card"><h2>1. Chọn phái và kỹ năng</h2>
+      <div class="row"><div><label>Phái</label><select id="skProf"><option value="0">Giáp Sĩ</option><option value="1">Đạo Sĩ</option><option value="2">Dị Nhân</option></select></div>
+        <div style="flex:0;min-width:auto;align-self:flex-end"><button class="btn alt small" id="skAll" style="margin-bottom:4px;white-space:nowrap">Chọn / bỏ tất cả</button></div></div>
+      <div class="list" id="skList" style="max-height:420px"></div>
+      <p class="hint">Chỉ hiện kỹ năng của phái đang chọn. Mỗi kỹ năng tối đa cấp 10.</p>
+    </div>
+    <div class="card"><h2>2. Phát cho nhân vật</h2>
+      <label>Tên nhân vật (phải đang online)</label><input id="skPlayer" list="playerNames" placeholder="VD: EmLaAi">
+      <p class="hint" id="skPlayerInfo"></p>
+      <label>Cấp kỹ năng</label>
+      <select id="skLevel"></select>
+      <label><input type="checkbox" id="skCheck" checked style="width:auto"> Chỉ áp dụng nếu nhân vật đúng phái đã chọn (khuyên dùng)</label>
+      <button class="btn" id="btnSkills">Dạy / đặt cấp các kỹ năng đã chọn</button>
+      <p class="hint">Kỹ năng chưa học sẽ được dạy ở cấp đã chọn; kỹ năng đã có sẽ được nâng hoặc hạ về đúng cấp đó. Nhân vật cần đang online, xử lý trong tối đa 1 phút.</p>
+      <h2 style="margin-top:18px">Vật phẩm bí kíp của phái</h2>
+      <button class="btn alt" id="btnSkillBook">Phát “Kỹ Năng Quyển” của phái đang chọn</button>
+      <p class="hint">Giáp Sĩ: MagicScript 5624 · Đạo Sĩ: 5625 · Dị Nhân: 5626.</p>
+    </div>
+  </div>
+</section>
+
+<section id="boss">
+  <div class="grid">
+    <div class="card"><h2>1. Chọn mẫu quái / NPC</h2>
+      <div class="row"><div><label>Loại</label><select id="npcKind"><option value="0">Quái (đánh được)</option><option value="3">NPC đối thoại</option><option value="">Tất cả</option></select></div>
+      <div><label>Tìm theo tên hoặc mã</label><input id="npcQ" placeholder="Tên gốc tiếng Trung hoặc mã số"></div></div>
+      <div class="list" id="npcList"></div>
+      <div class="picked" id="npcPicked">Chưa chọn mẫu</div>
+      <p class="hint">Tên mẫu trong dữ liệu gốc là tiếng Trung. Nên thử tạo 1 con trước để xem hình dạng và sức mạnh.</p>
+    </div>
+    <div class="card"><h2>2. Vị trí và số lượng</h2>
+      <div class="row"><div><label>Cấp</label><input id="npcLevel" type="number" min="1" max="200" value="50"></div><div><label>Số lượng (1–30)</label><input id="npcCount" type="number" min="1" max="30" value="1"></div></div>
+      <label>Tạo ở đâu</label>
+      <select id="spawnMode"><option value="player">Cạnh một nhân vật đang online</option><option value="map">Tọa độ cụ thể trên bản đồ</option></select>
+      <div id="spawnPlayerBox"><label>Nhân vật</label><input id="spawnPlayer" list="playerNames" placeholder="VD: EmLaAi"></div>
+      <div id="spawnMapBox" style="display:none"><label>Bản đồ</label><select id="spawnMap"></select>
+        <div class="row"><div><label>X</label><input id="spawnX" type="number"></div><div><label>Y</label><input id="spawnY" type="number"></div></div>
+        <p class="hint">Tọa độ dùng cùng đơn vị với cột “Vị trí” ở tab Tổng quan. Đứng tại chỗ muốn đặt boss rồi xem tọa độ của mình ở đó.</p></div>
+      <div class="row"><button class="btn" id="btnSpawn">Tạo boss / NPC</button><button class="btn alt" id="btnClear">Xóa tất cả NPC đã tạo từ web</button></div>
+    </div>
+  </div>
+</section>
+
+<section id="news">
+  <div class="card" style="max-width:640px"><h2>Thông báo toàn server</h2>
+    <label>Nội dung (tối đa 250 ký tự, gõ tiếng Việt có dấu bình thường)</label><textarea id="newsText" maxlength="250" placeholder="VD: Boss Thiên Ma xuất hiện tại Sùng Thành lúc 20:00!"></textarea>
+    <button class="btn" id="btnNews">Gửi thông báo</button>
+    <p class="hint">Chữ hoa có dấu sẽ hiển thị thành chữ thường có dấu do font game (TCVN3) không có đủ bộ chữ hoa.</p>
+  </div>
+</section>
+
+<section id="events">
+  <div class="grid">
+    <div class="card"><h2>Danh sách sự kiện</h2><div id="eventList"></div>
+      <p class="hint">Sự kiện chỉ chạy khi cửa sổ web admin đang mở. Mỗi sự kiện chạy tối đa 1 lần/ngày, trong 10 phút tính từ giờ hẹn.</p></div>
+    <div class="card"><h2 id="evTitle">Tạo sự kiện mới</h2>
+      <input type="hidden" id="evId">
+      <div class="row"><div><label>Tên sự kiện</label><input id="evName" placeholder="VD: Boss tối"></div><div><label>Giờ bắt đầu</label><input id="evTime" type="time" value="20:00"></div></div>
+      <label>Ngày trong tuần (để trống = mỗi ngày)</label>
+      <div class="days" id="evDays"></div>
+      <label><input type="checkbox" id="evEnabled" checked style="width:auto"> Bật sự kiện</label>
+      <div id="evActions"></div>
+      <div class="row"><button class="btn alt small" data-add="news">+ Thông báo</button><button class="btn alt small" data-add="spawn">+ Tạo boss</button><button class="btn alt small" data-add="giveall">+ Phát đồ tất cả</button><button class="btn alt small" data-add="clear">+ Xóa boss cũ</button></div>
+      <div class="row"><button class="btn" id="btnSaveEvent">Lưu sự kiện</button><button class="btn alt" id="btnNewEvent">Làm mới form</button></div>
+      <p class="hint">Mã quái lấy ở tab Boss / NPC, mã vật phẩm dạng <code>Nhóm|Mã</code> lấy ở tab Phát đồ (bấm chọn món rồi xem dòng in đậm).</p>
+    </div>
+  </div>
+</section>
+
+<section id="accounts">
+  <div class="grid">
+    <div class="card"><h2>Tài khoản</h2><div style="max-height:420px;overflow:auto"><table><thead><tr><th>Tài khoản</th><th>Đăng ký</th><th>Đăng nhập cuối</th><th>Xu</th></tr></thead><tbody id="accBody"></tbody></table></div>
+      <h2 style="margin-top:16px">Nhân vật đã lưu</h2><div id="charList" class="muted"></div></div>
+    <div class="card"><h2>Tạo tài khoản</h2>
+      <div class="row"><div><label>Tên (6–16 chữ/số)</label><input id="accNew"></div><div><label>Mật khẩu (6–16 ký tự)</label><input id="accNewPw" type="password"></div></div>
+      <button class="btn" id="btnAccCreate">Tạo tài khoản</button>
+      <h2 style="margin-top:18px">Đổi mật khẩu</h2>
+      <div class="row"><div><label>Tài khoản</label><input id="accPwName" list="accNames"></div><div><label>Mật khẩu mới</label><input id="accPw" type="password"></div></div>
+      <label><input type="checkbox" id="accPwSecond" style="width:auto"> Đổi luôn mật khẩu cấp 2</label>
+      <button class="btn alt" id="btnAccPw">Đổi mật khẩu</button>
+      <h2 style="margin-top:18px">Đặt số xu</h2>
+      <div class="row"><div><label>Tài khoản</label><input id="accXuName" list="accNames"></div><div><label>Số xu</label><input id="accXu" type="number" min="0" value="10000"></div></div>
+      <button class="btn alt" id="btnAccXu">Cập nhật xu</button>
+      <p class="hint">Xu được nạp khi nhân vật đăng nhập, nên cần thoát ra vào lại mới thấy.</p>
+    </div>
+  </div>
+</section>
+
+<section id="history">
+  <div class="card"><h2>Lịch sử lệnh</h2>
+    <table><thead><tr><th>Thời gian</th><th>Loại</th><th>Nội dung</th><th>Kết quả</th><th>Chi tiết</th></tr></thead><tbody id="histBody"></tbody></table></div>
+</section>
+</main>
+<datalist id="playerNames"></datalist><datalist id="accNames"></datalist>
+<div id="toast"></div>
+<script>
+const TOKEN='__PT_TOKEN__';
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let pickedItem=null,pickedNpc=null,maps=[],events=[],online=[];
+const TYPES={give:'Phát đồ',giveall:'Phát đồ tất cả',news:'Thông báo',spawn:'Tạo boss',clear:'Xóa boss',money:'Tặng lượng',exp:'Tặng kinh nghiệm'};
+async function api(path,body){
+  const r=await fetch(path,{method:body?'POST':'GET',headers:{'X-PT-Token':TOKEN,'Content-Type':'application/json'},body:body?JSON.stringify(body):undefined});
+  const j=await r.json().catch(()=>({error:'Phản hồi không hợp lệ'}));
+  if(!r.ok||j.error)throw new Error(j.error||('HTTP '+r.status));return j;
+}
+function toast(msg,err){const t=$('toast');t.textContent=msg;t.className=err?'err':'';t.style.display='block';clearTimeout(t._h);t._h=setTimeout(()=>t.style.display='none',err?7000:4000)}
+async function run(fn){try{const j=await fn();if(j&&j.message)toast(j.message);return j}catch(e){toast(e.message,true)}}
+document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#tabs button').forEach(x=>x.classList.toggle('on',x===b));document.querySelectorAll('section').forEach(s=>s.classList.toggle('on',s.id===b.dataset.t));
+  if(b.dataset.t==='accounts')loadAccounts();if(b.dataset.t==='history')loadHistory();if(b.dataset.t==='events')loadEvents();});
+function debounce(fn,ms){let h;return(...a)=>{clearTimeout(h);h=setTimeout(()=>fn(...a),ms)}}
+
+// status
+async function loadStatus(){
+  try{const j=await api('/api/status');const s=j.status,o=j.online;online=o.players||[];
+    const age=s.heartbeatAgeSec,alive=age>=0&&age<150,running=(s.services||[]).includes('GameServer.exe');
+    $('bridge').innerHTML=`<span class="dot" style="background:${alive?'var(--ok)':running?'var(--warn)':'var(--bad)'}"></span>`+(alive?`Cầu nối hoạt động (nhịp ${s.heartbeat})`:running?'GameServer đang chạy, chờ nhịp cầu nối…':'GameServer chưa chạy')+(s.pendingQueued?' · có lệnh đang chờ':'');
+    const all=['Goddess.exe','PhongThanAccountServer.exe','PhongThanRelay.exe','Bishop.exe','GameServer.exe'];
+    $('svc').innerHTML='<table>'+all.map(n=>`<tr><td>${n}</td><td>${(s.services||[]).includes(n)?'<span class="tag OK">Đang chạy</span>':'<span class="tag FAIL">Tắt</span>'}</td></tr>`).join('')+'</table>';
+    $('onlineStamp').textContent=o.stamp?'cập nhật '+o.stamp:'';
+    $('onlineBody').innerHTML=online.length?online.map(p=>`<tr><td><b>${esc(p.name)}</b></td><td>${esc(p.account)}</td><td>${esc(p.level)}${p.prof>=0?'<br><span class="muted">'+(PROF[p.prof]||p.prof)+'</span>':''}</td><td>${esc(p.mapName)} (${esc(p.map)})<br><span class="muted">${esc(p.x)}, ${esc(p.y)}</span></td><td><button class="btn alt small" data-give="${esc(p.name)}">Phát đồ</button> <button class="btn alt small" data-boss="${esc(p.name)}">Boss</button></td></tr>`).join(''):'<tr><td colspan="5" class="muted">Chưa có dữ liệu hoặc không ai online.</td></tr>';
+    $('playerNames').innerHTML=online.map(p=>`<option value="${esc(p.name)}">`).join('');
+  }catch(e){$('bridge').innerHTML='<span class="dot" style="background:var(--bad)"></span>Mất kết nối web admin: '+esc(e.message)}
+}
+$('onlineBody').onclick=e=>{const g=e.target.dataset.give,b=e.target.dataset.boss;
+  if(g){$('givePlayer').value=g;document.querySelector('[data-t=give]').click()}
+  if(b){$('spawnPlayer').value=b;$('spawnMode').value='player';syncSpawn();document.querySelector('[data-t=boss]').click()}};
+
+// items
+async function searchItems(){const j=await api(`/api/items?q=${encodeURIComponent($('itemQ').value)}&group=${encodeURIComponent($('itemGroup').value)}`);
+  $('itemList').innerHTML=j.items.map(i=>`<div data-k="${esc(i.key)}" data-n="${esc(i.name)}"><span>${esc(i.name)}</span><small>${esc(i.group)} · ${i.code}</small></div>`).join('')||'<div class="muted">Không có kết quả</div>'}
+$('itemQ').oninput=debounce(()=>run(searchItems),250);$('itemGroup').onchange=()=>run(searchItems);
+$('itemList').onclick=e=>{const d=e.target.closest('[data-k]');if(!d)return;pickedItem={key:d.dataset.k,name:d.dataset.n};$('itemPicked').textContent=`${pickedItem.name}  —  ${pickedItem.key}`};
+function needItem(){if(!pickedItem)throw new Error('Hãy chọn vật phẩm trước.');return pickedItem}
+$('btnGive').onclick=()=>run(()=>api('/api/action',{type:'give',itemKey:needItem().key,player:$('givePlayer').value.trim(),count:+$('giveCount').value}));
+$('btnGiveAll').onclick=()=>{if(confirm('Phát món này cho TẤT CẢ người chơi đang online?'))run(()=>api('/api/action',{type:'giveall',itemKey:needItem().key,count:+$('giveCount').value}))};
+$('btnBag').onclick=()=>run(()=>api('/api/action',{type:'give',itemKey:'StarterBag',player:$('givePlayer').value.trim(),count:1}));
+$('btnLevel').onclick=()=>run(()=>api('/api/action',{type:'level',player:$('givePlayer').value.trim(),level:+$('charLevel').value}));
+$('btnXu').onclick=()=>run(()=>api('/api/action',{type:'give',itemKey:'Nhiem vu|47',player:$('givePlayer').value.trim(),count:+$('xuCount').value}));
+$('btnCoin').onclick=()=>run(()=>api('/api/action',{type:'coin',player:$('givePlayer').value.trim(),amount:+$('coin').value}));
+$('btnKnb').onclick=()=>{pickedItem={key:'Nguyen lieu|1183',name:'Kim Nguyên Bảo'};$('itemPicked').textContent='Kim Nguyên Bảo  —  Nguyen lieu|1183';toast('Đã chọn Kim Nguyên Bảo. Nhập số lượng rồi bấm “Phát cho nhân vật”.')};
+$('btnMoney').onclick=()=>run(()=>api('/api/action',{type:'money',player:$('givePlayer').value.trim(),amount:+$('money').value}));
+$('btnExp').onclick=()=>run(()=>api('/api/action',{type:'exp',player:$('givePlayer').value.trim(),amount:+$('exp').value}));
+
+// skills
+const PROF=['Giáp Sĩ','Đạo Sĩ','Dị Nhân'],BOOK={0:'MagicScript|5624',1:'MagicScript|5625',2:'MagicScript|5626'};
+let skills=[];
+const styleName=s=>s===3?'Bị động':s===2?'Hỗ trợ':'Chủ động';
+$('skLevel').innerHTML=[...Array(10)].map((_,i)=>`<option value="${i+1}" ${i===9?'selected':''}>Cấp ${i+1}</option>`).join('');
+function renderSkills(){const p=+$('skProf').value;
+  $('skList').innerHTML=skills.filter(s=>s.prof===p).map(s=>`<div><label style="display:flex;gap:8px;margin:0;color:var(--ink);cursor:pointer;flex:1"><input type="checkbox" value="${s.id}" style="width:auto">${esc(s.name)}</label><small>${styleName(s.style)} · mã ${s.id}</small></div>`).join('')}
+$('skProf').onchange=renderSkills;
+$('skAll').onclick=()=>{const b=[...$('skList').querySelectorAll('input')];const on=b.some(x=>!x.checked);b.forEach(x=>x.checked=on)};
+$('skPlayer').oninput=()=>{const p=online.find(x=>x.name===$('skPlayer').value.trim());
+  if(p&&p.prof>=0){$('skPlayerInfo').textContent=`${p.name}: phái ${PROF[p.prof]||p.prof}, cấp ${p.level}`;if($('skProf').value!=String(p.prof)){$('skProf').value=String(p.prof);renderSkills()}}else $('skPlayerInfo').textContent=''};
+$('btnSkills').onclick=()=>run(()=>{const ids=[...$('skList').querySelectorAll('input:checked')].map(x=>+x.value);if(!ids.length)throw new Error('Hãy tích chọn ít nhất 1 kỹ năng.');
+  return api('/api/action',{type:'skills',player:$('skPlayer').value.trim(),prof:+$('skProf').value,level:+$('skLevel').value,skills:ids,checkProf:$('skCheck').checked})});
+$('btnSkillBook').onclick=()=>run(()=>api('/api/action',{type:'give',itemKey:BOOK[$('skProf').value],player:$('skPlayer').value.trim(),count:1}));
+
+// npcs
+async function searchNpcs(){const j=await api(`/api/npcs?q=${encodeURIComponent($('npcQ').value)}&kind=${$('npcKind').value}`);
+  $('npcList').innerHTML=j.npcs.map(n=>`<div data-i="${n.id}" data-n="${esc(n.name)}"><span>${esc(n.name)}</span><small>mã ${n.id}${n.kind===0?' · quái':n.kind===3?' · NPC':''}</small></div>`).join('')||'<div class="muted">Không có kết quả</div>'}
+$('npcQ').oninput=debounce(()=>run(searchNpcs),250);$('npcKind').onchange=()=>run(searchNpcs);
+$('npcList').onclick=e=>{const d=e.target.closest('[data-i]');if(!d)return;pickedNpc={id:+d.dataset.i,name:d.dataset.n};$('npcPicked').textContent=`${pickedNpc.name}  —  mã ${pickedNpc.id}`};
+function syncSpawn(){const m=$('spawnMode').value==='map';$('spawnMapBox').style.display=m?'':'none';$('spawnPlayerBox').style.display=m?'none':''}
+$('spawnMode').onchange=syncSpawn;
+$('btnSpawn').onclick=()=>run(()=>{if(!pickedNpc)throw new Error('Hãy chọn mẫu quái/NPC trước.');
+  return api('/api/action',{type:'spawn',npc:pickedNpc.id,level:+$('npcLevel').value,count:+$('npcCount').value,mode:$('spawnMode').value,player:$('spawnPlayer').value.trim(),map:+$('spawnMap').value,x:+$('spawnX').value,y:+$('spawnY').value})});
+$('btnClear').onclick=()=>{if(confirm('Xóa tất cả boss/NPC đã tạo từ web kể từ lần bật server gần nhất?'))run(()=>api('/api/action',{type:'clear'}))};
+$('btnNews').onclick=()=>run(()=>api('/api/action',{type:'news',text:$('newsText').value}));
+
+// events
+const DAYS=['CN','T2','T3','T4','T5','T6','T7'];
+$('evDays').innerHTML=DAYS.map((d,i)=>`<label><input type="checkbox" value="${i}">${d}</label>`).join('');
+function actionRow(a){const t=a.type,div=document.createElement('div');div.className='act';div.dataset.type=t;
+  let h=`<div class="row" style="align-items:center"><b>${TYPES[t]}</b><button class="btn alt small" style="flex:0" data-rm>Xóa</button></div>`;
+  if(t==='news')h+=`<label>Nội dung</label><input data-f="text" value="${esc(a.text||'')}">`;
+  if(t==='giveall')h+=`<div class="row"><div><label>Mã vật phẩm (Nhóm|Mã)</label><input data-f="itemKey" value="${esc(a.itemKey||(pickedItem?pickedItem.key:''))}"></div><div><label>Số lượng</label><input data-f="count" type="number" value="${a.count||1}"></div></div>`;
+  if(t==='spawn'){const mo=maps.map(m=>`<option value="${m.id}" ${+a.map===m.id?'selected':''}>${esc(m.name)} (${m.id})</option>`).join('');
+    h+=`<div class="row"><div><label>Mã quái</label><input data-f="npc" type="number" value="${a.npc??(pickedNpc?pickedNpc.id:'')}"></div><div><label>Cấp</label><input data-f="level" type="number" value="${a.level||50}"></div><div><label>Số lượng</label><input data-f="count" type="number" value="${a.count||1}"></div></div>
+    <div class="row"><div><label>Bản đồ</label><select data-f="map">${mo}</select></div><div><label>X</label><input data-f="x" type="number" value="${a.x||''}"></div><div><label>Y</label><input data-f="y" type="number" value="${a.y||''}"></div></div>`}
+  div.innerHTML=h;div.querySelector('[data-rm]').onclick=()=>div.remove();$('evActions').appendChild(div)}
+document.querySelectorAll('[data-add]').forEach(b=>b.onclick=()=>actionRow({type:b.dataset.add}));
+function collectEvent(){const acts=[...$('evActions').children].map(d=>{const a={type:d.dataset.type};if(a.type==='spawn')a.mode='map';
+    d.querySelectorAll('[data-f]').forEach(f=>{a[f.dataset.f]=f.type==='number'||f.tagName==='SELECT'&&f.dataset.f==='map'?+f.value:f.value});return a});
+  return{id:$('evId').value||null,name:$('evName').value.trim(),time:$('evTime').value,enabled:$('evEnabled').checked,days:[...$('evDays').querySelectorAll('input:checked')].map(i=>+i.value),actions:acts}}
+function resetEvent(){$('evId').value='';$('evName').value='';$('evTime').value='20:00';$('evEnabled').checked=true;$('evDays').querySelectorAll('input').forEach(i=>i.checked=false);$('evActions').innerHTML='';$('evTitle').textContent='Tạo sự kiện mới'}
+$('btnNewEvent').onclick=resetEvent;
+$('btnSaveEvent').onclick=()=>run(async()=>{const e=collectEvent();if(!e.actions.length)throw new Error('Thêm ít nhất 1 hành động.');const j=await api('/api/events',e);resetEvent();loadEvents();return j});
+async function loadEvents(){const j=await api('/api/events');events=j.events||[];
+  $('eventList').innerHTML=events.length?'<table><thead><tr><th>Sự kiện</th><th>Giờ</th><th>Ngày</th><th>Hành động</th><th></th></tr></thead><tbody>'+events.map(e=>`<tr><td><b>${esc(e.name)}</b><br><span class="tag ${e.enabled?'OK':''}">${e.enabled?'Bật':'Tắt'}</span> <span class="muted">${e.lastRun?'chạy '+esc(e.lastRun):''}</span></td><td>${esc(e.time)}</td><td>${(e.days||[]).length?(e.days||[]).map(d=>DAYS[d]).join(', '):'Mỗi ngày'}</td><td>${(e.actions||[]).map(a=>TYPES[a.type]).join(', ')}</td><td style="white-space:nowrap"><button class="btn alt small" data-run="${e.id}">Chạy ngay</button> <button class="btn alt small" data-edit="${e.id}">Sửa</button> <button class="btn alt small" data-del="${e.id}">Xóa</button></td></tr>`).join('')+'</tbody></table>':'<p class="muted">Chưa có sự kiện.</p>'}
+$('eventList').onclick=e=>{const d=e.target.dataset;
+  if(d.run)run(()=>api('/api/events/run',{id:d.run}));
+  if(d.del&&confirm('Xóa sự kiện này?'))run(async()=>{const j=await api('/api/events/delete',{id:d.del});loadEvents();return j});
+  if(d.edit){const ev=events.find(x=>x.id===d.edit);resetEvent();$('evTitle').textContent='Sửa sự kiện';$('evId').value=ev.id;$('evName').value=ev.name;$('evTime').value=ev.time;$('evEnabled').checked=!!ev.enabled;
+    (ev.days||[]).forEach(x=>{const i=$('evDays').querySelector(`input[value="${x}"]`);if(i)i.checked=true});(ev.actions||[]).forEach(actionRow)}};
+
+// accounts
+async function loadAccounts(){await run(async()=>{const j=await api('/api/accounts');const a=j.accounts||[];
+  $('accBody').innerHTML=a.map(x=>`<tr><td><b>${esc(x.account)}</b></td><td>${esc(x.registered)}</td><td>${esc(x.lastLogin||'')}</td><td>${esc(x.extPoint??'')}</td></tr>`).join('');
+  $('accNames').innerHTML=a.map(x=>`<option value="${esc(x.account)}">`).join('');
+  const c=await api('/api/characters');$('charList').innerHTML=(c.characters||[]).map(x=>`<span class="tag" title="lưu ${esc(x.saved)}">${esc(x.name)}</span>`).join(' ')||'Không có'})}
+$('btnAccCreate').onclick=()=>run(async()=>{const j=await api('/api/account',{op:'create',account:$('accNew').value.trim(),password:$('accNewPw').value});$('accNewPw').value='';loadAccounts();return j});
+$('btnAccPw').onclick=()=>run(async()=>{const j=await api('/api/account',{op:'password',account:$('accPwName').value.trim(),password:$('accPw').value,alsoSecond:$('accPwSecond').checked});$('accPw').value='';return j});
+$('btnAccXu').onclick=()=>run(async()=>{const j=await api('/api/account',{op:'extpoint',account:$('accXuName').value.trim(),value:+$('accXu').value});loadAccounts();return j});
+
+// history
+async function loadHistory(){try{const j=await api('/api/history');$('histBody').innerHTML=(j.history||[]).map(h=>`<tr><td>${esc(h.time)}</td><td>${esc(h.type)}</td><td>${esc(h.desc)}</td><td><span class="tag ${esc(h.status)}">${h.status==='PENDING'?'Đang chờ':h.status==='OK'?'Thành công':h.status==='FAIL'?'Lỗi':esc(h.status)}</span></td><td class="muted">${esc(h.detail)}</td></tr>`).join('')||'<tr><td colspan="5" class="muted">Chưa có lệnh.</td></tr>'}catch(e){}}
+
+(async()=>{
+  await run(async()=>{const g=await api('/api/groups');$('itemGroup').innerHTML+=g.groups.map(x=>`<option>${esc(x)}</option>`).join('');
+    const m=await api('/api/maps');maps=m.maps||[];$('spawnMap').innerHTML=maps.map(x=>`<option value="${x.id}">${esc(x.name)} (${x.id})</option>`).join('');
+    const sk=await api('/api/skills');skills=sk.skills||[];renderSkills();
+    await searchItems();await searchNpcs();});
+  loadStatus();setInterval(loadStatus,10000);setInterval(()=>{if($('history').classList.contains('on'))loadHistory()},10000);
+})();
+</script>
+</body>
+</html>
