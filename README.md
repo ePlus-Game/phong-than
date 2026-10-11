@@ -50,7 +50,7 @@ Phải có đủ các file `*.pak.parts/part-*.bin` và đủ dung lượng ổ 
 python -m unittest discover -s tests -v
 ```
 
-Muốn thử build có kiểm soát, xem [hướng dẫn hardening](docs/LEGACY_HARDENING.md).
+Muốn thử build có kiểm soát, xem [hướng dẫn hardening](docs/LEGACY_HARDENING.md) và [lộ trình refactor](docs/REFACTORING.md).
 Source gốc không được chỉnh sửa trực tiếp; hãy build trên một **bản sao**
 ở ngoài checkout, tốt nhất trong Windows x86 VM cách ly.
 
