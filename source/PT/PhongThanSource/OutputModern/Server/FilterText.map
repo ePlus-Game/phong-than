@@ -1,0 +1,914 @@
+ FilterText
+
+ Timestamp is 6abf7218 (Fri Oct  2 15:58:00 2026)
+
+ Preferred load address is 10000000
+
+ Start         Length     Name                   Class
+ 0001:00000000 00006690H .text$mn                CODE
+ 0001:00006690 00000259H .text$x                 CODE
+ 0002:00000000 000000fcH .idata$5                DATA
+ 0002:000000fc 0000000cH .00cfg                  DATA
+ 0002:00000108 00000004H .CRT$XCA                DATA
+ 0002:0000010c 00000004H .CRT$XCZ                DATA
+ 0002:00000110 00000004H .CRT$XIA                DATA
+ 0002:00000114 00000004H .CRT$XIZ                DATA
+ 0002:00000118 00000004H .CRT$XPA                DATA
+ 0002:0000011c 00000004H .CRT$XPZ                DATA
+ 0002:00000120 00000004H .CRT$XTA                DATA
+ 0002:00000124 00000004H .CRT$XTZ                DATA
+ 0002:00000128 00000000H .gfids$y                DATA
+ 0002:00000128 00000458H .rdata                  DATA
+ 0002:00000580 00000040H .rdata$CastGuardVftablesA DATA
+ 0002:000005c0 00000040H .rdata$CastGuardVftablesC DATA
+ 0002:00000600 00000398H .rdata$r                DATA
+ 0002:00000998 000000c8H .rdata$voltmd           DATA
+ 0002:00000a60 00000318H .rdata$zzzdbg           DATA
+ 0002:00000d78 00000004H .rtc$IAA                DATA
+ 0002:00000d7c 00000004H .rtc$IZZ                DATA
+ 0002:00000d80 00000004H .rtc$TAA                DATA
+ 0002:00000d84 00000004H .rtc$TZZ                DATA
+ 0002:00000d88 000004f8H .xdata$x                DATA
+ 0002:00001280 00000054H .edata                  DATA
+ 0002:000012d4 0000008cH .idata$2                DATA
+ 0002:00001360 00000014H .idata$3                DATA
+ 0002:00001374 000000fcH .idata$4                DATA
+ 0002:00001470 000004ccH .idata$6                DATA
+ 0003:00000000 00000158H .data                   DATA
+ 0003:00000158 00000060H .data$r                 DATA
+ 0003:000001b8 00000108H .data$rs                DATA
+ 0003:000002c0 00000380H .bss                    DATA
+
+  Address         Publics by Value              Rva+Base       Lib:Object
+
+ 0000:00000000       ___AbsoluteZero            00000000     <absolute>
+ 0000:00000000       ___arm64x_extra_rfe_table  00000000     <absolute>
+ 0000:00000000       ___arm64x_extra_rfe_table_size 00000000     <absolute>
+ 0000:00000000       ___arm64x_native_entrypoint 00000000     <absolute>
+ 0000:00000000       ___arm64x_redirection_metadata 00000000     <absolute>
+ 0000:00000000       ___arm64x_redirection_metadata_count 00000000     <absolute>
+ 0000:00000000       ___dynamic_value_reloc_table 00000000     <absolute>
+ 0000:00000000       ___enclave_config          00000000     <absolute>
+ 0000:00000000       ___guard_check_icall_a64n_fptr 00000000     <absolute>
+ 0000:00000000       ___guard_eh_cont_count     00000000     <absolute>
+ 0000:00000000       ___guard_eh_cont_table     00000000     <absolute>
+ 0000:00000000       ___guard_fids_count        00000000     <absolute>
+ 0000:00000000       ___guard_fids_table        00000000     <absolute>
+ 0000:00000000       ___guard_iat_count         00000000     <absolute>
+ 0000:00000000       ___guard_iat_table         00000000     <absolute>
+ 0000:00000000       ___guard_longjmp_count     00000000     <absolute>
+ 0000:00000000       ___guard_longjmp_table     00000000     <absolute>
+ 0000:00000000       ___hybrid_auxiliary_delayload_iat 00000000     <absolute>
+ 0000:00000000       ___hybrid_auxiliary_delayload_iat_copy 00000000     <absolute>
+ 0000:00000000       ___hybrid_auxiliary_iat    00000000     <absolute>
+ 0000:00000000       ___hybrid_auxiliary_iat_copy 00000000     <absolute>
+ 0000:00000000       ___hybrid_code_map         00000000     <absolute>
+ 0000:00000000       ___hybrid_code_map_count   00000000     <absolute>
+ 0000:00000000       ___hybrid_image_info_bitfield 00000000     <absolute>
+ 0000:00000000       ___safe_se_handler_count   00000000     <absolute>
+ 0000:00000000       ___safe_se_handler_table   00000000     <absolute>
+ 0000:00000000       ___x64_code_ranges_to_entry_points 00000000     <absolute>
+ 0000:00000000       ___x64_code_ranges_to_entry_points_count 00000000     <absolute>
+ 0000:00000100       ___guard_flags             00000100     <absolute>
+ 0000:00000000       ___ImageBase               10000000     <linker-defined>
+ 0001:00000000       ??$?0$$V@?$_Compressed_pair@V?$allocator@VRegexp@@@std@@V?$_Vector_val@U?$_Simple_types@VRegexp@@@std@@@2@$00@std@@QAE@U_Zero_then_variadic_args_t@1@@Z 10001000 f i filtertext.obj
+ 0001:00000020       ??$_Allocate@$07U_Default_allocate_traits@std@@@std@@YAPAXI@Z 10001020 f i filtertext.obj
+ 0001:00000070       ??$_Allocate_at_least_helper@V?$allocator@VRegexp@@@std@@@std@@YAPAVRegexp@@AAV?$allocator@VRegexp@@@0@AAI@Z 10001070 f i filtertext.obj
+ 0001:000000d0       ??$_Allocate_manually_vector_aligned@U_Default_allocate_traits@std@@@std@@YAPAXI@Z 100010d0 f i filtertext.obj
+ 0001:00000110       ??$_Deallocate@$07@std@@YAXPAXI@Z 10001110 f i filtertext.obj
+ 0001:00000150       ??$_Destroy_range@V?$allocator@VRegexp@@@std@@@std@@YAXPAVRegexp@@QAV1@AAV?$allocator@VRegexp@@@0@@Z 10001150 f i filtertext.obj
+ 0001:00000180       ??$_Emplace_back@AAVRegexp@@@?$_Uninitialized_backout_al@V?$allocator@VRegexp@@@std@@@std@@QAEXAAVRegexp@@@Z 10001180 f i filtertext.obj
+ 0001:000001a0       ??$_Emplace_back@VRegexp@@@?$_Uninitialized_backout_al@V?$allocator@VRegexp@@@std@@@std@@QAEX$$QAVRegexp@@@Z 100011a0 f i filtertext.obj
+ 0001:000001c0       ??$_Emplace_back_with_unused_capacity@ABVRegexp@@@?$vector@VRegexp@@V?$allocator@VRegexp@@@std@@@std@@AAEAAVRegexp@@ABV2@@Z 100011c0 f i filtertext.obj
+ 0001:000001e0       ??$_Emplace_one_at_back@ABVRegexp@@@?$vector@VRegexp@@V?$allocator@VRegexp@@@std@@@std@@AAEAAVRegexp@@ABV2@@Z 100011e0 f i filtertext.obj
+ 0001:00000220       ??$_Emplace_reallocate@ABVRegexp@@@?$vector@VRegexp@@V?$allocator@VRegexp@@@std@@@std@@AAEPAVRegexp@@QAV2@ABV2@@Z 10001220 f i filtertext.obj
+ 0001:00000420       ??$_Get_size_of_n@$0CA@@std@@YAII@Z 10001420 f i filtertext.obj
+ 0001:00000440       ??$_Get_unwrapped@ABQAVRegexp@@@std@@YA?A_TABQAVRegexp@@@Z 10001440 f i filtertext.obj
+ 0001:00000450       ??$_Get_unwrapped@PAVRegexp@@@std@@YA?A_T$$QAPAVRegexp@@@Z 10001450 f i filtertext.obj
+ 0001:00000460       ??$_Max_limit@H@std@@YAHXZ 10001460 f i filtertext.obj
+ 0001:00000470       ??$_Unfancy@VRegexp@@@std@@YAPAVRegexp@@PAV1@@Z 10001470 f i filtertext.obj
+ 0001:00000480       ??$_Uninitialized_copy@PAVRegexp@@PAV1@V?$allocator@VRegexp@@@std@@@std@@YAPAVRegexp@@PAV1@00AAV?$allocator@VRegexp@@@0@@Z 10001480 f i filtertext.obj
+ 0001:000004f0       ??$_Uninitialized_move@PAVRegexp@@V?$allocator@VRegexp@@@std@@@std@@YAPAVRegexp@@QAV1@0PAV1@AAV?$allocator@VRegexp@@@0@@Z 100014f0 f i filtertext.obj
+ 0001:00000560       ??$construct@VRegexp@@AAV1@@?$_Default_allocator_traits@V?$allocator@VRegexp@@@std@@@std@@SAXAAV?$allocator@VRegexp@@@1@QAVRegexp@@AAV3@@Z 10001560 f i filtertext.obj
+ 0001:00000570       ??$construct@VRegexp@@ABV1@@?$_Default_allocator_traits@V?$allocator@VRegexp@@@std@@@std@@SAXAAV?$allocator@VRegexp@@@1@QAVRegexp@@ABV3@@Z 10001570 f i filtertext.obj
+ 0001:00000580       ??$construct@VRegexp@@V1@@?$_Default_allocator_traits@V?$allocator@VRegexp@@@std@@@std@@SAXAAV?$allocator@VRegexp@@@1@QAVRegexp@@$$QAV3@@Z 10001580 f i filtertext.obj
+ 0001:00000590       ??$destroy@VRegexp@@@?$_Default_allocator_traits@V?$allocator@VRegexp@@@std@@@std@@SAXAAV?$allocator@VRegexp@@@1@QAVRegexp@@@Z 10001590 f i filtertext.obj
+ 0001:000005a0       ??$forward@AAVRegexp@@@std@@YAAAVRegexp@@AAV1@@Z 100015a0 f i filtertext.obj
+ 0001:000005b0       ??$forward@ABVRegexp@@@std@@YAABVRegexp@@ABV1@@Z 100015b0 f i filtertext.obj
+ 0001:000005c0       ??$forward@VRegexp@@@std@@YA$$QAVRegexp@@AAV1@@Z 100015c0 f i filtertext.obj
+ 0001:000005d0       ??$min@I@std@@YAABIABI0@Z  100015d0 f i filtertext.obj
+ 0001:000005f0       ??$move@AAPAVRegexp@@@std@@YA$$QAPAVRegexp@@AAPAV1@@Z 100015f0 f i filtertext.obj
+ 0001:00000600       ??$move@AAVRegexp@@@std@@YA$$QAVRegexp@@AAV1@@Z 10001600 f i filtertext.obj
+ 0001:00000610       ??0?$_Uninitialized_backout_al@V?$allocator@VRegexp@@@std@@@std@@QAE@PAVRegexp@@AAV?$allocator@VRegexp@@@1@@Z 10001610 f i filtertext.obj
+ 0001:00000630       ??0?$_Vector_val@U?$_Simple_types@VRegexp@@@std@@@std@@QAE@XZ 10001630 f i filtertext.obj
+ 0001:00000650       ??0?$allocator@VRegexp@@@std@@QAE@XZ 10001650 f i filtertext.obj
+ 0001:00000660       ??0?$vector@VRegexp@@V?$allocator@VRegexp@@@std@@@std@@QAE@XZ 10001660 f i filtertext.obj
+ 0001:00000680       ??0CTextFilter@@IAE@XZ     10001680 f i filtertext.obj
+ 0001:000006e0       ??0ITextFilter@@QAE@XZ     100016e0 f i filtertext.obj
+ 0001:000006f0       ??0IUnknown@@QAE@XZ        100016f0 f i filtertext.obj
+ 0001:00000700       ??0bad_alloc@std@@AAE@QBD@Z 10001700 f i filtertext.obj
+ 0001:00000720       ??0bad_alloc@std@@QAE@ABV01@@Z 10001720 f i filtertext.obj
+ 0001:00000760       ??0bad_array_new_length@std@@QAE@ABV01@@Z 10001760 f i filtertext.obj
+ 0001:000007a0       ??0bad_array_new_length@std@@QAE@XZ 100017a0 f i filtertext.obj
+ 0001:000007c0       ??0exception@std@@QAE@ABV01@@Z 100017c0 f i filtertext.obj
+ 0001:000007f0       ??0exception@std@@QAE@QBDH@Z 100017f0 f i filtertext.obj
+ 0001:00000810       ??1?$_Uninitialized_backout_al@V?$allocator@VRegexp@@@std@@@std@@QAE@XZ 10001810 f i filtertext.obj
+ 0001:00000840       ??1?$vector@VRegexp@@V?$allocator@VRegexp@@@std@@@std@@QAE@XZ 10001840 f i filtertext.obj
+ 0001:000008c0       ??1CTextFilter@@IAE@XZ     100018c0 f i filtertext.obj
+ 0001:00000920       ??1_Reallocation_guard@?$vector@VRegexp@@V?$allocator@VRegexp@@@std@@@std@@QAE@XZ 10001920 f i filtertext.obj
+ 0001:00000990       ??1bad_alloc@std@@UAE@XZ   10001990 f i filtertext.obj
+ 0001:000009b0       ??1bad_array_new_length@std@@UAE@XZ 100019b0 f i filtertext.obj
+ 0001:000009d0       ??1exception@std@@UAE@XZ   100019d0 f i filtertext.obj
+ 0001:000009f0       ??2@YAPAXIPAX@Z            100019f0 f i filtertext.obj
+ 0001:00000a00       ??A?$vector@VRegexp@@V?$allocator@VRegexp@@@std@@@std@@QAEAAVRegexp@@I@Z 10001a00 f i filtertext.obj
+ 0001:00000a10       ??_GCTextFilter@@IAEPAXI@Z 10001a10 f i filtertext.obj
+ 0001:00000a90       ??_GRegexp@@QAEPAXI@Z      10001a90 f i filtertext.obj
+ 0001:00000ac0       ??_Ebad_alloc@std@@UAEPAXI@Z 10001ac0 f i filtertext.obj
+ 0001:00000ac0       ??_Gbad_alloc@std@@UAEPAXI@Z 10001ac0 f i filtertext.obj
+ 0001:00000af0       ??_Ebad_array_new_length@std@@UAEPAXI@Z 10001af0 f i filtertext.obj
+ 0001:00000af0       ??_Gbad_array_new_length@std@@UAEPAXI@Z 10001af0 f i filtertext.obj
+ 0001:00000b20       ??_Eexception@std@@UAEPAXI@Z 10001b20 f i filtertext.obj
+ 0001:00000b20       ??_Gexception@std@@UAEPAXI@Z 10001b20 f i filtertext.obj
+ 0001:00000b50       ?AddExpression@CTextFilter@@MAEHPBD@Z 10001b50 f   filtertext.obj
+ 0001:00000cb0       ?AddRef@CTextFilter@@MAGKXZ 10001cb0 f i filtertext.obj
+ 0001:00000cd0       ?Char2HashIdx@CTextFilter@@AAEED@Z 10001cd0 f i filtertext.obj
+ 0001:00000ce0       ?Clearup@CTextFilter@@MAEHXZ 10001ce0 f   filtertext.obj
+ 0001:00000d70       ?CreateInstance@CTextFilter@@SAPAV1@XZ 10001d70 f i filtertext.obj
+ 0001:00000e20       ?IsTextPass@CTextFilter@@MAEHPBD@Z 10001e20 f   filtertext.obj
+ 0001:00000fa0       ?NextChar@CTextFilter@@CAPBDPBD@Z 10001fa0 f i filtertext.obj
+ 0001:00000fc0       ?QueryInterface@CTextFilter@@MAGJABU_GUID@@PAPAX@Z 10001fc0 f i filtertext.obj
+ 0001:00000fd0       ?Release@CTextFilter@@MAGKXZ 10001fd0 f i filtertext.obj
+ 0001:00001050       ?_Adjust_manually_vector_aligned@std@@YAXAAPAXAAI@Z 10002050 f i filtertext.obj
+ 0001:00001080       ?_Alloc_proxy@_Container_base0@std@@QAEXABU_Fake_allocator@2@@Z 10002080 f i filtertext.obj
+ 0001:00001090       ?_Allocate@_Default_allocate_traits@std@@SAPAXI@Z 10002090 f i filtertext.obj
+ 0001:000010a0       ?_Calculate_growth@?$vector@VRegexp@@V?$allocator@VRegexp@@@std@@@std@@ABEII@Z 100020a0 f i filtertext.obj
+ 0001:000010e0       ?_Change_array@?$vector@VRegexp@@V?$allocator@VRegexp@@@std@@@std@@AAEXQAVRegexp@@II@Z 100020e0 f i filtertext.obj
+ 0001:00001170       ?_Get_first@?$_Compressed_pair@V?$allocator@VRegexp@@@std@@V?$_Vector_val@U?$_Simple_types@VRegexp@@@std@@@2@$00@std@@QAEAAV?$allocator@VRegexp@@@2@XZ 10002170 f i filtertext.obj
+ 0001:00001180       ?_Get_first@?$_Compressed_pair@V?$allocator@VRegexp@@@std@@V?$_Vector_val@U?$_Simple_types@VRegexp@@@std@@@2@$00@std@@QBEABV?$allocator@VRegexp@@@2@XZ 10002180 f i filtertext.obj
+ 0001:00001190       ?_Getal@?$vector@VRegexp@@V?$allocator@VRegexp@@@std@@@std@@AAEAAV?$allocator@VRegexp@@@2@XZ 10002190 f i filtertext.obj
+ 0001:000011a0       ?_Getal@?$vector@VRegexp@@V?$allocator@VRegexp@@@std@@@std@@ABEABV?$allocator@VRegexp@@@2@XZ 100021a0 f i filtertext.obj
+ 0001:000011b0       ?_Orphan_all@_Container_base0@std@@QAEXXZ 100021b0 f i filtertext.obj
+ 0001:000011c0       ?_Orphan_range@?$vector@VRegexp@@V?$allocator@VRegexp@@@std@@@std@@ABEXPAVRegexp@@0@Z 100021c0 f i filtertext.obj
+ 0001:000011d0       ?_Release@?$_Uninitialized_backout_al@V?$allocator@VRegexp@@@std@@@std@@QAEPAVRegexp@@XZ 100021d0 f i filtertext.obj
+ 0001:000011e0       ?_Throw_bad_array_new_length@std@@YAXXZ 100021e0 f i filtertext.obj
+ 0001:00001200       ?_Tidy@?$vector@VRegexp@@V?$allocator@VRegexp@@@std@@@std@@AAEXXZ 10002200 f i filtertext.obj
+ 0001:00001280       ?_Xlength@?$vector@VRegexp@@V?$allocator@VRegexp@@@std@@@std@@CAXXZ 10002280 f i filtertext.obj
+ 0001:00001290       ?allocate@?$allocator@VRegexp@@@std@@QAEPAVRegexp@@I@Z 10002290 f i filtertext.obj
+ 0001:000012f0       ?capacity@?$vector@VRegexp@@V?$allocator@VRegexp@@@std@@@std@@QBEIXZ 100022f0 f i filtertext.obj
+ 0001:00001300       ?clear@?$vector@VRegexp@@V?$allocator@VRegexp@@@std@@@std@@QAEXXZ 10002300 f i filtertext.obj
+ 0001:00001330       ?deallocate@?$allocator@VRegexp@@@std@@QAEXQAVRegexp@@I@Z 10002330 f i filtertext.obj
+ 0001:00001380       ?max_size@?$_Default_allocator_traits@V?$allocator@VRegexp@@@std@@@std@@SAIABV?$allocator@VRegexp@@@2@@Z 10002380 f i filtertext.obj
+ 0001:00001390       ?max_size@?$vector@VRegexp@@V?$allocator@VRegexp@@@std@@@std@@QBEIXZ 10002390 f i filtertext.obj
+ 0001:000013a0       ?push_back@?$vector@VRegexp@@V?$allocator@VRegexp@@@std@@@std@@QAEXABVRegexp@@@Z 100023a0 f i filtertext.obj
+ 0001:000013d0       ?size@?$vector@VRegexp@@V?$allocator@VRegexp@@@std@@@std@@QBEIXZ 100023d0 f i filtertext.obj
+ 0001:000013e0       ?what@exception@std@@UBEPBDXZ 100023e0 f i filtertext.obj
+ 0001:000013f0       _CreateTextFilter          100023f0 f   filtertext.obj
+ 0001:00001480       ??$?0$$V@?$_Compressed_pair@V?$allocator@D@std@@V?$_String_val@U?$_Simple_types@D@std@@@2@$00@std@@QAE@U_Zero_then_variadic_args_t@1@@Z 10002480 f i regexp.obj
+ 0001:000014a0       ??$?0V?$allocator@D@std@@$$V@?$_Compressed_pair@V?$allocator@D@std@@V?$_String_val@U?$_Simple_types@D@std@@@2@$00@std@@QAE@U_One_then_variadic_args_t@1@$$QAV?$allocator@D@1@@Z 100024a0 f i regexp.obj
+ 0001:000014c0       ??$_Allocate_at_least_helper@V?$allocator@D@std@@@std@@YAPADAAV?$allocator@D@0@AAI@Z 100024c0 f i regexp.obj
+ 0001:00001510       ??$_Allocate_for_capacity@$0A@@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@CAPADAAV?$allocator@D@1@AAI@Z 10002510 f i regexp.obj
+ 0001:00001570       ??$_Construct@$00PBD@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAEXQBDI@Z 10002570 f i regexp.obj
+ 0001:00001600       ??$_Construct@$01PBD@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAEXQBDI@Z 10002600 f i regexp.obj
+ 0001:00001690       ??$_Construct_in_place@PADAAPAD@std@@YAXAAPAD0@Z 10002690 f i regexp.obj
+ 0001:000016a0       ??$_Construct_in_place@PADABQAD@std@@YAXAAPADABQAD@Z 100026a0 f i regexp.obj
+ 0001:000016b0       ??$_Convert_size@II@std@@YAII@Z 100026b0 f i regexp.obj
+ 0001:000016c0       ??$_Destroy_in_place@PAD@std@@YAXAAPAD@Z 100026c0 f i regexp.obj
+ 0001:000016d0       ??$_Get_size_of_n@$00@std@@YAII@Z 100026d0 f i regexp.obj
+ 0001:000016e0       ??$_Pocca@V?$allocator@D@std@@@std@@YAXAAV?$allocator@D@0@ABV10@@Z 100026e0 f i regexp.obj
+ 0001:000016f0       ??$_Reallocate_for@V<lambda_9366063389c5f42a00a5088cf24e69de>@@PBD@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAEAAV01@IV<lambda_9366063389c5f42a00a5088cf24e69de>@@PBD@Z 100026f0 f i regexp.obj
+ 0001:000017a0       ??$_Reallocate_grow_by@V<lambda_c1b8c41cb4019640539cfd828748c4d4>@@ID@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAEAAV01@IV<lambda_c1b8c41cb4019640539cfd828748c4d4>@@ID@Z 100027a0 f i regexp.obj
+ 0001:000018a0       ??$_Unfancy@D@std@@YAPADPAD@Z 100028a0 f i regexp.obj
+ 0001:000018b0       ??$addressof@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@YAPBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@ABV10@@Z 100028b0 f i regexp.obj
+ 0001:000018c0       ??$addressof@PAD@std@@YAPAPADAAPAD@Z 100028c0 f i regexp.obj
+ 0001:000018d0       ??$addressof@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@YAPAV?$_String_val@U?$_Simple_types@D@std@@@0@AAV10@@Z 100028d0 f i regexp.obj
+ 0001:000018e0       ??$forward@AAPAD@std@@YAAAPADAAPAD@Z 100028e0 f i regexp.obj
+ 0001:000018f0       ??$forward@ABQAD@std@@YAABQADABQAD@Z 100028f0 f i regexp.obj
+ 0001:00001900       ??$forward@V?$allocator@D@std@@@std@@YA$$QAV?$allocator@D@0@AAV10@@Z 10002900 f i regexp.obj
+ 0001:00001910       ??$max@I@std@@YAABIABI0@Z  10002910 f i regexp.obj
+ 0001:00001930       ??$move@AAV?$allocator@D@std@@@std@@YA$$QAV?$allocator@D@0@AAV10@@Z 10002930 f i regexp.obj
+ 0001:00001940       ??0?$_String_val@U?$_Simple_types@D@std@@@std@@QAE@XZ 10002940 f i regexp.obj
+ 0001:00001960       ??0?$allocator@D@std@@QAE@XZ 10002960 f i regexp.obj
+ 0001:00001970       ??0?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAE@$$QAV01@@Z 10002970 f i regexp.obj
+ 0001:000019c0       ??0?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAE@ABV01@@Z 100029c0 f i regexp.obj
+ 0001:00001a70       ??0?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAE@QBD@Z 10002a70 f i regexp.obj
+ 0001:00001ab0       ??0?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAE@QBDI@Z 10002ab0 f i regexp.obj
+ 0001:00001ae0       ??0?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAE@XZ 10002ae0 f i regexp.obj
+ 0001:00001b00       ??0CRegCompiler@@QAE@PBDPAD@Z 10002b00 f   regexp.obj
+ 0001:00001b50       ??0CRegCompilerBase@@QAE@PBD@Z 10002b50 f   regexp.obj
+ 0001:00001b90       ??0CRegErrorHandler@@QAE@XZ 10002b90 f i regexp.obj
+ 0001:00001bc0       ??0CRegExecutor@@QAE@PAVregexp@@PAD@Z 10002bc0 f   regexp.obj
+ 0001:00001c00       ??0CRegProgramAccessor@@QAE@XZ 10002c00 f i regexp.obj
+ 0001:00001c30       ??0CRegValidator@@QAE@PBD@Z 10002c30 f   regexp.obj
+ 0001:00001c80       ??0Regexp@@QAE@ABV0@@Z     10002c80 f   regexp.obj
+ 0001:00001cc0       ??0Regexp@@QAE@PBDH@Z      10002cc0 f   regexp.obj
+ 0001:00001e90       ??0Regexp@@QAE@XZ          10002e90 f   regexp.obj
+ 0001:00001ed0       ??0_Bxty@?$_String_val@U?$_Simple_types@D@std@@@std@@QAE@XZ 10002ed0 f i regexp.obj
+ 0001:00001ee0       ??0_Fake_proxy_ptr_impl@std@@QAE@ABU_Fake_allocator@1@ABU_Container_base0@1@@Z 10002ee0 f i regexp.obj
+ 0001:00001ef0       ??0regexp@@QAE@ABV0@@Z     10002ef0 f   regexp.obj
+ 0001:00002030       ??0regexp@@QAE@PBDH@Z      10003030 f   regexp.obj
+ 0001:000021a0       ??1?$_Compressed_pair@V?$allocator@D@std@@V?$_String_val@U?$_Simple_types@D@std@@@2@$00@std@@QAE@XZ 100031a0 f i regexp.obj
+ 0001:000021b0       ??1?$_String_val@U?$_Simple_types@D@std@@@std@@QAE@XZ 100031b0 f i regexp.obj
+ 0001:000021c0       ??1?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAE@XZ 100031c0 f i regexp.obj
+ 0001:00002220       ??1CRegCompiler@@QAE@XZ    10003220 f i regexp.obj
+ 0001:00002230       ??1CRegCompilerBase@@QAE@XZ 10003230 f i regexp.obj
+ 0001:00002240       ??1CRegErrorHandler@@QAE@XZ 10003240 f i regexp.obj
+ 0001:00002250       ??1CRegExecutor@@QAE@XZ    10003250 f i regexp.obj
+ 0001:00002260       ??1CRegProgramAccessor@@QAE@XZ 10003260 f i regexp.obj
+ 0001:00002270       ??1CRegValidator@@QAE@XZ   10003270 f i regexp.obj
+ 0001:00002280       ??1Regexp@@QAE@XZ          10003280 f   regexp.obj
+ 0001:000022d0       ??1_Bxty@?$_String_val@U?$_Simple_types@D@std@@@std@@QAE@XZ 100032d0 f i regexp.obj
+ 0001:000022e0       ??1regexp@@QAE@XZ          100032e0 f   regexp.obj
+ 0001:00002300       ??4?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV01@ABV01@@Z 10003300 f i regexp.obj
+ 0001:00002330       ??4?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV01@QBD@Z 10003330 f i regexp.obj
+ 0001:00002360       ??4Regexp@@QAEABV0@ABV0@@Z 10003360 f   regexp.obj
+ 0001:000023f0       ??ARegexp@@QBE?BV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@I@Z 100033f0 f   regexp.obj
+ 0001:00002550       ??R<lambda_9366063389c5f42a00a5088cf24e69de>@@QBE@QADIQBD@Z 10003550 f i regexp.obj
+ 0001:00002580       ??R<lambda_c1b8c41cb4019640539cfd828748c4d4>@@QBE@QADQBDIID@Z 10003580 f i regexp.obj
+ 0001:000025c0       ??_Gregexp@@QAEPAXI@Z      100035c0 f i regexp.obj
+ 0001:00002600       ?ClearErrorString@CRegErrorHandler@@IBEXXZ 10003600 f   regexp.obj
+ 0001:00002610       ?ClearErrorString@Regexp@@ABEXXZ 10003610 f   regexp.obj
+ 0001:00002640       ?CompiledOK@Regexp@@QBE_NXZ 10003640 f   regexp.obj
+ 0001:00002650       ?FindErr@CRegErrorHandler@@CAPBDH@Z 10003650 f   regexp.obj
+ 0001:00002680       ?GetErrorString@CRegErrorHandler@@QBEABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ 10003680 f   regexp.obj
+ 0001:00002690       ?GetErrorString@Regexp@@QBE?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ 10003690 f   regexp.obj
+ 0001:000026b0       ?GetReplaceString@Regexp@@QBE?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PBD@Z 100036b0 f   regexp.obj
+ 0001:00002760       ?GetReplaceString@regexp@@QBE?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PBD@Z 10003760 f   regexp.obj
+ 0001:00002a30       ?ISREPN@CRegCompilerBase@@IAE_ND@Z 10003a30 f i regexp.obj
+ 0001:00002a50       ?Match@Regexp@@QAE_NPBD@Z  10003a50 f   regexp.obj
+ 0001:00002c80       ?OP@CRegProgramAccessor@@SADPAD@Z 10003c80 f i regexp.obj
+ 0001:00002c90       ?OPERAND@CRegProgramAccessor@@SAPADPAD@Z 10003c90 f i regexp.obj
+ 0001:00002ca0       ?Size@CRegValidator@@QBEJXZ 10003ca0 f i regexp.obj
+ 0001:00002cb0       ?Status@regexp@@QBE_NXZ    10003cb0 f i regexp.obj
+ 0001:00002cc0       ?SubLength@Regexp@@QBEHI@Z 10003cc0 f   regexp.obj
+ 0001:00002d50       ?SubStart@Regexp@@QBEHI@Z  10003d50 f   regexp.obj
+ 0001:00002de0       ?SubStrings@Regexp@@QBEHXZ 10003de0 f   regexp.obj
+ 0001:00002e50       ?_Activate_SSO_buffer@?$_String_val@U?$_Simple_types@D@std@@@std@@QAEXXZ 10003e50 f i regexp.obj
+ 0001:00002e60       ?_Calculate_growth@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@ABEII@Z 10003e60 f i regexp.obj
+ 0001:00002ea0       ?_Calculate_growth@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@CAIIII@Z 10003ea0 f i regexp.obj
+ 0001:00002ee0       ?_Construct_empty@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAEXXZ 10003ee0 f i regexp.obj
+ 0001:00002f00       ?_Deallocate_for_capacity@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@CAXAAV?$allocator@D@2@QADI@Z 10003f00 f i regexp.obj
+ 0001:00002f50       ?_Eos@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAEXI@Z 10003f50 f i regexp.obj
+ 0001:00002f80       ?_Get_first@?$_Compressed_pair@V?$allocator@D@std@@V?$_String_val@U?$_Simple_types@D@std@@@2@$00@std@@QAEAAV?$allocator@D@2@XZ 10003f80 f i regexp.obj
+ 0001:00002f90       ?_Get_first@?$_Compressed_pair@V?$allocator@D@std@@V?$_String_val@U?$_Simple_types@D@std@@@2@$00@std@@QBEABV?$allocator@D@2@XZ 10003f90 f i regexp.obj
+ 0001:00002fa0       ?_Getal@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAEAAV?$allocator@D@2@XZ 10003fa0 f i regexp.obj
+ 0001:00002fb0       ?_Getal@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@ABEABV?$allocator@D@2@XZ 10003fb0 f i regexp.obj
+ 0001:00002fc0       ?_Large_mode_engaged@?$_String_val@U?$_Simple_types@D@std@@@std@@QBE_NXZ 10003fc0 f i regexp.obj
+ 0001:00002fd0       ?_Myptr@?$_String_val@U?$_Simple_types@D@std@@@std@@QAEPADXZ 10003fd0 f i regexp.obj
+ 0001:00002fe0       ?_Myptr@?$_String_val@U?$_Simple_types@D@std@@@std@@QBEPBDXZ 10003fe0 f i regexp.obj
+ 0001:00002ff0       ?_Release@_Fake_proxy_ptr_impl@std@@QAEXXZ 10003ff0 f i regexp.obj
+ 0001:00003000       ?_Swap_proxy_and_iterators@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAEXAAV12@@Z 10004000 f i regexp.obj
+ 0001:00003010       ?_Swap_proxy_and_iterators@_Container_base0@std@@QAEXAAU12@@Z 10004010 f i regexp.obj
+ 0001:00003020       ?_Switch_to_buf@_Bxty@?$_String_val@U?$_Simple_types@D@std@@@std@@QAEXXZ 10004020 f i regexp.obj
+ 0001:00003030       ?_Take_contents@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAEXAAV12@@Z 10004030 f i regexp.obj
+ 0001:00003060       ?_Tidy_deallocate@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAEXXZ 10004060 f i regexp.obj
+ 0001:000030c0       ?_Xlen_string@std@@YAXXZ   100040c0 f i regexp.obj
+ 0001:000030d0       ?_tcschr@@YAPADPADI@Z      100040d0 f i regexp.obj
+ 0001:000030e0       ?_tcsstr@@YAPADPADPBD@Z    100040e0 f i regexp.obj
+ 0001:000030f0       ?allocate@?$allocator@D@std@@QAEPADI@Z 100040f0 f i regexp.obj
+ 0001:00003150       ?append@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ID@Z 10004150 f i regexp.obj
+ 0001:00003290       ?assign@?$_Narrow_char_traits@DH@std@@SAPADQADID@Z 10004290 f i regexp.obj
+ 0001:000032b0       ?assign@?$_Narrow_char_traits@DH@std@@SAXAADABD@Z 100042b0 f i regexp.obj
+ 0001:000032c0       ?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@QBD@Z 100042c0 f i regexp.obj
+ 0001:000032f0       ?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@QBDI@Z 100042f0 f i regexp.obj
+ 0001:000033d0       ?copy@?$_Char_traits@DH@std@@SAPADQADQBDI@Z 100043d0 f i regexp.obj
+ 0001:000033f0       ?data@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QBEPBDXZ 100043f0 f i regexp.obj
+ 0001:00003400       ?deallocate@?$allocator@D@std@@QAEXQADI@Z 10004400 f i regexp.obj
+ 0001:00003450       ?getCopy@regexp@@QAEPAV1@XZ 10004450 f   regexp.obj
+ 0001:000035b0       ?ignoreCase@regexp@@QAEXPBDPAD@Z 100045b0 f   regexp.obj
+ 0001:00003650       ?length@?$_Narrow_char_traits@DH@std@@SAIQBD@Z 10004650 f i regexp.obj
+ 0001:00003670       ?max_size@?$_Default_allocator_traits@V?$allocator@D@std@@@std@@SAIABV?$allocator@D@2@@Z 10004670 f i regexp.obj
+ 0001:00003680       ?max_size@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QBEIXZ 10004680 f i regexp.obj
+ 0001:00003690       ?move@?$_Char_traits@DH@std@@SAPADQADQBDI@Z 10004690 f i regexp.obj
+ 0001:000036b0       ?reg@CRegCompilerBase@@QAEPADHPAH@Z 100046b0 f   regexp.obj
+ 0001:00003850       ?regatom@CRegCompilerBase@@IAEPADPAH@Z 10004850 f   regexp.obj
+ 0001:00003c70       ?regbranch@CRegCompilerBase@@IAEPADPAH@Z 10004c70 f   regexp.obj
+ 0001:00003ec0       ?regc@CRegCompiler@@MAEXH@Z 10004ec0 f i regexp.obj
+ 0001:00003ee0       ?regc@CRegValidator@@MAEXH@Z 10004ee0 f i regexp.obj
+ 0001:00003ef0       ?regcomp@regexp@@QAE_NPBD@Z 10004ef0 f   regexp.obj
+ 0001:00004110       ?regerror@CRegErrorHandler@@IBEXH@Z 10005110 f   regexp.obj
+ 0001:00004160       ?regerror@CRegErrorHandler@@IBEXPBD@Z 10005160 f   regexp.obj
+ 0001:00004190       ?regexec@regexp@@QAE_NPBD@Z 10005190 f   regexp.obj
+ 0001:00004340       ?reginsert@CRegCompiler@@MAEXDPAD@Z 10005340 f   regexp.obj
+ 0001:00004380       ?reginsert@CRegValidator@@MAEXDPAD@Z 10005380 f i regexp.obj
+ 0001:00004390       ?regmatch@CRegExecutor@@IAE_NPAD@Z 10005390 f   regexp.obj
+ 0001:000047d0       ?regnext@CRegProgramAccessor@@SAPADPAD@Z 100057d0 f i regexp.obj
+ 0001:00004800       ?regnode@CRegCompiler@@MAEPADH@Z 10005800 f   regexp.obj
+ 0001:00004830       ?regnode@CRegValidator@@MAEPADH@Z 10005830 f i regexp.obj
+ 0001:00004840       ?regoptail@CRegCompiler@@MAEXPAD0@Z 10005840 f   regexp.obj
+ 0001:00004860       ?regoptail@CRegValidator@@MAEXPAD0@Z 10005860 f i regexp.obj
+ 0001:00004870       ?regpiece@CRegCompilerBase@@IAEPADPAH@Z 10005870 f   regexp.obj
+ 0001:00004a40       ?regrepeat@CRegExecutor@@IAEIPAD@Z 10005a40 f   regexp.obj
+ 0001:00004b20       ?regtail@CRegCompiler@@MAEXPAD0@Z 10005b20 f   regexp.obj
+ 0001:00004b70       ?regtail@CRegValidator@@MAEXPAD0@Z 10005b70 f i regexp.obj
+ 0001:00004b80       ?regtry@CRegExecutor@@IAE_NPAD@Z 10005b80 f   regexp.obj
+ 0001:00004c50       ?resize@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEXID@Z 10005c50 f i regexp.obj
+ 0001:00004da0       ?safeIndex@Regexp@@ABEHI@Z 10005da0 f   regexp.obj
+ 0001:00004dc0       ?select_on_container_copy_construction@?$_Default_allocator_traits@V?$allocator@D@std@@@std@@SA?AV?$allocator@D@2@ABV32@@Z 10005dc0 f i regexp.obj
+ 0001:00004dd0       ?size@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QBEIXZ 10005dd0 f i regexp.obj
+ 0001:00004de0       __tcschr                   10005de0 f i regexp.obj
+ 0001:00004df0       __tcscspn                  10005df0 f i regexp.obj
+ 0001:00004e00       __tcsncmp                  10005e00 f i regexp.obj
+ 0001:00004e10       __tcsncpy                  10005e10 f i regexp.obj
+ 0001:00004e20       __tcsspn                   10005e20 f i regexp.obj
+ 0001:00004e30       __tcsstr                   10005e30 f i regexp.obj
+ 0001:00004e3a       ?_Xlength_error@std@@YAXPBD@Z 10005e3a f   msvcprt:MSVCP140.dll
+ 0001:00004e40       ??_L@YGXPAXIHP6EX0@Z1@Z    10005e40 f   MSVCRT:ehvecctr.obj
+ 0001:00004e45       ??_L@YGXPAXIIP6EX0@Z1@Z    10005e45 f   MSVCRT:ehvecctr.obj
+ 0001:00004eb9       ??_M@YGXPAXIHP6EX0@Z@Z     10005eb9 f   MSVCRT:ehvecdtr.obj
+ 0001:00004ebe       ??_M@YGXPAXIIP6EX0@Z@Z     10005ebe f   MSVCRT:ehvecdtr.obj
+ 0001:00004f75       ?__ArrayUnwind@@YGXPAXIIP6EX0@Z@Z 10005f75 f   MSVCRT:ehvecdtr.obj
+ 0001:00005005       ??2@YAPAXI@Z               10006005 f   MSVCRT:new_scalar.obj
+ 0001:00005035       ??3@YAXPAXI@Z              10006035 f   MSVCRT:delete_scalar_size.obj
+ 0001:00005043       ??1type_info@@UAE@XZ       10006043 f   MSVCRT:std_type_info_static.obj
+ 0001:0000504a       ??_Etype_info@@UAEPAXI@Z   1000604a f i MSVCRT:std_type_info_static.obj
+ 0001:0000504a       ??_Gtype_info@@UAEPAXI@Z   1000604a f i MSVCRT:std_type_info_static.obj
+ 0001:0000506d       ??_U@YAPAXI@Z              1000606d f   MSVCRT:new_array.obj
+ 0001:00005076       ??_V@YAXPAX@Z              10006076 f   MSVCRT:delete_array.obj
+ 0001:00005080       __alloca_probe_16          10006080 f   MSVCRT:alloca16.obj
+ 0001:00005096       __alloca_probe_8           10006096     MSVCRT:alloca16.obj
+ 0001:000053f9       __CRT_INIT@12              100063f9 f   MSVCRT:dll_dllmain.obj
+ 0001:00005402       __DllMainCRTStartup@12     10006402 f   MSVCRT:dll_dllmain.obj
+ 0001:00005430       __SEH_prolog4              10006430 f   MSVCRT:sehprolg4.obj
+ 0001:00005480       __SEH_epilog4              10006480 f   MSVCRT:sehprolg4.obj
+ 0001:00005494       __except_handler4          10006494 f   MSVCRT:chandler4gs.obj
+ 0001:000054c3       @_guard_check_icall_nop@4  100064c3 f i MSVCRT:guard_support.obj
+ 0001:000054c6       _ReadNoFence               100064c6 f i MSVCRT:guard_support.obj
+ 0001:000054d0       _ReadPointerNoFence        100064d0 f i MSVCRT:guard_support.obj
+ 0001:000054da       __InlineInterlockedExchangePointer 100064da f i MSVCRT:guard_support.obj
+ 0001:000054e7       ___castguard_check_failure_debugbreak 100064e7 f i MSVCRT:guard_support.obj
+ 0001:00005502       ___castguard_check_failure_fastfail 10006502 f i MSVCRT:guard_support.obj
+ 0001:00005521       ___castguard_check_failure_nop 10006521 f i MSVCRT:guard_support.obj
+ 0001:00005524       ___castguard_check_failure_os_handled 10006524 f i MSVCRT:guard_support.obj
+ 0001:0000555b       ___castguard_check_failure_user_handled 1000655b f i MSVCRT:guard_support.obj
+ 0001:000055c9       ___castguard_set_user_handler 100065c9 f i MSVCRT:guard_support.obj
+ 0001:000055d8       ___castguard_slow_path_check_debugbreak 100065d8 f i MSVCRT:guard_support.obj
+ 0001:00005605       ___castguard_slow_path_check_fastfail 10006605 f i MSVCRT:guard_support.obj
+ 0001:00005636       ___castguard_slow_path_check_nop 10006636 f i MSVCRT:guard_support.obj
+ 0001:00005639       ___castguard_slow_path_check_os_handled 10006639 f i MSVCRT:guard_support.obj
+ 0001:00005675       ___castguard_slow_path_check_user_handled 10006675 f i MSVCRT:guard_support.obj
+ 0001:000056d6       __guard_icall_checks_enforced 100066d6 f i MSVCRT:guard_support.obj
+ 0001:000056e8       ??0bad_alloc@std@@QAE@XZ   100066e8 f i MSVCRT:throw_bad_alloc.obj
+ 0001:00005706       ?__scrt_throw_std_bad_alloc@@YAXXZ 10006706 f   MSVCRT:throw_bad_alloc.obj
+ 0001:00005723       ?__scrt_throw_std_bad_array_new_length@@YAXXZ 10006723 f   MSVCRT:throw_bad_alloc.obj
+ 0001:00005740       ??3@YAXPAX@Z               10006740 f   MSVCRT:delete_scalar.obj
+ 0001:00005750       __alloca_probe             10006750 f   MSVCRT:chkstk.obj
+ 0001:00005750       __chkstk                   10006750 f   MSVCRT:chkstk.obj
+ 0001:000057c8       ___security_init_cookie    100067c8 f   MSVCRT:gs_support.obj
+ 0001:00005813       _DllMain@12                10006813 f   MSVCRT:dll_dllmain_stub.obj
+ 0001:00005835       ?__scrt_initialize_type_info@@YAXXZ 10006835 f   MSVCRT:tncleanup.obj
+ 0001:00005841       ?__scrt_uninitialize_type_info@@YAXXZ 10006841 f   MSVCRT:tncleanup.obj
+ 0001:0000584d       ___local_stdio_printf_options 1000684d f i MSVCRT:default_local_stdio_options.obj
+ 0001:00005853       ___local_stdio_scanf_options 10006853 f i MSVCRT:default_local_stdio_options.obj
+ 0001:00005859       ___scrt_initialize_default_local_stdio_options 10006859 f   MSVCRT:default_local_stdio_options.obj
+ 0001:00005876       ?configure_argv@__scrt_narrow_argv_policy@@SAHXZ 10006876 f i MSVCRT:utility.obj
+ 0001:000058c5       ?initialize_environment@__scrt_narrow_environment_policy@@SAHXZ 100068c5 f i MSVCRT:utility.obj
+ 0001:000058fd       _NtCurrentTeb              100068fd f i MSVCRT:utility.obj
+ 0001:00005904       ___scrt_acquire_startup_lock 10006904 f   MSVCRT:utility.obj
+ 0001:00005936       ___scrt_dllmain_after_initialize_c 10006936 f   MSVCRT:utility.obj
+ 0001:00005961       ___scrt_dllmain_before_initialize_c 10006961 f   MSVCRT:utility.obj
+ 0001:0000596f       ___scrt_dllmain_crt_thread_attach 1000696f f   MSVCRT:utility.obj
+ 0001:0000598e       ___scrt_dllmain_crt_thread_detach 1000698e f   MSVCRT:utility.obj
+ 0001:0000599b       ___scrt_dllmain_exception_filter 1000699b f   MSVCRT:utility.obj
+ 0001:000059cf       ___scrt_dllmain_uninitialize_c 100069cf f   MSVCRT:utility.obj
+ 0001:000059f2       ___scrt_dllmain_uninitialize_critical 100069f2 f   MSVCRT:utility.obj
+ 0001:000059ff       ___scrt_initialize_crt     100069ff f   MSVCRT:utility.obj
+ 0001:00005a38       ___scrt_initialize_onexit_tables 10006a38 f   MSVCRT:utility.obj
+ 0001:00005abf       ___scrt_is_nonwritable_in_current_image 10006abf f   MSVCRT:utility.obj
+ 0001:00005b56       ___scrt_release_startup_lock 10006b56 f   MSVCRT:utility.obj
+ 0001:00005b73       ___scrt_uninitialize_crt   10006b73 f   MSVCRT:utility.obj
+ 0001:00005b9b       __onexit                   10006b9b f   MSVCRT:utility.obj
+ 0001:00005bc9       _at_quick_exit             10006bc9 f   MSVCRT:utility.obj
+ 0001:00005bec       _atexit                    10006bec f   MSVCRT:utility.obj
+ 0001:00005c01       ___scrt_get_dyn_tls_init_callback 10006c01 f   MSVCRT:dyn_tls_init.obj
+ 0001:00005c07       ___scrt_fastfail           10006c07 f   MSVCRT:utility_desktop.obj
+ 0001:00005d1c       ___scrt_get_show_window_mode 10006d1c f   MSVCRT:utility_desktop.obj
+ 0001:00005d4c       ___scrt_initialize_mta     10006d4c f   MSVCRT:utility_desktop.obj
+ 0001:00005d51       ___scrt_initialize_winrt   10006d51 f   MSVCRT:utility_desktop.obj
+ 0001:00005d54       ___scrt_is_managed_app     10006d54 f   MSVCRT:utility_desktop.obj
+ 0001:00005d96       ___scrt_set_unhandled_exception_filter 10006d96 f   MSVCRT:utility_desktop.obj
+ 0001:00005da2       ___scrt_exe_initialize_mta 10006da2 f   MSVCRT:utility_desktop.obj
+ 0001:00005da2       ___scrt_stub_for_initialize_mta 10006da2 f   MSVCRT:utility_desktop.obj
+ 0001:00005da5       ___scrt_unhandled_exception_filter@4 10006da5 f   MSVCRT:utility_desktop.obj
+ 0001:00005dfb       __crt_debugger_hook        10006dfb f   MSVCRT:utility_desktop.obj
+ 0001:00005e06       __RTC_Initialize           10006e06 f   MSVCRT:initsect.obj
+ 0001:00005e32       __RTC_Terminate            10006e32 f   MSVCRT:initsect.obj
+ 0001:00005e5e       @__security_check_cookie@4 10006e5e f   MSVCRT:secchk.obj
+ 0001:00005e6c       ___isa_available_init      10006e6c f   MSVCRT:cpu_disp.obj
+ 0001:00006186       __get_startup_argv_mode    10007186 f   MSVCRT:argv_mode.obj
+ 0001:0000618a       ___scrt_is_ucrt_dll_in_use 1000718a f   MSVCRT:ucrt_detection.obj
+ 0001:00006196       ___raise_securityfailure   10007196 f   MSVCRT:gs_report.obj
+ 0001:000061be       ___report_gsfailure        100071be f   MSVCRT:gs_report.obj
+ 0001:000062b9       ___report_rangecheckfailure 100072b9 f   MSVCRT:gs_report.obj
+ 0001:000062c6       ___report_securityfailure  100072c6 f   MSVCRT:gs_report.obj
+ 0001:00006396       ___report_securityfailureEx 10007396 f   MSVCRT:gs_report.obj
+ 0001:000064b2       __purecall                 100074b2 f   vcruntime:VCRUNTIME140.dll
+ 0001:000064b8       ___std_terminate           100074b8 f   vcruntime:VCRUNTIME140.dll
+ 0001:000064be       ___std_exception_copy      100074be f   vcruntime:VCRUNTIME140.dll
+ 0001:000064c4       ___std_exception_destroy   100074c4 f   vcruntime:VCRUNTIME140.dll
+ 0001:000064ca       __CxxThrowException@8      100074ca f   vcruntime:VCRUNTIME140.dll
+ 0001:000064d0       ___CxxFrameHandler3        100074d0 f   vcruntime:VCRUNTIME140.dll
+ 0001:000064d6       _memset                    100074d6 f   vcruntime:VCRUNTIME140.dll
+ 0001:000064dc       _memcpy                    100074dc f   vcruntime:VCRUNTIME140.dll
+ 0001:000064e2       _memmove                   100074e2 f   vcruntime:VCRUNTIME140.dll
+ 0001:000064e8       ___current_exception       100074e8 f   vcruntime:VCRUNTIME140.dll
+ 0001:000064ee       ___current_exception_context 100074ee f   vcruntime:VCRUNTIME140.dll
+ 0001:000064f4       __except_handler4_common   100074f4 f   vcruntime:VCRUNTIME140.dll
+ 0001:000064fa       ___std_type_info_destroy_list 100074fa f   vcruntime:VCRUNTIME140.dll
+ 0001:00006500       __invoke_watson            10007500 f   ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0001:00006506       __ismbcalpha               10007506 f   ucrt:api-ms-win-crt-multibyte-l1-1-0.dll
+ 0001:0000650c       _isalpha                   1000750c f   ucrt:api-ms-win-crt-string-l1-1-0.dll
+ 0001:00006512       _isdigit                   10007512 f   ucrt:api-ms-win-crt-string-l1-1-0.dll
+ 0001:00006518       _isalnum                   10007518 f   ucrt:api-ms-win-crt-string-l1-1-0.dll
+ 0001:0000651e       _toupper                   1000751e f   ucrt:api-ms-win-crt-string-l1-1-0.dll
+ 0001:00006524       _tolower                   10007524 f   ucrt:api-ms-win-crt-string-l1-1-0.dll
+ 0001:0000652a       __mbschr                   1000752a f   ucrt:api-ms-win-crt-multibyte-l1-1-0.dll
+ 0001:00006530       __mbscspn                  10007530 f   ucrt:api-ms-win-crt-multibyte-l1-1-0.dll
+ 0001:00006536       __mbsnbcmp                 10007536 f   ucrt:api-ms-win-crt-multibyte-l1-1-0.dll
+ 0001:0000653c       __mbsnbcpy                 1000753c f   ucrt:api-ms-win-crt-multibyte-l1-1-0.dll
+ 0001:00006542       __mbsspn                   10007542 f   ucrt:api-ms-win-crt-multibyte-l1-1-0.dll
+ 0001:00006548       __mbsstr                   10007548 f   ucrt:api-ms-win-crt-multibyte-l1-1-0.dll
+ 0001:0000654e       _terminate                 1000754e f   ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0001:00006554       __callnewh                 10007554 f   ucrt:api-ms-win-crt-heap-l1-1-0.dll
+ 0001:0000655a       _malloc                    1000755a f   ucrt:api-ms-win-crt-heap-l1-1-0.dll
+ 0001:00006560       __initterm                 10007560 f   ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0001:00006566       __initterm_e               10007566 f   ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0001:0000656c       _free                      1000756c f   ucrt:api-ms-win-crt-heap-l1-1-0.dll
+ 0001:00006572       __seh_filter_dll           10007572 f   ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0001:00006578       __configure_narrow_argv    10007578 f   ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0001:0000657e       __initialize_narrow_environment 1000757e f   ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0001:00006584       __initialize_onexit_table  10007584 f   ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0001:0000658a       __register_onexit_function 1000758a f   ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0001:00006590       __execute_onexit_table     10007590 f   ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0001:00006596       __crt_atexit               10007596 f   ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0001:0000659c       __crt_at_quick_exit        1000759c f   ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0001:000065a2       __cexit                    100075a2 f   ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0001:000065a8       _QueryPerformanceCounter@4 100075a8 f   kernel32:KERNEL32.dll
+ 0001:000065ae       _GetCurrentProcessId@0     100075ae f   kernel32:KERNEL32.dll
+ 0001:000065b4       _GetCurrentThreadId@0      100075b4 f   kernel32:KERNEL32.dll
+ 0001:000065ba       _GetSystemTimeAsFileTime@4 100075ba f   kernel32:KERNEL32.dll
+ 0001:000065c0       _DisableThreadLibraryCalls@4 100075c0 f   kernel32:KERNEL32.dll
+ 0001:000065c6       _InitializeSListHead@4     100075c6 f   kernel32:KERNEL32.dll
+ 0001:000065cc       _IsDebuggerPresent@0       100075cc f   kernel32:KERNEL32.dll
+ 0001:000065d2       _UnhandledExceptionFilter@4 100075d2 f   kernel32:KERNEL32.dll
+ 0001:000065d8       _SetUnhandledExceptionFilter@4 100075d8 f   kernel32:KERNEL32.dll
+ 0001:000065de       _GetStartupInfoW@4         100075de f   kernel32:KERNEL32.dll
+ 0001:000065e4       _IsProcessorFeaturePresent@4 100075e4 f   kernel32:KERNEL32.dll
+ 0001:000065ea       _GetModuleHandleW@4        100075ea f   kernel32:KERNEL32.dll
+ 0001:000065f0       _GetCurrentProcess@0       100075f0 f   kernel32:KERNEL32.dll
+ 0001:000065f6       _TerminateProcess@8        100075f6 f   kernel32:KERNEL32.dll
+ 0001:000065fc       __filter_x86_sse2_floating_point_exception 100075fc f   MSVCRT:x86_exception_filter.obj
+ 0001:000065fc       __filter_x86_sse2_floating_point_exception_default 100075fc f   MSVCRT:x86_exception_filter.obj
+ 0001:00006673       ___acrt_initialize         10007673 f   MSVCRT:ucrt_stubs.obj
+ 0001:00006673       ___scrt_stub_for_acrt_initialize 10007673 f   MSVCRT:ucrt_stubs.obj
+ 0001:00006673       ___vcrt_initialize         10007673 f   MSVCRT:ucrt_stubs.obj
+ 0001:00006676       ___acrt_thread_attach      10007676 f   MSVCRT:ucrt_stubs.obj
+ 0001:00006676       ___scrt_stub_for_acrt_thread_attach 10007676 f   MSVCRT:ucrt_stubs.obj
+ 0001:00006676       ___vcrt_thread_attach      10007676 f   MSVCRT:ucrt_stubs.obj
+ 0001:00006679       ___acrt_thread_detach      10007679 f   MSVCRT:ucrt_stubs.obj
+ 0001:00006679       ___scrt_stub_for_acrt_thread_detach 10007679 f   MSVCRT:ucrt_stubs.obj
+ 0001:00006679       ___vcrt_thread_detach      10007679 f   MSVCRT:ucrt_stubs.obj
+ 0001:0000667c       ___acrt_uninitialize       1000767c f   MSVCRT:ucrt_stubs.obj
+ 0001:0000667c       ___scrt_stub_for_acrt_uninitialize 1000767c f   MSVCRT:ucrt_stubs.obj
+ 0001:0000667c       ___vcrt_uninitialize       1000767c f   MSVCRT:ucrt_stubs.obj
+ 0001:0000667f       ___acrt_uninitialize_critical 1000767f f   MSVCRT:ucrt_stubs.obj
+ 0001:0000667f       ___scrt_stub_for_acrt_uninitialize_critical 1000767f f   MSVCRT:ucrt_stubs.obj
+ 0001:0000667f       ___vcrt_uninitialize_critical 1000767f f   MSVCRT:ucrt_stubs.obj
+ 0001:00006682       ___scrt_stub_for_is_c_termination_complete 10007682 f   MSVCRT:ucrt_stubs.obj
+ 0001:00006682       __is_c_termination_complete 10007682 f   MSVCRT:ucrt_stubs.obj
+ 0002:00000000       __imp__UnhandledExceptionFilter@4 10008000     kernel32:KERNEL32.dll
+ 0002:00000004       __imp__TerminateProcess@8  10008004     kernel32:KERNEL32.dll
+ 0002:00000008       __imp__GetCurrentProcess@0 10008008     kernel32:KERNEL32.dll
+ 0002:0000000c       __imp__GetModuleHandleW@4  1000800c     kernel32:KERNEL32.dll
+ 0002:00000010       __imp__IsProcessorFeaturePresent@4 10008010     kernel32:KERNEL32.dll
+ 0002:00000014       __imp__GetStartupInfoW@4   10008014     kernel32:KERNEL32.dll
+ 0002:00000018       __imp__SetUnhandledExceptionFilter@4 10008018     kernel32:KERNEL32.dll
+ 0002:0000001c       __imp__QueryPerformanceCounter@4 1000801c     kernel32:KERNEL32.dll
+ 0002:00000020       __imp__IsDebuggerPresent@0 10008020     kernel32:KERNEL32.dll
+ 0002:00000024       __imp__InitializeSListHead@4 10008024     kernel32:KERNEL32.dll
+ 0002:00000028       __imp__DisableThreadLibraryCalls@4 10008028     kernel32:KERNEL32.dll
+ 0002:0000002c       __imp__GetSystemTimeAsFileTime@4 1000802c     kernel32:KERNEL32.dll
+ 0002:00000030       __imp__GetCurrentThreadId@0 10008030     kernel32:KERNEL32.dll
+ 0002:00000034       __imp__GetCurrentProcessId@0 10008034     kernel32:KERNEL32.dll
+ 0002:00000038       \177KERNEL32_NULL_THUNK_DATA 10008038     kernel32:KERNEL32.dll
+ 0002:0000003c       __imp_?_Xlength_error@std@@YAXPBD@Z 1000803c     msvcprt:MSVCP140.dll
+ 0002:00000040       \177MSVCP140_NULL_THUNK_DATA 10008040     msvcprt:MSVCP140.dll
+ 0002:00000044       __imp__memcpy              10008044     vcruntime:VCRUNTIME140.dll
+ 0002:00000048       __imp__memset              10008048     vcruntime:VCRUNTIME140.dll
+ 0002:0000004c       __imp___purecall           1000804c     vcruntime:VCRUNTIME140.dll
+ 0002:00000050       __imp____std_terminate     10008050     vcruntime:VCRUNTIME140.dll
+ 0002:00000054       __imp____std_exception_copy 10008054     vcruntime:VCRUNTIME140.dll
+ 0002:00000058       __imp____std_exception_destroy 10008058     vcruntime:VCRUNTIME140.dll
+ 0002:0000005c       __imp__memmove             1000805c     vcruntime:VCRUNTIME140.dll
+ 0002:00000060       __imp____current_exception 10008060     vcruntime:VCRUNTIME140.dll
+ 0002:00000064       __imp____current_exception_context 10008064     vcruntime:VCRUNTIME140.dll
+ 0002:00000068       __imp___except_handler4_common 10008068     vcruntime:VCRUNTIME140.dll
+ 0002:0000006c       __imp____std_type_info_destroy_list 1000806c     vcruntime:VCRUNTIME140.dll
+ 0002:00000070       __imp____CxxFrameHandler3  10008070     vcruntime:VCRUNTIME140.dll
+ 0002:00000074       __imp___CxxThrowException@8 10008074     vcruntime:VCRUNTIME140.dll
+ 0002:00000078       \177VCRUNTIME140_NULL_THUNK_DATA 10008078     vcruntime:VCRUNTIME140.dll
+ 0002:0000007c       __imp___callnewh           1000807c     ucrt:api-ms-win-crt-heap-l1-1-0.dll
+ 0002:00000080       __imp__malloc              10008080     ucrt:api-ms-win-crt-heap-l1-1-0.dll
+ 0002:00000084       __imp__free                10008084     ucrt:api-ms-win-crt-heap-l1-1-0.dll
+ 0002:00000088       \177api-ms-win-crt-heap-l1-1-0_NULL_THUNK_DATA 10008088     ucrt:api-ms-win-crt-heap-l1-1-0.dll
+ 0002:0000008c       __imp___mbsnbcmp           1000808c     ucrt:api-ms-win-crt-multibyte-l1-1-0.dll
+ 0002:00000090       __imp___mbsnbcpy           10008090     ucrt:api-ms-win-crt-multibyte-l1-1-0.dll
+ 0002:00000094       __imp___mbsspn             10008094     ucrt:api-ms-win-crt-multibyte-l1-1-0.dll
+ 0002:00000098       __imp___mbscspn            10008098     ucrt:api-ms-win-crt-multibyte-l1-1-0.dll
+ 0002:0000009c       __imp___ismbcalpha         1000809c     ucrt:api-ms-win-crt-multibyte-l1-1-0.dll
+ 0002:000000a0       __imp___mbsstr             100080a0     ucrt:api-ms-win-crt-multibyte-l1-1-0.dll
+ 0002:000000a4       __imp___mbschr             100080a4     ucrt:api-ms-win-crt-multibyte-l1-1-0.dll
+ 0002:000000a8       \177api-ms-win-crt-multibyte-l1-1-0_NULL_THUNK_DATA 100080a8     ucrt:api-ms-win-crt-multibyte-l1-1-0.dll
+ 0002:000000ac       __imp__terminate           100080ac     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0002:000000b0       __imp___crt_atexit         100080b0     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0002:000000b4       __imp___crt_at_quick_exit  100080b4     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0002:000000b8       __imp___execute_onexit_table 100080b8     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0002:000000bc       __imp___register_onexit_function 100080bc     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0002:000000c0       __imp___initialize_onexit_table 100080c0     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0002:000000c4       __imp___initialize_narrow_environment 100080c4     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0002:000000c8       __imp___configure_narrow_argv 100080c8     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0002:000000cc       __imp___initterm           100080cc     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0002:000000d0       __imp___cexit              100080d0     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0002:000000d4       __imp___initterm_e         100080d4     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0002:000000d8       __imp___seh_filter_dll     100080d8     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0002:000000dc       __imp___invoke_watson      100080dc     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0002:000000e0       \177api-ms-win-crt-runtime-l1-1-0_NULL_THUNK_DATA 100080e0     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0002:000000e4       __imp__toupper             100080e4     ucrt:api-ms-win-crt-string-l1-1-0.dll
+ 0002:000000e8       __imp__isalnum             100080e8     ucrt:api-ms-win-crt-string-l1-1-0.dll
+ 0002:000000ec       __imp__isdigit             100080ec     ucrt:api-ms-win-crt-string-l1-1-0.dll
+ 0002:000000f0       __imp__isalpha             100080f0     ucrt:api-ms-win-crt-string-l1-1-0.dll
+ 0002:000000f4       __imp__tolower             100080f4     ucrt:api-ms-win-crt-string-l1-1-0.dll
+ 0002:000000f8       \177api-ms-win-crt-string-l1-1-0_NULL_THUNK_DATA 100080f8     ucrt:api-ms-win-crt-string-l1-1-0.dll
+ 0002:000000fc       ___guard_check_icall_fptr  100080fc     MSVCRT:guard_support.obj
+ 0002:00000100       ___guard_xfg_check_icall_fptr 10008100     MSVCRT:guard_support.obj
+ 0002:00000104       ___castguard_check_failure_os_handled_fptr 10008104     MSVCRT:guard_support.obj
+ 0002:00000108       ___xc_a                    10008108     MSVCRT:initializers.obj
+ 0002:0000010c       ___xc_z                    1000810c     MSVCRT:initializers.obj
+ 0002:00000110       ___xi_a                    10008110     MSVCRT:initializers.obj
+ 0002:00000114       ___xi_z                    10008114     MSVCRT:initializers.obj
+ 0002:00000118       ___xp_a                    10008118     MSVCRT:initializers.obj
+ 0002:0000011c       ___xp_z                    1000811c     MSVCRT:initializers.obj
+ 0002:00000120       ___xt_a                    10008120     MSVCRT:initializers.obj
+ 0002:00000124       ___xt_z                    10008124     MSVCRT:initializers.obj
+ 0002:0000012c       ??_7exception@std@@6B@     1000812c     filtertext.obj
+ 0002:00000134       ??_C@_0BC@EOODALEL@Unknown?5exception@ 10008134     filtertext.obj
+ 0002:0000014c       ??_7bad_alloc@std@@6B@     1000814c     filtertext.obj
+ 0002:00000158       ??_7bad_array_new_length@std@@6B@ 10008158     filtertext.obj
+ 0002:00000160       ??_C@_0BF@KINCDENJ@bad?5array?5new?5length@ 10008160     filtertext.obj
+ 0002:0000017c       ??_7ITextFilter@@6B@       1000817c     filtertext.obj
+ 0002:00000198       ??_7CTextFilter@@6B@       10008198     filtertext.obj
+ 0002:000001b0       ??_C@_0BA@FOIKENOD@vector?5too?5long@ 100081b0     filtertext.obj
+ 0002:000001c0       ??_C@_0BJ@GDAFHLND@NULL?5argument?5to?5regexec@ 100081c0     regexp.obj
+ 0002:000001dc       ??_C@_0BB@HHLLFFOB@corrupted?5regexp@ 100081dc     regexp.obj
+ 0002:000001f0       ??_C@_0BC@IDOAOEOL@regexp?5corruption@ 100081f0     regexp.obj
+ 0002:00000204       ??_C@_0BD@CIPKHDBK@corrupted?5pointers@ 10008204     regexp.obj
+ 0002:00000218       ??_C@_0CG@JACMFPGF@internal?5error?3?5bad?5call?5of?5reg@ 10008218     regexp.obj
+ 0002:00000240       ??_C@_0BB@JKBNMBGD@corrupted?5opcode@ 10008240     regexp.obj
+ 0002:00000254       ??_C@_0BE@MJBBGELP@NULL?5parm?5to?5regsub@ 10008254     regexp.obj
+ 0002:00000268       ??_C@_0BN@FIMBHCGG@damaged?5regexp?5fed?5to?5regsub@ 10008268     regexp.obj
+ 0002:00000288       ??_C@_0BF@LEALBKCB@damaged?5match?5string@ 10008288     regexp.obj
+ 0002:000002a0       ??_C@_0BJ@EOHHPBHP@NULL?5argument?5to?5regcomp@ 100082a0     regexp.obj
+ 0002:000002bc       ??_C@_0P@OMLCAGFI@regexp?5too?5big@ 100082bc     regexp.obj
+ 0002:000002cc       ??_C@_0M@LAGOAFJJ@too?5many?5?$CI?$CJ@ 100082cc     regexp.obj
+ 0002:000002d8       ??_C@_0BA@PBIMFPAM@unterminated?5?$CI?$CJ@ 100082d8     regexp.obj
+ 0002:000002e8       ??_C@_0N@JOIFCCGH@unmatched?5?$CI?$CJ@ 100082e8     regexp.obj
+ 0002:000002f8       ??_C@_0BM@MHFKIKDK@internal?5error?3?5junk?5on?5end@ 100082f8     regexp.obj
+ 0002:00000314       ??_C@_0BK@JKLFJDNL@?$CK?$CL?5operand?5could?5be?5empty@ 10008314     regexp.obj
+ 0002:00000330       ??_C@_0L@FNMCENPH@nested?5?$CK?$DP?$CL@ 10008330     regexp.obj
+ 0002:0000033c       ??_C@_0BB@BLNMCFIK@invalid?5?$FL?$FN?5range@ 1000833c     regexp.obj
+ 0002:00000350       ??_C@_0N@IDGBEIJM@unmatched?5?$FL?$FN@ 10008350     regexp.obj
+ 0002:00000360       ??_C@_0CA@IBIFAGHL@internal?5error?3?5?20?$HM?$CJ?5unexpected@ 10008360     regexp.obj
+ 0002:00000380       ??_C@_0BE@GIHOAEJA@?$DP?$CL?$CK?5follows?5nothing@ 10008380     regexp.obj
+ 0002:00000394       ??_C@_0L@GBNODOJN@trailing?5?2@ 10008394     regexp.obj
+ 0002:000003a0       ??_C@_0BK@PLNEMFFN@internal?5error?3?5strcspn?50@ 100083a0     regexp.obj
+ 0002:000003bc       ??_C@_0M@GADOOKOK@NULL?5regexp@ 100083bc     regexp.obj
+ 0002:000003c8       ??_C@_0O@NIPGCINC@Unknown?5error@ 100083c8     regexp.obj
+ 0002:000003d8       ??_C@_0BA@JFNIOLAK@string?5too?5long@ 100083d8     regexp.obj
+ 0002:000003ec       ??_7CRegCompilerBase@@6B@  100083ec     regexp.obj
+ 0002:00000404       ??_7CRegValidator@@6B@     10008404     regexp.obj
+ 0002:0000041c       ??_7CRegCompiler@@6B@      1000841c     regexp.obj
+ 0002:00000434       ??_7type_info@@6B@         10008434     MSVCRT:std_type_info_static.obj
+ 0002:00000438       __pDefaultRawDllMain       10008438     MSVCRT:dll_dllmain.obj
+ 0002:00000438       __pRawDllMain              10008438     MSVCRT:dll_dllmain.obj
+ 0002:0000043c       ??_C@_0P@GHFPNOJB@bad?5allocation@ 1000843c     MSVCRT:throw_bad_alloc.obj
+ 0002:00000458       __load_config_used         10008458     MSVCRT:loadcfg.obj
+ 0002:00000580       ___CastGuardVftablesStart  10008580     MSVCRT:guard_support.obj
+ 0002:000005c0       ___CastGuardVftablesEnd    100085c0     MSVCRT:guard_support.obj
+ 0002:00000600       ??_R3IUnknown@@8           10008600     filtertext.obj
+ 0002:00000610       ??_R2IUnknown@@8           10008610     filtertext.obj
+ 0002:00000618       ??_R1A@?0A@EA@IUnknown@@8  10008618     filtertext.obj
+ 0002:00000634       ??_R4exception@std@@6B@    10008634     filtertext.obj
+ 0002:00000648       ??_R3exception@std@@8      10008648     filtertext.obj
+ 0002:00000658       ??_R2exception@std@@8      10008658     filtertext.obj
+ 0002:00000660       ??_R1A@?0A@EA@exception@std@@8 10008660     filtertext.obj
+ 0002:0000067c       ??_R4bad_array_new_length@std@@6B@ 1000867c     filtertext.obj
+ 0002:00000690       ??_R3bad_array_new_length@std@@8 10008690     filtertext.obj
+ 0002:000006a0       ??_R2bad_array_new_length@std@@8 100086a0     filtertext.obj
+ 0002:000006b0       ??_R1A@?0A@EA@bad_array_new_length@std@@8 100086b0     filtertext.obj
+ 0002:000006cc       ??_R1A@?0A@EA@bad_alloc@std@@8 100086cc     filtertext.obj
+ 0002:000006e8       ??_R3bad_alloc@std@@8      100086e8     filtertext.obj
+ 0002:000006f8       ??_R2bad_alloc@std@@8      100086f8     filtertext.obj
+ 0002:00000704       ??_R4bad_alloc@std@@6B@    10008704     filtertext.obj
+ 0002:00000718       ??_R4ITextFilter@@6B@      10008718     filtertext.obj
+ 0002:0000072c       ??_R3ITextFilter@@8        1000872c     filtertext.obj
+ 0002:0000073c       ??_R2ITextFilter@@8        1000873c     filtertext.obj
+ 0002:00000748       ??_R1A@?0A@EA@ITextFilter@@8 10008748     filtertext.obj
+ 0002:00000764       ??_R4CTextFilter@@6B@      10008764     filtertext.obj
+ 0002:00000778       ??_R3CTextFilter@@8        10008778     filtertext.obj
+ 0002:00000788       ??_R2CTextFilter@@8        10008788     filtertext.obj
+ 0002:00000798       ??_R1A@?0A@EA@CTextFilter@@8 10008798     filtertext.obj
+ 0002:000007b4       ??_R4CRegCompilerBase@@6B@ 100087b4     regexp.obj
+ 0002:000007c8       ??_R3CRegCompilerBase@@8   100087c8     regexp.obj
+ 0002:000007d8       ??_R2CRegCompilerBase@@8   100087d8     regexp.obj
+ 0002:000007e8       ??_R1A@?0A@EA@CRegCompilerBase@@8 100087e8     regexp.obj
+ 0002:00000804       ??_R13?0A@EA@CRegProgramAccessor@@8 10008804     regexp.obj
+ 0002:00000820       ??_R3CRegProgramAccessor@@8 10008820     regexp.obj
+ 0002:00000830       ??_R2CRegProgramAccessor@@8 10008830     regexp.obj
+ 0002:0000083c       ??_R1A@?0A@EA@CRegProgramAccessor@@8 1000883c     regexp.obj
+ 0002:00000858       ??_R1A@?0A@EA@CRegErrorHandler@@8 10008858     regexp.obj
+ 0002:00000874       ??_R3CRegErrorHandler@@8   10008874     regexp.obj
+ 0002:00000884       ??_R2CRegErrorHandler@@8   10008884     regexp.obj
+ 0002:0000088c       ??_R13?0A@EA@CRegErrorHandler@@8 1000888c     regexp.obj
+ 0002:000008a8       ??_R4CRegValidator@@6B@    100088a8     regexp.obj
+ 0002:000008bc       ??_R3CRegValidator@@8      100088bc     regexp.obj
+ 0002:000008cc       ??_R2CRegValidator@@8      100088cc     regexp.obj
+ 0002:000008e0       ??_R1A@?0A@EA@CRegValidator@@8 100088e0     regexp.obj
+ 0002:000008fc       ??_R4CRegCompiler@@6B@     100088fc     regexp.obj
+ 0002:00000910       ??_R3CRegCompiler@@8       10008910     regexp.obj
+ 0002:00000920       ??_R2CRegCompiler@@8       10008920     regexp.obj
+ 0002:00000934       ??_R1A@?0A@EA@CRegCompiler@@8 10008934     regexp.obj
+ 0002:00000950       ??_R4type_info@@6B@        10008950     MSVCRT:std_type_info_static.obj
+ 0002:00000964       ??_R3type_info@@8          10008964     MSVCRT:std_type_info_static.obj
+ 0002:00000974       ??_R2type_info@@8          10008974     MSVCRT:std_type_info_static.obj
+ 0002:0000097c       ??_R1A@?0A@EA@type_info@@8 1000897c     MSVCRT:std_type_info_static.obj
+ 0002:00000998       ___volatile_metadata       10008998     <linker-defined>
+ 0002:00000d78       ___rtc_iaa                 10008d78     MSVCRT:initsect.obj
+ 0002:00000d7c       ___rtc_izz                 10008d7c     MSVCRT:initsect.obj
+ 0002:00000d80       ___rtc_taa                 10008d80     MSVCRT:initsect.obj
+ 0002:00000d84       ___rtc_tzz                 10008d84     MSVCRT:initsect.obj
+ 0002:00000f74       __CT??_R0?AVexception@std@@@8??0exception@std@@QAE@ABV01@@Z12 10008f74     filtertext.obj
+ 0002:00000f90       __TI3?AVbad_array_new_length@std@@ 10008f90     filtertext.obj
+ 0002:00000fa0       __CTA3?AVbad_array_new_length@std@@ 10008fa0     filtertext.obj
+ 0002:00000fb0       __CT??_R0?AVbad_array_new_length@std@@@8??0bad_array_new_length@std@@QAE@ABV01@@Z12 10008fb0     filtertext.obj
+ 0002:00000fcc       __CT??_R0?AVbad_alloc@std@@@8??0bad_alloc@std@@QAE@ABV01@@Z12 10008fcc     filtertext.obj
+ 0002:0000123c       __TI2?AVbad_alloc@std@@    1000923c     MSVCRT:throw_bad_alloc.obj
+ 0002:0000124c       __CTA2?AVbad_alloc@std@@   1000924c     MSVCRT:throw_bad_alloc.obj
+ 0002:000012d4       __IMPORT_DESCRIPTOR_MSVCP140 100092d4     msvcprt:MSVCP140.dll
+ 0002:000012e8       __IMPORT_DESCRIPTOR_VCRUNTIME140 100092e8     vcruntime:VCRUNTIME140.dll
+ 0002:000012fc       __IMPORT_DESCRIPTOR_api-ms-win-crt-runtime-l1-1-0 100092fc     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0002:00001310       __IMPORT_DESCRIPTOR_api-ms-win-crt-multibyte-l1-1-0 10009310     ucrt:api-ms-win-crt-multibyte-l1-1-0.dll
+ 0002:00001324       __IMPORT_DESCRIPTOR_api-ms-win-crt-string-l1-1-0 10009324     ucrt:api-ms-win-crt-string-l1-1-0.dll
+ 0002:00001338       __IMPORT_DESCRIPTOR_api-ms-win-crt-heap-l1-1-0 10009338     ucrt:api-ms-win-crt-heap-l1-1-0.dll
+ 0002:0000134c       __IMPORT_DESCRIPTOR_KERNEL32 1000934c     kernel32:KERNEL32.dll
+ 0002:00001360       __NULL_IMPORT_DESCRIPTOR   10009360     msvcprt:MSVCP140.dll
+ 0003:00000000       ?errors@@3PAUregErr@@A     1000a000     regexp.obj
+ 0003:000000d0       ___scrt_native_dllmain_reason 1000a0d0     MSVCRT:utility.obj
+ 0003:00000100       ___security_cookie         1000a100     MSVCRT:gs_cookie.obj
+ 0003:00000140       ___security_cookie_complement 1000a140     MSVCRT:gs_cookie.obj
+ 0003:00000148       ___isa_inverted            1000a148     MSVCRT:cpu_disp.obj
+ 0003:00000150       ___isa_enabled             1000a150     MSVCRT:cpu_disp.obj
+ 0003:00000154       ___scrt_ucrt_dll_is_in_use 1000a154     MSVCRT:ucrt_stubs.obj
+ 0003:00000158       ??_R0?AVexception@std@@@8  1000a158     filtertext.obj
+ 0003:00000174       ??_R0?AVbad_array_new_length@std@@@8 1000a174     filtertext.obj
+ 0003:0000019c       ??_R0?AVbad_alloc@std@@@8  1000a19c     filtertext.obj
+ 0003:000001b8       ??_R0?AUIUnknown@@@8       1000a1b8     filtertext.obj
+ 0003:000001d0       ??_R0?AUITextFilter@@@8    1000a1d0     filtertext.obj
+ 0003:000001ec       ??_R0?AVCTextFilter@@@8    1000a1ec     filtertext.obj
+ 0003:00000208       ??_R0?AVCRegCompilerBase@@@8 1000a208     regexp.obj
+ 0003:00000228       ??_R0?AVCRegProgramAccessor@@@8 1000a228     regexp.obj
+ 0003:0000024c       ??_R0?AVCRegErrorHandler@@@8 1000a24c     regexp.obj
+ 0003:0000026c       ??_R0?AVCRegValidator@@@8  1000a26c     regexp.obj
+ 0003:00000288       ??_R0?AVCRegCompiler@@@8   1000a288     regexp.obj
+ 0003:000002a4       ??_R0?AVtype_info@@@8      1000a2a4     MSVCRT:std_type_info_static.obj
+ 0003:000002c0       __Avx2WmemEnabledWeakValue 1000a2c0     filtertext.obj
+ 0003:000002c8       ___castguard_check_failure_user_handled_fptr 1000a2c8     MSVCRT:guard_support.obj
+ 0003:000002d0       ?__type_info_root_node@@3U__type_info_node@@A 1000a2d0     MSVCRT:tncleanup.obj
+ 0003:000002d8       ?_OptionsStorage@?1??__local_stdio_printf_options@@9@4_KA 1000a2d8     MSVCRT:default_local_stdio_options.obj
+ 0003:000002e0       ?_OptionsStorage@?1??__local_stdio_scanf_options@@9@4_KA 1000a2e0     MSVCRT:default_local_stdio_options.obj
+ 0003:000002e8       ___scrt_current_native_startup_state 1000a2e8     MSVCRT:utility.obj
+ 0003:000002ec       ___scrt_native_startup_lock 1000a2ec     MSVCRT:utility.obj
+ 0003:0000030c       ___scrt_debugger_hook_flag 1000a30c     MSVCRT:utility_desktop.obj
+ 0003:00000310       ___avx10_version           1000a310     MSVCRT:cpu_disp.obj
+ 0003:00000314       ___isa_available           1000a314     MSVCRT:cpu_disp.obj
+ 0003:00000318       ___favor                   1000a318     MSVCRT:cpu_disp.obj
+ 0003:0000063c       ___dyn_tls_init_callback   1000a63c     <common>
+
+ entry point at        0001:00005402
+
+ Static symbols
+
+ 0000:ffff4000       .debug$S                   10000000     FilterText.exp
+ 0002:ffff8000       __guard_fids___except_handler4 10000000     MSVCRT:chandler4gs.obj
+ 0000:00000000       _volmd                     10000000     MSVCRT:cpu_disp.obj
+ 0002:ffff8000       __guard_fids_?dllmain_dispatch@@YAHQAUHINSTANCE__@@KQAX@Z 10000000     MSVCRT:dll_dllmain.obj
+ 0000:00000000       _volmd                     10000000     MSVCRT:ehvecdtr.obj
+ 0000:00000000       _volmd                     10000000     MSVCRT:gs_report.obj
+ 0002:ffff8000       __guard_fids__             10000000     MSVCRT:guard_support.obj
+ 0002:ffff8000       __guard_fids__             10000000     MSVCRT:guard_support.obj
+ 0002:ffff8000       __guard_fids___guard_icall_checks_enforced 10000000     MSVCRT:guard_support.obj
+ 0000:00000000       _volmd                     10000000     MSVCRT:guard_support.obj
+ 0000:00000000       _volmd                     10000000     MSVCRT:guard_support.obj
+ 0000:00000000       _volmd                     10000000     MSVCRT:guard_support.obj
+ 0000:00000000       _volmd                     10000000     MSVCRT:guard_support.obj
+ 0000:00000000       _volmd                     10000000     MSVCRT:guard_support.obj
+ 0000:00000000       _volmd                     10000000     MSVCRT:guard_support.obj
+ 0000:00000000       _volmd                     10000000     MSVCRT:guard_support.obj
+ 0000:00000000       _volmd                     10000000     MSVCRT:guard_support.obj
+ 0000:00000000       _volmd                     10000000     MSVCRT:guard_support.obj
+ 0002:ffff8000       __guard_fids__             10000000     MSVCRT:std_type_info_static.obj
+ 0002:ffff8000       __guard_fids__             10000000     MSVCRT:throw_bad_alloc.obj
+ 0002:ffff8000       __guard_fids__             10000000     MSVCRT:throw_bad_alloc.obj
+ 0002:ffff8000       __guard_fids__             10000000     MSVCRT:throw_bad_alloc.obj
+ 0002:ffff8000       __guard_fids__             10000000     MSVCRT:throw_bad_alloc.obj
+ 0002:ffff8000       __guard_fids__             10000000     MSVCRT:throw_bad_alloc.obj
+ 0002:ffff8000       __guard_fids__             10000000     MSVCRT:throw_bad_alloc.obj
+ 0002:ffff8000       __guard_fids__             10000000     MSVCRT:throw_bad_alloc.obj
+ 0002:ffff8000       __guard_fids__             10000000     MSVCRT:throw_bad_alloc.obj
+ 0002:ffff8000       __guard_fids____scrt_set_unhandled_exception_filter 10000000     MSVCRT:utility_desktop.obj
+ 0000:ffff4000       .debug$S                   10000000     msvcprt:MSVCP140.dll
+ 0000:ffff4000       .debug$S                   10000000     vcruntime:VCRUNTIME140.dll
+ 0000:ffff4000       .debug$S                   10000000     vcruntime:VCRUNTIME140.dll
+ 0000:ffff4000       .debug$S                   10000000     vcruntime:VCRUNTIME140.dll
+ 0000:ffff4000       .debug$S                   10000000     vcruntime:VCRUNTIME140.dll
+ 0000:ffff4000       .debug$S                   10000000     vcruntime:VCRUNTIME140.dll
+ 0000:ffff4000       .debug$S                   10000000     vcruntime:VCRUNTIME140.dll
+ 0000:ffff4000       .debug$S                   10000000     vcruntime:VCRUNTIME140.dll
+ 0000:ffff4000       .debug$S                   10000000     vcruntime:VCRUNTIME140.dll
+ 0000:ffff4000       .debug$S                   10000000     vcruntime:VCRUNTIME140.dll
+ 0000:ffff4000       .debug$S                   10000000     vcruntime:VCRUNTIME140.dll
+ 0000:ffff4000       .debug$S                   10000000     vcruntime:VCRUNTIME140.dll
+ 0000:ffff4000       .debug$S                   10000000     vcruntime:VCRUNTIME140.dll
+ 0000:ffff4000       .debug$S                   10000000     vcruntime:VCRUNTIME140.dll
+ 0000:ffff4000       .debug$S                   10000000     kernel32:KERNEL32.dll
+ 0000:ffff4000       .debug$S                   10000000     kernel32:KERNEL32.dll
+ 0000:ffff4000       .debug$S                   10000000     kernel32:KERNEL32.dll
+ 0000:ffff4000       .debug$S                   10000000     kernel32:KERNEL32.dll
+ 0000:ffff4000       .debug$S                   10000000     kernel32:KERNEL32.dll
+ 0000:ffff4000       .debug$S                   10000000     kernel32:KERNEL32.dll
+ 0000:ffff4000       .debug$S                   10000000     kernel32:KERNEL32.dll
+ 0000:ffff4000       .debug$S                   10000000     kernel32:KERNEL32.dll
+ 0000:ffff4000       .debug$S                   10000000     kernel32:KERNEL32.dll
+ 0000:ffff4000       .debug$S                   10000000     kernel32:KERNEL32.dll
+ 0000:ffff4000       .debug$S                   10000000     kernel32:KERNEL32.dll
+ 0000:ffff4000       .debug$S                   10000000     kernel32:KERNEL32.dll
+ 0000:ffff4000       .debug$S                   10000000     kernel32:KERNEL32.dll
+ 0000:ffff4000       .debug$S                   10000000     kernel32:KERNEL32.dll
+ 0000:ffff4000       .debug$S                   10000000     ucrt:api-ms-win-crt-heap-l1-1-0.dll
+ 0000:ffff4000       .debug$S                   10000000     ucrt:api-ms-win-crt-heap-l1-1-0.dll
+ 0000:ffff4000       .debug$S                   10000000     ucrt:api-ms-win-crt-heap-l1-1-0.dll
+ 0000:ffff4000       .debug$S                   10000000     ucrt:api-ms-win-crt-multibyte-l1-1-0.dll
+ 0000:ffff4000       .debug$S                   10000000     ucrt:api-ms-win-crt-multibyte-l1-1-0.dll
+ 0000:ffff4000       .debug$S                   10000000     ucrt:api-ms-win-crt-multibyte-l1-1-0.dll
+ 0000:ffff4000       .debug$S                   10000000     ucrt:api-ms-win-crt-multibyte-l1-1-0.dll
+ 0000:ffff4000       .debug$S                   10000000     ucrt:api-ms-win-crt-multibyte-l1-1-0.dll
+ 0000:ffff4000       .debug$S                   10000000     ucrt:api-ms-win-crt-multibyte-l1-1-0.dll
+ 0000:ffff4000       .debug$S                   10000000     ucrt:api-ms-win-crt-multibyte-l1-1-0.dll
+ 0000:ffff4000       .debug$S                   10000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:ffff4000       .debug$S                   10000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:ffff4000       .debug$S                   10000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:ffff4000       .debug$S                   10000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:ffff4000       .debug$S                   10000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:ffff4000       .debug$S                   10000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:ffff4000       .debug$S                   10000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:ffff4000       .debug$S                   10000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:ffff4000       .debug$S                   10000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:ffff4000       .debug$S                   10000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:ffff4000       .debug$S                   10000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:ffff4000       .debug$S                   10000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:ffff4000       .debug$S                   10000000     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0000:ffff4000       .debug$S                   10000000     ucrt:api-ms-win-crt-string-l1-1-0.dll
+ 0000:ffff4000       .debug$S                   10000000     ucrt:api-ms-win-crt-string-l1-1-0.dll
+ 0000:ffff4000       .debug$S                   10000000     ucrt:api-ms-win-crt-string-l1-1-0.dll
+ 0000:ffff4000       .debug$S                   10000000     ucrt:api-ms-win-crt-string-l1-1-0.dll
+ 0000:ffff4000       .debug$S                   10000000     ucrt:api-ms-win-crt-string-l1-1-0.dll
+ 0001:00000caa       __catch$?AddExpression@CTextFilter@@MAEHPBD@Z$0 10001caa f   filtertext.obj
+ 0001:00000f38       __catch$?IsTextPass@CTextFilter@@MAEHPBD@Z$0 10001f38 f   filtertext.obj
+ 0001:00003b34       $LN120                     10004b34     regexp.obj
+ 0001:00003b58       $LN119                     10004b58     regexp.obj
+ 0001:00003bd8       $LN122                     10004bd8     regexp.obj
+ 0001:00003be8       $LN121                     10004be8     regexp.obj
+ 0001:00004754       $LN207                     10005754     regexp.obj
+ 0001:00004790       $LN206                     10005790     regexp.obj
+ 0001:000047b8       $LN209                     100057b8     regexp.obj
+ 0001:00004afc       $LN43                      10005afc     regexp.obj
+ 0001:00004f46       ?ArrayUnwindFilter@@YAHPAU_EXCEPTION_POINTERS@@@Z 10005f46 f   MSVCRT:ehvecdtr.obj
+ 0001:00005080       $$000000                   10006080     MSVCRT:alloca16.obj
+ 0001:00005096       alloca_8                   10006096     MSVCRT:alloca16.obj
+ 0001:000050ac       ?dllmain_crt_dispatch@@YGHQAUHINSTANCE__@@KQAX@Z 100060ac f   MSVCRT:dll_dllmain.obj
+ 0001:000050ff       ?dllmain_crt_process_attach@@YAHQAUHINSTANCE__@@QAX@Z 100060ff f   MSVCRT:dll_dllmain.obj
+ 0001:00005209       ?dllmain_crt_process_detach@@YAH_N@Z 10006209 f   MSVCRT:dll_dllmain.obj
+ 0001:000052c0       ?dllmain_dispatch@@YAHQAUHINSTANCE__@@KQAX@Z 100062c0 f   MSVCRT:dll_dllmain.obj
+ 0001:000053ce       ?dllmain_raw@@YGHQAUHINSTANCE__@@KQAX@Z 100063ce f   MSVCRT:dll_dllmain.obj
+ 0001:00005430       $$000000                   10006430     MSVCRT:sehprolg4.obj
+ 0001:00005480       $$000000                   10006480     MSVCRT:sehprolg4.obj
+ 0001:0000554a       ___castguard_check_failure_os_handled_wrapper 1000654a f   MSVCRT:guard_support.obj
+ 0001:0000558f       ___castguard_check_failure_user_handled_wrapper 1000658f f   MSVCRT:guard_support.obj
+ 0001:000055ae       ___castguard_compat_check  100065ae f   MSVCRT:guard_support.obj
+ 0001:000056bc       ___castguard_slow_path_compat_check 100066bc f   MSVCRT:guard_support.obj
+ 0001:00005750       $$000000                   10006750     MSVCRT:chkstk.obj
+ 0001:00005764       cs10                       10006764     MSVCRT:chkstk.obj
+ 0001:00005772       cs20                       10006772     MSVCRT:chkstk.obj
+ 0001:0000577b       ___get_entropy             1000677b f   MSVCRT:gs_support.obj
+ 0001:00005883       ?find_pe_section@@YAPAU_IMAGE_SECTION_HEADER@@QAEI@Z 10006883 f   MSVCRT:utility.obj
+ 0001:000058ca       ?is_potentially_valid_image_base@@YA_NQAX@Z 100068ca f   MSVCRT:utility.obj
+ 0001:00006690       __unwindfunclet$??$_Emplace_reallocate@ABVRegexp@@@?$vector@VRegexp@@V?$allocator@VRegexp@@@std@@@std@@AAEPAVRegexp@@QAV2@ABV2@@Z$0 10007690 f   filtertext.obj
+ 0001:00006698       __unwindfunclet$??$_Emplace_reallocate@ABVRegexp@@@?$vector@VRegexp@@V?$allocator@VRegexp@@@std@@@std@@AAEPAVRegexp@@QAV2@ABV2@@Z$1 10007698 f   filtertext.obj
+ 0001:000066a5       __ehhandler$??$_Emplace_reallocate@ABVRegexp@@@?$vector@VRegexp@@V?$allocator@VRegexp@@@std@@@std@@AAEPAVRegexp@@QAV2@ABV2@@Z 100076a5 f   filtertext.obj
+ 0001:000066c0       __unwindfunclet$??$_Uninitialized_copy@PAVRegexp@@PAV1@V?$allocator@VRegexp@@@std@@@std@@YAPAVRegexp@@PAV1@00AAV?$allocator@VRegexp@@@0@@Z$0 100076c0 f   filtertext.obj
+ 0001:000066cd       __ehhandler$??$_Uninitialized_copy@PAVRegexp@@PAV1@V?$allocator@VRegexp@@@std@@@std@@YAPAVRegexp@@PAV1@00AAV?$allocator@VRegexp@@@0@@Z 100076cd f   filtertext.obj
+ 0001:000066e0       __unwindfunclet$??$_Uninitialized_move@PAVRegexp@@V?$allocator@VRegexp@@@std@@@std@@YAPAVRegexp@@QAV1@0PAV1@AAV?$allocator@VRegexp@@@0@@Z$0 100076e0 f   filtertext.obj
+ 0001:000066ed       __ehhandler$??$_Uninitialized_move@PAVRegexp@@V?$allocator@VRegexp@@@std@@@std@@YAPAVRegexp@@QAV1@0PAV1@AAV?$allocator@VRegexp@@@0@@Z 100076ed f   filtertext.obj
+ 0001:00006700       __ehhandler$??1CTextFilter@@IAE@XZ 10007700 f   filtertext.obj
+ 0001:00006710       __ehhandler$??_GCTextFilter@@IAEPAXI@Z 10007710 f   filtertext.obj
+ 0001:00006720       __unwindfunclet$?AddExpression@CTextFilter@@MAEHPBD@Z$2 10007720 f   filtertext.obj
+ 0001:0000672d       __ehhandler$?AddExpression@CTextFilter@@MAEHPBD@Z 1000772d f   filtertext.obj
+ 0001:00006740       __unwindfunclet$?CreateInstance@CTextFilter@@SAPAV1@XZ$0 10007740 f   filtertext.obj
+ 0001:00006757       __ehhandler$?CreateInstance@CTextFilter@@SAPAV1@XZ 10007757 f   filtertext.obj
+ 0001:00006770       __ehhandler$?IsTextPass@CTextFilter@@MAEHPBD@Z 10007770 f   filtertext.obj
+ 0001:00006780       __ehhandler$?Release@CTextFilter@@MAGKXZ 10007780 f   filtertext.obj
+ 0001:00006790       __unwindfunclet$??0Regexp@@QAE@PBDH@Z$0 10007790 f   regexp.obj
+ 0001:0000679b       __unwindfunclet$??0Regexp@@QAE@PBDH@Z$1 1000779b f   regexp.obj
+ 0001:000067ad       __unwindfunclet$??0Regexp@@QAE@PBDH@Z$5 100077ad f   regexp.obj
+ 0001:000067ba       __ehhandler$??0Regexp@@QAE@PBDH@Z 100077ba f   regexp.obj
+ 0001:000067d0       __unwindfunclet$??0regexp@@QAE@ABV0@@Z$0 100077d0 f   regexp.obj
+ 0001:000067dd       __ehhandler$??0regexp@@QAE@ABV0@@Z 100077dd f   regexp.obj
+ 0001:000067f0       __unwindfunclet$??0regexp@@QAE@PBDH@Z$0 100077f0 f   regexp.obj
+ 0001:000067fd       __ehhandler$??0regexp@@QAE@PBDH@Z 100077fd f   regexp.obj
+ 0001:00006810       __unwindfunclet$?GetReplaceString@regexp@@QBE?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PBD@Z$0 10007810 f   regexp.obj
+ 0001:00006818       __unwindfunclet$?GetReplaceString@regexp@@QBE?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PBD@Z$2 10007818 f   regexp.obj
+ 0001:00006825       __ehhandler$?GetReplaceString@regexp@@QBE?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PBD@Z 10007825 f   regexp.obj
+ 0001:00006840       __unwindfunclet$?Match@Regexp@@QAE_NPBD@Z$0 10007840 f   regexp.obj
+ 0001:00006852       __unwindfunclet$?Match@Regexp@@QAE_NPBD@Z$1 10007852 f   regexp.obj
+ 0001:0000685f       __ehhandler$?Match@Regexp@@QAE_NPBD@Z 1000785f f   regexp.obj
+ 0001:00006870       __unwindfunclet$?getCopy@regexp@@QAEPAV1@XZ$0 10007870 f   regexp.obj
+ 0001:00006882       __unwindfunclet$?getCopy@regexp@@QAEPAV1@XZ$1 10007882 f   regexp.obj
+ 0001:0000688f       __ehhandler$?getCopy@regexp@@QAEPAV1@XZ 1000788f f   regexp.obj
+ 0001:000068a0       __unwindfunclet$?regcomp@regexp@@QAE_NPBD@Z$0 100078a0 f   regexp.obj
+ 0001:000068a8       __unwindfunclet$?regcomp@regexp@@QAE_NPBD@Z$1 100078a8 f   regexp.obj
+ 0001:000068b5       __ehhandler$?regcomp@regexp@@QAE_NPBD@Z 100078b5 f   regexp.obj
+ 0001:000068d0       __unwindfunclet$?regexec@regexp@@QAE_NPBD@Z$0 100078d0 f   regexp.obj
+ 0001:000068dd       __ehhandler$?regexec@regexp@@QAE_NPBD@Z 100078dd f   regexp.obj
+ 0002:0000044c       _GS_ExceptionPointers      1000844c     MSVCRT:gs_report.obj
+ 0002:00000d88       __ehfuncinfo$??1CTextFilter@@IAE@XZ 10008d88     filtertext.obj
+ 0002:00000dac       __unwindtable$?Release@CTextFilter@@MAGKXZ 10008dac     filtertext.obj
+ 0002:00000db4       __ehfuncinfo$?Release@CTextFilter@@MAGKXZ 10008db4     filtertext.obj
+ 0002:00000dd8       __catchsym$?AddExpression@CTextFilter@@MAEHPBD@Z$3 10008dd8     filtertext.obj
+ 0002:00000de8       __tryblocktable$?AddExpression@CTextFilter@@MAEHPBD@Z 10008de8     filtertext.obj
+ 0002:00000dfc       __unwindtable$?AddExpression@CTextFilter@@MAEHPBD@Z 10008dfc     filtertext.obj
+ 0002:00000e14       __ehfuncinfo$?AddExpression@CTextFilter@@MAEHPBD@Z 10008e14     filtertext.obj
+ 0002:00000e38       __catchsym$?IsTextPass@CTextFilter@@MAEHPBD@Z$2 10008e38     filtertext.obj
+ 0002:00000e48       __unwindtable$?IsTextPass@CTextFilter@@MAEHPBD@Z 10008e48     filtertext.obj
+ 0002:00000e58       __tryblocktable$?IsTextPass@CTextFilter@@MAEHPBD@Z 10008e58     filtertext.obj
+ 0002:00000e6c       __ehfuncinfo$?IsTextPass@CTextFilter@@MAEHPBD@Z 10008e6c     filtertext.obj
+ 0002:00000e90       __unwindtable$?CreateInstance@CTextFilter@@SAPAV1@XZ 10008e90     filtertext.obj
+ 0002:00000e98       __ehfuncinfo$?CreateInstance@CTextFilter@@SAPAV1@XZ 10008e98     filtertext.obj
+ 0002:00000ebc       __unwindtable$??_GCTextFilter@@IAEPAXI@Z 10008ebc     filtertext.obj
+ 0002:00000ec4       __ehfuncinfo$??_GCTextFilter@@IAEPAXI@Z 10008ec4     filtertext.obj
+ 0002:00000ee8       __unwindtable$??$_Emplace_reallocate@ABVRegexp@@@?$vector@VRegexp@@V?$allocator@VRegexp@@@std@@@std@@AAEPAVRegexp@@QAV2@ABV2@@Z 10008ee8     filtertext.obj
+ 0002:00000ef8       __ehfuncinfo$??$_Emplace_reallocate@ABVRegexp@@@?$vector@VRegexp@@V?$allocator@VRegexp@@@std@@@std@@AAEPAVRegexp@@QAV2@ABV2@@Z 10008ef8     filtertext.obj
+ 0002:00000f1c       __unwindtable$??$_Uninitialized_copy@PAVRegexp@@PAV1@V?$allocator@VRegexp@@@std@@@std@@YAPAVRegexp@@PAV1@00AAV?$allocator@VRegexp@@@0@@Z 10008f1c     filtertext.obj
+ 0002:00000f24       __ehfuncinfo$??$_Uninitialized_copy@PAVRegexp@@PAV1@V?$allocator@VRegexp@@@std@@@std@@YAPAVRegexp@@PAV1@00AAV?$allocator@VRegexp@@@0@@Z 10008f24     filtertext.obj
+ 0002:00000f48       __unwindtable$??$_Uninitialized_move@PAVRegexp@@V?$allocator@VRegexp@@@std@@@std@@YAPAVRegexp@@QAV1@0PAV1@AAV?$allocator@VRegexp@@@0@@Z 10008f48     filtertext.obj
+ 0002:00000f50       __ehfuncinfo$??$_Uninitialized_move@PAVRegexp@@V?$allocator@VRegexp@@@std@@@std@@YAPAVRegexp@@QAV1@0PAV1@AAV?$allocator@VRegexp@@@0@@Z 10008f50     filtertext.obj
+ 0002:00000fe8       __unwindtable$??0Regexp@@QAE@PBDH@Z 10008fe8     regexp.obj
+ 0002:00001000       __ehfuncinfo$??0Regexp@@QAE@PBDH@Z 10009000     regexp.obj
+ 0002:00001024       __unwindtable$?Match@Regexp@@QAE_NPBD@Z 10009024     regexp.obj
+ 0002:00001034       __ehfuncinfo$?Match@Regexp@@QAE_NPBD@Z 10009034     regexp.obj
+ 0002:00001058       __unwindtable$??0regexp@@QAE@PBDH@Z 10009058     regexp.obj
+ 0002:00001060       __ehfuncinfo$??0regexp@@QAE@PBDH@Z 10009060     regexp.obj
+ 0002:00001084       __unwindtable$??0regexp@@QAE@ABV0@@Z 10009084     regexp.obj
+ 0002:0000108c       __ehfuncinfo$??0regexp@@QAE@ABV0@@Z 1000908c     regexp.obj
+ 0002:000010b0       __unwindtable$?regcomp@regexp@@QAE_NPBD@Z 100090b0     regexp.obj
+ 0002:000010c0       __ehfuncinfo$?regcomp@regexp@@QAE_NPBD@Z 100090c0     regexp.obj
+ 0002:000010e4       __unwindtable$?regexec@regexp@@QAE_NPBD@Z 100090e4     regexp.obj
+ 0002:000010ec       __ehfuncinfo$?regexec@regexp@@QAE_NPBD@Z 100090ec     regexp.obj
+ 0002:00001110       __unwindtable$?GetReplaceString@regexp@@QBE?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PBD@Z 10009110     regexp.obj
+ 0002:00001120       __ehfuncinfo$?GetReplaceString@regexp@@QBE?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PBD@Z 10009120     regexp.obj
+ 0002:00001144       __unwindtable$?getCopy@regexp@@QAEPAV1@XZ 10009144     regexp.obj
+ 0002:00001154       __ehfuncinfo$?getCopy@regexp@@QAEPAV1@XZ 10009154     regexp.obj
+ 0002:00001178       __sehtable$??_L@YGXPAXIIP6EX0@Z1@Z 10009178     MSVCRT:ehvecctr.obj
+ 0002:00001198       __sehtable$??_M@YGXPAXIIP6EX0@Z@Z 10009198     MSVCRT:ehvecdtr.obj
+ 0002:000011b8       __sehtable$?__ArrayUnwind@@YGXPAXIIP6EX0@Z@Z 100091b8     MSVCRT:ehvecdtr.obj
+ 0002:000011d8       __sehtable$?dllmain_crt_process_attach@@YAHQAUHINSTANCE__@@QAX@Z 100091d8     MSVCRT:dll_dllmain.obj
+ 0002:000011f8       __sehtable$?dllmain_crt_process_detach@@YAH_N@Z 100091f8     MSVCRT:dll_dllmain.obj
+ 0002:00001220       __sehtable$?dllmain_dispatch@@YAHQAUHINSTANCE__@@KQAX@Z 10009220     MSVCRT:dll_dllmain.obj
+ 0002:00001258       __sehtable$___scrt_is_nonwritable_in_current_image 10009258     MSVCRT:utility.obj
+ 0002:00001280       .edata                     10009280     FilterText.exp
+ 0002:000012a8       rgpv                       100092a8     FilterText.exp
+ 0002:000012ac       rgszName                   100092ac     FilterText.exp
+ 0002:000012b0       rgwOrd                     100092b0     FilterText.exp
+ 0002:000012b2       szName                     100092b2     FilterText.exp
+ 0002:000012c1       $N00001                    100092c1     FilterText.exp
+ 0002:00001490       .idata$6                   10009490     msvcprt:MSVCP140.dll
+ 0002:000015a6       .idata$6                   100095a6     vcruntime:VCRUNTIME140.dll
+ 0002:0000175c       .idata$6                   1000975c     ucrt:api-ms-win-crt-runtime-l1-1-0.dll
+ 0002:0000177e       .idata$6                   1000977e     ucrt:api-ms-win-crt-multibyte-l1-1-0.dll
+ 0002:000017a2       .idata$6                   100097a2     ucrt:api-ms-win-crt-string-l1-1-0.dll
+ 0002:000017c4       .idata$6                   100097c4     ucrt:api-ms-win-crt-heap-l1-1-0.dll
+ 0002:0000192e       .idata$6                   1000992e     kernel32:KERNEL32.dll
+ 0003:000002c4       ?__proc_attached@@3HA      1000a2c4     MSVCRT:dll_dllmain.obj
+ 0003:000002f0       ?is_initialized_as_dll@@3_NA 1000a2f0     MSVCRT:utility.obj
+ 0003:000002f1       ?module_local_atexit_table_initialized@@3_NA 1000a2f1     MSVCRT:utility.obj
+ 0003:000002f4       ?module_local_atexit_table@@3U_onexit_table_t@@A 1000a2f4     MSVCRT:utility.obj
+ 0003:00000300       ?module_local_at_quick_exit_table@@3U_onexit_table_t@@A 1000a300     MSVCRT:utility.obj
+ 0003:00000320       _GS_ExceptionRecord        1000a320     MSVCRT:gs_report.obj
+ 0003:00000370       _GS_ContextRecord          1000a370     MSVCRT:gs_report.obj
