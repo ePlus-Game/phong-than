@@ -25,6 +25,7 @@ jobs:
           sparse-checkout: |
             /tools/
             /tests/
+            /overlays/
             /docs/LEGACY_HARDENING.md
             /docs/releases/v0.1.0-recovery.1.md
             /PhongThanSource/Sources/MultiServer/GameServer/GameServer.cpp
@@ -36,6 +37,10 @@ jobs:
           python-version: '3.12'
       - name: Test recovery toolkit and exact patch contexts (not game compilation)
         run: python -m unittest discover -s tests -v
+      - name: Compile and run portable C++98 endpoint parser tests
+        run: |
+          g++ -std=c++98 -Wall -Wextra -Werror -pedantic tests/cpp/test_gateway_endpoint.cpp -o "$RUNNER_TEMP/pt-gateway-test"
+          "$RUNNER_TEMP/pt-gateway-test"
       - name: Check source preflight without running game binaries
         run: |
           python -m tools.release_preflight \
