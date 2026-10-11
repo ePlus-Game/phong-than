@@ -1,3 +1,0 @@
-\spr\ui4\barback.spr
-\spr\ui4\barfront.spr
-\spr\blood\-.spr

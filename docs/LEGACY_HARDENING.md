@@ -45,7 +45,7 @@ before any history operation.
 ## Existing build limitations
 
 CI currently validates portable Lua/Common libraries and static/VC6 build
-preflight. It does NOT build or run the complete Windows GameClient,
+preflight. It does NOT compile portable Lua/Common libraries or build or run the complete Windows GameClient,
 GameServer, AccountServer or gameplay. Follow the original-source build
 matrix in source/PT/PhongThanSource/README.md for the copied workspace.
 Build and smoke tests must run in an isolated Windows x86 VM.

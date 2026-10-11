@@ -1,1 +1,0 @@
-\settings\npcres\人物类型.txt

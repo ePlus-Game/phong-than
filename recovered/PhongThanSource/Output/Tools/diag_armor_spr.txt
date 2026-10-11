@@ -1,2 +1,0 @@
-\spr\npcres\human\jsm06_bd_st0.spr
-\spr\npcres\human\jsm06_bd_run1.spr
