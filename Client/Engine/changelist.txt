@@ -1,9 +1,0 @@
-Created by cooler liuyujun@263.net 2004.02.12
-
-Example:
-2004.01.12
-001.Add xxx by xxx
-002.Add xxx by xxx
-
-2004.03.17 - 18
-001.重写KTabFile类，为了优化读取效率和数据组织结构[刘鹏]

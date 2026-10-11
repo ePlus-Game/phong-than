@@ -1,43 +1,42 @@
-# Phong Thần 2 — source preservation and recovery
+# Phong Thần 2 — exact PT.zip archive and recovery tools
 
-This repository contains an **archived, byte-verified copy of PT.zip** and a
-separate, incomplete legacy build/recovery project. It is **not yet a proven
-playable Client/Server build**.
+This repository preserves the **original PT.zip archive**, byte-verified, under
+`source/PT/`. The original contains **99,352 entries**. It is **not a
+proven playable Client/Server build**.
 
-## Repository map
+## Repository layout
 
-- source/PT/ — mirror of the original archive's 99,352 file entries, with
-  SHA-256 manifest at source/PT_EXACT_ZIP_MANIFEST.csv.
-- source/PT/PhongThanSource/Sources/ — original C/C++ Client, Engine, Account
-  and game-server projects, with VC6 and experimental modern build scripts.
-- source/PT/PhongThanRuntime-Staging/ — original packaged Client/Server data.
-- source/PT/AdminWeb/ — local PowerShell administration UI.
-- Base/, Client/, Server/, Share/ — earlier standalone portable source subset.
-- tools/ and tests/ — read-only audit, migration and CI helpers.
+- `source/PT/` — sole canonical archive source tree, including the original
+  PhongThanSource project, packaged runtime data and all split PAK parts.
+- `source/PT_EXACT_ZIP_MANIFEST.csv` — original file sizes and SHA-256 inventory.
+- `source/PT_EXACT_ZIP_DIRECTORIES.txt` — original empty directories.
+- `source/PT_RESTORE_SPLIT_FILES.py` — restore the 16 large PAK files from
+  102 Git parts, with size and SHA-256 verification.
+- `tools/`, `tests/`, `docs/`, `.github/` — recovery tooling, tests,
+  documentation and CI for the original source mirror.
 
-Sixteen original large PAKs are stored as 102 chunks under *.pak.parts.
-After cloning, restore those exact bytes with:
+The earlier standalone source subset at the repository root (`Base/`,
+`Client/`, `Server/`, `Share/`) and the obsolete `recovered/` import
+were removed to avoid confusing them with the canonical PT.zip source.
+**These removed files may still exist in earlier Git commits.**
 
-    python source/PT_RESTORE_SPLIT_FILES.py --repo-root .
+## Restore the 16 large PAK files
 
-Old embedded .git objects are preserved in a recovery ZIP, and empty
-directory entries are documented separately. See docs/PT_EXACT_ZIP_IMPORT.md.
+After cloning the repository, from the repository root run:
 
-## Next development steps
+```powershell
+python source/PT_RESTORE_SPLIT_FILES.py --repo-root .
+```
 
-1. **Security review first.** This repository is PUBLIC and contains account
-   database backup files, character records, logs and configs. Its existence
-   does not mean the material is appropriate to redistribute. See
-   docs/LEGACY_HARDENING.md for the privacy/history warning.
-2. Keep source/PT/ as the original unmodified baseline. Apply reviewed fixes
-   to a COPY with tools/legacy_hardening.py as described in
-   docs/LEGACY_HARDENING.md.
-3. Use the original VC6 build scripts inside an isolated Windows x86 VM.
-   CI only builds portable Lua/Common components, not the complete game.
-4. Record real compiler results, login and map-entry smoke tests before
-   claiming the game is operational.
+The archive source tree is intentionally unmodified. To experiment with fixes,
+copy `source/PT/PhongThanSource/` **outside** the checkout and follow
+`docs/LEGACY_HARDENING.md`. No complete game build, login, or gameplay
+test is established.
 
-The original proprietary Kingsoft/VNG-era code and assets carry their own
-rights and notices. Repository access does not grant permission to
-redistribute or relicense this material. Do not run unknown binaries
-directly on a personal/production computer.
+## Security and licensing
+
+**This repository is PUBLIC.** The original archive may contain account
+backups, character records, logs, server settings, historical Git objects and
+third-party proprietary material. Public access does not grant redistribution
+rights. Review any personal data and credentials before sharing. Deleting
+old files in a new commit does not erase their Git history.

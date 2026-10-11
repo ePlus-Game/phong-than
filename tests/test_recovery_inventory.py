@@ -10,11 +10,11 @@ class RecoveryInventoryTest(unittest.TestCase):
     def test_missing_runtime_and_bundled_import_libraries(self):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)
-            (root / "Share/Lib/Release").mkdir(parents=True)
-            (root / "Base/Common").mkdir(parents=True)
-            (root / "Share/Lib/Release/Game.lib").write_bytes(b"placeholder")
-            (root / "Base/Common/demo.cpp").write_text("/* fixture */")
-            (root / "Base/Common/demo.dsp").write_text(
+            (root / "source/PT/PhongThanSource/Lib/release").mkdir(parents=True)
+            (root / "source/PT/PhongThanSource/Sources/MultiServer/Common").mkdir(parents=True)
+            (root / "source/PT/PhongThanSource/Lib/release/Game.lib").write_bytes(b"placeholder")
+            (root / "source/PT/PhongThanSource/Sources/MultiServer/Common/demo.cpp").write_text("/* fixture */")
+            (root / "source/PT/PhongThanSource/Sources/MultiServer/Common/demo.dsp").write_text(
                 '# Microsoft Developer Studio Project File - Name="demo"\n'
                 '# TARGTYPE "Win32 (x86) Application"\n'
                 'SOURCE=.\\demo.cpp\n'
