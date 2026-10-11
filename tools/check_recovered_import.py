@@ -54,6 +54,20 @@ SENSITIVE_CONTENT += (
 
 
 def check_file(root: Path, relative: str) -> list[str]:
+    # Separate, lossless PT source mirror. No extension/content/filename
+    # exclusions for user-authorized complete archive import. Git itself
+    # cannot track nested .git/ directories, so they are preserved as ZIP.
+    if relative in ('source/.gitattributes', 'source/PT_SOURCE_MANIFEST.csv', 'docs/PT_COMPLETE_SOURCE_IMPORT.md') or relative.startswith('source/PT/'):
+        parts = relative.split('/')
+        if (any(not part or part in ('.','..') for part in parts)
+                or '\\' in relative or '\x00' in relative or ':' in relative):
+            return ['unsafe_source_mirror_path']
+        target = root.joinpath(*parts)
+        if target.is_symlink() or not target.is_file():
+            return ['missing_or_symlink_mirror_file']
+        if target.stat().st_size >= 100 * 1024 * 1024:
+            return ['github_blob_limit']
+        return []
     # This exact policy file is reviewed in the same PR as phase-2 imports.
     # No other non-source paths are permitted by the import gate.
     if relative == 'tools/check_recovered_import.py':
