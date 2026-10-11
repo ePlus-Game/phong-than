@@ -1,0 +1,140 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: Core - Win32 Client Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\Users\UCT\AppData\Local\Temp\RSP49B2.tmp" with contents
+[
+/nologo /MD /W2 /GX /Zi /O2 /I "..\engine\src" /I "..\engine\include" /I "..\Network" /I "..\..\Headers" /I "src" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "CORE_EXPORTS" /FR"ClientRelease/" /Fp"ClientRelease/Core.pch" /Yu"KCore.h" /Fo"ClientRelease/" /Fd"ClientRelease/" /FD /c 
+"D:\Lam game phong than\PhongThanSource\Sources\Core\Src\KItem.cpp"
+]
+Creating command line "cl.exe @C:\Users\UCT\AppData\Local\Temp\RSP49B2.tmp" 
+Creating temporary file "C:\Users\UCT\AppData\Local\Temp\RSP49B3.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib lualibdll.lib Shlwapi.lib Winmm.lib /nologo /dll /incremental:no /pdb:"ClientRelease/CoreClient.pdb" /map:"ClientRelease/CoreClient.map" /debug /machine:I386 /out:"ClientRelease\CoreClient.dll" /implib:"ClientRelease/CoreClient.lib" /libpath:"../../lib/" 
+".\ClientRelease\KPartnerSkill.obj"
+".\ClientRelease\KPlayerPartner.obj"
+".\ClientRelease\KThiefSkill.obj"
+".\ClientRelease\KMissle.obj"
+".\ClientRelease\KMissleRes.obj"
+".\ClientRelease\KMissleSet.obj"
+".\ClientRelease\KSkillList.obj"
+".\ClientRelease\KSkillManager.obj"
+".\ClientRelease\KSkills.obj"
+".\ClientRelease\KSkillSpecial.obj"
+".\ClientRelease\Skill.obj"
+".\ClientRelease\KProfession.obj"
+".\ClientRelease\KGameData.obj"
+".\ClientRelease\KNpc.obj"
+".\ClientRelease\KNpcAI.obj"
+".\ClientRelease\KNpcAttribModify.obj"
+".\ClientRelease\KNpcDeathCalcExp.obj"
+".\ClientRelease\KNpcFindPath.obj"
+".\ClientRelease\KNpcRes.obj"
+".\ClientRelease\KNpcResList.obj"
+".\ClientRelease\KNpcResNode.obj"
+".\ClientRelease\KNpcSet.obj"
+".\ClientRelease\KNpcTemplate.obj"
+".\ClientRelease\KPlayer.obj"
+".\ClientRelease\KPlayerAI.obj"
+".\ClientRelease\KPlayerChat.obj"
+".\ClientRelease\KPlayerChatRoom.obj"
+".\ClientRelease\KPlayerDBFuns.obj"
+".\ClientRelease\KPlayerProfession.obj"
+".\ClientRelease\KPlayerMenuState.obj"
+".\ClientRelease\KPlayerPK.obj"
+".\ClientRelease\KPlayerSet.obj"
+".\ClientRelease\KPlayerTask.obj"
+".\ClientRelease\KPlayerTeam.obj"
+".\ClientRelease\KPlayerTong.obj"
+".\ClientRelease\KPlayerTrade.obj"
+".\ClientRelease\KSprControl.obj"
+".\ClientRelease\KTongData.obj"
+".\ClientRelease\KBasPropTbl.obj"
+".\ClientRelease\KBuySell.obj"
+".\ClientRelease\KInventory.obj"
+".\ClientRelease\KItem.obj"
+".\ClientRelease\KPhongThanAppearance.obj"
+".\ClientRelease\KItemGenerator.obj"
+".\ClientRelease\KItemList.obj"
+".\ClientRelease\KItemSet.obj"
+".\ClientRelease\KObj.obj"
+".\ClientRelease\KObjSet.obj"
+".\ClientRelease\KSellItem.obj"
+".\ClientRelease\KViewItem.obj"
+".\ClientRelease\KCore.obj"
+".\ClientRelease\KSubWorld.obj"
+".\ClientRelease\KSubWorldSet.obj"
+".\ClientRelease\KWeatherMgr.obj"
+".\ClientRelease\KRegion.obj"
+".\ClientRelease\KWorldMsg.obj"
+".\ClientRelease\KMath.obj"
+".\ClientRelease\KProtocol.obj"
+".\ClientRelease\KProtocolProcess.obj"
+".\ClientRelease\ScriptFuns.obj"
+".\ClientRelease\KScriptValueSet.obj"
+".\ClientRelease\KSortScript.obj"
+".\ClientRelease\CoreShell.obj"
+".\ClientRelease\KIpotBranch.obj"
+".\ClientRelease\KIpotLeaf.obj"
+".\ClientRelease\KIpoTree.obj"
+".\ClientRelease\KScenePlaceC.obj"
+".\ClientRelease\KScenePlaceRegionC.obj"
+".\ClientRelease\KWeather.obj"
+".\ClientRelease\SceneMath.obj"
+".\ClientRelease\ScenePlaceMapC.obj"
+".\ClientRelease\CoreDrawGameObj.obj"
+".\ClientRelease\ImgRef.obj"
+".\ClientRelease\KMagicDesc.obj"
+".\ClientRelease\KGMCommand.obj"
+".\ClientRelease\KTaskFuns.obj"
+".\ClientRelease\KOption.obj"
+".\ClientRelease\KMapMusic.obj"
+".\ClientRelease\KLadder.obj"
+".\ClientRelease\stdafx.obj"
+"..\..\Lib\release\engine.lib"
+"..\..\Lib\release\common.lib"
+".\Src\USBKey\EP1KDL20.LIB"
+".\Src\USBKey\EpsForJoLib.lib"
+]
+Creating command line "link.exe @C:\Users\UCT\AppData\Local\Temp\RSP49B3.tmp"
+<h3>Output Window</h3>
+Compiling...
+KItem.cpp
+Linking...
+   Creating library ClientRelease/CoreClient.lib and object ClientRelease/CoreClient.exp
+Creating temporary file "C:\Users\UCT\AppData\Local\Temp\RSP4DAC.bat" with contents
+[
+@echo off
+md ..\..\Output\Client\release
+md ..\..\lib\release
+copy ClientRelease\CoreClient.pdb ..\..\Output\Client\CoreClient.pdb
+copy ClientRelease\CoreClient.map ..\..\Output\Client\CoreClient.map
+copy ClientRelease\CoreClient.dll ..\..\Output\Client\CoreClient.dll
+copy ClientRelease\CoreClient.pdb ..\..\Output\Client\release\CoreClient.pdb
+copy ClientRelease\CoreClient.map ..\..\Output\Client\release\CoreClient.map
+copy ClientRelease\CoreClient.dll ..\..\Output\Client\release\CoreClient.dll
+copy ClientRelease\CoreClient.lib ..\..\lib\release\CoreClient.lib
+]
+Creating command line "C:\Users\UCT\AppData\Local\Temp\RSP4DAC.bat"
+
+A subdirectory or file ..\..\Output\Client\release already exists.
+A subdirectory or file ..\..\lib\release already exists.
+        1 file(s) copied.
+        1 file(s) copied.
+        1 file(s) copied.
+        1 file(s) copied.
+        1 file(s) copied.
+        1 file(s) copied.
+        1 file(s) copied.
+
+
+
+<h3>Results</h3>
+CoreClient.dll - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

@@ -1,0 +1,23 @@
+Deleting intermediate files and output files for project 'PhongThanRelayServer - Win32 Release'.
+--------------------Configuration: PhongThanRelayServer - Win32 Release--------------------
+Compiling resources...
+Compiling...
+StdAfx.cpp
+Compiling...
+GlobalFun.cpp
+KThread.cpp
+LogFile.cpp
+main.cpp
+S3P_MSSQLServer_Result.cpp
+S3PAccount.cpp
+S3PDB_MSSQLServer_Connection.cpp
+S3PDBConnectionPool.cpp
+S3PDBConVBC.cpp
+S3PDBSocketPool.cpp
+S3PResultVBC.cpp
+Linking...
+A subdirectory or file ..\..\..\Output\Server\release\ already exists.
+        1 file(s) copied.
+        1 file(s) copied.
+
+PhongThanRelayServer.exe - 0 error(s), 0 warning(s)

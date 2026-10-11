@@ -1,0 +1,30 @@
+REQUESTS=108
+PACKAGES=22
+SCAN priority=0 unresolved=108 pak=D:\Lam game phong than\PhongThanRuntime-Staging\Client\data\vng00.pak
+SCAN priority=1 unresolved=108 pak=D:\Lam game phong than\PhongThanRuntime-Staging\Client\data\vng.pak
+SCAN priority=2 unresolved=108 pak=D:\Lam game phong than\PhongThanRuntime-Staging\Client\data\update0_171-171.pak
+HASH_PAK=D:\Lam game phong than\PhongThanRuntime-Staging\Client\data\update0_171-171.pak
+SCAN priority=3 unresolved=95 pak=D:\Lam game phong than\PhongThanRuntime-Staging\Client\data\update0_170-170.pak
+SCAN priority=4 unresolved=95 pak=D:\Lam game phong than\PhongThanRuntime-Staging\Client\data\update0_169-169.pak
+SCAN priority=5 unresolved=95 pak=D:\Lam game phong than\PhongThanRuntime-Staging\Client\data\update0_167-168.pak
+HASH_PAK=D:\Lam game phong than\PhongThanRuntime-Staging\Client\data\update0_167-168.pak
+SCAN priority=6 unresolved=91 pak=D:\Lam game phong than\PhongThanRuntime-Staging\Client\data\update0_167-167.pak
+SCAN priority=7 unresolved=91 pak=D:\Lam game phong than\PhongThanRuntime-Staging\Client\data\update0_164-166.pak
+SCAN priority=8 unresolved=91 pak=D:\Lam game phong than\PhongThanRuntime-Staging\Client\data\update0_164-165.pak
+SCAN priority=9 unresolved=91 pak=D:\Lam game phong than\PhongThanRuntime-Staging\Client\data\update0_164-164.pak
+SCAN priority=10 unresolved=91 pak=D:\Lam game phong than\PhongThanRuntime-Staging\Client\data\update0_122-163.pak
+SCAN priority=11 unresolved=91 pak=D:\Lam game phong than\PhongThanRuntime-Staging\Client\data\update1.pak
+SCAN priority=12 unresolved=91 pak=D:\Lam game phong than\PhongThanRuntime-Staging\Client\data\update.pak
+SCAN priority=13 unresolved=91 pak=D:\Lam game phong than\PhongThanRuntime-Staging\Client\data\blaze.pak
+SCAN priority=14 unresolved=91 pak=D:\Lam game phong than\PhongThanRuntime-Staging\Client\data\serverlist.pak
+SCAN priority=15 unresolved=91 pak=D:\Lam game phong than\PhongThanRuntime-Staging\Client\data\spr.pak
+SCAN priority=16 unresolved=91 pak=D:\Lam game phong than\PhongThanRuntime-Staging\Client\data\maps.pak
+HASH_PAK=D:\Lam game phong than\PhongThanRuntime-Staging\Client\data\maps.pak
+SCAN priority=17 unresolved=13 pak=D:\Lam game phong than\PhongThanRuntime-Staging\Client\data\settings.pak
+SCAN priority=18 unresolved=13 pak=D:\Lam game phong than\PhongThanRuntime-Staging\Client\data\ui.pak
+SCAN priority=19 unresolved=13 pak=D:\Lam game phong than\PhongThanRuntime-Staging\Client\data\script.pak
+SCAN priority=20 unresolved=13 pak=D:\Lam game phong than\PhongThanRuntime-Staging\Client\data\font.pak
+SCAN priority=21 unresolved=13 pak=D:\Lam game phong than\PhongThanRuntime-Staging\Client\data\sound.pak
+EXTRACTED=95
+FAILURES=13
+MANIFEST=D:\Lam game phong than\PhongThanSource\Output\MapMetadataVng\run\manifests\extraction-manifest.json

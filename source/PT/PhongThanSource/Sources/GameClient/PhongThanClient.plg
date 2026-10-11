@@ -1,0 +1,171 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: PhongThanClient - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\Users\UCT\AppData\Local\Temp\RSP2021.tmp" with contents
+[
+/nologo /MD /W3 /GX /Zi /O2 /I "../Engine/src" /I "../Core/src" /I "../Engine/include" /I "../../Headers" /D "WIN32" /D "NDEBUG_WINDOWS" /D "_MBCS" /D "PHONGTHAN_USE_MD5_PASSWORD" /Fp"Release/PhongThanClient.pch" /Yu"KWin32.h" /Fo"Release/" /Fd"Release/" /FD /c 
+"D:\Lam game phong than\PhongThanSource\Sources\GameClient\Ui\UiCase\UiItem.cpp"
+"D:\Lam game phong than\PhongThanSource\Sources\GameClient\Ui\UiCase\UiEnchase.cpp"
+]
+Creating command line "cl.exe @C:\Users\UCT\AppData\Local\Temp\RSP2021.tmp" 
+Creating temporary file "C:\Users\UCT\AppData\Local\Temp\RSP2022.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib Winmm.lib shlwapi.lib lualibdll.lib /nologo /subsystem:windows /pdb:none /map:"Release/Game.map" /machine:I386 /out:"Release/Game.exe" /libpath:"../../lib/" 
+".\Release\AutoLocateWnd.obj"
+".\Release\ComWindow.obj"
+".\Release\MouseHover.obj"
+".\Release\PopupMenu.obj"
+".\Release\SpaceOver.obj"
+".\Release\SpecialFuncs.obj"
+".\Release\TextPic.obj"
+".\Release\UiCursor.obj"
+".\Release\UiImage.obj"
+".\Release\WndBorder.obj"
+".\Release\WndButton.obj"
+".\Release\WndEdit.obj"
+".\Release\WndImage.obj"
+".\Release\WndImagePart.obj"
+".\Release\WndLabeledButton.obj"
+".\Release\WndList.obj"
+".\Release\WndList2.obj"
+".\Release\WndMessageListBox.obj"
+".\Release\WndMovingImage.obj"
+".\Release\WndObjContainer.obj"
+".\Release\WndPage.obj"
+".\Release\WndPureTextBtn.obj"
+".\Release\Wnds.obj"
+".\Release\WndScrollBar.obj"
+".\Release\WndShadow.obj"
+".\Release\WndShowAnimate.obj"
+".\Release\WndText.obj"
+".\Release\WndToolBar.obj"
+".\Release\WndValueImage.obj"
+".\Release\WndWindow.obj"
+".\Release\UiConnectInfo.obj"
+".\Release\UiLogin.obj"
+".\Release\UiLoginBg.obj"
+".\Release\UiNotice.obj"
+".\Release\UiSelServer.obj"
+".\Release\UiChooseFace.obj"
+".\Release\UiContainer.obj"
+".\Release\UiFaceSelector.obj"
+".\Release\UiPlayerBar.obj"
+".\Release\UiPlayerControlBar.obj"
+".\Release\UiStatus.obj"
+".\Release\UiOptions.obj"
+".\Release\UiInit.obj"
+".\Release\UiAutoPlay.obj"
+".\Release\UiBreakItem.obj"
+".\Release\UiExpandItem.obj"
+".\Release\UiGetMoney.obj"
+".\Release\UiGive.obj"
+".\Release\UiItem.obj"
+".\Release\UiPlayerLock.obj"
+".\Release\UiSkills.obj"
+".\Release\UiSkillTree.obj"
+".\Release\UiStoreBox.obj"
+".\Release\UiESCDlg.obj"
+".\Release\UiGetString.obj"
+".\Release\UiMsgSel.obj"
+".\Release\UiParadeItem.obj"
+".\Release\UiSelPlayerNearby.obj"
+".\Release\UiNewPlayer.obj"
+".\Release\UiSelNativePlace.obj"
+".\Release\UiSelPlayer.obj"
+".\Release\UiChatCentre.obj"
+".\Release\UiChatPhrase.obj"
+".\Release\UiChatRoom.obj"
+".\Release\UiInformation.obj"
+".\Release\UiInformation1.obj"
+".\Release\UiInformation2.obj"
+".\Release\UiTeamManage.obj"
+".\Release\UiChatItem.obj"
+".\Release\UiHeaderControlBar.obj"
+".\Release\UiMsgCentrePad.obj"
+".\Release\UiRankData.obj"
+".\Release\UiToolsControlBar.obj"
+".\Release\UiPlayerShop.obj"
+".\Release\UiSetPrice.obj"
+".\Release\UiShop.obj"
+".\Release\UiSuperShop.obj"
+".\Release\UiTrade.obj"
+".\Release\UiTradeConfirmWnd.obj"
+".\Release\UiGame.obj"
+".\Release\UiSysMsgCentre.obj"
+".\Release\UiCaveList.obj"
+".\Release\UiMiniMap.obj"
+".\Release\UiSelColor.obj"
+".\Release\UiNewPlayerStartMsg.obj"
+".\Release\UiHelper.obj"
+".\Release\UiHelper2.obj"
+".\Release\UiReconnect.obj"
+".\Release\UiTaskDataFile.obj"
+".\Release\UiTaskNote.obj"
+".\Release\UiWorldMap.obj"
+".\Release\UiNewsMessage.obj"
+".\Release\UiNewsMessage2.obj"
+".\Release\UiNewsSysMsg.obj"
+".\Release\UiStrengthRank.obj"
+".\Release\UiTongAssignBox.obj"
+".\Release\UiTongCreateSheet.obj"
+".\Release\UiTongGetString.obj"
+".\Release\UiTongManager.obj"
+".\Release\UiEnchase.obj"
+".\Release\UiSoundSetting.obj"
+".\Release\GameSpaceChangedNotify.obj"
+".\Release\ShortcutKey.obj"
+".\Release\UiBase.obj"
+".\Release\UiShell.obj"
+".\Release\ChatFilter.obj"
+".\Release\FilterTextLib.obj"
+".\Release\PhongThanClient.obj"
+".\Release\NetConnectAgent.obj"
+".\Release\Login.obj"
+".\Release\TextCtrlCmd.obj"
+".\Release\ErrorCode.obj"
+".\Release\stdafx.obj"
+".\Release\UiDaTau.obj"
+".\Release\UiProgressBarLoading.obj"
+".\Release\UiTimeOnline.obj"
+".\Release\UiToiUuImage.obj"
+".\Release\UiTrembleItem.obj"
+".\Release\Script1.res"
+"..\..\Lib\release\engine.lib"
+"..\..\Lib\release\CoreClient.lib"
+]
+Creating command line "link.exe @C:\Users\UCT\AppData\Local\Temp\RSP2022.tmp"
+<h3>Output Window</h3>
+Compiling...
+UiItem.cpp
+UiEnchase.cpp
+Generating Code...
+Linking...
+Creating temporary file "C:\Users\UCT\AppData\Local\Temp\RSP241B.bat" with contents
+[
+@echo off
+md ..\..\Output\Client\release\
+copy Release\Game.exe ..\..\Output\Client\Game.exe
+copy Release\Game.exe ..\..\Output\Client\release\Game.exe
+copy Release\Game.pdb ..\..\Output\Client\release\Game.pdb
+copy Release\Game.map ..\..\Output\Client\release\Game.map
+]
+Creating command line "C:\Users\UCT\AppData\Local\Temp\RSP241B.bat"
+
+A subdirectory or file ..\..\Output\Client\release\ already exists.
+        1 file(s) copied.
+        1 file(s) copied.
+The system cannot find the file specified.
+        1 file(s) copied.
+
+
+
+<h3>Results</h3>
+Game.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

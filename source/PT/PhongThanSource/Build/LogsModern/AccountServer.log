@@ -1,0 +1,35 @@
+﻿== AccountServer 2026-10-02T15:58:12
+> cl.exe /nologo /c /EHsc /Zc:forScope- /Zc:wchar_t- /Zc:strictStrings- /Zc:threadSafeInit- /permissive /W1 /wd4996 /wd4700 /Zi /Oy- /GS- /FS /D_CRT_SECURE_NO_WARNINGS /D_CRT_NONSTDC_NO_DEPRECATE /D_WINSOCK_DEPRECATED_NO_WARNINGS /D_USE_32BIT_TIME_T /D_CRT_NO_VA_START_VALIDATION /DPHONGTHAN_MODERN_BUILD=1 /MT /O2 /I..\..\..\Headers /DWIN32 /DNDEBUG /D_WINDOWS /D_MBCS /MP24 /FoE:\VL\Phong than\PT\PhongThanSource\Sources\AccountServices\AccountServer\Modern\Win32Release\ /FdE:\VL\Phong than\PT\PhongThanSource\Sources\AccountServices\AccountServer\Modern\Win32Release\vc143.pdb E:\VL\Phong than\PT\PhongThanSource\Sources\AccountServices\AccountServer\GlobalFun.cpp E:\VL\Phong than\PT\PhongThanSource\Sources\AccountServices\AccountServer\KThread.cpp E:\VL\Phong than\PT\PhongThanSource\Sources\AccountServices\AccountServer\LogFile.cpp E:\VL\Phong than\PT\PhongThanSource\Sources\AccountServices\AccountServer\main.cpp E:\VL\Phong than\PT\PhongThanSource\Sources\AccountServices\AccountServer\S3P_MSSQLServer_Result.cpp E:\VL\Phong than\PT\PhongThanSource\Sources\AccountServices\AccountServer\S3PAccount.cpp E:\VL\Phong than\PT\PhongThanSource\Sources\AccountServices\AccountServer\S3PDB_MSSQLServer_Connection.cpp E:\VL\Phong than\PT\PhongThanSource\Sources\AccountServices\AccountServer\S3PDBConnectionPool.cpp E:\VL\Phong than\PT\PhongThanSource\Sources\AccountServices\AccountServer\S3PDBConVBC.cpp E:\VL\Phong than\PT\PhongThanSource\Sources\AccountServices\AccountServer\S3PDBSocketPool.cpp E:\VL\Phong than\PT\PhongThanSource\Sources\AccountServices\AccountServer\S3PResultVBC.cpp E:\VL\Phong than\PT\PhongThanSource\Sources\AccountServices\AccountServer\StdAfx.cpp
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+GlobalFun.cpp
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+KThread.cpp
+LogFile.cpp
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+main.cpp
+S3P_MSSQLServer_Result.cpp
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+S3PAccount.cpp
+S3PDB_MSSQLServer_Connection.cpp
+S3PDBConnectionPool.cpp
+S3PDBConVBC.cpp
+S3PDBSocketPool.cpp
+S3PResultVBC.cpp
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+StdAfx.cpp
+Change your target platform to Windows 7 or below if your application requires backward compatibility for the ADO interface.
+Change your target platform to Windows 7 or below if your application requires backward compatibility for the ADO interface.
+E:\VL\Phong than\PT\PhongThanSource\Sources\AccountServices\AccountServer\main.cpp(55): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+E:\VL\Phong than\PT\PhongThanSource\Sources\AccountServices\AccountServer\main.cpp(70): warning C4508: 'sLogProgram': function should return a value; 'void' return type assumed
+E:\VL\Phong than\PT\PhongThanSource\Sources\AccountServices\AccountServer\S3PDB_MSSQLServer_Connection.cpp(68): warning C4834: discarding return value of function with [[nodiscard]] attribute
+> rc.exe /nologo /foE:\VL\Phong than\PT\PhongThanSource\Sources\AccountServices\AccountServer\Modern\Win32Release\PhongThanAccountServer.res /d NDEBUG /l 0x804 E:\VL\Phong than\PT\PhongThanSource\Sources\AccountServices\AccountServer\PhongThanAccountServer.rc
+fatal error RC1107: invalid usage; use RC /? for Help
+

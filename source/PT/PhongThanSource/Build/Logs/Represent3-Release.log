@@ -1,0 +1,15 @@
+--------------------Configuration: Represent3 - Win32 Release--------------------
+Linking...
+   Creating library Release/Represent3.lib and object Release/Represent3.exp
+A subdirectory or file ..\..\..\Output\Client\release\ already exists.
+        1 file(s) copied.
+        1 file(s) copied.
+        1 file(s) copied.
+        1 file(s) copied.
+        1 file(s) copied.
+        1 file(s) copied.
+A subdirectory or file ..\..\..\Output\Server\release\ already exists.
+        1 file(s) copied.
+        1 file(s) copied.
+
+Represent3.dll - 0 error(s), 0 warning(s)

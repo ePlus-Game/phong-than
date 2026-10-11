@@ -1,0 +1,4158 @@
+{
+  "Schema": 1,
+  "Policy": "ORIGINAL_PAK_FIRST_THEN_EXISTING_PROVENANCED_LOOSE_NO_SYNTHETIC_LUA",
+  "SourceClientRoot": "D:\\Lam game phong than\\PhongThanRuntime-Staging\\Client",
+  "SourceServerRoot": "D:\\Lam game phong than\\PhongThanRuntime-Staging\\Server",
+  "References": 592,
+  "Resolved": 218,
+  "MissingBacklog": 374,
+  "PakOriginals": 107,
+  "ExistingClientLoose": 111,
+  "ExistingServerLoose": 0,
+  "Entries": [
+    {
+      "VirtualPath": "\\script\\skill\\28xingxiu\\万剑穿心.lua",
+      "DiskRelativePath": "script\\skill\\28xingxiu\\Íò½£´©ÐÄ.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "5352402E8D661DE2EF002A8C1E7AB4DA3AC23C335F38670702E062CA863090CF"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\28xingxiu\\万里冰霜.lua",
+      "DiskRelativePath": "script\\skill\\28xingxiu\\ÍòÀï±ùËª.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "A373CAF0889019E60A174775E5CDA787730B0FC8BCF4B1524DB1BA462F868829"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\28xingxiu\\万魔尽失.lua",
+      "DiskRelativePath": "script\\skill\\28xingxiu\\ÍòÄ§¾¡Ê§.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "996BAD81C9783B8EC389EF898699F015E1ABC9829BE2C7F80BC8EB75C97E7F3C"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\28xingxiu\\三界神火(华).lua",
+      "DiskRelativePath": "script\\skill\\28xingxiu\\Èý½çÉñ»ð(»ª).lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "12AF5B215F00569DA3E675109D3DE214E7D5E3CD0025D6D3CA3EAFEDCA352261"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\28xingxiu\\三界神火(圣).lua",
+      "DiskRelativePath": "script\\skill\\28xingxiu\\Èý½çÉñ»ð(Ê¥).lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "9D8EAD2C2E77E56C63B52A9F7AFC3F9AC7D11C4A9E14999A5021CDD0A8125EFC"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\28xingxiu\\三界神火(基).lua",
+      "DiskRelativePath": "script\\skill\\28xingxiu\\Èý½çÉñ»ð(»ù).lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "C38F1EEDA7622046B38F53743466440022F14D4209D47E6FA0452E31AA653292"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\28xingxiu\\三界神火(邪).lua",
+      "DiskRelativePath": "script\\skill\\28xingxiu\\Èý½çÉñ»ð(Ð°).lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "515CD4A4288DD75C1DF59A6D387259E17C572C445A70BAE316FEEE86D6FE6BC7"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\28xingxiu\\九转乾坤boss.lua",
+      "DiskRelativePath": "script\\skill\\28xingxiu\\¾Å×ªÇ¬À¤boss.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "A6C4D9ABC24FE507900F64524462872C3523AEE88E056E3A2C77D83F7F7B729F"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\28xingxiu\\刀剑无眼(名).lua",
+      "DiskRelativePath": "script\\skill\\28xingxiu\\µ¶½£ÎÞÑÛ(Ãû).lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "7B6648CEE0413E4531973EBB9EAEFE89A0112448990E98E5356F413A6B7E5CE5"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\28xingxiu\\刀剑无眼(晶).lua",
+      "DiskRelativePath": "script\\skill\\28xingxiu\\µ¶½£ÎÞÑÛ(¾§).lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "FA736862739704E60320978C375E0E58329F1CD575CE804F28D40255F4A0DF41"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\28xingxiu\\刀剑无眼(魂).lua",
+      "DiskRelativePath": "script\\skill\\28xingxiu\\µ¶½£ÎÞÑÛ(»ê).lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "723105602F85E796D33B99346CC167D3983B85730FDF5C6500FF42AB0E708AE7"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\28xingxiu\\刀剑无眼(魄).lua",
+      "DiskRelativePath": "script\\skill\\28xingxiu\\µ¶½£ÎÞÑÛ(ÆÇ).lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "72692AE7C872C2586FAFCDA2F0C67E5CC49DD0AFB2BCA30025466E6C1D67633B"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\28xingxiu\\土象之力(华).lua",
+      "DiskRelativePath": "script\\skill\\28xingxiu\\ÍÁÏóÖ®Á¦(»ª).lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "A2AA86E8485869B2F93C1DB6A32BFDAB5070BA20A2DF5C05CCAF44E4E5B9F5FB"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\28xingxiu\\土象之力(圣).lua",
+      "DiskRelativePath": "script\\skill\\28xingxiu\\ÍÁÏóÖ®Á¦(Ê¥).lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "C42967C88617E3DEAF970C0D432DFB9EA8128582B8649F88B47D9B7658FF6095"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\28xingxiu\\土象之力(基).lua",
+      "DiskRelativePath": "script\\skill\\28xingxiu\\ÍÁÏóÖ®Á¦(»ù).lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "5374843C6A6FE6F88AC84B529035D33D3C5C6A685BA446F97B5B1336A03009EA"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\28xingxiu\\土象之力(邪).lua",
+      "DiskRelativePath": "script\\skill\\28xingxiu\\ÍÁÏóÖ®Á¦(Ð°).lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "1DC6E27F4BA5051D58C3B8722CCBE0EAD36A493EE678C7A065824C800315C91D"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\28xingxiu\\无尽深渊.lua",
+      "DiskRelativePath": "script\\skill\\28xingxiu\\ÎÞ¾¡ÉîÔ¨.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "E0D0490BC7153DC2FB65CFE926801AE2CBB6E00CCEDD2256983A18AC4AE5943F"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\28xingxiu\\极冻咒(华).lua",
+      "DiskRelativePath": "script\\skill\\28xingxiu\\¼«¶³Öä(»ª).lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "4EC0866B064D96CB7E9F122DB91C1618BBCD701AD04491CBB39EF1809B80C49A"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\28xingxiu\\极冻咒(圣).lua",
+      "DiskRelativePath": "script\\skill\\28xingxiu\\¼«¶³Öä(Ê¥).lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "6CBBA99C485697738300E45ECD645F75F1666F4F1CB043594894B56BE1B7C28F"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\28xingxiu\\极冻咒(基).lua",
+      "DiskRelativePath": "script\\skill\\28xingxiu\\¼«¶³Öä(»ù).lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "B0857459939942F90FF06C00FE4862D3BC5D8121E95FEEF2EFBA4E09ECBD20E6"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\28xingxiu\\极冻咒(邪).lua",
+      "DiskRelativePath": "script\\skill\\28xingxiu\\¼«¶³Öä(Ð°).lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "37CA552277199C49300813B7B407007A76E7B8B5358E09F3A66C6522105056B9"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\28xingxiu\\混元咒(名).lua",
+      "DiskRelativePath": "script\\skill\\28xingxiu\\»ìÔªÖä(Ãû).lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "E3C0ACCA3194D23B103C8E2412431D439AB2A28C1396D240C742421195F1DE68"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\28xingxiu\\混元咒(晶).lua",
+      "DiskRelativePath": "script\\skill\\28xingxiu\\»ìÔªÖä(¾§).lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "D67DAE4C0417A2196D1E1A90CDED022A5BB6E50B4A1D6E326152024BD35A8811"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\28xingxiu\\混元咒(魂).lua",
+      "DiskRelativePath": "script\\skill\\28xingxiu\\»ìÔªÖä(»ê).lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "35E975672EA370923A5B349444622F6F2575610856DF1AB2BD98E3D81C6AE0C6"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\28xingxiu\\混元咒(魄).lua",
+      "DiskRelativePath": "script\\skill\\28xingxiu\\»ìÔªÖä(ÆÇ).lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "A6B3BE26E4CCBD728C501418324A2CF299D26716D2E528232E0300ECC616FAA8"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\28xingxiu\\火之地狱.lua",
+      "DiskRelativePath": "script\\skill\\28xingxiu\\»ðÖ®µØÓü.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "2DCD66A08077D7D0DD934C2B9A9B219B64D01DC90CA02860A99875EC23797F94"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\28xingxiu\\神之领域.lua",
+      "DiskRelativePath": "script\\skill\\28xingxiu\\ÉñÖ®ÁìÓò.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "D5BFA7D300F574C3EF7349B28FF1CDE13C960760C49AFAB16DE3A7AF1D5E9BF5"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\28xingxiu\\超级风卷.lua",
+      "DiskRelativePath": "script\\skill\\28xingxiu\\³¬¼¶·ç¾í.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "B0336140490DEC78EE2440D5AFA2EE19AD2023A56C577CBFC53B1AC2F4A88B01"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\28xingxiu\\雷电之力(华).lua",
+      "DiskRelativePath": "script\\skill\\28xingxiu\\À×µçÖ®Á¦(»ª).lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "858A4ABEE070F6AC8B114B205EADEA4E9FAE9AFE9C1517A281DAF79FA6570A47"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\28xingxiu\\雷电之力(圣).lua",
+      "DiskRelativePath": "script\\skill\\28xingxiu\\À×µçÖ®Á¦(Ê¥).lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "899E876F1B8BF23A96D95486299E1D6EADCC0350172C9382709266A39DF8CEA8"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\28xingxiu\\雷电之力(基).lua",
+      "DiskRelativePath": "script\\skill\\28xingxiu\\À×µçÖ®Á¦(»ù).lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "D8C61E88B436BCDC294C273B70995DD8946BA9FB2E5E127F3D0A3EE09713CF3C"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\28xingxiu\\雷电之力(邪).lua",
+      "DiskRelativePath": "script\\skill\\28xingxiu\\À×µçÖ®Á¦(Ð°).lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "29396B2648A26E244A9BEF1722407973A59F2BC375E0848A0ACA889E32DEE7CF"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\baihumijing\\tian_xuan_di_zhuan.lua",
+      "DiskRelativePath": "script\\skill\\baihumijing\\tian_xuan_di_zhuan.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\bigskill\\npc九转乾坤.lua",
+      "DiskRelativePath": "script\\skill\\bigskill\\npc¾Å×ªÇ¬À¤.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "5CCCBD214A382C12B5C2BF25A9B82F0B68C365CB8E98BAB4C24FC2F9444326F1"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\bigskill\\九转乾坤仙.lua",
+      "DiskRelativePath": "script\\skill\\bigskill\\¾Å×ªÇ¬À¤ÏÉ.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "F1158324BC18887431A87050A1E9A08848CFFA963268267B720D58502375B924"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\bigskill\\九转乾坤魔.lua",
+      "DiskRelativePath": "script\\skill\\bigskill\\¾Å×ªÇ¬À¤Ä§.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "579C750D447247D64EDDA562E340F485F964919D97867FF9C96139D8F6E1DFAB"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\bigskill\\白莲法器2.lua",
+      "DiskRelativePath": "script\\skill\\bigskill\\°×Á«·¨Æ÷2.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "2BF4DE15585E98B13A833837F5D60CB9DE9C88FAA0092B28FABA48BAF4B786DC"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\bing_hun_xue_po.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\bing_hun_xue_po.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "B521963BB1554BA37C112EC84E1E7E0270553EE8686E6006059835353A37983B"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\nan_ming_li_huo.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\nan_ming_li_huo.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "EE439CB3209DED8C8AA142E0FB254C1B31093382D6157080398C5F13D23B730D"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\tian_xuan_di_zhuan.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\tian_xuan_di_zhuan.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "E7B6D935501363ACDC2DC10F68F8B89C21A216D1B0254A74ED3357A2059F0B2F"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\三味真火.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\ÈýÎ¶Õæ»ð.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "5C41AC06B88227DD0F7D596194ED792BDBDDABD6643128BC5578169DC77F546C"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\三昧真火.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\ÈýÃÁÕæ»ð.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "64439E522460AD894A8DEEE4773FDC2254131FC945213021FF3B5D96B36241FE"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\五岳朝宗.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\ÎåÔÀ³¯×Ú.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "6153D9E354E3554406991B308F874B416D87C7971724624A249451CB0563D6FB"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\五岳朝宗强化lv1.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\ÎåÔÀ³¯×ÚÇ¿»¯lv1.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\五岳朝宗强化lv2.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\ÎåÔÀ³¯×ÚÇ¿»¯lv2.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\五岳朝宗强化lv3.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\ÎåÔÀ³¯×ÚÇ¿»¯lv3.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\五岳朝宗强化lv4.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\ÎåÔÀ³¯×ÚÇ¿»¯lv4.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\冰封万里.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\±ù·âÍòÀï.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "0B04A76BF54C6947DACB6B233DF81D9FEA2CE953AD84DEB41D156D0E0E5AA24A"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\冰封万里强化lv1.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\±ù·âÍòÀïÇ¿»¯lv1.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\冰封万里强化lv2.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\±ù·âÍòÀïÇ¿»¯lv2.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\冰封万里强化lv3.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\±ù·âÍòÀïÇ¿»¯lv3.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\冰封万里强化lv4.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\±ù·âÍòÀïÇ¿»¯lv4.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\冰雪弹.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\±ùÑ©µ¯.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "853F42F2889D99232FEB8640B55BBA3D08F95933132BE552265EDE07B51A39E0"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\冰风暴.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\±ù·ç±©.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "058E2EF679E16A82825450474ED380F8DAFACDE9E51E738FF63DBF1161869F97"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\冰风暴强化lv5.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\±ù·ç±©Ç¿»¯lv5.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\冰风暴强化lv6.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\±ù·ç±©Ç¿»¯lv6.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\冰风暴强化lv7.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\±ù·ç±©Ç¿»¯lv7.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\十方烈火.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\Ê®·½ÁÒ»ð.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "A2FE86E3670436ED5DF48AACF313ABC17F9BB3588608332F875DFB24BD3364BC"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\十方烈火强化lv1.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\Ê®·½ÁÒ»ðÇ¿»¯lv1.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\十方烈火强化lv2.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\Ê®·½ÁÒ»ðÇ¿»¯lv2.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\十方烈火强化lv3.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\Ê®·½ÁÒ»ðÇ¿»¯lv3.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\十方烈火强化lv4.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\Ê®·½ÁÒ»ðÇ¿»¯lv4.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\天崩地裂.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\Ìì±ÀµØÁÑ.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "DCFF0F3B041400C97E9E93A2ADE4E3AA5746E5A8C16885617F490312D97CFD30"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\天锋地刃.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\Ìì·æµØÈÐ.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "D765B5BEA16E06CF21D4C1FD57D30585D1AECDC6178E46CFD171365126F3A678"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\定时爆炸.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\¶¨Ê±±¬Õ¨.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "07E5167CF887125E30E15807F6FA892D65898A2877AED896DC0A55125939E840"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\弱水缠身.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\ÈõË®²øÉí.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\怒浪滔天真.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\Å­ÀËÌÏÌìÕæ.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\掌心雷.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\ÕÆÐÄÀ×.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "052DA14ECBB25065908116AF534308A1E37E5C202623A9926B057ED9ADB98BC8"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\旱地雷.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\ºµµØÀ×.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "D8E667800002632996AC7D891A1043A953F53C039DBD6D7152FE88B6AC94E6E1"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\流星石.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\Á÷ÐÇÊ¯.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "5A08B2D667D524AB8F41A4A650AFC448CD3716BC09B3B617E14661BFC49E8CC8"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\玄女补天.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\ÐþÅ®²¹Ìì.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "E849474DA8F414B8EAAD3549A5C2D075FB5CAF2D3D068E312E8EF555A0942599"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\玄女补天强化lv1.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\ÐþÅ®²¹ÌìÇ¿»¯lv1.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\玄女补天强化lv2.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\ÐþÅ®²¹ÌìÇ¿»¯lv2.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\玄女补天强化lv3.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\ÐþÅ®²¹ÌìÇ¿»¯lv3.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\玄女补天强化lv4.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\ÐþÅ®²¹ÌìÇ¿»¯lv4.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\玄武技能隐形.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\ÐþÎä¼¼ÄÜÒþÐÎ.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\铁马冰戈.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\ÌúÂí±ù¸ê.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "7D4036D12DE0C049FA06ACF572184D68CB453018589591A5A117C3FD2208569D"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\铁马冰河强化lv1.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\ÌúÂí±ùºÓÇ¿»¯lv1.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\铁马冰河强化lv2.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\ÌúÂí±ùºÓÇ¿»¯lv2.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\铁马冰河强化lv3.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\ÌúÂí±ùºÓÇ¿»¯lv3.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\铁马冰河强化lv4.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\ÌúÂí±ùºÓÇ¿»¯lv4.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\铁马冰河强化lv5.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\ÌúÂí±ùºÓÇ¿»¯lv5.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\铁马冰河强化lv6.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\ÌúÂí±ùºÓÇ¿»¯lv6.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\铁马冰河强化lv7.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\ÌúÂí±ùºÓÇ¿»¯lv7.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\雷动九天.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\À×¶¯¾ÅÌì.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "87EC5B5EDBE136D96870404FEA88FD9817C219FD9F25F8E69AA118742FF861FC"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\雷动九天强化lv1.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\À×¶¯¾ÅÌìÇ¿»¯lv1.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\雷动九天强化lv2.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\À×¶¯¾ÅÌìÇ¿»¯lv2.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\雷动九天强化lv3.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\À×¶¯¾ÅÌìÇ¿»¯lv3.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\雷动九天强化lv4.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\À×¶¯¾ÅÌìÇ¿»¯lv4.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\雷动九天强化lv5.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\À×¶¯¾ÅÌìÇ¿»¯lv5.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\雷动九天强化lv6.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\À×¶¯¾ÅÌìÇ¿»¯lv6.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\雷动九天强化lv7.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\À×¶¯¾ÅÌìÇ¿»¯lv7.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\霹雳火.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\Åùö¨»ð.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "5981452AA5D480F330A2F6D84AC401E4C80619E91E5671B0F2A445B59CCC3BDA"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\风云雷动.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\·çÔÆÀ×¶¯.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "DA9899C23415826A7EE77525E0C282406F8B8099740FBA4ABF57B19C9D0C1C70"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\风云雷动强化lv1.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\·çÔÆÀ×¶¯Ç¿»¯lv1.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\风云雷动强化lv2.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\·çÔÆÀ×¶¯Ç¿»¯lv2.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\风云雷动强化lv3.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\·çÔÆÀ×¶¯Ç¿»¯lv3.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\风云雷动强化lv4.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\·çÔÆÀ×¶¯Ç¿»¯lv4.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\风云雷动强化lv5.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\·çÔÆÀ×¶¯Ç¿»¯lv5.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\风云雷动强化lv6.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\·çÔÆÀ×¶¯Ç¿»¯lv6.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\风云雷动强化lv7.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\·çÔÆÀ×¶¯Ç¿»¯lv7.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\风林火山.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\·çÁÖ»ðÉ½.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "3491DBF186007D30EF7A56E3F4F1D5E69695A530505E9388901E3E1D69700525"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\风林火山强化lv1.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\·çÁÖ»ðÉ½Ç¿»¯lv1.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\风林火山强化lv2.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\·çÁÖ»ðÉ½Ç¿»¯lv2.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\风林火山强化lv3.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\·çÁÖ»ðÉ½Ç¿»¯lv3.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\风林火山强化lv4.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\·çÁÖ»ðÉ½Ç¿»¯lv4.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\风林火山强化lv5.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\·çÁÖ»ðÉ½Ç¿»¯lv5.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\风林火山强化lv6.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\·çÁÖ»ðÉ½Ç¿»¯lv6.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daoshi\\风林火山强化lv7.lua",
+      "DiskRelativePath": "script\\skill\\daoshi\\·çÁÖ»ðÉ½Ç¿»¯lv7.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daosy\\loihoatoanphong.lua",
+      "DiskRelativePath": "script\\skill\\daosy\\loihoatoanphong.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daosy\\phatnohoalien.lua",
+      "DiskRelativePath": "script\\skill\\daosy\\phatnohoalien.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daosy\\truyhontanhoa.lua",
+      "DiskRelativePath": "script\\skill\\daosy\\truyhontanhoa.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daosy\\vankiemquytong.lua",
+      "DiskRelativePath": "script\\skill\\daosy\\vankiemquytong.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\daosy\\vankiemquytong2.lua",
+      "DiskRelativePath": "script\\skill\\daosy\\vankiemquytong2.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\dinhan\\huyenanhtanhoa.lua",
+      "DiskRelativePath": "script\\skill\\dinhan\\huyenanhtanhoa.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\giapsy\\huyetnguyettram.lua",
+      "DiskRelativePath": "script\\skill\\giapsy\\huyetnguyettram.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\giapsy\\huyetnguyettram1.lua",
+      "DiskRelativePath": "script\\skill\\giapsy\\huyetnguyettram1.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\giapsy\\huyetnguyettram2.lua",
+      "DiskRelativePath": "script\\skill\\giapsy\\huyetnguyettram2.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\冰晶冰箭.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\±ù¾§±ù¼ý.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "A0793642B15EF996036F5027B8562B46ED748A15F1A9137F684DCD1F4F3AAA33"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\千里追魂1.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\Ç§Àï×·»ê1.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "69E9C96FB21BDC6F4087EA465F64B24D9FEFCE691BFE97196E77F06308831F3E"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\千里追魂2.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\Ç§Àï×·»ê2.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "52B40B5CE427CAEFA4996144528142C9547F6B96A7E3548A89F864CA6AE6C4B4"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\噬影雷光.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\ÊÉÓ°À×¹â.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "426828D2B134EF15E3768C9355EE9CB722C236AF4F8B295265A2EC3138044A1E"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\噬影雷光强化lv5.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\ÊÉÓ°À×¹âÇ¿»¯lv5.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\噬影雷光强化lv6.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\ÊÉÓ°À×¹âÇ¿»¯lv6.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\噬影雷光强化lv7.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\ÊÉÓ°À×¹âÇ¿»¯lv7.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\图腾火箭.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\Í¼ÌÚ»ð¼ý.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "84B5E4B7B6528FF08FA5CB2C21ABF4C5606C4DACE57EC936EE392DCADA37A6C4"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\地火焚天.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\µØ»ð·ÙÌì.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "86CE221E52DDC3894B05691BAB99A329DC4FD911B0D57CE5A39AA45F672F3DD2"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\地火焚天强化lv1.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\µØ»ð·ÙÌìÇ¿»¯lv1.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\地火焚天强化lv2.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\µØ»ð·ÙÌìÇ¿»¯lv2.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\地火焚天强化lv3.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\µØ»ð·ÙÌìÇ¿»¯lv3.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\地火焚天强化lv4.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\µØ»ð·ÙÌìÇ¿»¯lv4.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\地覆天翻.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\µØ¸²Ìì·­.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\天寒斩.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\Ììº®Õ¶.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "54F3B519AE71660E5DC6F79130779FBB82398F07283D97BA24471614B1A648ED"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\天寒斩强化lv5.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\Ììº®Õ¶Ç¿»¯lv5.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\天寒斩强化lv6.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\Ììº®Õ¶Ç¿»¯lv6.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\天寒斩强化lv7.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\Ììº®Õ¶Ç¿»¯lv7.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\寂灭真火.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\¼ÅÃðÕæ»ð.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\断空斩.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\¶Ï¿ÕÕ¶.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "B1462B7FFA37EE95A4DBC471FEB95C3664968CDB5D985616C205552E5C624565"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\断空斩lv1.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\¶Ï¿ÕÕ¶lv1.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\断空斩lv2.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\¶Ï¿ÕÕ¶lv2.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\断空斩lv3.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\¶Ï¿ÕÕ¶lv3.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\暴雨梨花.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\±©ÓêÀæ»¨.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\极冻领域.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\¼«¶³ÁìÓò.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\火星坠落.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\»ðÐÇ×¹Âä.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "EE1480C40A2B49B7A94CE2C3581B496DA4436ED0ADE6419905F3C4EA00D72FCC"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\火星坠落强化lv1.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\»ðÐÇ×¹ÂäÇ¿»¯lv1.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\火星坠落强化lv2.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\»ðÐÇ×¹ÂäÇ¿»¯lv2.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\火星坠落强化lv3.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\»ðÐÇ×¹ÂäÇ¿»¯lv3.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\火星坠落强化lv4.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\»ðÐÇ×¹ÂäÇ¿»¯lv4.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\火星坠落强化lv5.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\»ðÐÇ×¹ÂäÇ¿»¯lv5.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\火星坠落强化lv6.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\»ðÐÇ×¹ÂäÇ¿»¯lv6.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\火星坠落强化lv7.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\»ðÐÇ×¹ÂäÇ¿»¯lv7.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\炼狱闪电.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\Á¶ÓüÉÁµç.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "418640EDF19CA727AE29CB19582BC98A47FFBFDE6CE9F02013BF3B785615AFA7"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\炼狱闪电电荷伤害lv1.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\Á¶ÓüÉÁµçµçºÉÉËº¦lv1.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\炼狱闪电电荷伤害lv2.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\Á¶ÓüÉÁµçµçºÉÉËº¦lv2.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\炼狱闪电电荷伤害lv3.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\Á¶ÓüÉÁµçµçºÉÉËº¦lv3.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\炼狱闪电电荷伤害lv4.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\Á¶ÓüÉÁµçµçºÉÉËº¦lv4.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\狂心斩.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\¿ñÐÄÕ¶.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "CE22FCF1F4205E875E72717959D91E177A6752A41C96EF57E32621CB739253C0"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\狂心斩致死lv1.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\¿ñÐÄÕ¶ÖÂËÀlv1.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\狂心斩致死lv2.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\¿ñÐÄÕ¶ÖÂËÀlv2.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\狂心斩致死lv3.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\¿ñÐÄÕ¶ÖÂËÀlv3.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\狂心斩致死lv4.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\¿ñÐÄÕ¶ÖÂËÀlv4.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\狂涛祭.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\¿ñÌÎ¼À.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "F28FAF1836BCA031A95A616B5148C88A3F4E6512684B581281E944992DB9DD2F"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\狂涛祭1.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\¿ñÌÎ¼À1.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\狂涛祭2.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\¿ñÌÎ¼À2.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\狂涛祭冰解1.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\¿ñÌÎ¼À±ù½â1.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\狂涛祭冰解2.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\¿ñÌÎ¼À±ù½â2.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\狂涛祭冰解3.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\¿ñÌÎ¼À±ù½â3.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\狂涛祭冰解4.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\¿ñÌÎ¼À±ù½â4.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\狂涛祭冰解5.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\¿ñÌÎ¼À±ù½â5.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\狂涛祭子弹2.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\¿ñÌÎ¼À×Óµ¯2.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\画地为牢.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\»­µØÎªÀÎ.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\画地为牢·极.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\»­µØÎªÀÎ¡¤¼«.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\破军咒强化lv1.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\ÆÆ¾üÖäÇ¿»¯lv1.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\破军咒强化lv2.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\ÆÆ¾üÖäÇ¿»¯lv2.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\破军咒强化lv3.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\ÆÆ¾üÖäÇ¿»¯lv3.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\破军咒强化lv4.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\ÆÆ¾üÖäÇ¿»¯lv4.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\破军咒强化lv5.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\ÆÆ¾üÖäÇ¿»¯lv5.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\破军咒强化lv6.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\ÆÆ¾üÖäÇ¿»¯lv6.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\破军咒焠魂.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\ÆÆ¾üÖän»ê.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\碧月斩.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\±ÌÔÂÕ¶.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "275F3DC943E19773710CF762360C98BF76AD9C975B18B76777BA0955AD0A2695"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\碧月斩1.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\±ÌÔÂÕ¶1.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "0F12FDB77D664132A92A997F60077D98A1482D0E333E355DE4EEFBACD162B953"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\碧月斩1强化lv1.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\±ÌÔÂÕ¶1Ç¿»¯lv1.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\碧月斩1强化lv2.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\±ÌÔÂÕ¶1Ç¿»¯lv2.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\碧月斩1强化lv3.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\±ÌÔÂÕ¶1Ç¿»¯lv3.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\碧月斩1强化lv4.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\±ÌÔÂÕ¶1Ç¿»¯lv4.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\碧月斩1强化lv5.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\±ÌÔÂÕ¶1Ç¿»¯lv5.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\碧月斩1强化lv6.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\±ÌÔÂÕ¶1Ç¿»¯lv6.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\碧月斩1强化lv7.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\±ÌÔÂÕ¶1Ç¿»¯lv7.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\碧月斩2.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\±ÌÔÂÕ¶2.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "4F2A6D0C8ADC71EBCD1E2AB9FDAC76A4C5DB1AE1A4674272D88E2847ABF1AA56"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\碧月斩2强化lv1.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\±ÌÔÂÕ¶2Ç¿»¯lv1.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\碧月斩2强化lv2.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\±ÌÔÂÕ¶2Ç¿»¯lv2.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\碧月斩2强化lv3.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\±ÌÔÂÕ¶2Ç¿»¯lv3.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\碧月斩2强化lv4.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\±ÌÔÂÕ¶2Ç¿»¯lv4.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\碧月斩2强化lv5.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\±ÌÔÂÕ¶2Ç¿»¯lv5.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\碧月斩2强化lv6.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\±ÌÔÂÕ¶2Ç¿»¯lv6.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\碧月斩2强化lv7.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\±ÌÔÂÕ¶2Ç¿»¯lv7.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\碧月斩强化lv1.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\±ÌÔÂÕ¶Ç¿»¯lv1.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\碧月斩强化lv2.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\±ÌÔÂÕ¶Ç¿»¯lv2.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\碧月斩强化lv3.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\±ÌÔÂÕ¶Ç¿»¯lv3.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\碧月斩强化lv4.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\±ÌÔÂÕ¶Ç¿»¯lv4.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\碧月斩强化lv5.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\±ÌÔÂÕ¶Ç¿»¯lv5.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\碧月斩强化lv6.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\±ÌÔÂÕ¶Ç¿»¯lv6.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\碧月斩强化lv7.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\±ÌÔÂÕ¶Ç¿»¯lv7.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\骤雨暴风3圈破军1.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\ÖèÓê±©·ç3È¦ÆÆ¾ü1.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\骤雨暴风3圈破军2.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\ÖèÓê±©·ç3È¦ÆÆ¾ü2.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\骤雨暴风3圈破军3.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\ÖèÓê±©·ç3È¦ÆÆ¾ü3.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\骤雨暴风3圈破军4.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\ÖèÓê±©·ç3È¦ÆÆ¾ü4.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\龙卷风.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\Áú¾í·ç.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "62D128B7A4052ED10B0325ADB4527C88B02E41F127ACB13F57DC3E19523D499C"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\龙卷风强化lv5.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\Áú¾í·çÇ¿»¯lv5.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\龙卷风强化lv6.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\Áú¾í·çÇ¿»¯lv6.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\huanhun\\龙卷风强化lv7.lua",
+      "DiskRelativePath": "script\\skill\\huanhun\\Áú¾í·çÇ¿»¯lv7.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\hua_di_wei_lao.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\hua_di_wei_lao.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "5B24CD85318798D9B8A4070E75CCA47A7824DEC5B6F1B57950D2E84026DE8F51"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\qian_jun_zhan_qiang_hua_lv5.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\qian_jun_zhan_qiang_hua_lv5.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\qian_jun_zhan_qiang_hua_lv6.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\qian_jun_zhan_qiang_hua_lv6.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\qian_jun_zhan_qiang_hua_lv7.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\qian_jun_zhan_qiang_hua_lv7.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\qing_cheng_yi_ji_qiang_hua_lv5_1.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\qing_cheng_yi_ji_qiang_hua_lv5_1.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\qing_cheng_yi_ji_qiang_hua_lv6_1.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\qing_cheng_yi_ji_qiang_hua_lv6_1.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\qing_cheng_yi_ji_qiang_hua_lv7_1.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\qing_cheng_yi_ji_qiang_hua_lv7_1.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\三头六臂.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\ÈýÍ·Áù±Û.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "78A44260BB3E6677E74C12FFBA653F5E5DD4CECF6B6117E77BD69D18B938D73B"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\三头六臂强化.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\ÈýÍ·Áù±ÛÇ¿»¯.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\三头六臂强化lv5.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\ÈýÍ·Áù±ÛÇ¿»¯lv5.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\三头六臂强化lv6.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\ÈýÍ·Áù±ÛÇ¿»¯lv6.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\三头六臂强化lv7.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\ÈýÍ·Áù±ÛÇ¿»¯lv7.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\人剑合一.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\ÈË½£ºÏÒ».lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\人戟合一.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\ÈËêªºÏÒ».lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\倾城一击.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\Çã³ÇÒ»»÷.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "9F044A469575ED1F8C4B26A67D9499EFF827D5D33F888F18394F9B3D350D9629"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\倾城一击强化lv1.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\Çã³ÇÒ»»÷Ç¿»¯lv1.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\倾城一击强化lv2.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\Çã³ÇÒ»»÷Ç¿»¯lv2.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\倾城一击强化lv3.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\Çã³ÇÒ»»÷Ç¿»¯lv3.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\倾城一击强化lv4.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\Çã³ÇÒ»»÷Ç¿»¯lv4.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\倾城一击强化lv5.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\Çã³ÇÒ»»÷Ç¿»¯lv5.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\倾城一击强化lv6.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\Çã³ÇÒ»»÷Ç¿»¯lv6.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\倾城一击强化lv7.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\Çã³ÇÒ»»÷Ç¿»¯lv7.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\千钧斩.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\Ç§¾ûÕ¶.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "17C54B3ABEF0CE8AAE6ACAD25747FE09059FF2AC3B217A595633DA756E71E1D1"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\千钧斩刺穿lv1.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\Ç§¾ûÕ¶´Ì´©lv1.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\千钧斩刺穿lv2.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\Ç§¾ûÕ¶´Ì´©lv2.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\千钧斩刺穿lv3.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\Ç§¾ûÕ¶´Ì´©lv3.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\千钧斩刺穿lv4.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\Ç§¾ûÕ¶´Ì´©lv4.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\千钧斩刺穿lv5.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\Ç§¾ûÕ¶´Ì´©lv5.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\千钧斩刺穿lv6.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\Ç§¾ûÕ¶´Ì´©lv6.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\千钧斩刺穿lv7.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\Ç§¾ûÕ¶´Ì´©lv7.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\千钧斩强化.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\Ç§¾ûÕ¶Ç¿»¯.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\回风斩.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\»Ø·çÕ¶.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "607A158A85A50A696F890D88331CEE0D9EBA3F70D5C7408BF3A9BFC7AD8BE8A8"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\回风斩强化lv1.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\»Ø·çÕ¶Ç¿»¯lv1.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\回风斩强化lv2.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\»Ø·çÕ¶Ç¿»¯lv2.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\回风斩强化lv3.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\»Ø·çÕ¶Ç¿»¯lv3.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\回风斩强化lv4.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\»Ø·çÕ¶Ç¿»¯lv4.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\回风斩强化lv5.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\»Ø·çÕ¶Ç¿»¯lv5.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\回风斩强化lv6.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\»Ø·çÕ¶Ç¿»¯lv6.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\回风斩强化lv7.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\»Ø·çÕ¶Ç¿»¯lv7.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\开山斩.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\¿ªÉ½Õ¶.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "438BB727B0997EC80B9D5ED6220B6BCAEDBC2B6BE76CF21A29F1E94E2C753293"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\横空斩.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\ºá¿ÕÕ¶.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "2E176FF3E9FF70FA45E12C4A78D9298D152307E437729E96EC3AC7977E965604"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\步履蹒跚.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\²½ÂÄõçõÇ.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\火光斩.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\»ð¹âÕ¶.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "987F730A9FD056A0ECB8EB1E146ED2163CA23BE17A6105EA70A9E9EB710949F0"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\玄冰斩.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\Ðþ±ùÕ¶.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "AEBAD0992402CB79CBB108E63F9D38F82489ADF68CF7187382E66138C740904C"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\电光斩.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\µç¹âÕ¶.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "BE82F9C5B3830E6437A0CD717B9F14FA5B7F0A9F69AB0B6A5BB96340A73B0A96"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\祭血斩.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\¼ÀÑªÕ¶.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "6792108378EE8BD14E709EF503EC67A4E11F19186988D99946BCED06E3ADCDF4"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\精通短刀.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\¾«Í¨¶Ìµ¶.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\精通短刀强化lv1.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\¾«Í¨¶Ìµ¶Ç¿»¯lv1.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\精通短刀强化lv2.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\¾«Í¨¶Ìµ¶Ç¿»¯lv2.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\精通短刀强化lv3.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\¾«Í¨¶Ìµ¶Ç¿»¯lv3.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\精通短刀强化lv4.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\¾«Í¨¶Ìµ¶Ç¿»¯lv4.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\精通短刀强化lv5.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\¾«Í¨¶Ìµ¶Ç¿»¯lv5.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\精通短刀强化lv6.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\¾«Í¨¶Ìµ¶Ç¿»¯lv6.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\精通短刀强化lv7.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\¾«Í¨¶Ìµ¶Ç¿»¯lv7.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\精通长刀.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\¾«Í¨³¤µ¶.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\精通长刀强化lv1.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\¾«Í¨³¤µ¶Ç¿»¯lv1.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\精通长刀强化lv2.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\¾«Í¨³¤µ¶Ç¿»¯lv2.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\精通长刀强化lv3.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\¾«Í¨³¤µ¶Ç¿»¯lv3.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\精通长刀强化lv4.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\¾«Í¨³¤µ¶Ç¿»¯lv4.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\精通长刀强化lv5.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\¾«Í¨³¤µ¶Ç¿»¯lv5.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\精通长刀强化lv6.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\¾«Í¨³¤µ¶Ç¿»¯lv6.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\精通长刀强化lv7.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\¾«Í¨³¤µ¶Ç¿»¯lv7.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\纯阳护体.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\´¿Ñô»¤Ìå.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "907D385AB64840FDDB72BD73A5A21C1F589FD3FDB420D845B13F39C2DFE9644E"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\纯阳护体强化lv1.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\´¿Ñô»¤ÌåÇ¿»¯lv1.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\纯阳护体强化lv2.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\´¿Ñô»¤ÌåÇ¿»¯lv2.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\纯阳护体强化lv3.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\´¿Ñô»¤ÌåÇ¿»¯lv3.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\落地斩.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\ÂäµØÕ¶.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "7C17D197D2B779D1970601A783F67432DC9CFD75E29BF18C2CE163EE7FCEB41C"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\落地斩强化lv5.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\ÂäµØÕ¶Ç¿»¯lv5.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\落地斩强化lv6.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\ÂäµØÕ¶Ç¿»¯lv6.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\落地斩强化lv7.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\ÂäµØÕ¶Ç¿»¯lv7.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\连环斩.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\Á¬»·Õ¶.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "2AF82D10E86D99FD594FD5009E571A5DD76FA24D405E73EC917D7B63E8591EC4"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\jiashi\\连环斩强化1.lua",
+      "DiskRelativePath": "script\\skill\\jiashi\\Á¬»·Õ¶Ç¿»¯1.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\arrow冰1.lua",
+      "DiskRelativePath": "script\\skill\\special\\arrow±ù1.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\arrow土1.lua",
+      "DiskRelativePath": "script\\skill\\special\\arrowÍÁ1.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\arrow土2.lua",
+      "DiskRelativePath": "script\\skill\\special\\arrowÍÁ2.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\arrow土3.lua",
+      "DiskRelativePath": "script\\skill\\special\\arrowÍÁ3.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\arrow火1.lua",
+      "DiskRelativePath": "script\\skill\\special\\arrow»ð1.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "A5481AA2580632EE6CFD50CAC6996CF795BE36875FA61E08FB5CF0E4363094AD"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\arrow火2.lua",
+      "DiskRelativePath": "script\\skill\\special\\arrow»ð2.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\arrow电1.lua",
+      "DiskRelativePath": "script\\skill\\special\\arrowµç1.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\arrow雷2.lua",
+      "DiskRelativePath": "script\\skill\\special\\arrowÀ×2.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\bai_hu_mi_jing_3_vehicle_right.lua",
+      "DiskRelativePath": "script\\skill\\special\\bai_hu_mi_jing_3_vehicle_right.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\bai_hu_mi_jing_dan.lua",
+      "DiskRelativePath": "script\\skill\\special\\bai_hu_mi_jing_dan.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\bai_hu_mi_jing_trap.lua",
+      "DiskRelativePath": "script\\skill\\special\\bai_hu_mi_jing_trap.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\feng_juan_can_yun_huo_qiang_hua_lv5.lua",
+      "DiskRelativePath": "script\\skill\\special\\feng_juan_can_yun_huo_qiang_hua_lv5.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\feng_juan_can_yun_huo_qiang_hua_lv6.lua",
+      "DiskRelativePath": "script\\skill\\special\\feng_juan_can_yun_huo_qiang_hua_lv6.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\feng_juan_can_yun_huo_qiang_hua_lv7.lua",
+      "DiskRelativePath": "script\\skill\\special\\feng_juan_can_yun_huo_qiang_hua_lv7.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\npc冰剑.lua",
+      "DiskRelativePath": "script\\skill\\special\\npc±ù½£.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\npc动态攻击.lua",
+      "DiskRelativePath": "script\\skill\\special\\npc¶¯Ì¬¹¥»÷.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\npc土剑.lua",
+      "DiskRelativePath": "script\\skill\\special\\npcÍÁ½£.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\npc火剑.lua",
+      "DiskRelativePath": "script\\skill\\special\\npc»ð½£.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\npc雷剑.lua",
+      "DiskRelativePath": "script\\skill\\special\\npcÀ×½£.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\tu_chan_an_level.lua",
+      "DiskRelativePath": "script\\skill\\special\\tu_chan_an_level.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "62C4D0933E47E1191690DC653DBC9548395951EC6F6AB9308183660A18381ED3"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\光环技能.lua",
+      "DiskRelativePath": "script\\skill\\special\\¹â»·¼¼ÄÜ.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "2C9AFED7EDCABBD6A2DAF38E84B295303E8B03B1E6D452729BAC68F27454D6D1"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\冰封爆炸子弹.lua",
+      "DiskRelativePath": "script\\skill\\special\\±ù·â±¬Õ¨×Óµ¯.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\卫兵光环技能.lua",
+      "DiskRelativePath": "script\\skill\\special\\ÎÀ±ø¹â»·¼¼ÄÜ.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\国战箭塔技能.lua",
+      "DiskRelativePath": "script\\skill\\special\\¹úÕ½¼ýËþ¼¼ÄÜ.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "845A82C34FE28DAA3AE77B37F3B9D6E38CCD7033775A12651FD59422EF4D7FBA"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\国战陷阱技能.lua",
+      "DiskRelativePath": "script\\skill\\special\\¹úÕ½ÏÝÚå¼¼ÄÜ.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "311AD6254B3C0090A4261B6C797AB96C876067E46E9F1E08B53DDD2392C2A06F"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\土龙破.lua",
+      "DiskRelativePath": "script\\skill\\special\\ÍÁÁúÆÆ.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "1F5EDD4D512FE20EFE29C5F46A4BF839F6F3796185A1DD2A05586586890E6E3B"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\大地崩裂.lua",
+      "DiskRelativePath": "script\\skill\\special\\´óµØ±ÀÁÑ.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "B2C01DBF7D22144CC4EDA75ADFD7153D22E2A9D933C22098E221B2CCE7BD32AC"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\天羽祭缠身1.lua",
+      "DiskRelativePath": "script\\skill\\special\\ÌìÓð¼À²øÉí1.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\天羽祭缠身2.lua",
+      "DiskRelativePath": "script\\skill\\special\\ÌìÓð¼À²øÉí2.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\天羽祭缠身3.lua",
+      "DiskRelativePath": "script\\skill\\special\\ÌìÓð¼À²øÉí3.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\天羽祭缠身4.lua",
+      "DiskRelativePath": "script\\skill\\special\\ÌìÓð¼À²øÉí4.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\天羽祭缠身5.lua",
+      "DiskRelativePath": "script\\skill\\special\\ÌìÓð¼À²øÉí5.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\寒冰阵.lua",
+      "DiskRelativePath": "script\\skill\\special\\º®±ùÕó.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\彩云技能.lua",
+      "DiskRelativePath": "script\\skill\\special\\²ÊÔÆ¼¼ÄÜ.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "311AD6254B3C0090A4261B6C797AB96C876067E46E9F1E08B53DDD2392C2A06F"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\急急如律令技能.lua",
+      "DiskRelativePath": "script\\skill\\special\\¼±¼±ÈçÂÉÁî¼¼ÄÜ.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "311AD6254B3C0090A4261B6C797AB96C876067E46E9F1E08B53DDD2392C2A06F"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\方相的倾城一击.lua",
+      "DiskRelativePath": "script\\skill\\special\\·½ÏàµÄÇã³ÇÒ»»÷.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\无尽风暴.lua",
+      "DiskRelativePath": "script\\skill\\special\\ÎÞ¾¡·ç±©.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "77A5EF370F404E30F0F28830EB703318F561C89AD82D11469D59B53909DC5B29"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\普通攻击.lua",
+      "DiskRelativePath": "script\\skill\\special\\ÆÕÍ¨¹¥»÷.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "1DD1B6B13C48B2517E1F4A3EE2C3B62546ADC733EEB1C1E22872338DCB85605F"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\树魂光环技.lua",
+      "DiskRelativePath": "script\\skill\\special\\Ê÷»ê¹â»·¼¼.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "26A632769691C26C3B527E4A3F157D26AFA7A9103EF15229C83422DE7E6786E0"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\洪荒冰.lua",
+      "DiskRelativePath": "script\\skill\\special\\ºé»Ä±ù.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "50F5EA1EC5319BE15F2082F4F5C1803CE7C64A2C75EAE53DE7835D1E0C6EDF3E"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\洪荒火.lua",
+      "DiskRelativePath": "script\\skill\\special\\ºé»Ä»ð.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "88681E0377BCC8A289F3443FD6A00D3D0F41CF1149EEAFC030909417090F8750"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\火雷祭燎原5.lua",
+      "DiskRelativePath": "script\\skill\\special\\»ðÀ×¼ÀÁÇÔ­5.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\烈焰阵.lua",
+      "DiskRelativePath": "script\\skill\\special\\ÁÒÑæÕó.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\爆.lua",
+      "DiskRelativePath": "script\\skill\\special\\±¬.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\物免转魔免.lua",
+      "DiskRelativePath": "script\\skill\\special\\ÎïÃâ×ªÄ§Ãâ.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\物抗.lua",
+      "DiskRelativePath": "script\\skill\\special\\Îï¿¹.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "F262742C5B1B1D8144E329C611D1425EB9A817031987E6F1211BFDB6D6B1932E"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\犀燃爆炸.lua",
+      "DiskRelativePath": "script\\skill\\special\\Ï¬È¼±¬Õ¨.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\玄武光环.lua",
+      "DiskRelativePath": "script\\skill\\special\\ÐþÎä¹â»·.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "0509165DC1BE6A9F760E9C131E681BE61F88A5B9431C55946D36FED8FC2D5091"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\玄武技能.lua",
+      "DiskRelativePath": "script\\skill\\special\\ÐþÎä¼¼ÄÜ.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "33B65BE2EA815E0787F6288DE7B8847A81A3B0BDA5E0C3414B867FA4D315120E"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\盘古开天.lua",
+      "DiskRelativePath": "script\\skill\\special\\ÅÌ¹Å¿ªÌì.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\碎骨祭并蒂.lua",
+      "DiskRelativePath": "script\\skill\\special\\Ëé¹Ç¼À²¢µÙ.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\碎骨祭并蒂强化lv1.lua",
+      "DiskRelativePath": "script\\skill\\special\\Ëé¹Ç¼À²¢µÙÇ¿»¯lv1.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\碎骨祭并蒂强化lv2.lua",
+      "DiskRelativePath": "script\\skill\\special\\Ëé¹Ç¼À²¢µÙÇ¿»¯lv2.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\碎骨祭并蒂强化lv3.lua",
+      "DiskRelativePath": "script\\skill\\special\\Ëé¹Ç¼À²¢µÙÇ¿»¯lv3.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\碎骨祭并蒂强化lv4.lua",
+      "DiskRelativePath": "script\\skill\\special\\Ëé¹Ç¼À²¢µÙÇ¿»¯lv4.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\祭渊谷技能.lua",
+      "DiskRelativePath": "script\\skill\\special\\¼ÀÔ¨¹È¼¼ÄÜ.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\箭塔技能1.lua",
+      "DiskRelativePath": "script\\skill\\special\\¼ýËþ¼¼ÄÜ1.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\箭塔技能2.lua",
+      "DiskRelativePath": "script\\skill\\special\\¼ýËþ¼¼ÄÜ2.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\箭塔技能4.lua",
+      "DiskRelativePath": "script\\skill\\special\\¼ýËþ¼¼ÄÜ4.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\箭塔技能5.lua",
+      "DiskRelativePath": "script\\skill\\special\\¼ýËþ¼¼ÄÜ5.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\红砂阵技能.lua",
+      "DiskRelativePath": "script\\skill\\special\\ºìÉ°Õó¼¼ÄÜ.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\蟠龙雷爆.lua",
+      "DiskRelativePath": "script\\skill\\special\\ó´ÁúÀ×±¬.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\蟠龙雷电.lua",
+      "DiskRelativePath": "script\\skill\\special\\ó´ÁúÀ×µç.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\身外化身光环.lua",
+      "DiskRelativePath": "script\\skill\\special\\ÉíÍâ»¯Éí¹â»·.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "565999931E0E8F065B67CC8D4BE49AD835D3A6900D5E2674B7DE9EDF024F4B26"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\近程反弹.lua",
+      "DiskRelativePath": "script\\skill\\special\\½ü³Ì·´µ¯.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\远程反弹.lua",
+      "DiskRelativePath": "script\\skill\\special\\Ô¶³Ì·´µ¯.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\连弩祭缚雷lv5.lua",
+      "DiskRelativePath": "script\\skill\\special\\Á¬åó¼À¸¿À×lv5.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\连弩祭缚雷lv6.lua",
+      "DiskRelativePath": "script\\skill\\special\\Á¬åó¼À¸¿À×lv6.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\连弩祭缚雷lv7.lua",
+      "DiskRelativePath": "script\\skill\\special\\Á¬åó¼À¸¿À×lv7.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\追魂祭散华.lua",
+      "DiskRelativePath": "script\\skill\\special\\×·»ê¼ÀÉ¢»ª.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\追魂祭散华1.lua",
+      "DiskRelativePath": "script\\skill\\special\\×·»ê¼ÀÉ¢»ª1.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\追魂祭散华2.lua",
+      "DiskRelativePath": "script\\skill\\special\\×·»ê¼ÀÉ¢»ª2.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\追魂祭散华3.lua",
+      "DiskRelativePath": "script\\skill\\special\\×·»ê¼ÀÉ¢»ª3.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\追魂祭散华4.lua",
+      "DiskRelativePath": "script\\skill\\special\\×·»ê¼ÀÉ¢»ª4.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\追魂祭散华5.lua",
+      "DiskRelativePath": "script\\skill\\special\\×·»ê¼ÀÉ¢»ª5.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\追魂祭散华6.lua",
+      "DiskRelativePath": "script\\skill\\special\\×·»ê¼ÀÉ¢»ª6.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\追魂祭散华7.lua",
+      "DiskRelativePath": "script\\skill\\special\\×·»ê¼ÀÉ¢»ª7.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\金光阵.lua",
+      "DiskRelativePath": "script\\skill\\special\\½ð¹âÕó.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\长弓祭长空lv1.lua",
+      "DiskRelativePath": "script\\skill\\special\\³¤¹­¼À³¤¿Õlv1.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\长弓祭长空lv2.lua",
+      "DiskRelativePath": "script\\skill\\special\\³¤¹­¼À³¤¿Õlv2.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\长弓祭长空lv3.lua",
+      "DiskRelativePath": "script\\skill\\special\\³¤¹­¼À³¤¿Õlv3.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\长弓祭长空lv4.lua",
+      "DiskRelativePath": "script\\skill\\special\\³¤¹­¼À³¤¿Õlv4.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\雷击技能.lua",
+      "DiskRelativePath": "script\\skill\\special\\À×»÷¼¼ÄÜ.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "22273D4DD85319EC8D75DC8A0393A1EC95F7EF0FE4454C97B8549C9952C4654A"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\风卷残云火强化lv1.lua",
+      "DiskRelativePath": "script\\skill\\special\\·ç¾í²ÐÔÆ»ðÇ¿»¯lv1.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\风卷残云火强化lv2.lua",
+      "DiskRelativePath": "script\\skill\\special\\·ç¾í²ÐÔÆ»ðÇ¿»¯lv2.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\风卷残云火强化lv3.lua",
+      "DiskRelativePath": "script\\skill\\special\\·ç¾í²ÐÔÆ»ðÇ¿»¯lv3.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\风卷残云火强化lv4.lua",
+      "DiskRelativePath": "script\\skill\\special\\·ç¾í²ÐÔÆ»ðÇ¿»¯lv4.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\鬼斧神工.lua",
+      "DiskRelativePath": "script\\skill\\special\\¹í¸«Éñ¹¤.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\鬼斧神工冲车.lua",
+      "DiskRelativePath": "script\\skill\\special\\¹í¸«Éñ¹¤³å³µ.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\鬼斧神工冲车2.lua",
+      "DiskRelativePath": "script\\skill\\special\\¹í¸«Éñ¹¤³å³µ2.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\鬼斧神工战车.lua",
+      "DiskRelativePath": "script\\skill\\special\\¹í¸«Éñ¹¤Õ½³µ.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\鬼斧神工战车2.lua",
+      "DiskRelativePath": "script\\skill\\special\\¹í¸«Éñ¹¤Õ½³µ2.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\魔免转物免.lua",
+      "DiskRelativePath": "script\\skill\\special\\Ä§Ãâ×ªÎïÃâ.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\魔抗.lua",
+      "DiskRelativePath": "script\\skill\\special\\Ä§¿¹.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "DF48CC0C01494C0BA087642C94DEE9BB18CFE91326D450C0B5AC4C0B0B37C3C3"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\鼓楼1.lua",
+      "DiskRelativePath": "script\\skill\\special\\¹ÄÂ¥1.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "6F1127A0321070F05816E854D15519D01A2EED5213361C932CFC77FDCB79169A"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\龙墩冰.lua",
+      "DiskRelativePath": "script\\skill\\special\\Áú¶Õ±ù.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "697FBD435B73D7ACD8BE2AF98C091248EA739F93BD71F41642DDD8D533E86255"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\龙墩土.lua",
+      "DiskRelativePath": "script\\skill\\special\\Áú¶ÕÍÁ.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "258B9AC3CB52FBF274BF5E6BEBE2FB1890CC2AA909DEDABCAF45B70DB16C2C94"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\龙墩火.lua",
+      "DiskRelativePath": "script\\skill\\special\\Áú¶Õ»ð.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "80F1544C3278A825F4C4DBF17A188C9C53AF02355AD76968F342E9947A5AB6B3"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\special\\龙墩雷.lua",
+      "DiskRelativePath": "script\\skill\\special\\Áú¶ÕÀ×.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "CAF647996D7160E2048637DA65847329FC18D06181F01266BEAF090775D0C277"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\world_boss\\bing_feng_bao.lua",
+      "DiskRelativePath": "script\\skill\\world_boss\\bing_feng_bao.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\world_boss\\cheng_feng.lua",
+      "DiskRelativePath": "script\\skill\\world_boss\\cheng_feng.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\world_boss\\lei_qie.lua",
+      "DiskRelativePath": "script\\skill\\world_boss\\lei_qie.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\jin_gang_zhou_lv1.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\jin_gang_zhou_lv1.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "548F9000C18269EBB197E3CB412B8C523CAA2007D885A944A253AAE594129924"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\jin_gang_zhou_lv2.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\jin_gang_zhou_lv2.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "64859D846C1430F7F5AAC78ED700736559EF111D561B8BB4EEB053A716C73D52"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\jin_gang_zhou_lv3.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\jin_gang_zhou_lv3.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "F6B56B48BD4C4AFDF1665C51CBBB80A6F26711FB3FFC12B40280DD632AAF6F56"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\jin_gang_zhou_lv4.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\jin_gang_zhou_lv4.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "FEB06D361B7EB1000373527541D724EB1730BAFC23E43684C4667AA03D847761"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\jin_gang_zhou_lv5.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\jin_gang_zhou_lv5.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "4277A36E8962CC5726164ACEDA2A65F139648B5C9DF32F06FEA3D8991D3DD418"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\jin_gang_zhou_lv6.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\jin_gang_zhou_lv6.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "05ACA65D078CE16A1EBD03B0BD8BDF0BCB747D8274597E936AE6D16B73BC3C91"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\jin_gang_zhou_lv7.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\jin_gang_zhou_lv7.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "053C2609F692B8FA51F319EEEB5858AE59E6877684348D48AFE5E1BC36487636"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\pu_ti_zhou_lv1.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\pu_ti_zhou_lv1.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "AECD4DC8DD0A7C2B67CFB3CFFEFD02E0C2E37BD90E28887788A06ED4E70FC42F"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\pu_ti_zhou_lv2.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\pu_ti_zhou_lv2.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "8E2DF2C45344BEB4BB487A28B7FF97765EFA0D0396BB83502AAA09FFA1DFB127"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\pu_ti_zhou_lv3.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\pu_ti_zhou_lv3.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "90193683A6518A3CF8B04C9F855D0CBB6C2F67BDBC495E67849EB98EBCF4D57D"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\pu_ti_zhou_lv4.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\pu_ti_zhou_lv4.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "90F88CDA5659F286D3A6F6A83266E856D90485CAEF9E246131B813CDDF31CD90"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\pu_ti_zhou_lv5.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\pu_ti_zhou_lv5.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "A75B8A4BBEBFD533AD9C254A55AC0A467FCBB9401B1F723E3801140D9A82DE04"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\pu_ti_zhou_lv6.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\pu_ti_zhou_lv6.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "340D10E62A0C1B23F27FB77A52C3E56FCE625CA352FD5BCECFDEDF8E4FF05BE9"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\pu_ti_zhou_lv7.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\pu_ti_zhou_lv7.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "C581869C848E243B8F60653A58421537D14B75B65E110A6BE04D10F909D6660E"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\trans_skills\\trans02_changgong.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\trans_skills\\trans02_changgong.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\trans_skills\\trans03_tianyu.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\trans_skills\\trans03_tianyu.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\trans_skills\\trans04_liannu.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\trans_skills\\trans04_liannu.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\trans_skills\\trans05_huolei.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\trans_skills\\trans05_huolei.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\trans_skills\\trans06_suigu.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\trans_skills\\trans06_suigu.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\trans_skills\\trans07_liuxing.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\trans_skills\\trans07_liuxing.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\trans_skills\\trans08_zhuihun.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\trans_skills\\trans08_zhuihun.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\trans_skills\\trans09_fengjuan.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\trans_skills\\trans09_fengjuan.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\trans_skills\\trans10_kuangtao.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\trans_skills\\trans10_kuangtao.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\trans_skills\\trans10_kuangtao1.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\trans_skills\\trans10_kuangtao1.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\trans_skills\\trans11_zhouyu.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\trans_skills\\trans11_zhouyu.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\trans_skills\\trans12_changgong.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\trans_skills\\trans12_changgong.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\trans_skills\\trans13_changgong.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\trans_skills\\trans13_changgong.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\trans_skills\\trans14_changgong.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\trans_skills\\trans14_changgong.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\trans_skills\\trans15_changgong.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\trans_skills\\trans15_changgong.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\trans_skills\\trans16_liannu.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\trans_skills\\trans16_liannu.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\trans_skills\\trans17_liannu.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\trans_skills\\trans17_liannu.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\trans_skills\\trans18_liannu.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\trans_skills\\trans18_liannu.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\trans_skills\\trans19_suigu.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\trans_skills\\trans19_suigu.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\trans_skills\\trans20_zhuihun.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\trans_skills\\trans20_zhuihun.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\trans_skills\\trans21_fengjuan.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\trans_skills\\trans21_fengjuan.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\trans_skills\\trans22_fengjuan.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\trans_skills\\trans22_fengjuan.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\trans_skills\\trans23_fengjuan.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\trans_skills\\trans23_fengjuan.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\trans_skills\\trans24_fengjuan.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\trans_skills\\trans24_fengjuan.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\trans_skills\\trans25_fengjuan.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\trans_skills\\trans25_fengjuan.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\trans_skills\\trans26_fengjuan.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\trans_skills\\trans26_fengjuan.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\trans_skills\\trans27_fengjuan.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\trans_skills\\trans27_fengjuan.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\trans_skills\\trans28_kuangtao.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\trans_skills\\trans28_kuangtao.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\trans_skills\\trans29_kuangtao.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\trans_skills\\trans29_kuangtao.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\trans_skills\\trans30_kuangtao.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\trans_skills\\trans30_kuangtao.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\trans_skills\\trans31_zhouyu.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\trans_skills\\trans31_zhouyu.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\trans_skills\\trans31_zhouyu1.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\trans_skills\\trans31_zhouyu1.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\trans_skills\\trans32_zhouyu.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\trans_skills\\trans32_zhouyu.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\trans_skills\\trans32_zhouyu1.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\trans_skills\\trans32_zhouyu1.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\trans_skills\\trans33_zhouyu.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\trans_skills\\trans33_zhouyu.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\trans_skills\\trans33_zhouyu1.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\trans_skills\\trans33_zhouyu1.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\trans_skills\\trans34_zhouyu.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\trans_skills\\trans34_zhouyu.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\trans_skills\\trans34_zhouyu1.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\trans_skills\\trans34_zhouyu1.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\心胆俱裂.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\ÐÄµ¨¾ãÁÑ.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\斩心咒焚心1.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\Õ¶ÐÄÖä·ÙÐÄ1.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\斩心咒焚心2.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\Õ¶ÐÄÖä·ÙÐÄ2.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\斩心咒焚心3.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\Õ¶ÐÄÖä·ÙÐÄ3.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\斩心咒焚心4.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\Õ¶ÐÄÖä·ÙÐÄ4.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\斩心咒焚心5.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\Õ¶ÐÄÖä·ÙÐÄ5.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\斩心咒焚心6.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\Õ¶ÐÄÖä·ÙÐÄ6.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\斩心咒焚心7.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\Õ¶ÐÄÖä·ÙÐÄ7.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yiren\\金刚咒.lua",
+      "DiskRelativePath": "script\\skill\\yiren\\½ð¸ÕÖä.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "58044E21A87D0C25D107B0BC8EE0B3B2C44F7A639FA33A7D4F57F241DAEF1407"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\bai_bu_chuan_yang_lie_feng_5.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\bai_bu_chuan_yang_lie_feng_5.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "882B5A1A2B398EBE7F405E342BA2C1ACC63DF7E82A80D4D3E4EE60CBA0A2FBA3"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\bai_bu_chuan_yang_lie_feng_6.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\bai_bu_chuan_yang_lie_feng_6.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "8190E75A8F0678585FEF25000B2BE033ABE2BF9F5976D41AC2E4312693B72671"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\bai_bu_chuan_yang_lie_feng_7.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\bai_bu_chuan_yang_lie_feng_7.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "E7340C16BEFA5DC50FB990994F40BEF333650CF5CB93C70DD084121840893DE0"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\bai_bu_chuan_yang.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\bai_bu_chuan_yang.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "375CA56D7A36696C10181AD2533BB0BCA7108B469057D3FE45FE0F42B2BA457D"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\beng_shan_lie_shi.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\beng_shan_lie_shi.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "24189753B42A29E31C947EAF64EAF441589F7EAD0E4C119A86313659D7715D04"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\fan_ji_she_mian_1.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\fan_ji_she_mian_1.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "FFCD099AA39CA1CF98BBE562367B661017CD5359AB220528EB07F0B762D4B75A"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\fan_ji_she_mian_2.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\fan_ji_she_mian_2.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "E752E384D9A19976FD5A00A7D0D04D7757A1763205D9C71B0B77597534A8572B"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\fan_ji_she_mian_3.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\fan_ji_she_mian_3.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "EAD718277F3F0E117358C0C2870A2CFEE7A048CC8945076FF9B72E1492B7A645"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\fan_ji_she_mian_4.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\fan_ji_she_mian_4.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "5DBC21BFA1FF4AA60B4A58DA5A1641103CB95C3490038BC9F04655E5AE3D42C3"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\fan_ji_she_mian_5.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\fan_ji_she_mian_5.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "41D8F8504466D9477052FBCD7E54B0F0DB998FB64F4035A938E71D0A06C082A0"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\fan_ji_she_mian_6.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\fan_ji_she_mian_6.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "34E79EF893EEBC76090BF0AAB6FA912D40FFAE1E697A8D3EF2042EAE60ADE08D"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\fan_ji_she_mian_7.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\fan_ji_she_mian_7.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "EA84E99363D69C518F0F279C399DB4334D08057856CFB13C44D9B3A09E8BC6CA"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\fan_ji.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\fan_ji.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "0768E252F62326C01754615413E9D2F16DA9507A4BE74BFF37860D7624A28A37"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\hong_lian_jian_yu.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\hong_lian_jian_yu.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "485DEDD9F635414ACB8785A383195FD7D378B66B7CF768CB08865614EF8B7425"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\hou_che.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\hou_che.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "2CC7761AD0350414BEA3494EADF1FFFE2A692F7E7B0ABBA2AC4B7CE68876E988"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\ji_jiu.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\ji_jiu.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "DD6249A2B28B6AECBF4701608190BD4592EB274F978B822AEF30ECE04C515BA1"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\ji_xing_yuan_zheng_1.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\ji_xing_yuan_zheng_1.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "EC74C13957006716B527E22EBF28CCC3AEBAC0B19C6F7F2302B011DF2D99073B"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\ji_xing_yuan_zheng_2.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\ji_xing_yuan_zheng_2.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "6C814B905D2F5E727F14701BBC63F8EEEC3230C9A8D0FC4C2ACF4D24F764387F"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\ji_xing_yuan_zheng_3.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\ji_xing_yuan_zheng_3.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "9B213EA0B985413E91F3340E8F09AA00D3EBA6FB8543DC98D8E52A5F59AD6605"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\ji_xing_yuan_zheng_4.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\ji_xing_yuan_zheng_4.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "5FB00E7B025671A2E9B810765B4CAD5A0485779CF534E3BA4C04CD83B4968AE2"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\ji_xing_yuan_zheng_5.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\ji_xing_yuan_zheng_5.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "0FD12FEBB3B092EF817811602B724FFE53A6D816A730407F047E9EB6F49D3BAD"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\ji_xing_yuan_zheng_6.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\ji_xing_yuan_zheng_6.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "51FE129581164D93E99B9B62E37E91E6AE68CAAB3E5CD56941C368C2AF8DE4F3"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\ji_xing_yuan_zheng_7.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\ji_xing_yuan_zheng_7.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "ED138CB3CBDFE095FC005787E24CC34B1E1322AF4045E8F47D380BBDFC5AF750"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\ji_xing.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\ji_xing.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "EF4C2CF1A2B05278C4D5C597EB35773E1A2792037AF586F4CF1A97EC43B539F7"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\jing_gong_po_jia_1.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\jing_gong_po_jia_1.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "99B29CA48E1C463E51441D047440F3063CE1530D3A8198B08A1591473D0F2227"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\jing_gong_po_jia_2.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\jing_gong_po_jia_2.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "D679B690AF58312D95E7099ACE2249EBA5BFF74B579EB7EE4429754A259DE182"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\jing_gong_po_jia_3.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\jing_gong_po_jia_3.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "B6151A6EFD83D6869777AD8B89DD58DF1146E1549D2509AF6F532A0795312CEB"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\jing_gong_po_jia_4.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\jing_gong_po_jia_4.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "40525520311A78D5911388CE5AAA7020300F551D06C3DC1F26D1444CC16336C8"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\jing_gong_po_jia_5.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\jing_gong_po_jia_5.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "1CD25926688A43980A5BDCC304771C8505B4D1F2B675F8C6410D7FEFA96F4EBA"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\jing_gong_po_jia_6.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\jing_gong_po_jia_6.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "A1A2769DD6D916E2A3C6CA5698A52C1B4CDE13EEE091D8312D3DA016F5F5144D"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\jing_gong_po_jia_7.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\jing_gong_po_jia_7.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "B9D5FDD53F27B3D5A01027FD5360282957B571C12C38B2B16A0F38A80D3CAD7D"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\jing_gong.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\jing_gong.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "1712D4F861F825AAFD035D9E3961A5452DC73F9E98DB4D39AE4082C111A1FBD5"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\jing_tong_chang_gong_qiang_xi_1.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\jing_tong_chang_gong_qiang_xi_1.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "9ACF7D2197348156ACB210C44C2727764A9D13A05CC5DD68A37EFF49B9F76F7D"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\jing_tong_chang_gong_qiang_xi_2.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\jing_tong_chang_gong_qiang_xi_2.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "2704581FB41A5E0F7E4127D961B12D90CB14B7F5E7B4D5A876924FBE31B4BC46"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\jing_tong_chang_gong_qiang_xi_3.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\jing_tong_chang_gong_qiang_xi_3.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "B5D3DEB7770B15952DC809194F8AA5DA6A5CEEC87398A4CC3CEB15A94A8F8F54"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\jing_tong_chang_gong_qiang_xi_4.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\jing_tong_chang_gong_qiang_xi_4.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "6E8B61A5F99DF4525D855AB8D0EF93B20592F48ED68C1676D6A5B5808685881D"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\jing_tong_chang_gong_wu_wei_5.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\jing_tong_chang_gong_wu_wei_5.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "1B676C07349EB91DDA278A19E1A1CDFF38371573C43A1221FC7D3ED7E063DBD5"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\jing_tong_chang_gong_wu_wei_6.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\jing_tong_chang_gong_wu_wei_6.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "43C75FC796FA80786F534DD585EE840BF4BE7EAC7747713CF6B34877FD589539"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\jing_tong_chang_gong_wu_wei_7.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\jing_tong_chang_gong_wu_wei_7.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "C61848FBD523F6D8F5E526F53D7B131E34058299A5776628AF4B35348D232066"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\jing_tong_chang_gong.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\jing_tong_chang_gong.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "1596727224929FD465BF31AE0D3223B63DC40E4C9D7AD84B077C06308097D0B7"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\ju_sha.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\ju_sha.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "8AAC75335827BA1D0EF0490DCE766D9657D5BA0D112944C864EB6C98C84A68DE"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\mie_qing_shi_han_shuang_5.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\mie_qing_shi_han_shuang_5.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "1A6B7FB1CFAE7C515F7D40D8669424FA468024013FED77695D0163CC3C8BE926"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\mie_qing_shi_han_shuang_6.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\mie_qing_shi_han_shuang_6.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "5CC6EFC92225F031D518D4005C9F030CA15EF08B3C2EA01A8EB4648E39616C0C"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\mie_qing_shi_han_shuang_7.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\mie_qing_shi_han_shuang_7.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "D48B388AEF1F82BDD7BEC4E65701D597059D49E7080E17D32A478C253E9A9594"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\mie_qing_shi_jing_shi_1.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\mie_qing_shi_jing_shi_1.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "D0556E91BEEC8B417C2189037ABFE6E1B2763F96D505DBB64A1391FF1DFA2721"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\mie_qing_shi_jing_shi_2.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\mie_qing_shi_jing_shi_2.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "E250629D855AE2984E718E9EACEDB5FC1F89BBB0D8707641D06F66CA3D9E349B"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\mie_qing_shi_jing_shi_3.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\mie_qing_shi_jing_shi_3.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "59FD4C09AE5536CE5FF24213E13CFEBFB160D79D0290B117F9B5EC139042FE22"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\mie_qing_shi_jing_shi_4.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\mie_qing_shi_jing_shi_4.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "B84B4D05C742BAF05548CCB8ED670090AB225647112DE9EE74CA39A9E6073548"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\shi_xing.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\shi_xing.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "EC8F1EE55A8CD6F4F2C333E52C611CB9FFB122D2EA3ABC1BC8EC54DE8C076AAC"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\tou_gu_shi_guan_chuan_5.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\tou_gu_shi_guan_chuan_5.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "AF3CFD5DD1E68A8C76DCF8F4E47FA09401C3E132AFB181A7D388E9840B4F7A2D"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\tou_gu_shi_guan_chuan_6.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\tou_gu_shi_guan_chuan_6.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "2431662B37E7D578C58C07707A2762D5095C61C2346665F61D17171395399B73"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\tou_gu_shi_guan_chuan_7.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\tou_gu_shi_guan_chuan_7.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "E73E6AC3DBB960BD8E0CFE3F5B4D0685E79EDF6A22532FFBA1F0A23C60334F41"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\tou_gu_shi_ke_gu_1.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\tou_gu_shi_ke_gu_1.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "AD8BBFA82B7A8BE89E4E0752FD48990EDFF33B6712400C94C3B194ABE04FB743"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\tou_gu_shi_ke_gu_2.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\tou_gu_shi_ke_gu_2.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "AF44D242278BC0D545628E34A90E1BFE66591D9C4416BFF0EB89340D8BF9E126"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\tou_gu_shi_ke_gu_3.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\tou_gu_shi_ke_gu_3.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "DFD35BCD6088570AF7BF34930865F241B0B23C67C7A63212B582BBDD59B9D773"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\tou_gu_shi_ke_gu_4.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\tou_gu_shi_ke_gu_4.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "2F8BAB9299EA0C3EDD3C0354B5D149BD8B53A1666545346D671E23F963AB0A61"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\wan_jian_chuan_xin.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\wan_jian_chuan_xin.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "FEB29B83887B8073BA457DBE9B25A9B95C0985B8A080BA218EFD8272D16D9CF3"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\wan_jian_qi_fa_qi_she_5.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\wan_jian_qi_fa_qi_she_5.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "0496AF4C44A5D256DAADFF12E72E1E0904ACD9EFD6EAF68EDCA22381201ED0DC"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\wan_jian_qi_fa_qi_she_6.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\wan_jian_qi_fa_qi_she_6.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "3954AB34F5591135461713DA7DFE3DB44C30C3268522D3EDC21F037EB2FCF129"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\wan_jian_qi_fa_qi_she_7.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\wan_jian_qi_fa_qi_she_7.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "B72FB03BA70154DF0E7335D28EF76CDF52858577CF404D90DC80973DAA9A10B4"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\wan_jian_qi_fa.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\wan_jian_qi_fa.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "4503F9422670D3D10186AA993A98E2C2D672C2B253E319AC318AA96129166F13"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\xian_jing_bao_zha.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\xian_jing_bao_zha.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "F680D66E1ED7BE504E8DBACAFF8A3639223B57728758021BFC3757CE387E78B7"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\xian_jing.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\xian_jing.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "0FA748FB6BEE09924C4BBF336D19C669BD2A1BC104DB15530162B7BCC71BF0C5"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\xiong_zi.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\xiong_zi.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "D8C5A94BC706B417F89DDC5A514197A414F62BF21A5ED47EC6287C1D9D509EBA"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\yi_ren_cheng_jun_qiang_lie_5.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\yi_ren_cheng_jun_qiang_lie_5.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "01B2E02631E5A34122DA0B1BA62AC6ABB8C904680F9EC05EEFFE7E52589AC239"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\yi_ren_cheng_jun_qiang_lie_6.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\yi_ren_cheng_jun_qiang_lie_6.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "3C8A05E7F23A9C9BC9F9E3E0F628B81BB11131D6AAB284F5B37F12444BBB53D3"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\yi_ren_cheng_jun_qiang_lie_7.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\yi_ren_cheng_jun_qiang_lie_7.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "E9D9470B8276883492D7123DD4B1CA02CB5C69309DF58C6DEB0672FC27AC0D38"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\yi_ren_cheng_jun.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\yi_ren_cheng_jun.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "4C2804ED9B6BDBD7A00EA2772B32DF4890EDDDCF4D0BB099DAE2A10984D329B7"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\yin_bao_1.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\yin_bao_1.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "80F981347C8E17469A555DB5E1AF7787B87338A928252802550B716BE79B5188"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\yin_bao_2.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\yin_bao_2.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "C84D83756054F11E9AC8914E2ACE5A274797DFE0C08A59F01CDD8446D3E6FC08"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\yin_bao_3.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\yin_bao_3.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "B98EE1DA23797CB37594CD2726C6D4767A1537815AF9F750BC0FB9A09BC87B05"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\yin_bao_4.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\yin_bao_4.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "F3BEB283E98962E4874991F7E0D306A06E4B08A111D4468A79B6B29D7E27B5C8"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\yin_yan_suo_di_1.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\yin_yan_suo_di_1.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "4F67212EF93276077CA7F8EABAA5C8A2B30297362C38BB950014F5EA2B2C1742"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\yin_yan_suo_di_2.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\yin_yan_suo_di_2.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "4C382518D3077E2AC99BA2695C30ED7B87F8A90BA950A714668EA3B8819C6D8D"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\yin_yan_suo_di_3.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\yin_yan_suo_di_3.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "2B80D8C10E12D5747B815803F65DBBEF11522900B8775652FCA2B3E4766CFB80"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\yin_yan_suo_di_4.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\yin_yan_suo_di_4.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "6F0748C5F06CA9296A28C7D2E356A222CA1F1B87FA0B4D505435B511259915BE"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\yin_yan_suo_di_5.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\yin_yan_suo_di_5.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "33F8370BE93088E2ECB59DF68F36BA970FAD6772FBF728749CF1DAFA5BAEEB9B"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\yin_yan_suo_di_6.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\yin_yan_suo_di_6.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "1242135A465410884C3C62F3605CFA7069E2C500569F6EFC56E6298FCC4F9EDE"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\yin_yan_suo_di_7.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\yin_yan_suo_di_7.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "BA463AD348D49BFDA926194413147033C8E3E5E75D04F57E66DBD6999E8823F5"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\yin_yan.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\yin_yan.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "DFFC74754B0E1FB1EE8F9088C1E89BCAEEC0E3F288F30AD96D52C25C3BE97ED6"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\zhui_ming_fei_yu_5.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\zhui_ming_fei_yu_5.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "711B77184FB39287449AC96124064E4F800932B3E93EBB87C7AC4BD7CF61E4A2"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\zhui_ming_fei_yu_6.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\zhui_ming_fei_yu_6.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "FC27F63BB101547CA49F5FF3B05B59712FA7E53D79D09BED82C61A870B8BE435"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\zhui_ming_fei_yu_7.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\zhui_ming_fei_yu_7.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "E5577BFBFAAD0B3CFFE8B6014CD88B60FFC801CEE3C7CABC1CB824EEE1B51A94"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\zhui_ming_shi_zhong_nu_1.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\zhui_ming_shi_zhong_nu_1.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "3AB800F4D2435CF2F201862B91C5BF91AF791B735D389A27D3977E0D90DBCEBA"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\zhui_ming_shi_zhong_nu_2.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\zhui_ming_shi_zhong_nu_2.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "F90733E88CE9FB004B3AA0FD5BA4C712C706B09CDCEE424DB874CAD131D3490E"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\zhui_ming_shi_zhong_nu_3.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\zhui_ming_shi_zhong_nu_3.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "D987D47DAB5ED4E9FD3300D3B8158A7FE253D970F61ABC9AE9118F350F7F2CF7"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\yushi\\zhui_ming_shi_zhong_nu_4.lua",
+      "DiskRelativePath": "script\\skill\\yushi\\zhui_ming_shi_zhong_nu_4.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "016839602BEEF3E9136703B9A9C1F3B7ECF1DA3A0813FE189E52330F73511C25"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\zhuansheng\\jian_chuan_jiang_chang.lua",
+      "DiskRelativePath": "script\\skill\\zhuansheng\\jian_chuan_jiang_chang.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "E259623A1012AE704080F2960CBD8BFFCA55D16CB0BBDAD0717963559FCD0B9D"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\zhuansheng\\shi_zhi_bu_yu.lua",
+      "DiskRelativePath": "script\\skill\\zhuansheng\\shi_zhi_bu_yu.lua",
+      "Status": "RESOLVED",
+      "Provenance": "VNG_CLIENT_PAK",
+      "Sha256": "43180A4C78489310C9477492D1E5802CEF59540035DB94A8F02EDE9EB99F12DF"
+    },
+    {
+      "VirtualPath": "\\script\\skill\\zhuansheng\\一闻千悟.lua",
+      "DiskRelativePath": "script\\skill\\zhuansheng\\Ò»ÎÅÇ§Îò.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\zhuansheng\\万毒护身.lua",
+      "DiskRelativePath": "script\\skill\\zhuansheng\\Íò¶¾»¤Éí.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\zhuansheng\\业火焚心.lua",
+      "DiskRelativePath": "script\\skill\\zhuansheng\\Òµ»ð·ÙÐÄ.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\zhuansheng\\以战养战.lua",
+      "DiskRelativePath": "script\\skill\\zhuansheng\\ÒÔÕ½ÑøÕ½.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\zhuansheng\\封神之力.lua",
+      "DiskRelativePath": "script\\skill\\zhuansheng\\·âÉñÖ®Á¦.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\zhuansheng\\引火烧身.lua",
+      "DiskRelativePath": "script\\skill\\zhuansheng\\Òý»ðÉÕÉí.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\zhuansheng\\毒行天下.lua",
+      "DiskRelativePath": "script\\skill\\zhuansheng\\¶¾ÐÐÌìÏÂ.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\zhuansheng\\百战余生.lua",
+      "DiskRelativePath": "script\\skill\\zhuansheng\\°ÙÕ½ÓàÉú.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\zhuansheng\\百炼锻体.lua",
+      "DiskRelativePath": "script\\skill\\zhuansheng\\°ÙÁ¶¶ÍÌå.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\zhuansheng\\蛊惑众生.lua",
+      "DiskRelativePath": "script\\skill\\zhuansheng\\¹Æ»óÖÚÉú.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\zhuansheng\\血战沙场.lua",
+      "DiskRelativePath": "script\\skill\\zhuansheng\\ÑªÕ½É³³¡.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\zhuansheng\\血饮狂刀增益（御甲）.lua",
+      "DiskRelativePath": "script\\skill\\zhuansheng\\ÑªÒû¿ñµ¶ÔöÒæ£¨Óù¼×£©.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\zhuansheng\\追风逐月（破敌）.lua",
+      "DiskRelativePath": "script\\skill\\zhuansheng\\×··çÖðÔÂ£¨ÆÆµÐ£©.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\zhuansheng\\追风逐月保护状态.lua",
+      "DiskRelativePath": "script\\skill\\zhuansheng\\×··çÖðÔÂ±£»¤×´Ì¬.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\zhuansheng\\追风逐月极.lua",
+      "DiskRelativePath": "script\\skill\\zhuansheng\\×··çÖðÔÂ¼«.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\十绝阵\\副本arrow土3.lua",
+      "DiskRelativePath": "script\\skill\\Ê®¾øÕó\\¸±±¾arrowÍÁ3.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\十绝阵\\副本arrow火2.lua",
+      "DiskRelativePath": "script\\skill\\Ê®¾øÕó\\¸±±¾arrow»ð2.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\十绝阵\\副本bossarrow火2.lua",
+      "DiskRelativePath": "script\\skill\\Ê®¾øÕó\\¸±±¾bossarrow»ð2.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\十绝阵\\副本boss土龙破.lua",
+      "DiskRelativePath": "script\\skill\\Ê®¾øÕó\\¸±±¾bossÍÁÁúÆÆ.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\十绝阵\\副本boss无尽风暴.lua",
+      "DiskRelativePath": "script\\skill\\Ê®¾øÕó\\¸±±¾bossÎÞ¾¡·ç±©.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\十绝阵\\副本boss火星坠落.lua",
+      "DiskRelativePath": "script\\skill\\Ê®¾øÕó\\¸±±¾boss»ðÐÇ×¹Âä.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\十绝阵\\副本boss落地斩.lua",
+      "DiskRelativePath": "script\\skill\\Ê®¾øÕó\\¸±±¾bossÂäµØÕ¶.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\十绝阵\\副本boss雷动九天.lua",
+      "DiskRelativePath": "script\\skill\\Ê®¾øÕó\\¸±±¾bossÀ×¶¯¾ÅÌì.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\十绝阵\\副本boss风云雷动.lua",
+      "DiskRelativePath": "script\\skill\\Ê®¾øÕó\\¸±±¾boss·çÔÆÀ×¶¯.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\十绝阵\\副本npc冰剑.lua",
+      "DiskRelativePath": "script\\skill\\Ê®¾øÕó\\¸±±¾npc±ù½£.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\十绝阵\\副本五岳朝宗.lua",
+      "DiskRelativePath": "script\\skill\\Ê®¾øÕó\\¸±±¾ÎåÔÀ³¯×Ú.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\十绝阵\\副本倾城一击.lua",
+      "DiskRelativePath": "script\\skill\\Ê®¾øÕó\\¸±±¾Çã³ÇÒ»»÷.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\十绝阵\\副本冰风暴.lua",
+      "DiskRelativePath": "script\\skill\\Ê®¾øÕó\\¸±±¾±ù·ç±©.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\十绝阵\\副本十方烈火.lua",
+      "DiskRelativePath": "script\\skill\\Ê®¾øÕó\\¸±±¾Ê®·½ÁÒ»ð.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\十绝阵\\副本千钧斩.lua",
+      "DiskRelativePath": "script\\skill\\Ê®¾øÕó\\¸±±¾Ç§¾ûÕ¶.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\十绝阵\\副本噬影雷光.lua",
+      "DiskRelativePath": "script\\skill\\Ê®¾øÕó\\¸±±¾ÊÉÓ°À×¹â.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\十绝阵\\副本土龙破.lua",
+      "DiskRelativePath": "script\\skill\\Ê®¾øÕó\\¸±±¾ÍÁÁúÆÆ.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\十绝阵\\副本大地崩裂.lua",
+      "DiskRelativePath": "script\\skill\\Ê®¾øÕó\\¸±±¾´óµØ±ÀÁÑ.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\十绝阵\\副本天寒斩.lua",
+      "DiskRelativePath": "script\\skill\\Ê®¾øÕó\\¸±±¾Ììº®Õ¶.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\十绝阵\\副本天崩地裂.lua",
+      "DiskRelativePath": "script\\skill\\Ê®¾øÕó\\¸±±¾Ìì±ÀµØÁÑ.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\十绝阵\\副本天锋地刃.lua",
+      "DiskRelativePath": "script\\skill\\Ê®¾øÕó\\¸±±¾Ìì·æµØÈÐ.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\十绝阵\\副本无尽风暴.lua",
+      "DiskRelativePath": "script\\skill\\Ê®¾øÕó\\¸±±¾ÎÞ¾¡·ç±©.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\十绝阵\\副本极冻领域.lua",
+      "DiskRelativePath": "script\\skill\\Ê®¾øÕó\\¸±±¾¼«¶³ÁìÓò.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\十绝阵\\副本横空斩.lua",
+      "DiskRelativePath": "script\\skill\\Ê®¾øÕó\\¸±±¾ºá¿ÕÕ¶.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\十绝阵\\副本火光斩.lua",
+      "DiskRelativePath": "script\\skill\\Ê®¾øÕó\\¸±±¾»ð¹âÕ¶.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\十绝阵\\副本火星坠落.lua",
+      "DiskRelativePath": "script\\skill\\Ê®¾øÕó\\¸±±¾»ðÐÇ×¹Âä.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\十绝阵\\副本炼狱闪电.lua",
+      "DiskRelativePath": "script\\skill\\Ê®¾øÕó\\¸±±¾Á¶ÓüÉÁµç.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\十绝阵\\副本狂心斩.lua",
+      "DiskRelativePath": "script\\skill\\Ê®¾øÕó\\¸±±¾¿ñÐÄÕ¶.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\十绝阵\\副本玄冰斩.lua",
+      "DiskRelativePath": "script\\skill\\Ê®¾øÕó\\¸±±¾Ðþ±ùÕ¶.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\十绝阵\\副本玄女补天.lua",
+      "DiskRelativePath": "script\\skill\\Ê®¾øÕó\\¸±±¾ÐþÅ®²¹Ìì.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\十绝阵\\副本碧月斩.lua",
+      "DiskRelativePath": "script\\skill\\Ê®¾øÕó\\¸±±¾±ÌÔÂÕ¶.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\十绝阵\\副本落地斩.lua",
+      "DiskRelativePath": "script\\skill\\Ê®¾øÕó\\¸±±¾ÂäµØÕ¶.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\十绝阵\\副本超级风卷.lua",
+      "DiskRelativePath": "script\\skill\\Ê®¾øÕó\\¸±±¾³¬¼¶·ç¾í.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\十绝阵\\副本连环斩.lua",
+      "DiskRelativePath": "script\\skill\\Ê®¾øÕó\\¸±±¾Á¬»·Õ¶.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\十绝阵\\副本铁马冰戈.lua",
+      "DiskRelativePath": "script\\skill\\Ê®¾øÕó\\¸±±¾ÌúÂí±ù¸ê.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\十绝阵\\副本雷动九天.lua",
+      "DiskRelativePath": "script\\skill\\Ê®¾øÕó\\¸±±¾À×¶¯¾ÅÌì.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\十绝阵\\副本风云雷动.lua",
+      "DiskRelativePath": "script\\skill\\Ê®¾øÕó\\¸±±¾·çÔÆÀ×¶¯.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\十绝阵\\副本龙卷风.lua",
+      "DiskRelativePath": "script\\skill\\Ê®¾øÕó\\¸±±¾Áú¾í·ç.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\十绝阵\\副本龙墩土.lua",
+      "DiskRelativePath": "script\\skill\\Ê®¾øÕó\\¸±±¾Áú¶ÕÍÁ.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\即时国战\\火龙令.lua",
+      "DiskRelativePath": "script\\skill\\¼´Ê±¹úÕ½\\»ðÁúÁî.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\即时国战\\炎龙令.lua",
+      "DiskRelativePath": "script\\skill\\¼´Ê±¹úÕ½\\Ñ×ÁúÁî.lua",
+      "Status": "MISSING_SOURCE",
+      "Provenance": "NONE",
+      "Sha256": ""
+    },
+    {
+      "VirtualPath": "\\script\\skill\\即时国战\\碎车技能.lua",
+      "DiskRelativePath": "script\\skill\\¼´Ê±¹úÕ½\\Ëé³µ¼¼ÄÜ.lua",
+      "Status": "RESOLVED",
+      "Provenance": "SOURCE_CLIENT_LOOSE",
+      "Sha256": "3304D7BFFA1B2987B017E59A6FFB141471AD26CB52E5BCB6E1BE2A726FF4AEBF"
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: Rainbow - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\Users\UCT\AppData\Local\Temp\RSPF691.tmp" with contents
+[
+/nologo /MT /W3 /GX /O2 /I "..\Common" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "RAINBOW_EXPORTS" /Fp"Release/Rainbow.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"D:\Lam game phong than\PhongThanSource\Sources\MultiServer\Rainbow\ClientStage.cpp"
+]
+Creating command line "cl.exe @C:\Users\UCT\AppData\Local\Temp\RSPF691.tmp" 
+Creating temporary file "C:\Users\UCT\AppData\Local\Temp\RSPF692.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /incremental:no /pdb:"Release/Rainbow.pdb" /map:"Release/Rainbow.map" /debug /machine:I386 /def:".\Rainbow.def" /out:"Release/Rainbow.dll" /implib:"Release/Rainbow.lib" 
+".\Release\IClient.obj"
+".\Release\Rainbow.obj"
+".\Release\ClientStage.obj"
+"..\..\..\Lib\release\common.lib"
+]
+Creating command line "link.exe @C:\Users\UCT\AppData\Local\Temp\RSPF692.tmp"
+<h3>Output Window</h3>
+Compiling...
+ClientStage.cpp
+Linking...
+   Creating library Release/Rainbow.lib and object Release/Rainbow.exp
+Creating temporary file "C:\Users\UCT\AppData\Local\Temp\RSPFA8A.bat" with contents
+[
+@echo off
+md ..\..\..\Output\Client\release\
+copy release\Rainbow.dll ..\..\..\Output\Client\Rainbow.dll
+copy release\Rainbow.dll ..\..\..\Output\Client\release\Rainbow.dll
+copy release\Rainbow.pdb ..\..\..\Output\Client\release\Rainbow.pdb
+copy release\Rainbow.map ..\..\..\Output\Client\release\Rainbow.map
+md ..\..\..\Output\Server\release\
+copy release\Rainbow.dll ..\..\..\Output\Server\Rainbow.dll
+copy release\Rainbow.dll ..\..\..\Output\Server\release\Rainbow.dll
+copy release\Rainbow.pdb ..\..\..\Output\Server\release\Rainbow.pdb
+copy release\Rainbow.map ..\..\..\Output\Server\release\Rainbow.map
+]
+Creating command line "C:\Users\UCT\AppData\Local\Temp\RSPFA8A.bat"
+
+A subdirectory or file ..\..\..\Output\Client\release\ already exists.
+        1 file(s) copied.
+        1 file(s) copied.
+        1 file(s) copied.
+        1 file(s) copied.
+A subdirectory or file ..\..\..\Output\Server\release\ already exists.
+        1 file(s) copied.
+        1 file(s) copied.
+        1 file(s) copied.
+        1 file(s) copied.
+
+
+
+<h3>Results</h3>
+Rainbow.dll - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

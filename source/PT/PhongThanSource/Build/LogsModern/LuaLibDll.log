@@ -1,0 +1,81 @@
+﻿== LuaLibDll 2026-10-02T15:57:43
+> cl.exe /nologo /c /EHsc /Zc:forScope- /Zc:wchar_t- /Zc:strictStrings- /Zc:threadSafeInit- /permissive /W1 /wd4996 /wd4700 /Zi /Oy- /GS- /FS /D_CRT_SECURE_NO_WARNINGS /D_CRT_NONSTDC_NO_DEPRECATE /D_WINSOCK_DEPRECATED_NO_WARNINGS /D_USE_32BIT_TIME_T /D_CRT_NO_VA_START_VALIDATION /DPHONGTHAN_MODERN_BUILD=1 /MD /O2 /I.\LuaLibDll\src /I.\src /DWIN32 /DNDEBUG /D_WINDOWS /D_MBCS /D_USRDLL /DLUALIBDLL_EXPORTS /MP24 /FoE:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\Modern\Win32Release\ /FdE:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\Modern\Win32Release\vc143.pdb E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\src\lapi.c E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\src\lcode.c E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\src\ldebug.c E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\src\ldo.c E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\src\lfunc.c E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\src\lgc.c E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\src\llex.c E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\src\lmem.c E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\src\lobject.c E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\src\lparser.c E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\src\lstate.c E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\src\lstring.c E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\src\ltable.c E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\src\ltests.c E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\src\ltm.c E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\src\lua.c E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\src\LuaExtend.c E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\src\lundump.c E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\src\lvm.c E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\src\lzio.c E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\src\baselib\lauxlib.c E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\src\baselib\lbaselib.c E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\src\baselib\ldblib.c E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\src\baselib\liolib.c E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\src\baselib\lmathlib.c E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\src\baselib\lstrlib.c
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+lapi.c
+lcode.c
+ldebug.c
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+ldo.c
+lfunc.c
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+lgc.c
+llex.c
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+lmem.c
+lobject.c
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+lparser.c
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+lstate.c
+lstring.c
+ltable.c
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+ltests.c
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+ltm.c
+lua.c
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+LuaExtend.c
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+lundump.c
+lvm.c
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+lzio.c
+lauxlib.c
+lbaselib.c
+ldblib.c
+cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
+liolib.c
+Create LUA dllexport
+Create LUA dllexport
+Create LUA dllexport
+Create LUA dllexport
+Create LUA dllexport
+Create LUA dllexport
+Create LUA dllexport
+Create LUA dllexport
+Create LUA dllexport
+Create LUA dllexport
+Create LUA dllexport
+Create LUA dllexport
+Create LUA dllexport
+Create LUA dllexport
+lmathlib.c
+Create LUA dllexport
+Create LUA dllexport
+Create LUA dllexport
+Create LUA dllexport
+Create LUA dllexport
+lstrlib.c
+Create LUA dllexport
+Create LUA dllexport
+Create LUA dllexport
+Create LUA dllexport
+Create LUA dllexport
+Create LUA dllexport
+Create LUA dllexport
+> link.exe /nologo /MACHINE:X86 /SAFESEH:NO /DEBUG /INCREMENTAL:NO /DYNAMICBASE:NO /LARGEADDRESSAWARE:NO /DLL kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /OUT:E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\Modern\Win32Release\LuaLibDll.dll /MAP:E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\Modern\Win32Release\LuaLibDll.map /PDB:E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\Modern\Win32Release\LuaLibDll.pdb /IMPLIB:E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\Modern\Win32Release\LuaLibDll.lib legacy_stdio_definitions.lib legacy_stdio_wide_specifiers.lib E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\Modern\Win32Release\lapi.obj E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\Modern\Win32Release\lcode.obj E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\Modern\Win32Release\ldebug.obj E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\Modern\Win32Release\ldo.obj E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\Modern\Win32Release\lfunc.obj E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\Modern\Win32Release\lgc.obj E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\Modern\Win32Release\llex.obj E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\Modern\Win32Release\lmem.obj E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\Modern\Win32Release\lobject.obj E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\Modern\Win32Release\lparser.obj E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\Modern\Win32Release\lstate.obj E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\Modern\Win32Release\lstring.obj E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\Modern\Win32Release\ltable.obj E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\Modern\Win32Release\ltests.obj E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\Modern\Win32Release\ltm.obj E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\Modern\Win32Release\lua.obj E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\Modern\Win32Release\luaextend.obj E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\Modern\Win32Release\lundump.obj E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\Modern\Win32Release\lvm.obj E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\Modern\Win32Release\lzio.obj E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\Modern\Win32Release\lauxlib.obj E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\Modern\Win32Release\lbaselib.obj E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\Modern\Win32Release\ldblib.obj E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\Modern\Win32Release\liolib.obj E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\Modern\Win32Release\lmathlib.obj E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\Modern\Win32Release\lstrlib.obj
+   Creating library E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\Modern\Win32Release\LuaLibDll.lib and object E:\VL\Phong than\PT\PhongThanSource\Sources\Library\LuaLib\Modern\Win32Release\LuaLibDll.exp

@@ -1,0 +1,68 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: Bishop - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\Users\UCT\AppData\Local\Temp\RSP46E7.tmp" with contents
+[
+/nologo /MT /W3 /GX /O2 /I "..\Common" /I "..\Rainbow\Interface" /I "..\Heaven\Interface" /I "..\..\..\lib" /I "..\..\..\Headers" /I "..\..\AccountServices\AccountServer" /I "..\..\s3client\login" /I "..\..\RoleDBManager" /I "..\..\Core\src" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /Fp"Release/Bishop.pch" /Yu"stdafx.h" /Fo"Release/" /Fd"Release/" /FD /c 
+"D:\Lam game phong than\PhongThanSource\Sources\MultiServer\Bishop\Application.cpp"
+"D:\Lam game phong than\PhongThanSource\Sources\MultiServer\Bishop\Bishop.cpp"
+"D:\Lam game phong than\PhongThanSource\Sources\MultiServer\Bishop\GamePlayer.cpp"
+"D:\Lam game phong than\PhongThanSource\Sources\MultiServer\Bishop\GameServer.cpp"
+"D:\Lam game phong than\PhongThanSource\Sources\MultiServer\Bishop\Intercessor.cpp"
+"D:\Lam game phong than\PhongThanSource\Sources\MultiServer\Bishop\PlayerCreator.cpp"
+]
+Creating command line "cl.exe @C:\Users\UCT\AppData\Local\Temp\RSP46E7.tmp" 
+Creating temporary file "C:\Users\UCT\AppData\Local\Temp\RSP46E8.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /incremental:no /pdb:"Release/Bishop.pdb" /map:"Release/Bishop.map" /debug /machine:I386 /out:"Release/Bishop.exe" 
+".\Release\Application.obj"
+".\Release\Bishop.obj"
+".\Release\Event.obj"
+".\Release\GamePlayer.obj"
+".\Release\GameServer.obj"
+".\Release\Intercessor.obj"
+".\Release\Network.obj"
+".\Release\PlayerCreator.obj"
+".\Release\SmartClient.obj"
+".\Release\StdAfx.obj"
+".\Release\Bishop.res"
+"..\..\..\Lib\release\common.lib"
+"..\..\..\Lib\release\engine.lib"
+]
+Creating command line "link.exe @C:\Users\UCT\AppData\Local\Temp\RSP46E8.tmp"
+<h3>Output Window</h3>
+Compiling...
+Application.cpp
+Bishop.cpp
+GamePlayer.cpp
+GameServer.cpp
+Intercessor.cpp
+D:\Lam game phong than\PhongThanSource\Sources\MultiServer\Bishop\Intercessor.cpp(818) : warning C4065: switch statement contains 'default' but no 'case' labels
+PlayerCreator.cpp
+Generating Code...
+Linking...
+Creating temporary file "C:\Users\UCT\AppData\Local\Temp\RSP52B0.bat" with contents
+[
+@echo off
+md ..\..\..\Output\Server\release\
+copy release\Bishop.exe ..\..\..\Output\Server\Bishop.exe
+copy release\Bishop.exe ..\..\..\Output\Server\release\Bishop.exe
+]
+Creating command line "C:\Users\UCT\AppData\Local\Temp\RSP52B0.bat"
+
+A subdirectory or file ..\..\..\Output\Server\release\ already exists.
+        1 file(s) copied.
+        1 file(s) copied.
+
+
+
+<h3>Results</h3>
+Bishop.exe - 0 error(s), 1 warning(s)
+</pre>
+</body>
+</html>

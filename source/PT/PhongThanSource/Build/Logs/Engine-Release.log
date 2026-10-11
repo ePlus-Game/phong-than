@@ -1,0 +1,20 @@
+--------------------Configuration: Engine - Win32 Release--------------------
+Compiling...
+KPakFile.cpp
+Linking...
+   Creating library Release/Engine.lib and object Release/Engine.exp
+LINK : warning LNK4098: defaultlib "LIBC" conflicts with use of other libs; use /NODEFAULTLIB:library
+A subdirectory or file ..\..\lib\release already exists.
+        1 file(s) copied.
+A subdirectory or file ..\..\Output\Client\release\ already exists.
+        1 file(s) copied.
+        1 file(s) copied.
+        1 file(s) copied.
+        1 file(s) copied.
+A subdirectory or file ..\..\Output\Server\release\ already exists.
+        1 file(s) copied.
+        1 file(s) copied.
+        1 file(s) copied.
+        1 file(s) copied.
+
+Engine.dll - 0 error(s), 1 warning(s)

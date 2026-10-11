@@ -1,0 +1,16 @@
+--------------------Configuration: Bishop - Win32 Release--------------------
+Compiling...
+Application.cpp
+Bishop.cpp
+GamePlayer.cpp
+GameServer.cpp
+Intercessor.cpp
+D:\Lam game phong than\PhongThanSource\Sources\MultiServer\Bishop\Intercessor.cpp(818) : warning C4065: switch statement contains 'default' but no 'case' labels
+PlayerCreator.cpp
+Generating Code...
+Linking...
+A subdirectory or file ..\..\..\Output\Server\release\ already exists.
+        1 file(s) copied.
+        1 file(s) copied.
+
+Bishop.exe - 0 error(s), 1 warning(s)

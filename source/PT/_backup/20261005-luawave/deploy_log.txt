@@ -1,0 +1,42 @@
+2026-10-05 09:04:08 backup script\phongthan\ext\luawave.lua (new file)
+2026-10-05 09:04:08 install script\phongthan\ext\luawave.lua md5=4635334774DC8104EE078C6174178FA2
+2026-10-05 09:04:08 backup script\phongthan\luawave\cs_lib.lua (new file)
+2026-10-05 09:04:08 install script\phongthan\luawave\cs_lib.lua md5=CEAB7745D5A3A77556552DEEB0B71A64
+2026-10-05 09:04:08 backup script\phongthan\luawave\lw_1060_xi_vuu.lua (new file)
+2026-10-05 09:04:08 install script\phongthan\luawave\lw_1060_xi_vuu.lua md5=3E8A3213F5E7499996B79C104562E753
+2026-10-05 09:04:08 backup script\phongthan\luawave\lw_1064_chuc_dung.lua (new file)
+2026-10-05 09:04:08 install script\phongthan\luawave\lw_1064_chuc_dung.lua md5=3FDA61B29AE40CBE30F650E592DC2194
+2026-10-05 09:04:08 backup script\phongthan\luawave\lw_1064_khoa_phu.lua (new file)
+2026-10-05 09:04:08 install script\phongthan\luawave\lw_1064_khoa_phu.lua md5=8290730DC1A1AEA4FF2FCACABC5D0397
+2026-10-05 09:04:08 backup script\phongthan\luawave\lw_1064_thieu_hao.lua (new file)
+2026-10-05 09:04:08 install script\phongthan\luawave\lw_1064_thieu_hao.lua md5=84DCB5F2D847279461E85F748470F05D
+2026-10-05 09:04:08 backup script\phongthan\luawave\lw_login.lua (new file)
+2026-10-05 09:04:08 install script\phongthan\luawave\lw_login.lua md5=D39A57FB9A1DAB896613376AAB693458
+2026-10-05 09:04:08 backup script\phongthan\npc_fix\1003_xich_tinh_tu.lua md5=EDEA455ECA2EBB7162465CD3CF9F28B5
+2026-10-05 09:04:08 install script\phongthan\npc_fix\1003_xich_tinh_tu.lua md5=85959AA3F01BB1CC6BA1A59302ED32D6
+2026-10-05 09:04:08 backup script\phongthan\npc_fix\1004_cao_minh.lua md5=37949EF5380D5058ECAA29EBF72DFC6D
+2026-10-05 09:04:08 install script\phongthan\npc_fix\1004_cao_minh.lua md5=4BDFA92C7042ECA22739437EC311FEA7
+2026-10-05 09:04:08 backup script\phongthan\npc_restore\1002_14.lua md5=DB2FEA992DE5F9C1A0DEC6CB8C6A6E87
+2026-10-05 09:04:08 install script\phongthan\npc_restore\1002_14.lua md5=C282B9ED101FE28012DA5957E73B6FBC
+2026-10-05 09:04:08 backup script\phongthan\npc_restore\1003_09.lua md5=905A58C7AB5B1D30DFC6457662A4ECB9
+2026-10-05 09:04:08 install script\phongthan\npc_restore\1003_09.lua md5=4C85AEB337C895005D7492F949607198
+2026-10-05 09:04:08 backup script\phongthan\npc_restore\1004_10.lua md5=48B1F785E792A172AB963BBE2E1938EA
+2026-10-05 09:04:08 install script\phongthan\npc_restore\1004_10.lua md5=1D1310C4AD71BF42AD288ED2AE55AB25
+2026-10-05 09:04:08 backup script\phongthan\npc_restore\1020_11.lua md5=A786DE930ED53B7F782C64543B08AC6F
+2026-10-05 09:04:08 install script\phongthan\npc_restore\1020_11.lua md5=93485C56D419829C61E79122AB043D9B
+2026-10-05 09:04:08 backup script\phongthan\npc_restore\1021_13.lua md5=90A8C4CC0F7029D388F8AF126D5DDD70
+2026-10-05 09:04:08 install script\phongthan\npc_restore\1021_13.lua md5=D92F255A56CFAE466A8D852F44E4E0C3
+2026-10-05 09:04:08 backup script\player\playerlogin.lua md5=6FA5F55D82EA28213796AAA116025B76
+2026-10-05 09:04:08 install script\player\playerlogin.lua md5=5E0CACFDA5F11BD7F83DCEF36E6F051A
+2026-10-05 09:04:08 backup script\player\playerlogout.lua md5=9EFFAAD350AC977F0F9980A45615822D
+2026-10-05 09:04:08 install script\player\playerlogout.lua md5=ACCFF1092ABA38F9A1BCA44F835A240E
+2026-10-05 09:04:08 backup script\servertimer.lua md5=A06C87A8A4B14621B9D9995401B1C838
+2026-10-05 09:04:08 servertimer: PTADM_EXT_NAMES += luawave (md5 0845D800380216A033D2DA4298176A7A)
+2026-10-05 09:05:14 backup script\phongthan\spawn\spawn_1057.lua (new file)
+2026-10-05 09:05:14 install script\phongthan\spawn\spawn_1057.lua md5=A33AB8C83737D9825947D30101F20DDA
+2026-10-05 09:05:14 backup script\phongthan\spawn\spawn_main.lua md5=D3043A11B7D2C335CCACBB6691E83252
+2026-10-05 09:05:14 install script\phongthan\spawn\spawn_main.lua md5=AB98EED59BF0734B11A32CCB082A7695
+2026-10-05 09:05:14 backup script\phongthan\ext\matdo.lua md5=09B908E71D34C1990D196D7D66F36223
+2026-10-05 09:05:14 install script\phongthan\ext\matdo.lua md5=048D74F3804277901BBD503D658555B1
+2026-10-05 09:05:14 backup script\phongthan\bots\party.lua md5=31755D15203BE709F67BB56C7A95206E
+2026-10-05 09:05:14 install script\phongthan\bots\party.lua md5=138C5FA3D7364240F94891E34D6B3587

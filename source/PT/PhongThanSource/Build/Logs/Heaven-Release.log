@@ -1,0 +1,17 @@
+--------------------Configuration: Heaven - Win32 Release--------------------
+Compiling...
+ServerStage.cpp
+Linking...
+   Creating library Release/Heaven.lib and object Release/Heaven.exp
+A subdirectory or file ..\..\..\Output\Client\release\ already exists.
+        1 file(s) copied.
+        1 file(s) copied.
+        1 file(s) copied.
+        1 file(s) copied.
+A subdirectory or file ..\..\..\Output\Server\release\ already exists.
+        1 file(s) copied.
+        1 file(s) copied.
+        1 file(s) copied.
+        1 file(s) copied.
+
+Heaven.dll - 0 error(s), 0 warning(s)
