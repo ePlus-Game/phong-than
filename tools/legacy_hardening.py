@@ -47,30 +47,21 @@ PATCHES = {
             b"\tunsigned long port = strtoul(colon + 1, &endPort, 10);\n"
             b"\tif (endPort == colon + 1 || *endPort != '\\0' || port == 0 || port > 65535UL)\n"
             b"\t\treturn FALSE;\n"
-            b"\tunsigned long Address = inet_addr(pInfo);\n"
+            b"\tconst size_t ipLength = (size_t)(colon - pInfo);\n"
+            b"\tif (ipLength == 0 || ipLength >= 16)\n"
+            b"\t\treturn FALSE;\n"
+            b"\tchar ip[16];\n"
+            b"\tmemcpy(ip, pInfo, ipLength);\n"
+            b"\tip[ipLength] = '\\0';\n"
+            b"\tunsigned long Address = inet_addr(ip);\n"
+            b"\tif (Address == INADDR_NONE)\n"
+            b"\t\treturn FALSE;\n"
             b"\tshort Port = (short)(unsigned short)port;",
         ),
     ),
 }
 
 
-# Extra fixes are applied only to the build COPY, not the original ZIP tree.
-PATCHES["Sources/AccountServices/AccountServer/S3PDBSocketPool.cpp"] += (
-    (
-        b"\tunsigned long Address = inet_addr(pInfo);\n"
-        b"\tshort Port = (short)(unsigned short)port;",
-        b"\tconst size_t ipLength = (size_t)(colon - pInfo);\n"
-        b"\tif (ipLength == 0 || ipLength >= 16)\n"
-        b"\t\treturn FALSE;\n"
-        b"\tchar ip[16];\n"
-        b"\tmemcpy(ip, pInfo, ipLength);\n"
-        b"\tip[ipLength] = '\\0';\n"
-        b"\tunsigned long Address = inet_addr(ip);\n"
-        b"\tif (Address == INADDR_NONE)\n"
-        b"\t\treturn FALSE;\n"
-        b"\tshort Port = (short)(unsigned short)port;",
-    ),
-)
 PATCHES["Build/Build-Modern.ps1"] = (
     (
         b'if (-not (Test-Path -LiteralPath $src)) { Add-Content $log "THIEU FILE: $src"; continue }',
