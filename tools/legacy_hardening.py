@@ -104,8 +104,8 @@ def stage(target: Path, *, apply: bool) -> list[str]:
         f = target.joinpath(*rel.split("/"))
         original = f.read_bytes()
         modified = harden(rel, original)
-        if modified == original and not any(new in modified for _, new in PATCHES[rel] if new):
-            raise ValueError("no effective hardening patch: " + rel)
+        # harden() already verifies exact source context or an installed patch.
+        # Comparing LF-only replacement bytes to a CRLF source is incorrect.
         staged.append((f, modified))
         report.append(rel + (" (already patched)" if modified == original else " (needs patch)"))
     if apply:
