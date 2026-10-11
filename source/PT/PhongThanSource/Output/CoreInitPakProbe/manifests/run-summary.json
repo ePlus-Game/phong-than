@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "tool": {
+    "name": "PhongThanUnpack2.Orchestrator",
+    "version": "2.0.0-rc.3"
+  },
+  "started_utc": "2026-09-06T04:07:21.7570904Z",
+  "completed_utc": "2026-09-06T04:07:24.5776662Z",
+  "run_root": "D:\\Lam game phong than\\PhongThanSource\\Output\\CoreInitPakProbe",
+  "mode": {
+    "fixture": false,
+    "requested_package_profile": "RuntimePriority",
+    "effective_package_profile": "RuntimePriority",
+    "derive_region_s": false
+  },
+  "exit_codes": {
+    "extraction": 0,
+    "parity": null,
+    "overall": 0
+  },
+  "inputs": {
+    "official_package_ini": {
+      "path": "D:\\Lam game phong than\\PhongThanRuntime-Staging\\Client\\package.ini",
+      "sha256": "379DEC990B69C963D7332916BCBB466BE54CF28E13A7E9A0EF9D2065B5C554D9"
+    },
+    "requests_tsv": {
+      "path": "D:\\Lam game phong than\\PhongThanSource\\Output\\CoreInitPakProbeRequests.tsv",
+      "sha256": "DB6C03E2550A680308C495D6C902506637183AC6B1ACAC7C2D112ABC9C5175A7"
+    },
+    "xpack_batch": {
+      "path": "D:\\Lam game phong than\\SourceMigration\\tools\\phongthan-unpack2\\bin\\Release\\XPackBatch.exe",
+      "sha256": "491E13A5F84F628F057297346A60C6B5E3F5D6F97EE1CD3439C92D17FDBEC327",
+      "pe_machine": "0x014C"
+    },
+    "ucl1_dll": {
+      "path": "D:\\Lam game phong than\\PhongThanRuntime-Staging\\Client\\ucl1.dll",
+      "sha256": "2ADF27F7AFA116F651A62790D8CC41641E5C48C6A2AD1B97A8BCE57D71C72F6E"
+    }
+  },
+  "outputs": {
+    "content_root": "D:\\Lam game phong than\\PhongThanSource\\Output\\CoreInitPakProbe\\content",
+    "extraction_manifest": {
+      "path": "D:\\Lam game phong than\\PhongThanSource\\Output\\CoreInitPakProbe\\manifests\\extraction-manifest.json",
+      "sha256": "F56627BD19E89CFBC6CEC1184802098C328832BC8682FC001FE76B1F4C8408C3"
+    },
+    "parity_report": null,
+    "quarantine_record_count": 0
+  },
+  "safety": {
+    "source_paks_opened_read_only": true,
+    "runtime_modified": false,
+    "promotion_ready": false,
+    "promotion_note": "A successful parity run is evidence only; runtime cutover remains a separate reviewed operation."
+  }
+}

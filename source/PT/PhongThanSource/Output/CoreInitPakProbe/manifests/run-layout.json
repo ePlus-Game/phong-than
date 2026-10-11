@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "run_root": "D:\\Lam game phong than\\PhongThanSource\\Output\\CoreInitPakProbe",
+  "directories": {
+    "content": "D:\\Lam game phong than\\PhongThanSource\\Output\\CoreInitPakProbe\\content",
+    "manifests": "D:\\Lam game phong than\\PhongThanSource\\Output\\CoreInitPakProbe\\manifests",
+    "reports": "D:\\Lam game phong than\\PhongThanSource\\Output\\CoreInitPakProbe\\reports",
+    "quarantine": "D:\\Lam game phong than\\PhongThanSource\\Output\\CoreInitPakProbe\\quarantine",
+    "logs": "D:\\Lam game phong than\\PhongThanSource\\Output\\CoreInitPakProbe\\logs"
+  },
+  "immutable_inputs": {
+    "official_package_ini": "D:\\Lam game phong than\\PhongThanRuntime-Staging\\Client\\package.ini",
+    "requests_tsv": "D:\\Lam game phong than\\PhongThanSource\\Output\\CoreInitPakProbeRequests.tsv",
+    "xpack_batch": "D:\\Lam game phong than\\SourceMigration\\tools\\phongthan-unpack2\\bin\\Release\\XPackBatch.exe",
+    "ucl1_dll": "D:\\Lam game phong than\\PhongThanRuntime-Staging\\Client\\ucl1.dll"
+  },
+  "promotion_ready": false
+}
