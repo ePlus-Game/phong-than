@@ -55,26 +55,43 @@ PATCHES = {
 
 
 def harden(relative: str, original: bytes) -> bytes:
-    """Byte-preserving, CRLF-aware patch with strict context and idempotency."""
+    """Patch only matching byte spans, preserving ALL untouched original bytes.
+
+    Some recovered legacy sources contain mixed LF and CRLF newlines. Never
+    normalize the whole file; search for each exact context in both styles.
+    """
     if relative not in PATCHES:
         raise ValueError("not a known source path: " + relative)
-    has_crlf = b"\r\n" in original
-    if has_crlf and b"\n" in original.replace(b"\r\n", b""):
-        raise ValueError("mixed newline style: " + relative)
-    data = original.replace(b"\r\n", b"\n")
+    data = original
     for old, new in PATCHES[relative]:
-        count = data.count(old)
-        if count == 1:
-            data = data.replace(old, new, 1)
-        elif count == 0 and new and data.count(new) == 1:
+        found = []
+        for ending in (b"\r\n", b"\n"):
+            needle = old.replace(b"\n", ending)
+            replacement = new.replace(b"\n", ending)
+            if data.count(needle) == 1 and needle not in [item[0] for item in found]:
+                found.append((needle, replacement))
+        if len(found) == 1:
+            needle, replacement = found[0]
+            data = data.replace(needle, replacement, 1)
+        elif len(found) > 1:
+            # CRLF patterns also contain LF bytes; prefer full CRLF match.
+            if found[0][0] in data:
+                data = data.replace(found[0][0], found[0][1], 1)
+            else:
+                raise ValueError("ambiguous source context: " + relative)
+        elif new and any(
+            new.replace(b"\n", ending) in data
+            for ending in (b"\r\n", b"\n")
+        ):
             continue
-        elif count == 0 and not new:
-            # Removed assertion must be absent after the previous patch.
+        elif not new and not any(
+            old.replace(b"\n", ending) in data
+            for ending in (b"\r\n", b"\n")
+        ):
             continue
         else:
             raise ValueError("source context changed or ambiguous: " + relative)
-    return data.replace(b"\n", b"\r\n") if has_crlf else data
-
+    return data
 
 def stage(target: Path, *, apply: bool) -> list[str]:
     target = target.resolve()
