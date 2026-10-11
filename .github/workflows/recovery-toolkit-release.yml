@@ -1,0 +1,77 @@
+name: Recovery toolkit v0.1.0 prerelease
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'docs/releases/v0.1.0-recovery.1.md'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pt-recovery-v0.1.0-release
+  cancel-in-progress: false
+
+jobs:
+  verify-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /Base/
+            /Client/
+            /Server/
+            /Share/
+            /tools/
+            /tests/
+            /CMakeLists.txt
+            /docs/LEGACY_HARDENING.md
+            /docs/releases/v0.1.0-recovery.1.md
+            /source/PT/PhongThanSource/Sources/MultiServer/GameServer/GameServer.cpp
+            /source/PT/PhongThanSource/Sources/AccountServices/AccountServer/S3PDBSocketPool.cpp
+            /source/PT/PhongThanSource/Build/Build-Modern.ps1
+            /source/PT/PhongThanSource/Build/Build-PhongThan.ps1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify original bytes and patch/test tooling
+        run: python -m unittest discover -s tests -v
+      - name: Build and test portable subset (NOT the complete game)
+        run: |
+          cmake -S . -B "$RUNNER_TEMP/pt-recovery" -DCMAKE_BUILD_TYPE=Release
+          cmake --build "$RUNNER_TEMP/pt-recovery" --parallel 2
+          ctest --test-dir "$RUNNER_TEMP/pt-recovery" --output-on-failure
+      - name: Package verified developer toolkit only
+        run: |
+          python tools/package_recovery_toolkit.py --output dist/PT-Recovery-Toolkit-v0.1.0-recovery.1.zip
+          cd dist
+          sha256sum -c PT-Recovery-Toolkit-v0.1.0-recovery.1.sha256
+      - uses: actions/upload-artifact@v4
+        with:
+          name: PT-Recovery-Toolkit-v0.1.0-recovery.1
+          path: dist/*
+          if-no-files-found: error
+      - name: Create prerelease without game binaries
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          TAG: v0.1.0-recovery.1
+        shell: bash
+        run: |
+          set -euo pipefail
+          if gh release view "$TAG" --repo "$GH_REPO" >/dev/null 2>&1; then
+            echo "Release $TAG already exists, not replacing existing files."
+            exit 0
+          fi
+          gh release create "$TAG" \
+            --repo "$GH_REPO" \
+            --target "$GITHUB_SHA" \
+            --prerelease \
+            --title "Phong Than Recovery Toolkit v0.1.0 (NOT playable game)" \
+            --notes-file docs/releases/v0.1.0-recovery.1.md \
+            dist/PT-Recovery-Toolkit-v0.1.0-recovery.1.zip \
+            dist/PT-Recovery-Toolkit-v0.1.0-recovery.1.sha256
