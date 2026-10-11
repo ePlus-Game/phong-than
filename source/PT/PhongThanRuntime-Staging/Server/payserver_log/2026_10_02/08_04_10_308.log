@@ -1,0 +1,63 @@
+
+*
+***** PhongThanAccountServer Start (@ 2026/10/02 08:04:10.308) >>>>>
+*
+
+[2026/10/02 08:04:28] 1 >> DB Connect 0 is busy !
+[2026/10/02 08:04:28] 2 >> Add Gateway(127.0.0.1 : 15066) Client 0 ! -- At 0
+[2026/10/02 08:04:28] 3 >> Phong Than gateway cleared stale account locks
+[2026/10/02 08:04:28] 4 >> Phong Than gateway hello: gateway=anhviet reconnect=0 result=0 game=7
+[2026/10/02 08:04:28] 5 >> DB Connect 0 is free !
+[2026/10/02 08:06:10] 6 >> DB Connect 0 is busy !
+[2026/10/02 08:06:10] 7 >> Phong Than account authentication: account=lichnt purpose=0 result=0
+[2026/10/02 08:06:10] 8 >> DB Connect 0 is free !
+[2026/10/02 08:06:28] 9 >> DB Connect 0 is busy !
+[2026/10/02 08:06:28] 10 >> Phong Than account enter world: account=lichnt result=0
+[2026/10/02 08:06:28] 11 >> DB Connect 0 is free !
+[2026/10/02 08:13:25] 12 >> DB Connect 0 is busy !
+[2026/10/02 08:13:25] 13 >> Phong Than account release: account=lichnt result=0
+[2026/10/02 08:13:25] 14 >> DB Connect 0 is free !
+[2026/10/02 08:13:52] 15 >> DB Connect 0 is busy !
+[2026/10/02 08:13:52] 16 >> Phong Than account authentication: account=lichnt purpose=0 result=0
+[2026/10/02 08:13:52] 17 >> DB Connect 0 is free !
+[2026/10/02 08:14:07] 18 >> DB Connect 0 is busy !
+[2026/10/02 08:14:07] 19 >> Phong Than account enter world: account=lichnt result=0
+[2026/10/02 08:14:10] 20 >> DB Connect 0 is free !
+[2026/10/02 08:20:28] 21 >> DB Connect 0 is busy !
+[2026/10/02 08:20:28] 22 >> Phong Than account authentication: account=lichnt1 purpose=0 result=0
+[2026/10/02 08:20:31] 23 >> DB Connect 0 is free !
+[2026/10/02 08:20:43] 24 >> DB Connect 0 is busy !
+[2026/10/02 08:20:43] 25 >> Phong Than account enter world: account=lichnt1 result=0
+[2026/10/02 08:20:43] 26 >> DB Connect 0 is free !
+[2026/10/02 08:20:49] 27 >> DB Connect 0 is busy !
+[2026/10/02 08:20:49] 28 >> Phong Than account release: account=lichnt1 result=0
+[2026/10/02 08:20:49] 29 >> DB Connect 0 is free !
+[2026/10/02 08:21:01] 30 >> DB Connect 0 is busy !
+[2026/10/02 08:21:01] 31 >> Phong Than account authentication: account=lichnt1 purpose=0 result=0
+[2026/10/02 08:21:04] 32 >> DB Connect 0 is free !
+[2026/10/02 08:21:07] 33 >> DB Connect 0 is busy !
+[2026/10/02 08:21:07] 34 >> Phong Than account enter world: account=lichnt1 result=0
+[2026/10/02 08:21:10] 35 >> DB Connect 0 is free !
+[2026/10/02 08:22:04] 36 >> DB Connect 0 is busy !
+[2026/10/02 08:22:04] 37 >> Phong Than account release: account=lichnt1 result=0
+[2026/10/02 08:22:07] 38 >> DB Connect 0 is free !
+[2026/10/02 08:24:16] 39 >> DB Connect 0 is busy !
+[2026/10/02 08:24:16] 40 >> Phong Than account authentication: account=lichnt1 purpose=0 result=0
+[2026/10/02 08:24:19] 41 >> DB Connect 0 is free !
+[2026/10/02 08:24:22] 42 >> DB Connect 0 is busy !
+[2026/10/02 08:24:22] 43 >> Phong Than account enter world: account=lichnt1 result=0
+[2026/10/02 08:24:25] 44 >> DB Connect 0 is free !
+[2026/10/02 08:28:49] 45 >> DB Connect 0 is busy !
+[2026/10/02 08:28:49] 46 >> Phong Than account release: account=lichnt1 result=0
+[2026/10/02 08:28:49] 47 >> DB Connect 0 is free !
+[2026/10/02 08:29:04] 48 >> DB Connect 0 is busy !
+[2026/10/02 08:29:04] 49 >> Phong Than account authentication: account=lichnt1 purpose=0 result=0
+[2026/10/02 08:29:07] 50 >> DB Connect 0 is free !
+[2026/10/02 08:29:10] 51 >> DB Connect 0 is busy !
+[2026/10/02 08:29:10] 52 >> Phong Than account enter world: account=lichnt1 result=0
+[2026/10/02 08:29:10] 53 >> DB Connect 0 is free !
+[2026/10/02 08:33:28] 54 >> DB Connect 0 is busy !
+[2026/10/02 08:33:28] 55 >> Phong Than account release: account=lichnt result=0
+[2026/10/02 08:33:28] 56 >> DB Connect 0 is free !
+[2026/10/02 08:41:04] 57 >> DB Connect 0 is busy !
+[2026/10/02 08:41:04] 58 >> Phong Than account release: account=lichnt1 result=0

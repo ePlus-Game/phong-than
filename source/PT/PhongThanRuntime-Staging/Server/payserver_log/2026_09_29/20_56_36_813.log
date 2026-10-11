@@ -1,0 +1,37 @@
+
+*
+***** PhongThanAccountServer Start (@ 2026/09/29 20:56:36.813) >>>>>
+*
+
+[2026/09/29 20:56:48] 1 >> DB Connect 0 is busy !
+[2026/09/29 20:56:48] 2 >> Add Gateway(127.0.0.1 : 59317) Client 0 ! -- At 0
+[2026/09/29 20:56:48] 3 >> Phong Than gateway cleared stale account locks
+[2026/09/29 20:56:48] 4 >> Phong Than gateway hello: gateway=anhviet reconnect=0 result=0 game=7
+[2026/09/29 20:56:48] 5 >> DB Connect 0 is free !
+[2026/09/29 20:57:57] 6 >> DB Connect 0 is busy !
+[2026/09/29 20:57:57] 7 >> Phong Than account authentication: account=lichnt purpose=0 result=0
+[2026/09/29 20:57:57] 8 >> DB Connect 0 is free !
+[2026/09/29 20:58:00] 9 >> DB Connect 0 is busy !
+[2026/09/29 20:58:00] 10 >> Phong Than account enter world: account=lichnt result=0
+[2026/09/29 20:58:03] 11 >> DB Connect 0 is free !
+[2026/09/29 21:07:36] 12 >> DB Connect 0 is busy !
+[2026/09/29 21:07:36] 13 >> Phong Than account release: account=lichnt result=0
+[2026/09/29 21:07:39] 14 >> DB Connect 0 is free !
+[2026/09/29 21:08:03] 15 >> DB Connect 0 is busy !
+[2026/09/29 21:08:03] 16 >> Phong Than account authentication: account=lichnt purpose=0 result=0
+[2026/09/29 21:08:06] 17 >> DB Connect 0 is free !
+[2026/09/29 21:08:09] 18 >> DB Connect 0 is busy !
+[2026/09/29 21:08:09] 19 >> Phong Than account enter world: account=lichnt result=0
+[2026/09/29 21:08:09] 20 >> DB Connect 0 is free !
+[2026/09/30 07:50:07] 21 >> DB Connect 0 is busy !
+[2026/09/30 07:50:07] 22 >> Phong Than account release: account=lichnt result=0
+[2026/09/30 07:50:10] 23 >> DB Connect 0 is free !
+[2026/09/30 07:56:49] 24 >> DB Connect 0 is busy !
+[2026/09/30 07:56:49] 25 >> Phong Than account authentication: account=lichnt purpose=0 result=0
+[2026/09/30 07:56:49] 26 >> DB Connect 0 is free !
+[2026/09/30 07:56:55] 27 >> DB Connect 0 is busy !
+[2026/09/30 07:56:55] 28 >> Phong Than account enter world: account=lichnt result=0
+[2026/09/30 07:56:55] 29 >> DB Connect 0 is free !
+[2026/09/30 08:55:25] 30 >> DB Connect 0 is busy !
+[2026/09/30 08:55:25] 31 >> Phong Than account release: account=lichnt result=0
+[2026/09/30 08:55:28] 32 >> DB Connect 0 is free !

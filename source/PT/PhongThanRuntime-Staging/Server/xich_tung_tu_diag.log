@@ -1,0 +1,3 @@
+player=2 item=118 recipe=44 from=0 rule=44 chance=100 fee=10000 result=10
+player=2 item=145 recipe=44 from=1 rule=44 chance=100 fee=20000 result=10
+player=2 item=145 recipe=44 from=2 rule=44 chance=100 fee=30000 result=10

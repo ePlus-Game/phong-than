@@ -1,0 +1,42 @@
+
+*
+***** PhongThanAccountServer Start (@ 2026/09/30 20:35:39.982) >>>>>
+*
+
+[2026/09/30 20:35:46] 1 >> DB Connect 0 is busy !
+[2026/09/30 20:35:46] 2 >> Add Gateway(127.0.0.1 : 62376) Client 0 ! -- At 0
+[2026/09/30 20:35:46] 3 >> DB Connect 0 is free !
+[2026/09/30 20:35:46] 4 >> DB Connect 0 is busy !
+[2026/09/30 20:35:46] 5 >> Phong Than gateway cleared stale account locks
+[2026/09/30 20:35:46] 6 >> Phong Than gateway hello: gateway=anhviet reconnect=0 result=0 game=7
+[2026/09/30 20:35:46] 7 >> DB Connect 0 is free !
+[2026/09/30 20:37:19] 8 >> DB Connect 0 is busy !
+[2026/09/30 20:37:19] 9 >> Phong Than account authentication: account=lichnt purpose=0 result=0
+[2026/09/30 20:37:19] 10 >> DB Connect 0 is free !
+[2026/09/30 20:37:22] 11 >> DB Connect 0 is busy !
+[2026/09/30 20:37:22] 12 >> Phong Than account enter world: account=lichnt result=0
+[2026/09/30 20:37:25] 13 >> DB Connect 0 is free !
+[2026/10/01 07:42:49] 14 >> DB Connect 0 is busy !
+[2026/10/01 07:42:49] 15 >> Phong Than account release: account=lichnt result=0
+[2026/10/01 07:42:49] 16 >> DB Connect 0 is free !
+[2026/10/01 07:43:16] 17 >> DB Connect 0 is busy !
+[2026/10/01 07:43:16] 18 >> Phong Than account authentication: account=lichnt purpose=0 result=1
+[2026/10/01 07:43:19] 19 >> DB Connect 0 is free !
+[2026/10/01 07:43:28] 20 >> DB Connect 0 is busy !
+[2026/10/01 07:43:28] 21 >> Phong Than account authentication: account=lichnt purpose=0 result=0
+[2026/10/01 07:43:31] 22 >> DB Connect 0 is free !
+[2026/10/01 07:43:34] 23 >> DB Connect 0 is busy !
+[2026/10/01 07:43:34] 24 >> Phong Than account enter world: account=lichnt result=0
+[2026/10/01 07:43:34] 25 >> DB Connect 0 is free !
+[2026/10/01 07:46:34] 26 >> DB Connect 0 is busy !
+[2026/10/01 07:46:34] 27 >> Phong Than account release: account=lichnt result=0
+[2026/10/01 07:46:34] 28 >> DB Connect 0 is free !
+[2026/10/01 07:53:49] 29 >> DB Connect 0 is busy !
+[2026/10/01 07:53:49] 30 >> Phong Than account authentication: account=lichnt purpose=0 result=0
+[2026/10/01 07:53:49] 31 >> DB Connect 0 is free !
+[2026/10/01 07:53:52] 32 >> DB Connect 0 is busy !
+[2026/10/01 07:53:52] 33 >> Phong Than account enter world: account=lichnt result=0
+[2026/10/01 07:53:55] 34 >> DB Connect 0 is free !
+[2026/10/01 07:59:49] 35 >> DB Connect 0 is busy !
+[2026/10/01 07:59:49] 36 >> Phong Than account release: account=lichnt result=0
+[2026/10/01 07:59:49] 37 >> DB Connect 0 is free !
