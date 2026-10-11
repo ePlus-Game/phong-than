@@ -1,0 +1,47 @@
+Stasting Core.... Sat Oct  3 15:24:05 2026
+[ITEM][FATAL] itemversion.ini must select version 001
+[ITEM] unable to load MeleeWeapon.txt from active version -01
+[ITEM][FATAL] unable to load table index 0
+[ITEM] unable to load RangeWeapon.txt from active version -01
+[ITEM][FATAL] unable to load table index 1
+[ITEM] unable to load Armor.txt from active version -01
+[ITEM][FATAL] unable to load table index 2
+[ITEM] unable to load Helm.txt from active version -01
+[ITEM][FATAL] unable to load table index 3
+[ITEM] unable to load Boot.txt from active version -01
+[ITEM][FATAL] unable to load table index 4
+[ITEM] unable to load Belt.txt from active version -01
+[ITEM][FATAL] unable to load table index 5
+[ITEM] unable to load Amulet.txt from active version -01
+[ITEM][FATAL] unable to load table index 6
+[ITEM] unable to load Ring.txt from active version -01
+[ITEM][FATAL] unable to load table index 7
+[ITEM] unable to load Cuff.txt from active version -01
+[ITEM][FATAL] unable to load table index 8
+[ITEM] unable to load Pendant.txt from active version -01
+[ITEM][FATAL] unable to load table index 9
+[ITEM] unable to load Horse.txt from active version -01
+[ITEM][FATAL] unable to load table index 10
+[ITEM] unable to load material.txt from active version -01
+[ITEM][FATAL] unable to load table index 11
+[ITEM] unable to load questkey.txt from active version -01
+[ITEM][FATAL] unable to load table index 12
+[ITEM] unable to load magicscript.txt from active version -01
+[ITEM][FATAL] unable to load table index 13
+[ITEM] unable to load ibitem.txt from active version -01
+[ITEM][FATAL] unable to load table index 14
+[ITEM] unable to load TownPortal.txt from active version -01
+[ITEM][FATAL] unable to load table index 15
+[ITEM] unable to load potion.txt from active version -01
+[ITEM][FATAL] unable to load table index 16
+[ITEM] unable to load skillbook.txt from active version -01
+[ITEM][FATAL] unable to load table index 17
+[ITEM][FATAL] required tables loaded 0/18
+[CORE][FATAL] Item registry initialization failed.
+OK   CoreGetShell() = 0x00000000
+OK   FreeLibrary Represent3.dll
+OK   FreeLibrary Represent2.dll
+OK   FreeLibrary CoreClient.dll
+OK   FreeLibrary Engine.dll
+OK   FreeLibrary LuaLibDll.dll
+HARNESS DONE

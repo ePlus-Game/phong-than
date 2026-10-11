@@ -1,0 +1,17 @@
+--------------------Configuration: Rainbow - Win32 Release--------------------
+Compiling...
+ClientStage.cpp
+Linking...
+   Creating library Release/Rainbow.lib and object Release/Rainbow.exp
+A subdirectory or file ..\..\..\Output\Client\release\ already exists.
+        1 file(s) copied.
+        1 file(s) copied.
+        1 file(s) copied.
+        1 file(s) copied.
+A subdirectory or file ..\..\..\Output\Server\release\ already exists.
+        1 file(s) copied.
+        1 file(s) copied.
+        1 file(s) copied.
+        1 file(s) copied.
+
+Rainbow.dll - 0 error(s), 0 warning(s)

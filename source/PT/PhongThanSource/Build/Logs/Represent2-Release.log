@@ -1,0 +1,19 @@
+--------------------Configuration: Represent2 - Win32 Release--------------------
+Compiling...
+KRepresentShell2.cpp
+D:\Lam game phong than\PhongThanSource\Sources\Represent\Represent2\../../Engine/Src/KDInput.h(12) : warning C4005: 'DIRECTINPUT_VERSION' : macro redefinition
+        D:\Lam game phong than\PhongThanSource\Sources\Represent\Represent2\../../Engine/Src/KWin32.h(29) : see previous definition of 'DIRECTINPUT_VERSION'
+Linking...
+   Creating library Release/Represent2.lib and object Release/Represent2.exp
+A subdirectory or file ..\..\..\Output\Client\release\ already exists.
+        1 file(s) copied.
+        1 file(s) copied.
+        1 file(s) copied.
+        1 file(s) copied.
+        1 file(s) copied.
+        1 file(s) copied.
+A subdirectory or file ..\..\..\Output\Server\release\ already exists.
+        1 file(s) copied.
+        1 file(s) copied.
+
+Represent2.dll - 0 error(s), 1 warning(s)

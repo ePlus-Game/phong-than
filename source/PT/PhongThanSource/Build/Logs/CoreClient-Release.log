@@ -1,0 +1,16 @@
+--------------------Configuration: Core - Win32 Client Release--------------------
+Compiling...
+KItem.cpp
+Linking...
+   Creating library ClientRelease/CoreClient.lib and object ClientRelease/CoreClient.exp
+A subdirectory or file ..\..\Output\Client\release already exists.
+A subdirectory or file ..\..\lib\release already exists.
+        1 file(s) copied.
+        1 file(s) copied.
+        1 file(s) copied.
+        1 file(s) copied.
+        1 file(s) copied.
+        1 file(s) copied.
+        1 file(s) copied.
+
+CoreClient.dll - 0 error(s), 0 warning(s)
