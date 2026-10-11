@@ -33,6 +33,24 @@ class HardeningTests(unittest.TestCase):
         self.assertIn(b'fprintf(stderr, "%s", szerrmsg ? szerrmsg : "");', fixed)
         self.assertNotIn(b"fprintf(stderr, szerrmsg);", fixed)
 
+
+    def test_gateway_ip_is_extracted_from_host_port_string(self):
+        rel = "Sources/AccountServices/AccountServer/S3PDBSocketPool.cpp"
+        fixed = harden(rel, (ROOT / rel).read_bytes())
+        self.assertIn(b"inet_addr(ip)", fixed)
+        self.assertIn(b"ipLength >= 16", fixed)
+        self.assertNotIn(b"inet_addr(pInfo)", fixed)
+
+    def test_missing_modern_source_is_fatal_and_vc6_debug_paths_are_dynamic(self):
+        modern = "Build/Build-Modern.ps1"
+        vc6 = "Build/Build-PhongThan.ps1"
+        modern_fixed = harden(modern, (ROOT / modern).read_bytes())
+        vc6_fixed = harden(vc6, (ROOT / vc6).read_bytes())
+        self.assertIn(b'Errors = @("THIEU FILE: $src")', modern_fixed)
+        self.assertNotIn(b'Add-Content $log "THIEU FILE: $src"; continue', modern_fixed)
+        self.assertIn(b"$Configuration\\Engine.dll", vc6_fixed)
+        self.assertIn(b"$Configuration\\LuaLibDll.dll", vc6_fixed)
+
     def test_dry_run_and_external_copy_apply(self):
         with tempfile.TemporaryDirectory() as tmp:
             target = Path(tmp)

@@ -28,6 +28,8 @@ jobs:
             /CMakeLists.txt
             /source/PT/PhongThanSource/Sources/MultiServer/GameServer/GameServer.cpp
             /source/PT/PhongThanSource/Sources/AccountServices/AccountServer/S3PDBSocketPool.cpp
+            /source/PT/PhongThanSource/Build/Build-Modern.ps1
+            /source/PT/PhongThanSource/Build/Build-PhongThan.ps1
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -77,6 +79,8 @@ jobs:
             /CMakeLists.txt
             /source/PT/PhongThanSource/Sources/MultiServer/GameServer/GameServer.cpp
             /source/PT/PhongThanSource/Sources/AccountServices/AccountServer/S3PDBSocketPool.cpp
+            /source/PT/PhongThanSource/Build/Build-Modern.ps1
+            /source/PT/PhongThanSource/Build/Build-PhongThan.ps1
       - name: Preflight original VC6 build matrix (Release and Debug, no MSDEV)
         shell: pwsh
         run: |

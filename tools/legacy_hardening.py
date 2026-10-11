@@ -54,6 +54,44 @@ PATCHES = {
 }
 
 
+# Extra fixes are applied only to the build COPY, not the original ZIP tree.
+PATCHES["Sources/AccountServices/AccountServer/S3PDBSocketPool.cpp"] += (
+    (
+        b"\tunsigned long Address = inet_addr(pInfo);\n"
+        b"\tshort Port = (short)(unsigned short)port;",
+        b"\tconst size_t ipLength = (size_t)(colon - pInfo);\n"
+        b"\tif (ipLength == 0 || ipLength >= 16)\n"
+        b"\t\treturn FALSE;\n"
+        b"\tchar ip[16];\n"
+        b"\tmemcpy(ip, pInfo, ipLength);\n"
+        b"\tip[ipLength] = '\\0';\n"
+        b"\tunsigned long Address = inet_addr(ip);\n"
+        b"\tif (Address == INADDR_NONE)\n"
+        b"\t\treturn FALSE;\n"
+        b"\tshort Port = (short)(unsigned short)port;",
+    ),
+)
+PATCHES["Build/Build-Modern.ps1"] = (
+    (
+        b'if (-not (Test-Path -LiteralPath $src)) { Add-Content $log "THIEU FILE: $src"; continue }',
+        b'if (-not (Test-Path -LiteralPath $src)) { Add-Content $log "THIEU FILE: $src"; return @{ Ok = $false; Log = $log; Errors = @("THIEU FILE: $src") } }',
+    ),
+)
+PATCHES["Build/Build-PhongThan.ps1"] = tuple(
+    (
+        ("Path='Sources\\{0}\\Release\\{1}';Role='{2}'".format(folder, filename, role)).encode("ascii"),
+        ("Path=\"Sources\\{0}\\$Configuration\\{1}\";Role='{2}'".format(folder, filename, role)).encode("ascii"),
+    )
+    for folder, filename, role in (
+        ("Engine", "Engine.dll", "Client"),
+        ("Engine", "Engine.dll", "Server"),
+        ("Library\\LuaLib", "LuaLibDll.dll", "Client"),
+        ("Library\\LuaLib", "LuaLibDll.dll", "Server"),
+    )
+)
+
+
+
 def harden(relative: str, original: bytes) -> bytes:
     """Patch only matching byte spans, preserving ALL untouched original bytes.
 
