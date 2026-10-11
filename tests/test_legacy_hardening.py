@@ -2,7 +2,7 @@
 import tempfile
 import unittest
 from pathlib import Path
-from tools.legacy_hardening import PATCHES, harden, stage
+from tools.legacy_hardening import PATCHES, ADDITIONAL_FILES, harden, stage
 
 ROOT = Path(__file__).resolve().parents[1] / "PhongThanSource"
 
@@ -23,7 +23,7 @@ class HardeningTests(unittest.TestCase):
         self.assertIn(b"pSend->Size > MAX_PATH", fixed)
         self.assertIn(b"pSend->Size < sizeof(KAccountHead)", fixed)
         self.assertIn(b"if (pInfo == NULL)", fixed)
-        self.assertIn(b"strchr(pInfo, ':')", fixed)
+        self.assertIn(b"ParseGatewayEndpoint(pInfo, &endpoint)", fixed)
         self.assertNotIn(b"while(*(pInfo + offset) != ':')", fixed)
         self.assertNotIn(b"assert(pSend->Size < MAX_PATH)", fixed)
 
@@ -37,8 +37,8 @@ class HardeningTests(unittest.TestCase):
     def test_gateway_ip_is_extracted_from_host_port_string(self):
         rel = "Sources/AccountServices/AccountServer/S3PDBSocketPool.cpp"
         fixed = harden(rel, (ROOT / rel).read_bytes())
-        self.assertIn(b"inet_addr(ip)", fixed)
-        self.assertIn(b"ipLength >= 16", fixed)
+        self.assertIn(b"inet_addr(endpoint.ipv4)", fixed)
+        self.assertIn(b"Address == INADDR_NONE", fixed)
         self.assertNotIn(b"inet_addr(pInfo)", fixed)
 
     def test_missing_modern_source_is_fatal_and_vc6_debug_paths_are_dynamic(self):
@@ -59,11 +59,42 @@ class HardeningTests(unittest.TestCase):
                 dest.parent.mkdir(parents=True, exist_ok=True)
                 dest.write_bytes((ROOT / rel).read_bytes())
             before = [(target / rel).read_bytes() for rel in PATCHES]
-            self.assertEqual(len(stage(target, apply=False)), len(PATCHES))
+            self.assertEqual(len(stage(target, apply=False)), len(PATCHES) + len(ADDITIONAL_FILES))
             self.assertEqual(before, [(target / rel).read_bytes() for rel in PATCHES])
-            self.assertEqual(len(stage(target, apply=True)), len(PATCHES))
-            self.assertEqual(len(stage(target, apply=True)), len(PATCHES))
+            self.assertEqual(len(stage(target, apply=True)), len(PATCHES) + len(ADDITIONAL_FILES))
+            self.assertEqual(len(stage(target, apply=True)), len(PATCHES) + len(ADDITIONAL_FILES))
             self.assertNotEqual(before, [(target / rel).read_bytes() for rel in PATCHES])
+
+    def test_external_helper_is_installed_and_idempotent(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            target = Path(tmp)
+            for rel in PATCHES:
+                dest = target / rel
+                dest.parent.mkdir(parents=True, exist_ok=True)
+                dest.write_bytes((ROOT / rel).read_bytes())
+            helper = target / next(iter(ADDITIONAL_FILES))
+            self.assertFalse(helper.exists())
+            stage(target, apply=False)
+            self.assertFalse(helper.exists())
+            stage(target, apply=True)
+            self.assertIn(b"ParseGatewayEndpoint", helper.read_bytes())
+            stage(target, apply=True)
+
+    def test_existing_conflicting_helper_aborts_without_changes(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            target = Path(tmp)
+            for rel in PATCHES:
+                dest = target / rel
+                dest.parent.mkdir(parents=True, exist_ok=True)
+                dest.write_bytes((ROOT / rel).read_bytes())
+            helper = target / next(iter(ADDITIONAL_FILES))
+            helper.parent.mkdir(parents=True, exist_ok=True)
+            helper.write_bytes(b"// conflicting local helper")
+            first = target / next(iter(PATCHES))
+            original = first.read_bytes()
+            with self.assertRaisesRegex(ValueError, "Conflicting helper"):
+                stage(target, apply=True)
+            self.assertEqual(original, first.read_bytes())
 
     def test_refuses_to_modify_archived_checkout(self):
         with self.assertRaisesRegex(ValueError, "Refusing"):
