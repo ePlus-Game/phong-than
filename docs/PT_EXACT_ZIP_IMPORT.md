@@ -1,25 +1,23 @@
-# Exact-byte import of the complete original PT.zip
+# Full PT.zip import — ordinary Git chunks, no LFS
 
 ## Goal
-Mirror **every file** from the original `PT.zip` into `source/PT/` on `ePlus-Game/pt`, not just source-code extensions. Verify byte-for-byte contents before accepting completion. No GitHub Releases and no intentional exclusion of files or folders.
+Reconstruct the original **99,352 files** from `PT.zip`, byte-identical. This project does not use GitHub Releases or Git LFS.
 
-## Original inventory
-- `PT.zip`: 99,352 file entries, about 11.98 GiB uncompressed (based on the ZIP manifest); directory entries are recorded separately.
-- 16 `.pak` files each >=100 MiB; GitHub rejects ordinary Git blobs >=100 MiB. Use Git LFS for these specific 16 paths. The original bytes can be recovered with `git lfs pull`; plain Git history retains LFS pointer objects.
-- 2,766 entries in nested `PT/PhongThanSource/.git/`; the byte contents of each entry are packaged in `source/PT/PhongThanSource/__historical_git__/original-dot-git.zip` because Git cannot track an embedded `.git` directory normally. The notebook verifies the SHA-256 of each original `.git` member inside that archive.
+## Import map
+- Files smaller than **90 MiB** are committed at their original relative path under `source/PT/`; the expected Git blob SHA-1 is computed from the exact original bytes, preventing CRLF/LF or encoding changes.
+- **16 large PAK files** (approximately **7.26 GiB**) become **102 Git blobs** of at most **80 MiB** each, stored at `source/PT/<original-name>.pak.parts/part-0000.bin`, etc. This is required because GitHub rejects an individual Git blob of at least 100 MiB.
+- After clone, run `python source/PT_RESTORE_SPLIT_FILES.py --repo-root .` to reconstruct each large PAK at its original location. The script validates the original SHA-256 and byte count, and fails if a chunk is missing or corrupted.
+- **2,766 historical `.git` member files** cannot be staged as nested Git repository internals; their unchanged bytes are preserved in `source/PT/PhongThanSource/__historical_git__/original-dot-git.zip`, individually SHA-256 verified. Extract them when restoring the historical nested `.git`.
+- Original empty directories are stored in `source/PT_EXACT_ZIP_DIRECTORIES.txt`.
 
 ## Verification
-- `source/PT_EXACT_ZIP_MANIFEST.csv`: one record per original ZIP file with original name, Git path or archive path, original size, SHA-256 and storage type.
-- `source/PT_EXACT_ZIP_DIRECTORIES.txt`: every original ZIP directory entry, including empty directories which Git cannot directly track.
-- For non-LFS files, compare the exact original Git blob SHA-1 (`blob <size>\0<data>`) with the index entry, bypassing any line-ending conversions.
-- For Git LFS, verify the Git pointer contains the original file's SHA-256 and size, and that LFS upload succeeds before reporting completion.
-- All 99,352 files must have a matching Git/LFS or archived `.git` representation; an unhandled failure aborts, never silently skips.
-- Report in `MyDrive/PT_Git_Staging/PT_Exact_Zip_Complete_Report.json`, with `complete: true` only after all comparisons and the remote branch SHA succeed.
+- `source/PT_EXACT_ZIP_MANIFEST.csv` records every original ZIP member's path, original byte length and SHA-256, plus whether the bytes are stored as a normal Git blob, split parts, or historical ZIP archive.
+- Every Git blob/index SHA-1 is compared to the exact ZIP bytes or chunk bytes. Original full-file SHA-256 is verified as split chunks are written.
+- All 99,352 files must be mapped, with **zero missing items** and **zero mismatches**; a failed push or hash mismatch stops, never silently excludes the item.
+- The original `PT.zip` remains unchanged on Drive. The report is `MyDrive/PT_Git_Staging/PT_Exact_Zip_Complete_Report.json`. Only a report with `complete: true`, `missing_paths: 0`, `byte_mismatch: 0` and matching remote commit permits calling the import complete.
 
-## Execute
-Run `PT_Exact_Unzipped_Colab.ipynb` from Google Drive with `Runtime → Run all`. It creates/resumes branch `import/pt-exact-unzipped-tree`. If interrupted, rerun to reverify and skip hashes already committed on the branch.
+## Run
+Use the Colab notebook `PT_Exact_Unzipped_Chunk_Push.ipynb`. Its target branch is `import/pt-exact-unzipped-tree` (Draft PR #13). It can resume by checking committed Git blob hashes. For safety, keep the PR as draft until real ZIP validation finishes.
 
-## Important restrictions and security
-Repo `ePlus-Game/pt` is PUBLIC, and the full ZIP contains account database backups, logs, original code and third-party resources. Do not authorize public push unless distribution rights and any personal data have been reviewed. The notebook stops at an explicit confirmation when the repository is public. LFS bandwidth/storage quotas may also prevent a full upload.
-
-An ordinary Git clone without LFS retrieval gives pointer files for 16 assets. Run `git lfs pull` to restore those bytes. A Git checkout will not restore historical nested `.git` entries or empty directories automatically; unpack the historical archive and recreate empty directories using the inventory.
+## Important
+`ePlus-Game/pt` is **PUBLIC**. The ZIP may contain account databases, personal data, legacy secrets and third-party materials. Do not approve public disclosure without checking rights and sensitive information; moving the repo private before upload is safer. GitHub may also reject the overall ~12 GiB repository on performance/size grounds despite each individual blob being <100 MB.
