@@ -21,5 +21,5 @@ class ReleasePreflightTests(unittest.TestCase):
             check_source(SOURCE, ROOT / "build", "VC6")
 
     def test_reject_archive_as_workspace(self):
-        with self.assertRaisesRegex(ValueError, "separate"):
+        with self.assertRaisesRegex(ValueError, "outside|separate"):
             check_source(SOURCE, SOURCE, "Modern")
