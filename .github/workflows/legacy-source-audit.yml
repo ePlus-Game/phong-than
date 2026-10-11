@@ -20,6 +20,7 @@ jobs:
           sparse-checkout: |
             /tools/
             /tests/
+            /overlays/
             /PhongThanSource/Sources/MultiServer/GameServer/GameServer.cpp
             /PhongThanSource/Sources/AccountServices/AccountServer/S3PDBSocketPool.cpp
             /PhongThanSource/Build/Build-Modern.ps1
@@ -31,6 +32,10 @@ jobs:
           python-version: "3.12"
       - name: Test recovery tooling and original patch contexts
         run: python -m unittest discover -s tests -v
+      - name: Compile and run portable C++98 endpoint parser tests
+        run: |
+          g++ -std=c++98 -Wall -Wextra -Werror -pedantic tests/cpp/test_gateway_endpoint.cpp -o "$RUNNER_TEMP/pt-gateway-test"
+          "$RUNNER_TEMP/pt-gateway-test"
       - name: Validate separate build workspace preflight
         run: |
           python -m tools.release_preflight \
