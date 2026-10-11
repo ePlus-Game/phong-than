@@ -9,6 +9,7 @@ from zipfile import ZipFile, ZipInfo, ZIP_DEFLATED
 
 TOOLKIT_FILES = (
     "tools/legacy_hardening.py",
+    "overlays/legacy/GatewayEndpointParser.h",
     "tools/release_preflight.py",
     "tools/Build-PatchedGame.ps1",
     "tools/audit_sensitive_paths.py",
