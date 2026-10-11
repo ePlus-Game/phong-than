@@ -1,0 +1,175 @@
+9610734 cmd baseline 0
+11228187 cmd baseline 0
+11255421 cmd 5 (command 1), auto mode 0
+11255421 task 2613 received 1089910191 (was 0)
+11255421 task 2614 received 0 (was 0)
+11255421 task 2619 received 0 (was 0)
+11255421 start: task 2613 = 1089910191, task 2614 = 0, task 2619 = 0, level 34
+11255421   skill 3 level 1 kind 1 cost 1
+11255421   skill 4 level 1 kind 1 cost 2
+11255421   skill 5 level 1 kind 1 cost 3
+11255421   skill 6 level 1 kind 1 cost 4
+11255421   skill 8 level 1 kind 1 cost 6
+11255421   skill 10 level 1 kind 1 cost 9
+11255421   skill 11 level 1 kind 1 cost 8
+11255421   skill 13 level 1 kind 1 cost 9
+11255421   skill 15 level 1 kind 1 cost 11
+11255421   skill 16 level 1 kind 1 cost 13
+11255421   skill 18 level 1 kind 1 cost 30
+11255421   skill 20 level 1 kind 1 cost 16
+11255421   skill 21 level 1 kind 1 cost 19
+11255421   skill 23 level 1 kind 1 cost 33
+11255421   skill 24 level 1 kind 1 cost 22
+11255421   skill 25 level 1 kind 1 cost 28
+11255421   skill 26 level 1 kind 1 cost 33
+11255421   rotation list 17 skills (from set 1), mana 688/688
+11331859 cmd 9 (command 1), auto mode 0
+11331859 task 2613 received 1088857262 (was 1089910191)
+11331859 start: task 2613 = 1088857262, task 2614 = 0, task 2619 = 0, level 35
+11331859   skill 4 level 1 kind 1 cost 2
+11331859   skill 5 level 1 kind 1 cost 3
+11331875   skill 6 level 1 kind 1 cost 4
+11331875   skill 8 level 1 kind 1 cost 6
+11331875   skill 10 level 1 kind 1 cost 9
+11331875   skill 13 level 1 kind 1 cost 9
+11331875   skill 16 level 1 kind 1 cost 13
+11331875   skill 18 level 1 kind 1 cost 30
+11331875   skill 20 level 1 kind 1 cost 16
+11331875   skill 21 level 1 kind 1 cost 19
+11331875   skill 24 level 1 kind 1 cost 22
+11331875   skill 25 level 1 kind 1 cost 28
+11331875   skill 26 level 1 kind 1 cost 33
+11331875   rotation list 13 skills (from set 1), mana 690/690
+11352984 cmd 13 (command 1), auto mode 0
+11352984 task 2613 received 1087673741 (was 1088857262)
+11352984 start: task 2613 = 1087673741, task 2614 = 0, task 2619 = 0, level 36
+11352984   skill 3 level 1 kind 1 cost 1
+11352984   skill 5 level 1 kind 1 cost 3
+11352984   skill 6 level 1 kind 1 cost 4
+11352984   skill 10 level 1 kind 1 cost 9
+11352984   skill 11 level 1 kind 1 cost 8
+11352984   skill 13 level 1 kind 1 cost 9
+11352984   skill 15 level 1 kind 1 cost 11
+11352984   skill 18 level 1 kind 1 cost 30
+11352984   skill 21 level 1 kind 1 cost 19
+11352984   skill 23 level 1 kind 1 cost 33
+11352984   skill 25 level 1 kind 1 cost 28
+11353000   skill 26 level 1 kind 1 cost 33
+11353000   rotation list 12 skills (from set 1), mana 692/692
+11377093 cmd 17 (command 1), auto mode 0
+11377093 task 2613 received 1089770893 (was 1087673741)
+11377093 start: task 2613 = 1089770893, task 2614 = 0, task 2619 = 0, level 36
+11377093   skill 3 level 1 kind 1 cost 1
+11377093   skill 5 level 1 kind 1 cost 3
+11377093   skill 6 level 1 kind 1 cost 4
+11377093   skill 10 level 1 kind 1 cost 9
+11377093   skill 11 level 1 kind 1 cost 8
+11377093   skill 13 level 1 kind 1 cost 9
+11377093   skill 15 level 1 kind 1 cost 11
+11377093   skill 18 level 1 kind 1 cost 30
+11377093   skill 21 level 1 kind 1 cost 19
+11377093   skill 23 level 1 kind 1 cost 33
+11377093   skill 24 level 1 kind 1 cost 22
+11377093   skill 25 level 1 kind 1 cost 28
+11377093   skill 26 level 1 kind 1 cost 33
+11377093   rotation list 13 skills (from set 1), mana 692/692
+11393109 cmd 21 (command 1), auto mode 0
+11393109 start: task 2613 = 1089770893, task 2614 = 0, task 2619 = 0, level 36
+11393109   skill 3 level 1 kind 1 cost 1
+11393109   skill 5 level 1 kind 1 cost 3
+11393109   skill 6 level 1 kind 1 cost 4
+11393109   skill 10 level 1 kind 1 cost 9
+11393109   skill 11 level 1 kind 1 cost 8
+11393109   skill 13 level 1 kind 1 cost 9
+11393109   skill 15 level 1 kind 1 cost 11
+11393109   skill 18 level 1 kind 1 cost 30
+11393109   skill 21 level 1 kind 1 cost 19
+11393109   skill 23 level 1 kind 1 cost 33
+11393109   skill 24 level 1 kind 1 cost 22
+11393109   skill 25 level 1 kind 1 cost 28
+11393109   skill 26 level 1 kind 1 cost 33
+11393109   rotation list 13 skills (from set 1), mana 692/692
+11407671 cmd 25 (command 1), auto mode 0
+11407671 task 2613 received 1090360781 (was 1089770893)
+11407671 start: task 2613 = 1090360781, task 2614 = 0, task 2619 = 0, level 37
+11407671   skill 3 level 1 kind 1 cost 1
+11407671   skill 5 level 1 kind 1 cost 3
+11407671   skill 6 level 1 kind 1 cost 4
+11407671   skill 9 level 1 kind 2 cost 33
+11407671   skill 10 level 1 kind 1 cost 9
+11407671   skill 11 level 1 kind 1 cost 8
+11407671   skill 13 level 1 kind 1 cost 9
+11407671   skill 15 level 1 kind 1 cost 11
+11407671   skill 18 level 1 kind 1 cost 30
+11407671   skill 19 level 1 kind 2 cost 34
+11407671   skill 21 level 1 kind 1 cost 19
+11407671   skill 22 level 1 kind 2 cost 42
+11407671   skill 23 level 1 kind 1 cost 33
+11407671   skill 24 level 1 kind 1 cost 22
+11407671   skill 25 level 1 kind 1 cost 28
+11407671   skill 26 level 1 kind 1 cost 33
+11407671   rotation list 13 skills (from set 1), mana 694/694
+11413890 cmd 29 (command 1), auto mode 0
+11413890 task 2613 received 1089447150 (was 1090360781)
+11413890 start: task 2613 = 1089447150, task 2614 = 0, task 2619 = 0, level 37
+11413890   skill 4 level 1 kind 1 cost 2
+11413890   skill 5 level 1 kind 1 cost 3
+11413890   skill 6 level 1 kind 1 cost 4
+11413890   skill 8 level 1 kind 1 cost 6
+11413890   skill 9 level 1 kind 2 cost 33
+11413890   skill 10 level 1 kind 1 cost 9
+11413890   skill 13 level 1 kind 1 cost 9
+11413890   skill 16 level 1 kind 1 cost 13
+11413890   skill 18 level 1 kind 1 cost 30
+11413890   skill 19 level 1 kind 2 cost 34
+11413890   skill 20 level 1 kind 1 cost 16
+11413890   skill 21 level 1 kind 1 cost 19
+11413890   skill 22 level 1 kind 2 cost 42
+11413890   skill 24 level 1 kind 1 cost 22
+11413890   skill 25 level 1 kind 1 cost 28
+11413890   skill 26 level 1 kind 1 cost 33
+11413890   rotation list 13 skills (from set 1), mana 597/694
+11486390 no mana for skill 18: cost 30, mana 14/696
+11486390 no mana for skill 20: cost 16, mana 14/696
+11486390 no mana for skill 21: cost 19, mana 14/696
+11486390 no mana for skill 24: cost 22, mana 14/696
+11486390 no mana for skill 25: cost 28, mana 14/696
+11486390 no mana for skill 26: cost 33, mana 14/696
+11487140 no mana for skill 16: cost 13, mana 12/696
+11487828 no mana for skill 6: cost 4, mana 3/696
+11487828 no mana for skill 8: cost 6, mana 3/696
+11487828 no mana for skill 10: cost 9, mana 3/696
+11487828 no mana for skill 13: cost 9, mana 3/696
+11488546 no mana for skill 4: cost 2, mana 0/696
+11488546 no mana for skill 5: cost 3, mana 0/696
+11892093 cmd 33 (command 1), auto mode 0
+11892093 task 2613 received 1088263629 (was 1089447150)
+11892093 start: task 2613 = 1088263629, task 2614 = 0, task 2619 = 0, level 43
+11892093   skill 3 level 1 kind 1 cost 1
+11892093   skill 5 level 1 kind 1 cost 3
+11892093   skill 6 level 1 kind 1 cost 4
+11892093   skill 9 level 1 kind 2 cost 33
+11892093   skill 10 level 1 kind 1 cost 9
+11892093   skill 11 level 1 kind 1 cost 8
+11892093   skill 13 level 1 kind 1 cost 9
+11892093   skill 15 level 1 kind 1 cost 11
+11892093   skill 18 level 1 kind 1 cost 30
+11892093   skill 19 level 1 kind 2 cost 34
+11892093   skill 21 level 1 kind 1 cost 19
+11892093   skill 22 level 1 kind 2 cost 42
+11892093   skill 23 level 1 kind 1 cost 33
+11892093   skill 25 level 1 kind 1 cost 28
+11892093   skill 26 level 1 kind 1 cost 33
+11892109   rotation list 12 skills (from set 1), mana 706/706
+21131703 no mana for skill 10: cost 9, mana 6/710
+21131703 no mana for skill 11: cost 8, mana 6/710
+21131703 no mana for skill 13: cost 9, mana 6/710
+21131703 no mana for skill 15: cost 11, mana 6/710
+21131703 no mana for skill 18: cost 30, mana 6/710
+21131703 no mana for skill 21: cost 19, mana 6/710
+21131703 no mana for skill 23: cost 33, mana 6/710
+21131703 no mana for skill 25: cost 28, mana 6/710
+21131703 no mana for skill 26: cost 33, mana 6/710
+21132484 no mana for skill 5: cost 3, mana 2/710
+21132484 no mana for skill 6: cost 4, mana 2/710
+21133812 no mana for skill 3: cost 1, mana 0/710

@@ -1,0 +1,16 @@
+Da cai ptfix.pak moi (ban cu luu o E:\VL\Phong than\PT\_backup\ptfix-20260930-114439)
+Da va: E:\VL\Phong than\PT\PhongThanRuntime-Staging\Client\CoreClient.dll
+Da va: E:\VL\Phong than\PT\PhongThanSource\Output\Client\CoreClient.dll
+Da va: E:\VL\Phong than\PT\PhongThanRuntime-Staging\Client\CoreClient.dll
+Da va: E:\VL\Phong than\PT\PhongThanSource\Output\Client\CoreClient.dll
+Da va: E:\VL\Phong than\PT\PhongThanRuntime-Staging\Client\Represent2.dll
+Da va: E:\VL\Phong than\PT\PhongThanSource\Output\Client\Represent2.dll
+
+Service                      Pid Ports  Status   
+-------                      --- -----  ------   
+Goddess.exe                53888 {5001} LISTENING
+PhongThanAccountServer.exe 59852 {5002} LISTENING
+PhongThanRelay.exe         19668 {5003} LISTENING
+Bishop.exe                 29004 {56... LISTENING
+GameServer.exe             50500 {6666} LISTENING
+PhongThan world            50500        READY_...

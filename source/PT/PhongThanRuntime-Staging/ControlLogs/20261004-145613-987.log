@@ -1,0 +1,31 @@
+Bo qua (khac phien ban): E:\VL\Phong than\PT\PhongThanRuntime-Staging\Client\CoreClient.dll
+Bo qua (khac phien ban): E:\VL\Phong than\PT\PhongThanSource\Output\Client\CoreClient.dll
+Bo qua (khac phien ban): E:\VL\Phong than\PT\PhongThanRuntime-Staging\Client\CoreClient.dll
+Bo qua (khac phien ban): E:\VL\Phong than\PT\PhongThanSource\Output\Client\CoreClient.dll
+Bo qua (khac phien ban): E:\VL\Phong than\PT\PhongThanRuntime-Staging\Client\Represent2.dll
+Bo qua (khac phien ban): E:\VL\Phong than\PT\PhongThanSource\Output\Client\Represent2.dll
+Bo qua (khac phien ban): E:\VL\Phong than\PT\PhongThanRuntime-Staging\Server\CoreServer.dll
+Bo qua (khac phien ban): E:\VL\Phong than\PT\PhongThanSource\Output\Server\CoreServer.dll
+Bo qua (khac phien ban): E:\VL\Phong than\PT\PhongThanRuntime-Staging\Server\CoreServer.dll
+Bo qua (khac phien ban): E:\VL\Phong than\PT\PhongThanSource\Output\Server\CoreServer.dll
+Bo qua (khac phien ban): E:\VL\Phong than\PT\PhongThanRuntime-Staging\Client\CoreClient.dll
+Bo qua (khac phien ban): E:\VL\Phong than\PT\PhongThanSource\Output\Client\CoreClient.dll
+Bo qua (khac phien ban): E:\VL\Phong than\PT\PhongThanRuntime-Staging\Client\CoreClient.dll
+Bo qua (khac phien ban): E:\VL\Phong than\PT\PhongThanSource\Output\Client\CoreClient.dll
+Bo qua (khac phien ban): E:\VL\Phong than\PT\PhongThanRuntime-Staging\Server\CoreServer.dll
+Bo qua (khac phien ban): E:\VL\Phong than\PT\PhongThanSource\Output\Server\CoreServer.dll
+Bo qua (khac phien ban): E:\VL\Phong than\PT\PhongThanRuntime-Staging\Client\CoreClient.dll
+Bo qua (khac phien ban): E:\VL\Phong than\PT\PhongThanSource\Output\Client\CoreClient.dll
+Bo qua (khac phien ban): E:\VL\Phong than\PT\PhongThanRuntime-Staging\Client\CoreClient.dll
+Bo qua (khac phien ban): E:\VL\Phong than\PT\PhongThanSource\Output\Client\CoreClient.dll
+Bo qua (khac phien ban): E:\VL\Phong than\PT\PhongThanRuntime-Staging\Server\CoreServer.dll
+Bo qua (khac phien ban): E:\VL\Phong than\PT\PhongThanSource\Output\Server\CoreServer.dll
+
+Service                      Pid Ports  Status   
+-------                      --- -----  ------   
+Goddess.exe                43672 {5001} LISTENING
+PhongThanAccountServer.exe 27780 {5002} LISTENING
+PhongThanRelay.exe         40280 {5003} LISTENING
+Bishop.exe                 52144 {56... LISTENING
+GameServer.exe             54964 {6666} LISTENING
+PhongThan world            54964        READY_...

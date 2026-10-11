@@ -1,0 +1,19 @@
+
+*
+***** PhongThanAccountServer Start (@ 2026/09/06 03:30:59.677) >>>>>
+*
+
+[2026/09/06 03:31:05] 1 >> DB Connect 0 is busy !
+[2026/09/06 03:31:05] 2 >> Add Gateway(127.0.0.1 : 52968) Client 0 ! -- At 0
+[2026/09/06 03:31:05] 3 >> DB Connect 0 is free !
+[2026/09/06 03:31:05] 4 >> DB Connect 0 is busy !
+[2026/09/06 03:31:05] 5 >> Phong Than gateway cleared stale account locks
+[2026/09/06 03:31:05] 6 >> Phong Than gateway hello: gateway=anhviet reconnect=0 result=0 game=7
+[2026/09/06 03:31:05] 7 >> DB Connect 0 is free !
+[2026/09/06 03:31:17] 8 >> DB Connect 0 is busy !
+[2026/09/06 03:31:17] 9 >> Phong Than account authentication: account=123456 purpose=0 result=0
+[2026/09/06 03:31:17] 10 >> Phong Than account enter world: account=123456 result=0
+[2026/09/06 03:31:20] 11 >> DB Connect 0 is free !
+[2026/09/06 03:31:20] 12 >> DB Connect 0 is busy !
+[2026/09/06 03:31:20] 13 >> Phong Than account release: account=123456 result=0
+[2026/09/06 03:31:20] 14 >> DB Connect 0 is free !

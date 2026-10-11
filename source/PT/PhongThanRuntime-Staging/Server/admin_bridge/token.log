@@ -1,0 +1,58 @@
+2026-10-03 20:05:00	bikip	use skill=452 prof=2 lv=11 have=-1
+2026-10-03 20:13:11	bikip	use skill=451 prof=2 lv=12 have=-1
+2026-10-03 20:16:56	bikip	craft fail skill=453
+2026-10-03 20:17:13	bikip	craft fail skill=453
+2026-10-03 20:17:36	bikip	craft fail skill=453
+2026-10-03 20:17:43	bikip	craft ok skill=453
+2026-10-03 20:18:11	bikip	craft ok skill=454
+2026-10-03 20:19:54	huydo	menu fight=0 task=0
+2026-10-03 20:19:57	huydo	PTHD_Destroy fight=0 task=0
+2026-10-03 20:20:00	huydo	menu fight=0 task=0
+2026-10-03 20:20:04	huydo	PTHD_Repair fight=0 task=0
+2026-10-03 20:20:08	huydo	menu fight=0 task=0
+2026-10-03 20:20:10	huydo	PTHD_Sell fight=0 task=0
+2026-10-03 20:20:10	huydo	after Sale fight=0 fight=0 task=0
+2026-10-03 20:23:19	huydo	menu fight=0 task=0
+2026-10-03 20:23:20	huydo	PTHD_Sell fight=0 task=0
+2026-10-03 20:23:20	huydo	after Sale fight=0 fight=0 task=0
+2026-10-03 20:23:43	bikip	craft ok skill=455
+2026-10-03 20:23:57	bikip	craft fail skill=456
+2026-10-03 20:24:07	bikip	craft fail skill=456
+2026-10-03 20:24:16	bikip	craft fail skill=456
+2026-10-03 20:24:25	bikip	craft fail skill=456
+2026-10-03 20:24:32	bikip	craft fail skill=456
+2026-10-03 20:24:39	bikip	craft ok skill=456
+2026-10-03 20:28:03	huydo	menu fight=0 task=0
+2026-10-03 20:28:05	huydo	PTHD_Sell fight=0 task=0
+2026-10-03 20:28:05	huydo	after Sale fight=0 fight=0 task=0
+2026-10-03 20:41:25	huydo	menu fight=1 task=0
+2026-10-03 20:41:27	huydo	PTHD_Sell fight=1 task=0
+2026-10-03 20:41:27	huydo	after Sale fight=0 fight=0 task=1
+2026-10-03 20:42:44	huydo	menu fight=0 task=1
+2026-10-03 20:42:46	huydo	PTHD_Repair fight=0 task=1
+2026-10-03 20:43:18	bikip	use skill=451 prof=2 lv=15 have=-1
+2026-10-03 20:43:18	bikip	learned skill=451 level=1
+2026-10-03 20:43:23	bikip	use skill=452 prof=2 lv=15 have=-1
+2026-10-04 14:10:18	bikip	use skill=452 prof=2 lv=55 have=-1
+2026-10-04 14:10:18	bikip	learned skill=452 level=1
+2026-10-04 14:10:22	bikip	use skill=453 prof=2 lv=55 have=-1
+2026-10-04 14:10:22	bikip	learned skill=453 level=1
+2026-10-04 14:10:25	bikip	use skill=454 prof=2 lv=55 have=-1
+2026-10-04 14:10:25	bikip	learned skill=454 level=1
+2026-10-04 14:10:29	bikip	use skill=455 prof=2 lv=55 have=-1
+2026-10-04 14:10:29	bikip	learned skill=455 level=1
+2026-10-04 14:10:32	bikip	use skill=456 prof=2 lv=55 have=-1
+2026-10-04 15:35:55	bikip	craft fail skill=456
+2026-10-04 15:36:53	bikip	craft fail skill=457
+2026-10-04 15:37:05	bikip	craft fail skill=457
+2026-10-04 15:37:16	bikip	craft fail skill=457
+2026-10-04 15:37:30	bikip	craft fail skill=457
+2026-10-04 15:37:35	bikip	convert n=0 left=0
+2026-10-04 15:37:47	bikip	craft fail skill=457
+2026-10-04 15:38:42	bikip	craft fail skill=457
+2026-10-04 15:39:35	bikip	craft fail skill=457
+2026-10-04 16:28:43	bikip	use skill=456 prof=2 lv=90 have=10
+2026-10-04 16:39:09	bikip	use skill=456 prof=2 lv=120 have=10
+2026-10-04 17:13:28	huydo	menu fight=1 task=1
+2026-10-04 17:13:29	huydo	PTHD_Sell fight=1 task=1
+2026-10-04 17:13:29	huydo	after Sale fight=0 fight=0 task=1
