@@ -38,25 +38,17 @@ PATCHES = {
             b"\tif (m_pServer == NULL)\n"
             b"\t\treturn FALSE;\n"
             b"\tconst char* pInfo = m_pServer->GetClientInfo(uID);\n"
-            b"\tif (pInfo == NULL)\n"
+            b"\tPtRecovery::GatewayEndpoint endpoint;\n"
+            b"\tif (!PtRecovery::ParseGatewayEndpoint(pInfo, &endpoint))\n"
             b"\t\treturn FALSE;\n"
-            b"\tconst char* colon = strchr(pInfo, ':');\n"
-            b"\tif (colon == NULL)\n"
-            b"\t\treturn FALSE;\n"
-            b"\tchar* endPort = NULL;\n"
-            b"\tunsigned long port = strtoul(colon + 1, &endPort, 10);\n"
-            b"\tif (endPort == colon + 1 || *endPort != '\\0' || port == 0 || port > 65535UL)\n"
-            b"\t\treturn FALSE;\n"
-            b"\tconst size_t ipLength = (size_t)(colon - pInfo);\n"
-            b"\tif (ipLength == 0 || ipLength >= 16)\n"
-            b"\t\treturn FALSE;\n"
-            b"\tchar ip[16];\n"
-            b"\tmemcpy(ip, pInfo, ipLength);\n"
-            b"\tip[ipLength] = '\\0';\n"
-            b"\tunsigned long Address = inet_addr(ip);\n"
+            b"\tunsigned long Address = inet_addr(endpoint.ipv4);\n"
             b"\tif (Address == INADDR_NONE)\n"
             b"\t\treturn FALSE;\n"
-            b"\tshort Port = (short)(unsigned short)port;",
+            b"\tshort Port = (short)endpoint.port;",
+        ),
+        (
+            b'#include "S3PDBSocketPool.h"',
+            b'#include "S3PDBSocketPool.h"\n#include "GatewayEndpointParser.h"',
         ),
     ),
 }
@@ -122,28 +114,50 @@ def harden(relative: str, original: bytes) -> bytes:
             raise ValueError("source context changed or ambiguous: " + relative)
     return data
 
+# Helper files belong to the patch working tree, not the original archive.
+ADDITIONAL_FILES = {
+    "Sources/AccountServices/AccountServer/GatewayEndpointParser.h":
+        "overlays/legacy/GatewayEndpointParser.h",
+}
+
+
 def stage(target: Path, *, apply: bool) -> list[str]:
     target = target.resolve()
     repo_root = Path(__file__).resolve().parents[1]
     if apply and (target == repo_root or repo_root in target.parents):
         raise ValueError("Refusing to edit the tracked archive or any in-repository source.")
+
     staged: list[tuple[Path, bytes]] = []
     report: list[str] = []
+    # Validate ALL patch contexts and helper files before changing any file.
     for rel in PATCHES:
         f = target.joinpath(*rel.split("/"))
+        if f.is_symlink() or target not in f.resolve().parents:
+            raise ValueError("Unsafe working-copy file: " + rel)
         original = f.read_bytes()
         modified = harden(rel, original)
-        # harden() already verifies exact source context or an installed patch.
-        # Comparing LF-only replacement bytes to a CRLF source is incorrect.
         staged.append((f, modified))
         report.append(rel + (" (already patched)" if modified == original else " (needs patch)"))
+
+    for rel, template in ADDITIONAL_FILES.items():
+        dest = target.joinpath(*rel.split("/"))
+        if dest.is_symlink() or target not in dest.resolve().parents:
+            raise ValueError("Unsafe helper path: " + rel)
+        data = (repo_root / template).read_bytes()
+        if dest.exists() and (not dest.is_file() or dest.read_bytes() != data):
+            raise ValueError("Conflicting helper file: " + rel)
+        staged.append((dest, data))
+        report.append(rel + (" (already installed)" if dest.exists() else " (new helper)"))
+
     if apply:
-        # Validate all source files before changing any file.
         for f, data in staged:
-            if f.read_bytes() != data:
+            if f.is_file():
+                if f.read_bytes() != data:
+                    f.write_bytes(data)
+            else:
+                f.parent.mkdir(parents=True, exist_ok=True)
                 f.write_bytes(data)
     return report
-
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
