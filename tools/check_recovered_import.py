@@ -57,7 +57,7 @@ def check_file(root: Path, relative: str) -> list[str]:
     # Separate, lossless PT source mirror. No extension/content/filename
     # exclusions for user-authorized complete archive import. Git itself
     # cannot track nested .git/ directories, so they are preserved as ZIP.
-    if relative in ('source/.gitattributes', 'source/PT_SOURCE_MANIFEST.csv', 'source/PT_EXACT_ZIP_MANIFEST.csv', 'source/PT_EXACT_ZIP_DIRECTORIES.txt', 'docs/PT_COMPLETE_SOURCE_IMPORT.md', 'docs/PT_EXACT_ZIP_IMPORT.md') or relative.startswith('source/PT/'):
+    if relative in ('source/.gitattributes', 'source/PT_SOURCE_MANIFEST.csv', 'source/PT_EXACT_ZIP_MANIFEST.csv', 'source/PT_EXACT_ZIP_DIRECTORIES.txt', 'source/PT_RESTORE_SPLIT_FILES.py', 'docs/PT_COMPLETE_SOURCE_IMPORT.md', 'docs/PT_EXACT_ZIP_IMPORT.md') or relative.startswith('source/PT/'):
         parts = relative.split('/')
         if (any(not part or part in ('.','..') for part in parts)
                 or '\\' in relative or '\x00' in relative or ':' in relative):
