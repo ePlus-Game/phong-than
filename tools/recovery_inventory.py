@@ -37,7 +37,7 @@ def inventory(root: Path) -> dict:
     all_refs = audit(root)
     libs = {}
     for configuration in ("Debug", "Release"):
-        folder = root / "source" / "PT" / "PhongThanSource" / "Lib" / configuration.lower()
+        folder = root / "PhongThanSource" / "Lib" / configuration.lower()
         libs[configuration] = {p.name.lower() for p in folder.glob("*.lib")} if folder.is_dir() else set()
     projects = []
     for dsp in sorted(root.rglob("*.dsp")):

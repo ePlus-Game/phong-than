@@ -13,7 +13,7 @@ import subprocess
 
 
 def categorize(path: str) -> set[str]:
-    p = path.replace("\\", "/").lower()
+    p = "/" + path.replace("\\", "/").lower().lstrip("/")
     found: set[str] = set()
     if p.endswith((".bak", ".bak.gz", ".sql.bak")):
         found.add("database_or_other_backup")

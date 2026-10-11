@@ -1,0 +1,32 @@
+﻿{
+  "Result": "PASS",
+  "Policy": "VNG_ORIGINAL_RESOURCES_NO_SYNTHETIC_SKILL_ASSETS",
+  "SkillVisualAudio": {
+    "References": 157,
+    "Pak": 128,
+    "Loose": 0,
+    "Missing": 29,
+    "MissingCatalog": "D:\\Lam game phong than\\PhongThanSource\\Output\\SkillResourcePolicy\\skill-visual-audio.missing.txt"
+  },
+  "SkillLevelLua": {
+    "References": 592,
+    "ClientPakOrLoose": 252,
+    "SynchronizedClientServer": 252,
+    "MissingBacklog": 340
+  },
+  "MissileVisualAudio": {
+    "References": 188,
+    "Pak": 170,
+    "Loose": 0,
+    "Missing": 18,
+    "MissingCatalog": "D:\\Lam game phong than\\PhongThanSource\\Output\\SkillResourcePolicy\\missile-visual-audio.missing.txt"
+  },
+  "DeclaredButUnused": {
+    "Skills": [
+      "CastScript"
+    ],
+    "Missiles": [
+      "ProcessScript"
+    ]
+  }
+}

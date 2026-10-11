@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Apply minimal VC6-compatible security fixes to a COPY of PhongThanSource.
 
-This never patches the byte-exact source/PT archival tree inside this checkout.
+This never patches the byte-exact root-level PhongThanSource archive inside this checkout.
 Use --target /external/copy/PhongThanSource [--apply].
 """
 from __future__ import annotations

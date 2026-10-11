@@ -1,8 +1,0 @@
-﻿== FilterTextStatic 2026-10-02T15:57:46
-> cl.exe /nologo /c /EHsc /Zc:forScope- /Zc:wchar_t- /Zc:strictStrings- /Zc:threadSafeInit- /permissive /W1 /wd4996 /wd4700 /Zi /Oy- /GS- /FS /D_CRT_SECURE_NO_WARNINGS /D_CRT_NONSTDC_NO_DEPRECATE /D_WINSOCK_DEPRECATED_NO_WARNINGS /D_USE_32BIT_TIME_T /D_CRT_NO_VA_START_VALIDATION /DPHONGTHAN_MODERN_BUILD=1 /MD /O2 /DWIN32 /DNDEBUG /D_MBCS /D_LIB /DFILTERTEXT_STATICLIB /MP24 /FoE:\VL\Phong than\PT\PhongThanSource\Sources\FilterText\Modern\Win32Release\ /FdE:\VL\Phong than\PT\PhongThanSource\Sources\FilterText\Modern\Win32Release\vc143.pdb E:\VL\Phong than\PT\PhongThanSource\Sources\FilterText\FilterText.cpp E:\VL\Phong than\PT\PhongThanSource\Sources\FilterText\Regexp.cpp
-cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
-cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
-cl : Command line warning D9035 : option 'Zc:forScope-' has been deprecated and will be removed in a future release
-FilterText.cpp
-Regexp.cpp
-> lib.exe /nologo /OUT:E:\VL\Phong than\PT\PhongThanSource\Sources\FilterText\Modern\Win32Release\FilterText_StaticLib.lib E:\VL\Phong than\PT\PhongThanSource\Sources\FilterText\Modern\Win32Release\filtertext.obj E:\VL\Phong than\PT\PhongThanSource\Sources\FilterText\Modern\Win32Release\regexp.obj

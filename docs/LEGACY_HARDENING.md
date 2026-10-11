@@ -1,12 +1,12 @@
 # Legacy security and build hardening
 
-The original ZIP mirror under source/PT/ is **intentionally byte-exact**.
+The original ZIP mirror under  is **intentionally byte-exact**.
 Do not modify it to fix game code: its SHA-256 inventory is part of the
 recovery evidence. Use a separate working copy of PhongThanSource.
 
 ## Apply the tested C++ hardening overlay
 
-1. Copy the source/PT/PhongThanSource directory to a local build workspace
+1. Copy the PhongThanSource directory to a local build workspace
    OUTSIDE this Git checkout (Windows VM with suitable storage recommended).
 2. From the repository root, run:
    python tools/legacy_hardening.py --target /external/copy/PhongThanSource
@@ -44,10 +44,9 @@ before any history operation.
 
 ## Existing build limitations
 
-CI currently validates portable Lua/Common libraries and static/VC6 build
-preflight. It does NOT compile portable Lua/Common libraries or build or run the complete Windows GameClient,
+CI validates Python recovery tooling and source preflight only. It does NOT compile or run a complete Windows GameClient,
 GameServer, AccountServer or gameplay. Follow the original-source build
-matrix in source/PT/PhongThanSource/README.md for the copied workspace.
+matrix in PhongThanSource/README.md for the copied workspace.
 Build and smoke tests must run in an isolated Windows x86 VM.
 
 
@@ -77,8 +76,8 @@ if the build fails. Compiler success is not a Client/Server smoke-test pass.
 ## Versioned recovery-toolkit prerelease
 
 Merging the version notes file under docs/releases/v0.1.0-recovery.1.md
-triggers a recovery-TOOLKIT release after Python unit tests, portable CMake
-compilation and CTest pass. The attached ZIP contains only developer tools
+triggers a recovery-TOOLKIT release after Python unit tests and a static build
+preflight pass. The attached ZIP contains only developer tools
 and documentation plus SHA-256 checksum, NOT game DLLs, EXEs, PAKs or account
 data. The full original repository remains public and GitHub may automatically
 provide source archives alongside the toolkit. The version tag must not be

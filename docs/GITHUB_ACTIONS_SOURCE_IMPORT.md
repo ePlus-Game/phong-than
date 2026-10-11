@@ -1,3 +1,5 @@
+> **Historical workflow documentation:** These instructions refer to an obsolete import workflow removed after the full PT.zip import. Do not use these steps for the current repository. See [current layout](REPOSITORY_LAYOUT.md) and the workflows in `.github/workflows/`.
+
 # GitHub Actions for Phong Than recovery (Colab → GitHub)
 
 This project uses **one main repository**, `ePlus-Game/pt`, for source code and CI.

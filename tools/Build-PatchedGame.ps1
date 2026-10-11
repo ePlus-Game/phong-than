@@ -1,9 +1,9 @@
-# Build fixed Phong Than code from a separate copy, preserving source/PT bytes.
+# Build fixed Phong Than code from a separate copy, preserving original game source bytes.
 [CmdletBinding()]
 param(
     [ValidateSet('Modern','VC6')][string]$Toolchain = 'Modern',
     [ValidateSet('Release','Debug')][string]$Configuration = 'Release',
-    [string]$SourceRoot = (Join-Path (Split-Path -Parent $PSScriptRoot) 'source/PT/PhongThanSource'),
+    [string]$SourceRoot = (Join-Path (Split-Path -Parent $PSScriptRoot) 'PhongThanSource'),
     [Parameter(Mandatory=$true)][string]$WorkRoot,
     [switch]$PreflightOnly,
     [switch]$KeepGoing
