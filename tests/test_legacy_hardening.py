@@ -22,7 +22,7 @@ class HardeningTests(unittest.TestCase):
         fixed = harden(rel, (ROOT / rel).read_bytes())
         self.assertIn(b"pSend->Size > MAX_PATH", fixed)
         self.assertIn(b"pSend->Size < sizeof(KAccountHead)", fixed)
-        self.assertIn(b"if (pInfo == NULL)", fixed)
+        self.assertIn(b"m_pServer == NULL", fixed)
         self.assertIn(b"ParseGatewayEndpoint(pInfo, &endpoint)", fixed)
         self.assertNotIn(b"while(*(pInfo + offset) != ':')", fixed)
         self.assertNotIn(b"assert(pSend->Size < MAX_PATH)", fixed)
