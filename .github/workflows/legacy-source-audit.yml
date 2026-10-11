@@ -20,6 +20,12 @@ jobs:
           python tools/audit_legacy_projects.py \
             --json legacy-audit.json \
             --markdown legacy-audit.md
+      - name: Inventory potential public-archive risks (informational)
+        run: |
+          python tools/audit_sensitive_paths.py \
+            --json public-risk-audit.json \
+            --markdown public-risk-audit.md
+          cat public-risk-audit.md >> "$GITHUB_STEP_SUMMARY"
       - name: Upload reports
         uses: actions/upload-artifact@v4
         with:
@@ -27,3 +33,5 @@ jobs:
           path: |
             legacy-audit.json
             legacy-audit.md
+            public-risk-audit.json
+            public-risk-audit.md

@@ -1,28 +1,43 @@
-# Phong Than 2 — legacy source archival / analysis
+# Phong Thần 2 — source preservation and recovery
 
-An **incomplete, unverified** historic C/C++ source snapshot for research into Phong Than 2 / 封神榜2. This repository is **not** a working offline release.
+This repository contains an **archived, byte-verified copy of PT.zip** and a
+separate, incomplete legacy build/recovery project. It is **not yet a proven
+playable Client/Server build**.
 
-## Layout
-- `Base/` — common code and Lua libraries
-- `Client/` — client, engine, rendering and UI projects
-- `Server/` — lord launcher project; dependent library sources are missing
-- `Share/` — shared headers and prebuilt libraries
-- `docs/PT_source_analysis.md` — investigation and missing dependencies
+## Repository map
 
-## Current build progress
-- One-shot portable source build (legacy Lua + CRC32/miniLZO subset) with CMake, CTest and GitHub Actions; **not** a playable client/server.
-- Combined dependency and asset inventory reports, plus a Windows VC6 multi-project build-attempt script.
-- See [Offline recovery guide](docs/OFFLINE_RECOVERY.md) for the full one-pass workflow.
+- source/PT/ — mirror of the original archive's 99,352 file entries, with
+  SHA-256 manifest at source/PT_EXACT_ZIP_MANIFEST.csv.
+- source/PT/PhongThanSource/Sources/ — original C/C++ Client, Engine, Account
+  and game-server projects, with VC6 and experimental modern build scripts.
+- source/PT/PhongThanRuntime-Staging/ — original packaged Client/Server data.
+- source/PT/AdminWeb/ — local PowerShell administration UI.
+- Base/, Client/, Server/, Share/ — earlier standalone portable source subset.
+- tools/ and tests/ — read-only audit, migration and CI helpers.
 
-## Known blockers
-- Requires old 32-bit Windows/Visual C++ toolchains and dependencies.
-- `Game.dll`, `FSInterface.dll`, full server executables and the `fsonline2` database dump are absent.
-- No confirmed working offline environment or build pipeline.
-- `Server/lord/src/lord.cfg` deliberately excluded because the archived file contained connection credentials; use the redacted `lord.cfg.example` and local settings instead.
+Sixteen original large PAKs are stored as 102 chunks under *.pak.parts.
+After cloning, restore those exact bytes with:
 
-## Security / rights
-- **Legacy code** may contain unsafe functions and stale dependencies; inspect and build inside an isolated VM.
-- Source contains historical Kingsoft copyright notices; the archive did not include a grant to publish/relicense the proprietary game code. **Do not make a public distribution without the rights holder's permission.** This README does not confer a license.
+    python source/PT_RESTORE_SPLIT_FILES.py --repo-root .
 
-## Import
-A local PowerShell helper `push-to-github.ps1` is included for a repository whose remote has no commits. It will never force-push. Review source code and publishing rights before use.
+Old embedded .git objects are preserved in a recovery ZIP, and empty
+directory entries are documented separately. See docs/PT_EXACT_ZIP_IMPORT.md.
+
+## Next development steps
+
+1. **Security review first.** This repository is PUBLIC and contains account
+   database backup files, character records, logs and configs. Its existence
+   does not mean the material is appropriate to redistribute. See
+   docs/LEGACY_HARDENING.md for the privacy/history warning.
+2. Keep source/PT/ as the original unmodified baseline. Apply reviewed fixes
+   to a COPY with tools/legacy_hardening.py as described in
+   docs/LEGACY_HARDENING.md.
+3. Use the original VC6 build scripts inside an isolated Windows x86 VM.
+   CI only builds portable Lua/Common components, not the complete game.
+4. Record real compiler results, login and map-entry smoke tests before
+   claiming the game is operational.
+
+The original proprietary Kingsoft/VNG-era code and assets carry their own
+rights and notices. Repository access does not grant permission to
+redistribute or relicense this material. Do not run unknown binaries
+directly on a personal/production computer.

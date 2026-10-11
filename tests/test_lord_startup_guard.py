@@ -25,6 +25,13 @@ class LordStartupGuardTests(unittest.TestCase):
             source.index("pController->Startup"),
         )
 
+    def test_controller_released_on_failed_startup(self):
+        source = LORD_SOURCE.read_bytes().decode("latin-1")
+        start = source.index("if( INVALID_VALUE == pController->Startup")
+        block = source[start:source.index("\n\t}", start) + 3]
+        self.assertIn("pController->Release( );", block)
+        self.assertLess(block.index("pController->Release( );"), block.index("return 1;"))
+
     def test_failed_startup_returns_nonzero(self):
         source = LORD_SOURCE.read_bytes().decode("latin-1")
         self.assertRegex(
