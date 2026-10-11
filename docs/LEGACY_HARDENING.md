@@ -1,6 +1,6 @@
 # Legacy security and build hardening
 
-The original ZIP mirror under  is **intentionally byte-exact**.
+The original `PhongThanSource/` and other original PT.zip folders are **intentionally byte-exact**.
 Do not modify it to fix game code: its SHA-256 inventory is part of the
 recovery evidence. Use a separate working copy of PhongThanSource.
 
@@ -18,8 +18,10 @@ recovery evidence. Use a separate working copy of PhongThanSource.
 These fixes are made ONLY to the copied workspace:
 - Reject missing/oversized account packet data BEFORE memcpy in CustomSend.
   Release builds do not execute assert statements.
-- Reject absent or malformed gateway client-info strings instead of reading
-  past a missing colon delimiter.
+- Validate the legacy `IPv4:port` gateway string with a portable C++98 helper;
+  reject malformed hosts and ports instead of using an unbounded colon scan.
+- Install the helper only into the external working copy; the original game
+  source files remain byte-for-byte unchanged.
 - Treat Lua error text as data, not a fprintf format string.
 
 The overlay matches exact source contexts and preserves existing CRLF line
@@ -82,3 +84,16 @@ and documentation plus SHA-256 checksum, NOT game DLLs, EXEs, PAKs or account
 data. The full original repository remains public and GitHub may automatically
 provide source archives alongside the toolkit. The version tag must not be
 interpreted as proof that the game can run.
+
+## Refactor tests (without original game binaries)
+
+From the repository root run:
+
+```bash
+python -m unittest discover -s tests -v
+g++ -std=c++98 -Wall -Wextra -Werror -pedantic tests/cpp/test_gateway_endpoint.cpp -o /tmp/pt-gateway-test
+/tmp/pt-gateway-test
+```
+
+These test the parser and the source patch process. They do not prove
+compatibility with the original VC6 compiler or a playable game.
