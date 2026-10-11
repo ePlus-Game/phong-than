@@ -33,7 +33,7 @@ jobs:
         run: python -m unittest discover -s tests -v
       - name: Validate separate build workspace preflight
         run: |
-          python tools/release_preflight.py \
+          python -m tools.release_preflight \
             --source-root source/PT/PhongThanSource \
             --workspace "$RUNNER_TEMP/pt-build-check" \
             --toolchain Modern
