@@ -1,0 +1,82 @@
+# Mục lục tài liệu tính năng Phong Thần (bản local)
+
+Mỗi yêu cầu tính năng hoặc lỗi lớn có một file riêng. Lịch sử thay đổi chi tiết nằm trong `CHANGELOG.md` ở thư mục gốc.
+
+| Ngày | Tài liệu | Nội dung | Trạng thái |
+|---|---|---|---|
+| 2026-10-03 | `lenh-bai-luyen-cong-phong-than-20261003.md` | Lệnh Bài Luyện Công (magicscript 61420): 20 bãi luyện công theo cấp 1–150, chọn là dịch chuyển tới cạnh cụm quái; "Bãi hợp cấp nhất", "Về thành gần nhất"; tự phát cho mọi nhân vật (task 2610), web admin phát được | Script + web admin xong; chờ ptfix chính thức + khởi động lại server, mở lại web admin |
+| 2026-10-03 | `mo-ruong-2-5-phong-than-20261003.md` | Mở rương chứa đồ 2–5 (trang Rương mở rộng 1–4; Rương 6 qua admin): Thủ Khố có dòng "Mở rộng rương (Rương 2-5)", web admin mở cho nhân vật online (bridge `SetExpandBox`) hoặc offline (sửa `ExtraBox` file nhân vật) | Script + web admin xong; cần nạp lại 3 script Thủ Khố và mở lại web admin; không cần C++/ptfix |
+| 2026-10-03 | `stack-gem-phong-than-20261003.md` | Mảnh thủy tinh / bảo thạch (genre 3) và 4 Không Thư (8/139–142) không xếp chồng: web admin phát bằng `AddItemID` (không gộp) → `AddItemIDStack`; Không Thư: C++ dùng cột 11 `ibitem.txt` làm giới hạn chồng + ptfix 100; trả nguyên liệu ép sách gộp chồng | servertimer + pt_bikip đã sửa (cần nạp lại); C++ đã build + ptfix plug-in, chờ triển khai cùng nhau |
+| 2026-10-03 | `pet-exp-phong-than-20261003.md` | Đệ tử Dị Nhân có kinh nghiệm và cấp riêng (task 2505/2506): quái do chủ hoặc đệ tử hạ thì đệ tử nhận kinh nghiệm, lên cấp thì máu và cấp kỹ năng tăng; không trừ kinh nghiệm của chủ | Xong (áp nóng 20:15); đệ tử kỹ năng 450–461 chỉ nhận kinh nghiệm, chưa tăng sức mạnh |
+| 2026-10-03 | `taphoa-npcnames-phong-than-20261003.md` | Tạp Hóa Thương / Thợ Đồng / Thủ Khố mất bước nhiệm vụ tân thủ (newbie2) sau khi đổi tên NPC: alias thiếu tên spawn TCVN3; xóa 14 NPC spawn trùng | Xong (áp nóng 19:58) |
+| 2026-10-03 | `desert-exp-phong-than-20261003.md` | Đánh quái ở sa mạc không lên kinh nghiệm (quái cao hơn 15 cấp chỉ cho 1 điểm; quái do đệ tử/bot hạ ở xa chủ cho 0) | C++ đã build, chờ triển khai |
+| 2026-09-28 | `../../huong-dan-cai-dat-phong-than-20260928.md` | Cài đặt và chạy game | Xong |
+| 2026-09-28 | `web-admin-quan-tri-phong-than-20260928.md` | Web admin: phát đồ, lệnh bài, tiền đồng, KNB, kỹ năng, level, thú cưỡi, boss, sự kiện, tài khoản | Xong |
+| 2026-09-28 | `sua-loi-vat-pham-hoi-thoai-phong-than-20260928.md` | Nút đóng hội thoại, gói Đoản Kiếm, tiền đồng, ngựa, Thanh Lộ | Xong, riêng Thanh Lộ chưa |
+| 2026-09-28 | `nhiem-vu-chinh-tuyen-phong-than-20260928.md` | Tính năng 1: chính tuyến 3 phái theo NPC | Xong (mô phỏng 0→81) |
+| 2026-09-28 | `he-thong-nhiem-vu-f11-phong-than-20260928.md` | Tính năng 2: F11 | Xong |
+| 2026-09-28 | `hoi-thoai-npc-tan-thu-phong-than-20260928.md` | Tính năng 3: NPC tân thủ | Xong; Thiên Thụ và Côn Lôn kính đã có nguồn; Vạn Tiên trận là sự kiện PvP chưa làm |
+| 2026-09-28 | `do-luc-he-phai-phong-than-20260928.md` | Tính năng 4: đồ lục theo phái | Xong |
+| 2026-09-28 | `vu-khi-luc-do-max-cuong-hoa-phong-than-20260928.md` | Vũ khí lục, đồ max, +12, pháp bảo, pháp khí, ấn, ngựa | Một phần (phần còn lại cần C++) |
+| 2026-09-28 | `loi-ra-ban-do-cong-dich-chuyen-phong-than-20260928.md` | Lối ra bản đồ, cổng dịch chuyển | Xong |
+| 2026-09-28 | `quai-cac-ban-do-phong-than-20260928.md` | Quái trên 55 bản đồ | Xong |
+| 2026-09-29 | `cai-dat-server-localdb-phong-than-20260929.md` | Cài LocalDB, khôi phục account, sửa lỗi DB | Xong |
+| 2026-09-29 | `kiem-thu-nhiem-vu-mo-phong-phong-than-20260929.md` | Chạy thử trọn chuỗi 3 phái và tân thủ | Xong (mô phỏng) |
+| 2026-09-29 | `goi-va-ptfix-pak-phong-than-20260929.md` | Vá script VNG: F11, nút đóng, món đầu cửa hàng | Xong (cần khởi động lại) |
+| 2026-09-29 | `roi-vat-pham-nhiem-vu-phong-than-20260929.md` | Quái rơi vật phẩm nhiệm vụ | Xong |
+| 2026-09-29 | `tiem-thuoc-vu-khi-tap-hoa-phong-than-20260929.md` | Tiệm thuốc, vũ khí, Tạp Hóa, UI cửa hàng, thủ khố, giao dịch | Xong (cần mở lại client) |
+| 2026-09-29 | `bao-thuong-chay-buon-phong-than-20260929.md` | Bào Thương (chạy buôn) — dựng mới, thưởng theo hàng mua | Xong (nạp nóng 14:00) |
+| 2026-09-29 | `loi-giao-dien-tui-do-phong-than-20260929.md` | Túi đồ vẽ tràn khung | Xong (cần mở lại client) |
+| 2026-09-29 | `vong-sang-set-do-luc-phong-than-20260929.md` | Vòng sáng set đồ lục | Chọn A: mã C++ đã viết, chờ cài VC6 để build |
+| 2026-09-29 | `chay-tat-ca-mot-cham-phong-than-20260929.md` | File chạy tất cả | Xong |
+| 2026-09-29 | `mat-nguoi-khi-cuoi-thu-phong-than-20260929.md` | Mất người khi cưỡi thú (mã hình mũ/giáp 9 không tồn tại) | Xong (cần khởi động lại) |
+| 2026-09-29 | `vat-pham-ibitem-lo-buff-phong-than-20260929.md` | Lâm Tiên Lộ, Thiên Hương, Thanh Lộ, Sơn Thủy Chân Khí — làm bằng Lua | Xong (có hiệu lực khi khởi động lại) |
+| 2026-09-30 | `quai-chi-hien-ten-thanh-mau-phong-than-20260930.md` | Quái chết chỉ hiện tên + thanh máu, chữ "# Khôi Giáp Sĩ" | Dữ liệu xong; phần C++ chờ VC6 |
+| 2026-09-30 | `quai-hien-thi-lech-va-luot-dung-vat-pham-phong-than-20260930.md` | Quái vẽ lệch/bấm không trúng (vá 1 byte Represent2), vật phẩm nhiều lượt, buff "tán" | Xong (áp khi mở lại game / khởi động lại server) |
+| 2026-10-01 | `cua-hang-trang-thai-chien-dau-phong-than-20261001.md` | Cửa hàng NPC và thẻ hủy đồ không mua/bán/sửa được: server từ chối khi đang chiến đấu | Xong (nạp nóng 08:27) |
+| 2026-10-03 | `to-doi-bot-phong-than-20261003.md` | Tổ đội bot tự động ở bãi quái (đánh cùng, kinh nghiệm cho người chơi + thưởng tổ đội), NPC Hỗ Trợ Tổ Đội | Đã build; chờ cài |
+| 2026-10-03 | `tu-dong-danh-phong-than-20261003.md` | Tự động đánh (Alt+S / Alt+A / Alt+D), tự uống thuốc, tự tắt khi vào thành / đổi map / chết | Đã build; chờ cài |
+| 2026-10-03 | `khung-theo-doi-nhiem-vu-phong-than-20261003.md` | Khung theo dõi nhiệm vụ bên trái (KUiTaskTrace, Alt+N), sửa 3 lỗi sổ F11 | Game.exe đã build; chờ cài |
+| 2026-10-03 | `cong-thanh-lanh-dia-phong-than-20261003.md` | Lãnh địa cá nhân (solo): 894, 908 (bóng Cửu Linh), 30, 31 (23 Đại phu dã ngoại), 34, 69, 78, 79, lính đánh thuê 850–874, thủ thành theo lịch, nâng cấp công trình | Đã cài bản tổng 17:15; cần khởi động lại |
+| 2026-10-03 | `tan-thu-thon-phong-than-20261003.md` | Sửa nhiệm vụ tân thủ thôn (menu Thủ Khố 3 thành lệch), kiểm tra NPC và đăng ký script 1002/1003/1004 | Đã sửa; cần khởi động lại server |
+| 2026-10-03 | `le-quan-sinh-hoat-linh-thu-phong-than-20261003.md` | Sự kiện Lễ Quan, Sinh hoạt (kỹ năng sống), Linh thú (đi theo, lên cấp) | Script đã cài; chờ ptfix v22 + khởi động lại |
+| 2026-10-03 | `ma-de-phuc-kim-luc-lam-f11-phong-than-20261003.md` | Mã Đế (81), Phúc Kim (71), Lục Lâm Hảo Hán; chữ F11 đời 2004 + 44 script rời | Script đã cài; chờ ptfix v22 + khởi động lại |
+| 2026-10-03 | `hoang-phi-ho-su-do-phong-than-20261003.md` | Hoàng Phi Hổ sư đồ (Bái sư, Xuất sư, sư phụ ảo) và đổi sức lực Na Tra (API sư đồ C++) | CoreServer đã cài 16:10; chờ ptfix v22 + khởi động lại |
+| 2026-10-03 | `tien-ma-gioi-gd45-phong-than-20261003.md` | Tiên Ma giới giai đoạn 4–5 (Ngục Pháp Sơn, Thánh Địa), chủ tuyến 28–50 | Script đã cài; chờ ptfix v22 + khởi động lại |
+| 2026-10-03 | `vien-co-giang-son-phong-than-20261003.md` | Viễn Cổ chiến trường (PvE Thương Chu, map 1071) và chuỗi Giang Sơn Y Cựu tại Dư Khánh | Script đã cài; chờ ptfix v22 + khởi động lại |
+| 2026-10-03 | `doi-hinh-dang-de-tu-phong-than-20261003.md` | Đổi hình dạng đệ tử (6 hình Triệu Hồi Thú VNG) trong Lệnh Bài Triệu Hồi | Đã cài; cần khởi động lại server |
+| 2026-10-03 | `loi-thoat-client-phong-than-20261003.md` | Game sập lúc thoát (vá byte g_SoundCache), chia cho 0 Băng Tuyết Đạn (missile 9 Speed 2); đang build lại CoreClient VS2022 | Vá + ptfix v20 đã cài; CoreClient đang build |
+| 2026-10-03 | `van-luong-van-tieu-phong-than-20261003.md` | Vận Lương (Lua) + Vận Tiêu 2004 (C++ SendCarriage, AiMode 12) | Đã cài CoreServer + ptfix v19 14:48 |
+| 2026-10-03 | `tan-thu-moi-phong-than-20261003.md` | Tân thủ đời mới: Quân Sư, chuỗi 3 phái, 14 mật tịch; song song chuỗi 2004 | Mô phỏng 161/161; mật tịch cần ptfix mới + khởi động lại |
+| 2026-10-03 | `su-do-dong-di-phong-than-20261003.md` | Sư đồ chơi một mình (42–46), chuỗi Đông Di / Đông Nguy chạy trọn | Chờ ptfix + khởi động lại |
+| 2026-10-03 | `nhiem-vu-ngay-moi-phong-than-20261003.md` | Thiên Cống, Thiên Cương Hồn, Siêu Độ, Hấp Hồn, Vận chuyển | Chờ ptfix + khởi động lại |
+| 2026-10-03 | `tien-ma-gioi-phong-than-20261003.md` | Tiên Ma giới giai đoạn 1–3: đường vào, chủ tuyến bước 0–27 (Bất Chu Thiên Quan, Bất Chu Sơn) và nhiệm vụ phụ | Script đã cài 16:20; chờ ptfix v22 + khởi động lại |
+| 2026-10-03 | `quy-tinh-hoi-thoai-npc-phong-than-20261003.md` | Quy Tinh đủ 6 Phong Ấn Tháp, dọn Cương Tinh, dòng thoát cho hội thoại NPC npc_restore | Chờ ptfix + khởi động lại |
+| 2026-10-02 | `kiem-toan-nhiem-vu-phong-than-20261002.md` | Kiểm toán toàn bộ nhiệm vụ VNG; sửa Tứ Linh, Thủ khố, Huyền Vũ (map 1084); đặt 14 NPC + 13 quái cho nhiệm vụ thế giới | Đã cài ptfix v17 22:18; cần khởi động lại server |
+| 2026-10-02 | `bi-kip-he-phai-phong-than-20261002.md` | Bí kíp hệ phái: click học, mua (tiệm VNG + Sale 66–68), ép ở Võ sư, đổi sách cũ | Đã cài ptfix v16 21:41; cần khởi động lại server, game |
+| 2026-10-02 | `ky-nang-de-tu-di-nhan-phong-than-20261002.md` | 12 kỹ năng triệu hồi Dị Nhân (450–461), học qua lệnh bài và web admin, sửa ô kỹ năng 4 của đệ tử (C++) | Đã cài ptfix v15 + CoreServer 21:30 |
+| 2026-10-02 | `ky-nang-quai-npc-phong-than-20261002.md` | Quái và đệ tử không có kỹ năng (tên kỹ năng bị đọc thành 0): đổi 5.667 ô sang mã số | Cần khởi động lại server |
+| 2026-10-02 | `van-tien-tran-phong-than-20261002.md` | Vạn Tiên trận chơi được: 4 trận Huyễn 1079–1082, Thiên Hùng ở Tây Kỳ, thưởng rương | Cần khởi động lại server |
+| 2026-10-02 | `bot-gia-nguoi-choi-phong-than-20261002.md` | Bot giả người chơi: NPC hình người chơi, chat, luyện công, khu boss/PK | Cần khởi động lại server và client |
+| 2026-10-02 | `tu-tuong-vat-pham-truong-lao-phong-than-20261002.md` | Vật phẩm Tứ Tượng, thưởng Thủ khố an toàn, Trưởng lão, Tinh Thạch, Tinh Phách từ ma vương | Cần cài ptfix v14 + khởi động lại |
+| 2026-10-02 | `tu-linh-thu-thach-huyen-vu-phong-than-20261002.md` | Tứ Linh (Linh Tê) và Thử Thách Huyền Vũ | Cần cài ptfix v14 + khởi động lại |
+| 2026-10-02 | `can-khon-luan-quay-cpp-phong-than-20261002.md` | Càn Khôn Luân quay bằng chữ chạy chậm dần (hàm C++ `Roulette`), chặn quay chồng, hủy khi thoát/chết | Đã triển khai 18:50; chờ thử trong game |
+| 2026-10-02 | `bao-thuong-can-khon-tu-tuong-thu-kho-phong-than-20261002.md` | Bào Thương bị chặn (GetMorphType -1), Thủ khố thêm "Mở rương chứa đồ", chẩn đoán Càn Khôn Luân và Tứ Tượng | Bào Thương + Thủ khố: xong (khi mở server); Càn Khôn + Tứ Tượng: chờ chọn |
+| 2026-10-02 | `cua-hang-tu-choi-ngam-cpp-phong-than-20261002.md` | Mua/bán/sửa ở cửa hàng và Lệnh Bài Hủy Đồ: bỏ điều kiện vị trí, chiến đấu, giá sửa 0 (C++) | Đã triển khai 16:25 |
+| 2026-10-02 | `build-server-vs2022-phong-than-20261002.md` | Build lại server bằng VS2022 với 5 bản sửa C++ (vòng sáng, sửa toàn bộ đồ, đệ tử tự đánh, chính xác âm, tay không) | Đã triển khai 16:17; chờ thử trong game |
+| 2026-10-02 | `do-tan-thu-vu-khi-thu-cuoi-phong-than-20261002.md` | Nhân vật mới (cấp ≤ 10) tự nhận vũ khí cấp 1 max thuộc tính theo phái và thú cưỡi Trác | Cần khởi động lại (ptfix v13) |
+| 2026-10-02 | `he-so-kinh-nghiem-phong-than-20261002.md` | Đánh quái gần như không có kinh nghiệm: ExpRate=5 (ptfix v12 + GameSetting.ini) | Cần khởi động lại |
+| 2026-10-02 | `cong-diem-thuoc-tinh-web-admin-phong-than-20261002.md` | Web admin cộng điểm thuộc tính (sức mạnh/thân pháp/sinh khí/nội công), điểm tiềm năng, xem chỉ số, tẩy điểm | Xong (web admin chạy lại 08:29) |
+| 2026-10-02 | `sat-thuong-tay-khong-phong-than-20261002.md` | Đánh quái trúng nhưng không mất máu: nhân vật không cầm vũ khí thì sát thương = 0 | Dùng ngay: mặc vũ khí; sửa C++ chờ build VC6 |
+| 2026-10-01 | `de-tu-trieu-hoi-di-nhan-phong-than-20261001.md` | Đệ tử triệu hồi của Dị Nhân (12 con tế VNG) bằng Lệnh Bài Triệu Hồi, phát từ web admin | Script nạp nóng 13:55; vật phẩm cần cài ptfix v11 (khởi động lại) |
+| 2026-10-01 | `ky-nang-chuyen-sinh-60-120-180-phong-than-20261001.md` | Kỹ năng chuyển sinh 60/120/180 cho 3 phái (1481–1489): chỉ số Lua, 9 sách kỹ năng, dạy/phát từ web admin | Sách + web admin nạp nóng 09:13; chỉ số cần cài ptfix v9 (khởi động lại) |
+| 2026-10-01 | `cai-dat-do-phan-giai-am-thanh-phong-than-20261001.md` | ESC → Tùy chọn: độ phân giải chưa có mã (web admin ghi config.ini), âm thanh | Độ phân giải: xong qua web admin; âm thanh: đã sửa giao diện Tùy chọn (ptfix v15) + thẻ âm lượng trên web admin, chờ cài |
+| 2026-09-30 | `lenh-bai-huy-do-phong-than-20260930.md` | Lệnh Bài Hủy Đồ: bán từ xa, hộp hủy đồ, sửa toàn bộ đồ đang mặc | Bán + hủy đồ: xong (nạp nóng 09:13); sửa từng món: ptfix v10 (giá sửa ≠ 0), cần khởi động lại; sửa toàn bộ 1 lần: hàm C++ chờ build VC6 |
+| 2026-09-30 | `boss-the-gioi-lenh-bai-phong-than-20260930.md` | Boss thế giới (12 boss VNG) theo lịch, trạng thái, Lệnh Bài Boss Thế Giới, tab web admin | Vòng lặp chạy (nạp nóng 14:14); lệnh bài và tab web cần khởi động lại |
+| 2026-09-30 | `quai-mat-do-vng-phong-than-20260930.md` | Quái ít/không giống VNG: sinh lại 55 map theo mật độ 1014 (29.542 con) | Xong, có hiệu lực khi khởi động lại |
+| 2026-09-30 | `kinh-nghiem-danh-quai-phong-than-20260930.md` | Đánh quái không có kinh nghiệm (chênh cấp > 15 chỉ còn 1 điểm) | Có bản vá byte, cần khởi động lại |
+| 2026-09-30 | `o-phap-bao-phap-khi-an-phong-than-20260930.md` | 3 ô Pháp bảo (vá byte `Fit`), Pháp khí, Thần Ấn (dạng pháp bảo, phát từ web admin) | Có bản vá + ptfix v6, cần khởi động lại; ô Pháp khí/Thần Ấn thật cần C++ |
+| 2026-09-30 | `doi-do-trong-tui-phong-than-20260930.md` | Không đổi/mặc được đồ: vật phẩm kẹt "trên tay" phía server | Xong bằng Lua (nạp nóng 11:55); sửa gốc cần C++ |
+| 2026-09-30 | `can-khon-luan-duoc-diem-tho-dong-phong-than-20260930.md` | Càn Khôn Luân (Thái Tuế Sư, thiếu `Roulette`), kiểm tra Dược điếm/Thợ Đồng | Càn Khôn Luân xong (nạp nóng); Dược điếm/Thợ Đồng chờ kiểm thử trong game |
+| 2026-09-29 | `dung-thuoc-mau-mana-phong-than-20260929.md` | Không dùng được thuốc máu/mana (vá 2 byte CoreClient.dll) | Xong (áp dụng khi mở lại game) |
+- [petfight-tokenmenu-phong-than-20261003.md](petfight-tokenmenu-phong-than-20261003.md) — Đệ tử Dị Nhân đánh cùng chủ (AI 11 chọn mục tiêu) và menu Lệnh Bài gọn có Đổi hình dạng
