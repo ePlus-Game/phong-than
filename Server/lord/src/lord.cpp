@@ -45,7 +45,7 @@ int main(int argc, char* argv[])
 	if( INVALID_VALUE == pController->Startup( nDaemon ) )
 	{
 		fprintf( stderr, "Game server Startup failed.\n" );
-		pController->Release();
+		pController->Release( );
 		return 1;
 	}
 
