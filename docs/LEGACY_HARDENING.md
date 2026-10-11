@@ -49,3 +49,37 @@ preflight. It does NOT build or run the complete Windows GameClient,
 GameServer, AccountServer or gameplay. Follow the original-source build
 matrix in source/PT/PhongThanSource/README.md for the copied workspace.
 Build and smoke tests must run in an isolated Windows x86 VM.
+
+
+## One-command patched Windows build (the copied source only)
+
+Install Python 3.10+ and a compatible Windows x86 build environment:
+- Modern: Visual Studio 2022 Build Tools with MSVC v143 x86, WinSDK;
+- Legacy: licensed Visual C++ 6.0 with the original project dependencies;
+- the GDI+ / DirectX 9 SDK headers and import libraries under ThirdParty.
+
+Use an isolated Windows VM with at least 20 GiB of free space.
+Run these commands from the repository root:
+
+    .\tools\Build-PatchedGame.ps1 -WorkRoot 'D:\PT-Build\PhongThanSource' -Toolchain Modern -PreflightOnly
+    .\tools\Build-PatchedGame.ps1 -WorkRoot 'D:\PT-Build\PhongThanSource' -Toolchain Modern
+
+For VC6 Debug:
+
+    .\tools\Build-PatchedGame.ps1 -WorkRoot 'D:\PT-Build\PhongThanSource' -Toolchain VC6 -Configuration Debug
+
+Choose a NEW WorkRoot for each build. The wrapper refuses to overwrite
+existing output or modify the tracked original ZIP mirror. It copies source,
+applies VC6-compatible patches and executes the chosen compiler. Modern supports
+Release only. Inspect the generated Build/Logs or Build/LogsModern outputs
+if the build fails. Compiler success is not a Client/Server smoke-test pass.
+
+## Versioned recovery-toolkit prerelease
+
+Merging the version notes file under docs/releases/v0.1.0-recovery.1.md
+triggers a recovery-TOOLKIT release after Python unit tests, portable CMake
+compilation and CTest pass. The attached ZIP contains only developer tools
+and documentation plus SHA-256 checksum, NOT game DLLs, EXEs, PAKs or account
+data. The full original repository remains public and GitHub may automatically
+provide source archives alongside the toolkit. The version tag must not be
+interpreted as proof that the game can run.
