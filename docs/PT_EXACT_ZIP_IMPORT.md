@@ -17,7 +17,7 @@ Reconstruct the original **99,352 files** from `PT.zip`, byte-identical. This pr
 - The original `PT.zip` remains unchanged on Drive. The report is `MyDrive/PT_Git_Staging/PT_Exact_Zip_Complete_Report.json`. Only a report with `complete: true`, `missing_paths: 0`, `byte_mismatch: 0` and matching remote commit permits calling the import complete.
 
 ## Run
-Use the Colab notebook `PT_Exact_Unzipped_Chunk_Push.ipynb`. Its target branch is `import/pt-exact-unzipped-tree` (Draft PR #13). It can resume by checking committed Git blob hashes. For safety, keep the PR as draft until real ZIP validation finishes.
+Use the Colab notebook `PT_Exact_Unzipped_Chunk_Push_v2.ipynb`. Its target branch is `import/pt-exact-unzipped-tree` (Draft PR #13). It can resume by checking committed Git blob hashes. For safety, keep the PR as draft until real ZIP validation finishes.
 
 ## Important
 `ePlus-Game/pt` is **PUBLIC**. The ZIP may contain account databases, personal data, legacy secrets and third-party materials. Do not approve public disclosure without checking rights and sensitive information; moving the repo private before upload is safer. GitHub may also reject the overall ~12 GiB repository on performance/size grounds despite each individual blob being <100 MB.
