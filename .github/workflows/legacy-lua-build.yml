@@ -30,6 +30,8 @@ jobs:
             /source/PT/PhongThanSource/Sources/AccountServices/AccountServer/S3PDBSocketPool.cpp
             /source/PT/PhongThanSource/Build/Build-Modern.ps1
             /source/PT/PhongThanSource/Build/Build-PhongThan.ps1
+            /docs/LEGACY_HARDENING.md
+            /docs/releases/v0.1.0-recovery.1.md
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -81,6 +83,8 @@ jobs:
             /source/PT/PhongThanSource/Sources/AccountServices/AccountServer/S3PDBSocketPool.cpp
             /source/PT/PhongThanSource/Build/Build-Modern.ps1
             /source/PT/PhongThanSource/Build/Build-PhongThan.ps1
+            /docs/LEGACY_HARDENING.md
+            /docs/releases/v0.1.0-recovery.1.md
       - name: Preflight original VC6 build matrix (Release and Debug, no MSDEV)
         shell: pwsh
         run: |
