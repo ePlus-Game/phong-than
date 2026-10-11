@@ -1,0 +1,98 @@
+{
+    "time":  "2026-10-05 20:28:28",
+    "reason":  "mo web admin",
+    "files":  [
+                  {
+                      "file":  "role_31313131313131313131.pthc",
+                      "name":  "1111111111",
+                      "size":  8632,
+                      "saved":  "2026-10-04 20:10",
+                      "ok":  true
+                  },
+                  {
+                      "file":  "role_64616f736931.pthc",
+                      "name":  "daosi1",
+                      "size":  9320,
+                      "saved":  "2026-10-04 21:03",
+                      "ok":  true
+                  },
+                  {
+                      "file":  "role_656d6c616169.pthc",
+                      "name":  "emlaai",
+                      "size":  20244,
+                      "saved":  "2026-10-01 19:29",
+                      "ok":  true
+                  },
+                  {
+                      "file":  "role_656d6c61616931.pthc",
+                      "name":  "emlaai1",
+                      "size":  6336,
+                      "saved":  "2026-10-03 14:00",
+                      "ok":  true
+                  },
+                  {
+                      "file":  "role_656d6c61616932.pthc",
+                      "name":  "emlaai2",
+                      "size":  8948,
+                      "saved":  "2026-10-04 15:17",
+                      "ok":  true
+                  },
+                  {
+                      "file":  "role_6b7975633174686f69.pthc",
+                      "name":  "kyuc1thoi",
+                      "size":  18320,
+                      "saved":  "2026-10-04 19:27",
+                      "ok":  true
+                  },
+                  {
+                      "file":  "role_70686f6e677468616e6e7063.pthc",
+                      "name":  "phongthannpc",
+                      "size":  9752,
+                      "saved":  "2026-09-17 09:29",
+                      "ok":  true
+                  },
+                  {
+                      "file":  "role_70686f6e677468616e706c6179.pthc",
+                      "name":  "phongthanplay",
+                      "size":  908,
+                      "saved":  "2026-09-11 09:47",
+                      "ok":  true
+                  },
+                  {
+                      "file":  "role_70686f6e677468616e74657374.pthc",
+                      "name":  "phongthantest",
+                      "size":  424,
+                      "saved":  "2026-09-05 17:25",
+                      "ok":  true
+                  },
+                  {
+                      "file":  "role_74657374313233.pthc",
+                      "name":  "test123",
+                      "size":  2880,
+                      "saved":  "2026-09-16 17:16",
+                      "ok":  true
+                  },
+                  {
+                      "file":  "role_7465737431323334.pthc",
+                      "name":  "test1234",
+                      "size":  3772,
+                      "saved":  "2026-09-15 10:42",
+                      "ok":  true
+                  },
+                  {
+                      "file":  "role_7465737464616f7379.pthc",
+                      "name":  "testdaosy",
+                      "size":  3372,
+                      "saved":  "2026-09-10 15:24",
+                      "ok":  true
+                  },
+                  {
+                      "file":  "role_7465737464696e68616e.pthc",
+                      "name":  "testdinhan",
+                      "size":  3372,
+                      "saved":  "2026-09-10 15:24",
+                      "ok":  true
+                  }
+              ],
+    "db":  "ok"
+}
