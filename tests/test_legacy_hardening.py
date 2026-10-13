@@ -20,12 +20,20 @@ class HardeningTests(unittest.TestCase):
     def test_fixed_network_code_checks_input_at_runtime(self):
         rel = "Sources/AccountServices/AccountServer/S3PDBSocketPool.cpp"
         fixed = harden(rel, (ROOT / rel).read_bytes())
-        self.assertIn(b"pSend->Size > MAX_PATH", fixed)
-        self.assertIn(b"pSend->Size < sizeof(KAccountHead)", fixed)
+        self.assertIn(b"IsPacketLengthWithinBounds((size_t)pSend->Size", fixed)
+        self.assertIn(b"sizeof(KAccountHead), MAX_PATH))", fixed)
+        self.assertNotIn(b"pSend->Size > MAX_PATH", fixed)
         self.assertIn(b"m_pServer == NULL", fixed)
         self.assertIn(b"ParseGatewayEndpoint(pInfo, &endpoint)", fixed)
         self.assertNotIn(b"while(*(pInfo + offset) != ':')", fixed)
         self.assertNotIn(b"assert(pSend->Size < MAX_PATH)", fixed)
+
+    def test_received_frame_size_is_checked_before_dword_cast(self):
+        rel = "Sources/AccountServices/AccountServer/S3PDBSocketPool.cpp"
+        fixed = harden(rel, (ROOT / rel).read_bytes())
+        self.assertIn(b"PHONGTHAN_WIRE_MAX_PACKET_SIZE))", fixed)
+        self.assertIn(b"ProcessClientData(pData, (DWORD)datalength);", fixed)
+        self.assertNotIn(b"ProcessClientData(pData, datalength);", fixed)
 
     def test_gameserver_format_string_is_fixed(self):
         rel = "Sources/MultiServer/GameServer/GameServer.cpp"

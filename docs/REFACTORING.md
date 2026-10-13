@@ -13,6 +13,13 @@ during modernization; work through the overlays and a separate copied tree.
   \`fprintf\` formatting remain enabled.
 - \`tests/cpp/test_gateway_endpoint.cpp\` exercises malformed endpoints and
   boundary ports under a host C++98 compiler.
+- `overlays/legacy/AccountPacketBounds.h` checks inbound gateway packet byte lengths
+  (20-byte header through the existing 1 MiB protocol maximum) before converting
+  `size_t` to DWORD, and outbound AccountServer payload length before fixed-buffer
+  copying. The helper is C++98-compatible and is installed in the external
+  working copy only; it does not alter the archive, wire format or ABI.
+- `tests/cpp/test_account_packet_bounds.cpp` covers accepted boundaries,
+  truncated/oversized packets and extreme `size_t` inputs.
 - Python tests check exact patch contexts, idempotency and refusal to overwrite
   incompatible files.
 

@@ -19,7 +19,8 @@ PATCHES = {
         (
             b'\tif (m_pServer == NULL)\n\t\treturn FALSE;\n\n\tBOOL bRet = FALSE;\n\ttry\n\t{\n\t\tassert(pSend);\n\t\tpSend->Version',
             b'\tif (m_pServer == NULL || pSend == NULL ||\n'
-            b'\t\tpSend->Size < sizeof(KAccountHead) || pSend->Size > MAX_PATH)\n'
+            b'\t\t!PtRecovery::IsPacketLengthWithinBounds((size_t)pSend->Size,\n'
+            b'\t\t\tsizeof(KAccountHead), MAX_PATH))\n'
             b'\t\treturn FALSE;\n\n\tBOOL bRet = FALSE;\n\ttry\n\t{\n\t\tpSend->Version',
         ),
         (
@@ -48,7 +49,17 @@ PATCHES = {
         ),
         (
             b'#include "S3PDBSocketPool.h"\n#include "S3PAccount.h"',
-            b'#include "S3PDBSocketPool.h"\n#include "GatewayEndpointParser.h"\n#include "S3PAccount.h"',
+            b'#include "S3PDBSocketPool.h"\n#include "GatewayEndpointParser.h"\n#include "AccountPacketBounds.h"\n#include "S3PAccount.h"',
+        ),
+        (
+            b'\t\t\tif (pData && 0 != datalength)\n'
+            b'\t\t\t{\n'
+            b'\t\t\t\tProcessClientData(pData, datalength);',
+            b'\t\t\tif (pData && PtRecovery::IsPacketLengthWithinBounds(\n'
+            b'\t\t\t\t\tdatalength, sizeof(PHONGTHAN_WIRE_HEADER),\n'
+            b'\t\t\t\t\tPHONGTHAN_WIRE_MAX_PACKET_SIZE))\n'
+            b'\t\t\t{\n'
+            b'\t\t\t\tProcessClientData(pData, (DWORD)datalength);',
         ),
     ),
 }
@@ -118,6 +129,8 @@ def harden(relative: str, original: bytes) -> bytes:
 ADDITIONAL_FILES = {
     "Sources/AccountServices/AccountServer/GatewayEndpointParser.h":
         "overlays/legacy/GatewayEndpointParser.h",
+    "Sources/AccountServices/AccountServer/AccountPacketBounds.h":
+        "overlays/legacy/AccountPacketBounds.h",
 }
 
 

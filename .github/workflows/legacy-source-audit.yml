@@ -36,6 +36,10 @@ jobs:
         run: |
           g++ -std=c++98 -Wall -Wextra -Werror -pedantic tests/cpp/test_gateway_endpoint.cpp -o "$RUNNER_TEMP/pt-gateway-test"
           "$RUNNER_TEMP/pt-gateway-test"
+      - name: Compile C++98 packet boundary tests
+        run: |
+          g++ -std=c++98 -Wall -Wextra -Werror -pedantic tests/cpp/test_account_packet_bounds.cpp -o "$RUNNER_TEMP/pt-account-bounds"
+          "$RUNNER_TEMP/pt-account-bounds"
       - name: Validate separate build workspace preflight
         run: |
           python -m tools.release_preflight \
