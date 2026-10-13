@@ -44,6 +44,14 @@ REPLACEMENTS = {
         (b"$form.Text='Phong Than - Server / Client / Tai khoan'",
          b"$form.Text='Phong Than Truyen Ky - Server / Client / Tai khoan'"),
     ],
+    "PhongThan-BangDieuKhien.cmd": [
+        (b'start "Phong Than Control" powershell.exe',
+         b'start "Phong Than Truyen Ky Control" powershell.exe'),
+    ],
+    "PhongThanSource/Deploy/PhongThan-AccountForm.ps1": [
+        (b"$dialog.Text = 'Phong Than - Tao tai khoan'",
+         b"$dialog.Text = 'Phong Than Truyen Ky - Tao tai khoan'"),
+    ],
     "AdminWeb/index.html": [
         ("<title>Phong Thần Admin</title>".encode("utf-8"),
          ("<title>" + DISPLAY_NAME + " Admin</title>").encode("utf-8")),
