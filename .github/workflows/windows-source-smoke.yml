@@ -1,0 +1,74 @@
+name: Windows source smoke (no game process)
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/windows-source-smoke.yml'
+      - 'PhongThanSource/Deploy/Start-NativeServer.ps1'
+      - 'PhongThanSource/Deploy/Start-StagingClient.ps1'
+      - 'PhongThanSource/Deploy/Stop-StagingRuntime.ps1'
+      - 'PhongThanSource/Tests/test_server_readiness.py'
+      - 'PhongThanSource/Tests/Test-SkillMigrationGuards.ps1'
+      - 'PhongThanSource/Sources/Core/Src/KSkillList.cpp'
+      - 'PhongThanSource/Sources/Core/Src/KSkills.cpp'
+      - 'PhongThanSource/Sources/Core/Src/KPlayer.cpp'
+      - 'PhongThanSource/Build/Build-Modern.ps1'
+      - 'tools/Build-PatchedGame.ps1'
+    branches: [main]
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/windows-source-smoke.yml'
+      - 'PhongThanSource/Deploy/Start-NativeServer.ps1'
+      - 'PhongThanSource/Tests/test_server_readiness.py'
+      - 'PhongThanSource/Tests/Test-SkillMigrationGuards.ps1'
+permissions:
+  contents: read
+concurrency:
+  group: pt-windows-source-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  windows-source-smoke:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /PhongThanSource/Tests/test_server_readiness.py
+            /PhongThanSource/Tests/Test-SkillMigrationGuards.ps1
+            /PhongThanSource/Sources/Core/Src/KSkillList.cpp
+            /PhongThanSource/Sources/Core/Src/KSkills.cpp
+            /PhongThanSource/Sources/Core/Src/KPlayer.cpp
+            /PhongThanSource/Deploy/Start-NativeServer.ps1
+            /PhongThanSource/Deploy/Start-StagingClient.ps1
+            /PhongThanSource/Deploy/Stop-StagingRuntime.ps1
+            /PhongThanSource/Build/Build-Modern.ps1
+            /tools/Build-PatchedGame.ps1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Parse Windows PowerShell 5.1 entry points
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $files = @(
+            'PhongThanSource/Deploy/Start-NativeServer.ps1',
+            'PhongThanSource/Deploy/Start-StagingClient.ps1',
+            'PhongThanSource/Deploy/Stop-StagingRuntime.ps1',
+            'PhongThanSource/Build/Build-Modern.ps1',
+            'tools/Build-PatchedGame.ps1'
+          )
+          foreach ($file in $files) {
+            $tokens = $null; $parseErrors = $null
+            [void][Management.Automation.Language.Parser]::ParseFile((Resolve-Path $file), [ref]$tokens, [ref]$parseErrors)
+            if ($parseErrors.Count) { throw "$file : $($parseErrors[0].Message)" }
+            Write-Host "PASS PowerShell syntax: $file"
+          }
+      - name: Native server readiness marker regression (no service startup)
+        shell: powershell
+        run: python -m unittest discover -s PhongThanSource/Tests -p test_server_readiness.py -v
+      - name: Skill level and profession static guards
+        shell: powershell
+        run: '& .\PhongThanSource\Tests\Test-SkillMigrationGuards.ps1'
