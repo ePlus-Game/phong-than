@@ -1,11 +1,15 @@
 # Phong Thần Truyền Kỳ — dự án phục dựng game
 
-**Tên game đã chọn:** **Phong Thần Truyền Kỳ** (ASCII tương thích client C++/INI cũ: `Phong Than Truyen Ky`; viết tắt **PTTK**). Tên được cập nhật cho thương hiệu của **giao diện và bản dựng độc lập**; việc đăng ký nhãn hiệu chưa được xác nhận. Repository: [ePlus-Game/phong-than-truyen-ky](https://github.com/ePlus-Game/phong-than-truyen-ky). Mã dự án và đường dẫn gốc (`PhongThanSource`, `PhongThanRuntime-Staging`, `Game.exe`) giữ nguyên để tương thích và truy nguyên nguồn.
+**Tên game:** Phong Thần Truyền Kỳ (**PTTK**). Tên hiển thị cho client C++/INI cũ: `Phong Than Truyen Ky`.
 
-**Quan trọng:** Đổi tên không chuyển giao quyền sử dụng mã nguồn, hình ảnh, âm thanh, cốt truyện hoặc PAK từ bên thứ ba. Repo là bản lưu để phân tích/phục dựng, **không phải giấy phép phát hành game**. Xem [hướng dẫn áp dụng tên mới và rà soát quyền IP](docs/BRANDING.md).
+Repository: [ePlus-Game/phong-than-truyen-ky](https://github.com/ePlus-Game/phong-than-truyen-ky).
 
-Repository này lưu trữ **bộ PT.zip gốc** (99.352 mục) cùng công cụ kiểm tra,
-phục hồi và nghiên cứu build. **Chưa xác nhận Client/Server có thể chạy game.**
+Dự án gồm mã nguồn game, dữ liệu runtime và công cụ phục dựng, kiểm tra, build. Tên file chạy và đường dẫn kỹ thuật hiện có (`Game.exe`, `PhongThanSource`, `PhongThanRuntime-Staging`, `script/phongthan/*`) được giữ nguyên để tương thích.
+
+- [Cập nhật tên hiển thị trong bản build](docs/BRANDING.md)
+- [Lộ trình refactor](docs/REFACTORING.md)
+- [Tình trạng hệ thống nhiệm vụ](docs/QUEST_SYSTEM_STATUS.md)
+- [Phát thưởng và Linh Thú](docs/REWARDS_AND_PETS.md)
 
 ## Cấu trúc
 
@@ -58,14 +62,11 @@ Muốn thử build có kiểm soát, xem [hướng dẫn hardening](docs/LEGACY_
 Source gốc không được chỉnh sửa trực tiếp; hãy build trên một **bản sao**
 ở ngoài checkout, tốt nhất trong Windows x86 VM cách ly.
 
-## Chứng thực và bảo mật
+## Kiểm tra dữ liệu và môi trường
 
-Manifest SHA-256 gốc còn nguyên trong `archive/`, có nhãn đường dẫn lịch sử
-`source/PT/...` để giữ bằng chứng import; công cụ restore sẽ tự chuyển sang
-đường dẫn hiện tại. Xem [chi tiết ánh xạ](docs/REPOSITORY_LAYOUT.md).
+Manifest SHA-256 trong `archive/` và cách ánh xạ đường dẫn từ `source/PT/...`
+được mô tả tại [cấu trúc repository](docs/REPOSITORY_LAYOUT.md).
 
-**Cảnh báo:** Đây là repository PUBLIC, có thể chứa sao lưu tài khoản,
-dữ liệu nhân vật, cấu hình cũ, nhật ký và tài liệu thuộc sở hữu bên thứ ba.
-Không dùng bản này trên hệ thống production, không chạy các file thực thi cũ
-trực tiếp và không giả định việc công khai repository là cho phép phân phối
-nội dung. Di chuyển/xóa file ở commit mới cũng không xóa chúng khỏi lịch sử Git.
+Kho có dữ liệu và file thực thi từ môi trường cũ. Khi thử nghiệm, sử dụng
+môi trường cách ly và bản sao bên ngoài checkout; không đưa tài khoản,
+dữ liệu nhân vật hoặc cấu hình riêng vào pull request.
