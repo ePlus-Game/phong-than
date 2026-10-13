@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Produce Huyen Vuc Ky user-facing branding in an external build overlay.
+"""Produce Phong Than Truyen Ky user-facing branding in an external build overlay.
 
 The PT archive/source mirror is immutable: this program NEVER updates inputs.
 It emits only text files (no PAK, icon, executable or private character data).
@@ -10,23 +10,39 @@ import argparse
 import json
 from pathlib import Path
 
-DISPLAY_NAME = "Huyền Vực Ký"
-LEGACY_ENCODED_NAME = "Huyen Vuc Ky"
+DISPLAY_NAME = "Phong Thần Truyền Kỳ"
+LEGACY_ENCODED_NAME = "Phong Than Truyen Ky"
 
 # Use byte-exact replacement to avoid corrupting the legacy CP936/TCVN3 text.
 # Locations like "Phong Than Dai" and all serialized identifiers stay intact.
 REPLACEMENTS = {
     "PhongThanRuntime-Staging/Client/Ui/Setting.ini": [
-        (b"GameName=Phong Than Online", b"GameName=Huyen Vuc Ky"),
+        (b"GameName=Phong Than Online", b"GameName=Phong Than Truyen Ky"),
         (b"22=Ban co muon thoat khoi Phong Than Online?",
-         b"22=Ban co muon thoat khoi Huyen Vuc Ky?"),
-        (b"23=Phong Than Online", b"23=Huyen Vuc Ky"),
+         b"22=Ban co muon thoat khoi Phong Than Truyen Ky?"),
+        (b"23=Phong Than Online", b"23=Phong Than Truyen Ky"),
     ],
     "PhongThanRuntime-Staging/Client/serverlist.ini": [
         (b"Region_0=Phong Than Online (DEV AG v1)",
-         b"Region_0=Huyen Vuc Ky (DEV)"),
+         b"Region_0=Phong Than Truyen Ky (DEV)"),
         (b"Region_1=Cum May Chu Phong Than",
-         b"Region_1=Cum May Chu Huyen Vuc Ky"),
+         b"Region_1=Cum May Chu Phong Than Truyen Ky"),
+    ],
+    # Only the visible console labels are rebranded. Launcher/script filenames stay legacy.
+    "PhongThan-Admin.cmd": [
+        (b"title Phong Than Admin", b"title Phong Than Truyen Ky Admin"),
+    ],
+    "PhongThan-CaiDat.cmd": [
+        (b"title Phong Than - Cai dat server",
+         b"title Phong Than Truyen Ky - Cai dat server"),
+    ],
+    "PhongThan-ChayTatCa.cmd": [
+        (b"title Phong Than - Chay tat ca",
+         b"title Phong Than Truyen Ky - Chay tat ca"),
+    ],
+    "PhongThanSource/Deploy/PhongThan-Control.ps1": [
+        (b"$form.Text='Phong Than - Server / Client / Tai khoan'",
+         b"$form.Text='Phong Than Truyen Ky - Server / Client / Tai khoan'"),
     ],
     "AdminWeb/index.html": [
         ("<title>Phong Thần Admin</title>".encode("utf-8"),
@@ -36,11 +52,11 @@ REPLACEMENTS = {
     ],
     "PhongThanSource/Sources/GameClient/PhongThanClient.cpp": [
         (b'char g_szGameName[128] = "Phong Than Online";',
-         b'char g_szGameName[128] = "Huyen Vuc Ky";'),
+         b'char g_szGameName[128] = "Phong Than Truyen Ky";'),
         (b'pSetting->GetString("Main", "GameName", "Phong Than Online", g_szGameName, sizeof(g_szGameName));',
-         b'pSetting->GetString("Main", "GameName", "Huyen Vuc Ky", g_szGameName, sizeof(g_szGameName));'),
+         b'pSetting->GetString("Main", "GameName", "Phong Than Truyen Ky", g_szGameName, sizeof(g_szGameName));'),
         (b"        SetWindowText(g_GetMainHWnd(), g_szGameName);",
-         b'        strcpy(g_szGameName, "Huyen Vuc Ky");\n'
+         b'        strcpy(g_szGameName, "Phong Than Truyen Ky");\n'
          b"        SetWindowText(g_GetMainHWnd(), g_szGameName);"),
     ],
 }
