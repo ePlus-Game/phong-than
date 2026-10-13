@@ -64,7 +64,7 @@ class HardeningTests(unittest.TestCase):
         fixed = harden(rel, (ROOT / rel).read_bytes())
         self.assertIn(b"if ($name -eq 'Represent3')", fixed)
         self.assertIn(b"WindowsSDKVersion.TrimEnd", fixed)
-        self.assertIn(b"('basetsd.h')", fixed)
+        self.assertIn(b"Join-Path $sdkShared 'basetsd.h'", fixed)
         self.assertIn(b"('/fo' + $resOut)", fixed)
         self.assertNotIn(b"'/fo', $resOut", fixed)
 
