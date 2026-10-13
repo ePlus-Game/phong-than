@@ -1,4 +1,4 @@
-"""Archive-preserving Huyen Vuc Ky branding checks."""
+"""Archive-preserving Phong Than Truyen Ky branding checks."""
 from __future__ import annotations
 
 import shutil
@@ -63,7 +63,31 @@ class BrandingOverlayTests(unittest.TestCase):
         self.assertIn(b"0_Address=127.0.0.1", serverlist)
         cpp = (self.output / "PhongThanSource/Sources/GameClient/PhongThanClient.cpp").read_bytes()
         self.assertIn(b'SetWindowText(g_GetMainHWnd(), g_szGameName);', cpp)
-        self.assertIn(b'strcpy(g_szGameName, "Huyen Vuc Ky");', cpp)
+        self.assertIn(b'strcpy(g_szGameName, "Phong Than Truyen Ky");', cpp)
+
+    def test_consistent_rebrand_across_game_and_admin_labels(self):
+        generated = generate(self.source, self.output, write=True)
+        self.assertEqual(generated["name"], "Phong Thần Truyền Kỳ")
+        self.assertEqual(generated["ascii_name"], "Phong Than Truyen Ky")
+        display_files = [
+            "PhongThanRuntime-Staging/Client/Ui/Setting.ini",
+            "PhongThanRuntime-Staging/Client/serverlist.ini",
+            "PhongThanSource/Sources/GameClient/PhongThanClient.cpp",
+            "AdminWeb/index.html",
+            "PhongThan-Admin.cmd",
+            "PhongThan-CaiDat.cmd",
+            "PhongThan-ChayTatCa.cmd",
+            "PhongThanSource/Deploy/PhongThan-Control.ps1",
+        ]
+        for relative in display_files:
+            with self.subTest(file=relative):
+                data = (self.output / relative).read_bytes()
+                self.assertNotIn(b"Huyen Vuc Ky", data)
+                self.assertNotIn("Huyền Vực Ký".encode("utf-8"), data)
+                if relative.endswith("index.html"):
+                    self.assertIn("Phong Thần Truyền Kỳ".encode("utf-8"), data)
+                else:
+                    self.assertIn(b"Phong Than Truyen Ky", data)
 
     def test_changed_archival_anchor_fails_without_writes(self):
         target = self.source / "PhongThanRuntime-Staging/Client/serverlist.ini"
