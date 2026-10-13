@@ -20,8 +20,11 @@ These fixes are made ONLY to the copied workspace:
   Release builds do not execute assert statements.
 - Validate the legacy `IPv4:port` gateway string with a portable C++98 helper;
   reject malformed hosts and ports instead of using an unbounded colon scan.
-- Install the helper only into the external working copy; the original game
+- Install the helpers only into the external working copy; the original game
   source files remain byte-for-byte unchanged.
+- Reject inbound gateway frames outside the existing wire-header minimum and
+  1 MiB maximum before narrowing `size_t` to DWORD. Use a portable C++98
+  length check for outbound `CustomSend` as well; do not change the protocol.
 - Treat Lua error text as data, not a fprintf format string.
 
 The overlay matches exact source contexts and preserves existing CRLF line
@@ -93,6 +96,8 @@ From the repository root run:
 python -m unittest discover -s tests -v
 g++ -std=c++98 -Wall -Wextra -Werror -pedantic tests/cpp/test_gateway_endpoint.cpp -o /tmp/pt-gateway-test
 /tmp/pt-gateway-test
+g++ -std=c++98 -Wall -Wextra -Werror -pedantic tests/cpp/test_account_packet_bounds.cpp -o /tmp/pt-account-bounds-test
+/tmp/pt-account-bounds-test
 ```
 
 These test the parser and the source patch process. They do not prove
