@@ -30,6 +30,10 @@ jobs:
             /PhongThanRuntime-Staging/Client/Ui/Setting.ini
             /PhongThanRuntime-Staging/Client/serverlist.ini
             /AdminWeb/index.html
+            /PhongThan-Admin.cmd
+            /PhongThan-CaiDat.cmd
+            /PhongThan-ChayTatCa.cmd
+            /PhongThanSource/Deploy/PhongThan-Control.ps1
             /PhongThanSource/Sources/GameClient/PhongThanClient.cpp
             /docs/LEGACY_HARDENING.md
             /docs/releases/v0.1.0-recovery.1.md
