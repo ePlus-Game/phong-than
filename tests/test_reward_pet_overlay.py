@@ -4,12 +4,14 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from tools.reward_pet_overlay import GIFT, PET, PATCHES, patch, stage
+from tools.reward_pet_overlay import DAILY, GIFT, PET, PET_MATERIALS, PATCHES, patch, stage
 
 REPO = Path(__file__).resolve().parents[1]
 SOURCES = {
     GIFT: REPO / "PhongThanSource/Deploy/ProjectContent/script/servertimer.lua",
     PET: REPO / "PhongThanRuntime-Staging/Server/script/phongthan/sinhhoat/lt_npc.lua",
+    DAILY: REPO / "PhongThanRuntime-Staging/Server/script/phongthan/content/dg_lib.lua",
+    PET_MATERIALS: REPO / "PhongThanRuntime-Staging/Server/script/phongthan/sinhhoat/sh_lib.lua",
 }
 
 
@@ -35,6 +37,26 @@ class RewardPetOverlayTests(unittest.TestCase):
         self.assertIn(b"Earn(PTLT_EGG_CASH)", changed)
         self.assertIn(b"if restored ~= PTLT_EGG_DON then", changed)
         self.assertIn(b"can lien he GM", changed)
+
+    def test_daily_grants_log_partial_and_guard_success_message(self):
+        changed = patch(DAILY, SOURCES[DAILY].read_bytes())
+        self.assertIn(b"function PTDG_GrantChecked(kind, list, money)", changed)
+        self.assertIn(b"dailygift_result.log", changed)
+        self.assertIn(b"if got == expected then return 1 end", changed)
+        self.assertIn(b'if PTDG_GrantChecked("daily",', changed)
+        self.assertIn(b'if PTDG_GrantChecked("streak7",', changed)
+        self.assertNotIn(b"\t\tPTDG_GiveList(cfg.daily,", changed)
+        self.assertNotIn(b"\t\tPTDG_GiveList(cfg.big,", changed)
+        self.assertIn(b"khong tu phat lai", changed)
+
+    def test_pet_material_refunds_warn_if_incomplete(self):
+        changed = patch(PET_MATERIALS, SOURCES[PET_MATERIALS].read_bytes())
+        self.assertIn(b"function PTSH_RefundWarn(kind, missing)", changed)
+        self.assertIn(b"pet_refund_result.log", changed)
+        self.assertIn(b'PTSH_RefundWarn("takeall", got[j] - restored)', changed)
+        self.assertIn(b'PTSH_RefundWarn("tier", missing)', changed)
+        self.assertIn(b"local restored = PTSH_Give(3, id, 0, g)", changed)
+        self.assertNotIn(b"for id, g in taken do PTSH_Give(3, id, 0, g) end", changed)
 
     def _fixture(self, dest):
         for rel, src in SOURCES.items():
