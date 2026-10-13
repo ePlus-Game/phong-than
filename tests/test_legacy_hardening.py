@@ -42,6 +42,32 @@ class HardeningTests(unittest.TestCase):
         self.assertNotIn(b"fprintf(stderr, szerrmsg);", fixed)
 
 
+    def test_gameserver_packet_error_printf_has_one_matching_argument(self):
+        rel = "Sources/MultiServer/GameServer/KSOServer.cpp"
+        fixed = harden(rel, (ROOT / rel).read_bytes())
+        self.assertIn(b'printf("Packing failed. id=%lu\\n", (unsigned long)lnID);', fixed)
+        self.assertNotIn(b'printf("Packing failed. %d, %d, %d\\n", lnID);', fixed)
+
+    def test_accountserver_compiler_and_buffer_issues_are_fixed(self):
+        rel = "Sources/AccountServices/AccountServer/main.cpp"
+        fixed = harden(rel, (ROOT / rel).read_bytes())
+        self.assertIn(b"static inline void sLogProgram(BOOL bEnter)", fixed)
+        self.assertNotIn(b"static inline sLogProgram(BOOL bEnter)", fixed)
+        self.assertIn(b"if (pFactroyFun && SUCCEEDED(", fixed)
+        self.assertIn(b"&& pServerFactory)", fixed)
+        self.assertIn(b"nLen > MAX_BUFFER_LEN - sizeof(DWORD)", fixed)
+        self.assertIn(b"::DeleteCriticalSection(&m_switchsect);", fixed)
+        self.assertNotIn(b"::LeaveCriticalSection(&m_switchsect);\\n\\t\\t::DeleteCriticalSection", fixed)
+
+    def test_modern_build_prefers_sdk_basetsd_for_represent3(self):
+        rel = "Build/Build-Modern.ps1"
+        fixed = harden(rel, (ROOT / rel).read_bytes())
+        self.assertIn(b"if ($name -eq 'Represent3')", fixed)
+        self.assertIn(b"WindowsSDKVersion.TrimEnd", fixed)
+        self.assertIn(b"('basetsd.h')", fixed)
+        self.assertIn(b"('/fo' + $resOut)", fixed)
+        self.assertNotIn(b"'/fo', $resOut", fixed)
+
     def test_gateway_ip_is_extracted_from_host_port_string(self):
         rel = "Sources/AccountServices/AccountServer/S3PDBSocketPool.cpp"
         fixed = harden(rel, (ROOT / rel).read_bytes())
