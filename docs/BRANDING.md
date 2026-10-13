@@ -39,6 +39,8 @@ python tools/build_branding_overlay.py --output-dir D:\PhongThanTruyenKy-Brandin
 python -m unittest discover -s tests -p test_branding_overlay.py -v
 ```
 
+**Tải overlay đã tạo sẵn:** vào [GitHub Actions](https://github.com/ePlus-Game/phong-than-truyen-ky/actions/workflows/legacy-source-audit.yml), chọn workflow thành công của commit mới nhất và tải artifact `phong-than-truyen-ky-branding-overlay`. Giải nén artifact rồi áp các file theo đúng cấu trúc đường dẫn tương đối vào bản sao bên ngoài kho gốc; vẫn phải rebuild client để thay title được mã hóa trong EXE.
+
 Khi muốn build/chạy thử: tạo **bản sao riêng** của Client/Server và source ở
 ngoài checkout. Sau đó merge các tệp trong `D:\PhongThanTruyenKy-Branding` vào bản
 sao theo đúng đường dẫn tương đối; build lại client từ source đã được đổi tên.
