@@ -77,7 +77,9 @@ class BrandingOverlayTests(unittest.TestCase):
             "PhongThan-Admin.cmd",
             "PhongThan-CaiDat.cmd",
             "PhongThan-ChayTatCa.cmd",
+            "PhongThan-BangDieuKhien.cmd",
             "PhongThanSource/Deploy/PhongThan-Control.ps1",
+            "PhongThanSource/Deploy/PhongThan-AccountForm.ps1",
         ]
         for relative in display_files:
             with self.subTest(file=relative):
@@ -88,6 +90,17 @@ class BrandingOverlayTests(unittest.TestCase):
                     self.assertIn("Phong Thần Truyền Kỳ".encode("utf-8"), data)
                 else:
                     self.assertIn(b"Phong Than Truyen Ky", data)
+
+    def test_public_documents_use_current_name_without_draft_claims(self):
+        for relative in ("README.md", "docs/BRANDING.md"):
+            with self.subTest(file=relative):
+                text = (REPO / relative).read_text(encoding="utf-8")
+                self.assertIn("Phong Thần Truyền Kỳ", text)
+                self.assertIn("Phong Than Truyen Ky", text)
+                self.assertNotIn("Huyền Vực Ký", text)
+                self.assertNotIn("Huyen Vuc Ky", text)
+                self.assertNotIn("Tên thương hiệu dự kiến", text)
+                self.assertNotIn("chưa tra cứu/đăng ký nhãn hiệu", text)
 
     def test_changed_archival_anchor_fails_without_writes(self):
         target = self.source / "PhongThanRuntime-Staging/Client/serverlist.ini"
