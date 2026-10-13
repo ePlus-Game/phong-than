@@ -22,7 +22,9 @@ jobs:
             /tests/
             /overlays/
             /PhongThanSource/Sources/MultiServer/GameServer/GameServer.cpp
+            /PhongThanSource/Sources/MultiServer/GameServer/KSOServer.cpp
             /PhongThanSource/Sources/AccountServices/AccountServer/S3PDBSocketPool.cpp
+            /PhongThanSource/Sources/AccountServices/AccountServer/main.cpp
             /PhongThanSource/Build/Build-Modern.ps1
             /PhongThanSource/Build/Build-PhongThan.ps1
             /PhongThanSource/Deploy/ProjectContent/script/servertimer.lua
