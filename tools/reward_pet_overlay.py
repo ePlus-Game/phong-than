@@ -11,9 +11,47 @@ from pathlib import Path
 
 GIFT = "script/servertimer.lua"
 PET = "script/phongthan/sinhhoat/lt_npc.lua"
+DAILY = "script/phongthan/content/dg_lib.lua"
+PET_MATERIALS = "script/phongthan/sinhhoat/sh_lib.lua"
 
 # Anchor exact original Lua 4 contexts, not wildcard regexes.
 PATCHES = {
+    DAILY:     (
+        (
+            "\treturn got\nend\n\n-- deliver queued gifts to the current player",
+            "\treturn got\nend\n\n-- A partial gift grant must not be reported as complete or blindly replayed.\nfunction PTDG_GrantChecked(kind, list, money)\n\tlocal expected = 0\n\tlocal k = 1\n\twhile list[k] do\n\t\tlocal count = tonumber(list[k].n) or 1\n\t\tlocal j = 1\n\t\twhile j <= count do\n\t\t\texpected = expected + 1\n\t\t\tj = j + 1\n\t\tend\n\t\tk = k + 1\n\tend\n\tlocal got = PTDG_GiveList(list, money)\n\tif got == expected then return 1 end\n\tlocal h = openfile(\"admin_bridge\\\\dailygift_result.log\", \"a\")\n\tif h then\n\t\twrite(h, date(\"%Y-%m-%d %H:%M:%S\") .. \"\\tPARTIAL\\t\" ..\n\t\t\t(GetName() or \"?\") .. \"\\t\" .. kind .. \"\\titems=\" .. got ..\n\t\t\t\"/\" .. expected .. \"\\n\")\n\t\tclosefile(h)\n\tend\n\tMsg2Player(PTDG_HEAD .. \"Loi nhan qua \" .. kind .. \": \" .. got ..\n\t\t\"/\" .. expected .. \" vat pham. Lien he GM; khong tu phat lai.\")\n\treturn 0\nend\n\n-- deliver queued gifts to the current player",
+        ),
+        (
+            "\t\tPTDG_GiveList(cfg.daily, tonumber(cfg.moneyDaily) or 0)\n\t\tMsg2Player(",
+            "\t\tif PTDG_GrantChecked(\"daily\", cfg.daily, tonumber(cfg.moneyDaily) or 0) == 1 then\n\t\t\tMsg2Player(",
+        ),
+        (
+            "PTDG_Names(cfg.daily, tonumber(cfg.moneyDaily) or 0))\n\tend\n\tlocal nb",
+            "PTDG_Names(cfg.daily, tonumber(cfg.moneyDaily) or 0))\n\t\tend\n\tend\n\tlocal nb",
+        ),
+        (
+            "\t\tPTDG_GiveList(cfg.big, tonumber(cfg.moneyBig) or 0)\n\t\tMsg2Player(",
+            "\t\tif PTDG_GrantChecked(\"streak7\", cfg.big, tonumber(cfg.moneyBig) or 0) == 1 then\n\t\t\tMsg2Player(",
+        ),
+        (
+            "PTDG_Names(cfg.big, tonumber(cfg.moneyBig) or 0))\n\tend\n\treturn 0",
+            "PTDG_Names(cfg.big, tonumber(cfg.moneyBig) or 0))\n\t\tend\n\tend\n\treturn 0",
+        ),
+    ),
+    PET_MATERIALS:     (
+        (
+            "\treturn k\nend\n\n-- take n of one item from the bag",
+            "\treturn k\nend\n\n-- Log missing compensation instead of silently assuming inventory was restored.\nfunction PTSH_RefundWarn(kind, missing)\n\tif missing <= 0 then return end\n\tlocal h = openfile(\"admin_bridge\\\\pet_refund_result.log\", \"a\")\n\tif h then\n\t\twrite(h, date(\"%Y-%m-%d %H:%M:%S\") .. \"\\tPARTIAL\\t\" ..\n\t\t\t(GetName() or \"?\") .. \"\\t\" .. kind .. \"\\tmissing=\" .. missing .. \"\\n\")\n\t\tclosefile(h)\n\tend\n\tMsg2Player(\"Loi hoan vat lieu (\" .. missing .. \" mon). Lien he GM de kiem tra.\")\nend\n\n-- take n of one item from the bag",
+        ),
+        (
+            "\t\t\t\tPTSH_Give(r[1], r[2], r[3], got[j])\n\t\t\t\tj = j + 1",
+            "\t\t\t\tlocal restored = PTSH_Give(r[1], r[2], r[3], got[j])\n\t\t\t\tif restored < got[j] then\n\t\t\t\t\tPTSH_RefundWarn(\"takeall\", got[j] - restored)\n\t\t\t\tend\n\t\t\t\tj = j + 1",
+        ),
+        (
+            "function PTSH_GiveBack(taken)\n\tif taken == nil then return end\n\tfor id, g in taken do PTSH_Give(3, id, 0, g) end\nend",
+            "function PTSH_GiveBack(taken)\n\tif taken == nil then return 0 end\n\tlocal missing = 0\n\tfor id, g in taken do\n\t\tlocal restored = PTSH_Give(3, id, 0, g)\n\t\tif restored < g then missing = missing + g - restored end\n\tend\n\tPTSH_RefundWarn(\"tier\", missing)\n\treturn missing\nend",
+        ),
+    ),
     GIFT: (
         (
             """function PTAdm_GiveAll(id, g, d, p, lv, se, n, itemName)
