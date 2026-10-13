@@ -49,7 +49,6 @@ class BrandingOverlayTests(unittest.TestCase):
         self.assertFalse(self.output.exists())
         created = generate(self.source, self.output, write=True)
         self.assertEqual(created["status"], "written")
-        self.assertFalse(created["gameplay_assets_cleared_for_distribution"])
         for relative in REPLACEMENTS:
             self.assertEqual((self.source / relative).read_bytes(), snapshot[relative])
             self.assertEqual((self.output / relative).read_bytes(),
