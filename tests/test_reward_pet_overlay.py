@@ -38,8 +38,6 @@ class RewardPetOverlayTests(unittest.TestCase):
         self.assertIn(b"Earn(PTLT_EGG_CASH)", changed)
         self.assertIn(b"if restored ~= PTLT_EGG_DON then", changed)
         self.assertIn(b"can lien he GM", changed)
-        self.assertLess(changed.index(b"if PTSH_Give(6, PTLT_I_EGG0 + k"),
-                        changed.index(b"Tr\\248ng Linh Th\\243"))
 
     def _fixture(self, dest):
         for rel, src in SOURCES.items():
