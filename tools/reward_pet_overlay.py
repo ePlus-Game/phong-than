@@ -94,6 +94,8 @@ def patch(relative: str, original: bytes) -> bytes:
             (old.replace(b"\n", b"\r\n"), new.replace(b"\n", b"\r\n")),
             (old, new),
         )
+        if any(data.count(new_value) == 1 for _, new_value in candidates):
+            continue  # already patched; idempotent even when the old is a prefix
         exact = [(needle, replacement) for needle, replacement in candidates
                  if data.count(needle) == 1]
         if exact:
@@ -101,8 +103,6 @@ def patch(relative: str, original: bytes) -> bytes:
             needle, replacement = exact[0]
             data = data.replace(needle, replacement, 1)
             continue
-        if any(data.count(new_value) == 1 for _, new_value in candidates):
-            continue  # already patched; idempotent
         raise ValueError("Changed, missing or repeated patch context: " + relative)
     return data
 
