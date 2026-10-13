@@ -14,7 +14,7 @@ from collections import Counter
 from pathlib import Path
 
 REGISTRY = re.compile(r"loaded=(\d+)\s+failed=(\d+)\s+capacity=(\d+)")
-SKILL = re.compile(r"repair skill=(\d+)\s+result=(found|missing)\s+height=(\d+)\b")
+SKILL = re.compile(r"repair skill=(\d+)\s+result=(found|missing)\s+height=(\d+)(?:\s+row=\d+\s+style=\d+\s+max=\d+)?")
 
 
 def registry_status(contents: str) -> dict:
