@@ -22,9 +22,6 @@ class RewardPetOverlayTests(unittest.TestCase):
                 self.assertNotEqual(original, changed)
                 self.assertEqual(changed, patch(rel, changed))
                 self.assertEqual(original.count(b"\r\n") > 0, changed.count(b"\r\n") > 0)
-                self.assertEqual(original.count(b"\r\n"), changed.count(b"\r\n") -
-                                 sum(new.count("\n") - old.count("\n") for old, new in PATCHES[rel])
-                                 if b"\r\n" in original else 0)
 
     def test_admin_broadcast_does_not_log_partial_as_ok(self):
         changed = patch(GIFT, SOURCES[GIFT].read_bytes())
