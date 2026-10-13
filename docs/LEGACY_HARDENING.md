@@ -26,6 +26,15 @@ These fixes are made ONLY to the copied workspace:
   1 MiB maximum before narrowing `size_t` to DWORD. Use a portable C++98
   length check for outbound `CustomSend` as well; do not change the protocol.
 - Treat Lua error text as data, not a fprintf format string.
+- Fix GameServer sync-end failure logging to match the exact argument count; avoid
+  reading uninitialized variadic arguments on the error path.
+- Fix AccountServer's implicit return type and null factory call; remove an
+  unmatched `LeaveCriticalSection` in its buffer destructor and reject oversized
+  writes before unsigned length arithmetic.
+- For VS2022 Represent3 compilation, prefer the installed Windows SDK
+  `basetsd.h` over the old DirectX SDK copy. Use a single `/fo<path>` RC argument
+  to avoid invalid resource-compiler option splitting. Windows x86 build is
+  required to confirm compatibility; static CI alone does not prove it.
 
 The overlay matches exact source contexts and preserves existing CRLF line
 endings. If the original source changes unexpectedly, patching refuses to
