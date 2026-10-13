@@ -1,8 +1,8 @@
-# Huyền Vực Ký — dự án phục dựng engine game (tên phát triển)
+# Phong Thần Truyền Kỳ — dự án phục dựng game
 
-**Tên thương hiệu dự kiến:** **Huyền Vực Ký** (ASCII dùng cho client cũ: `Huyen Vuc Ky`). Đây là tên mới của **giao diện và bản dựng độc lập**, chưa được xác nhận đăng ký nhãn hiệu. Mã dự án và đường dẫn gốc (`PhongThanSource`, `PhongThanRuntime-Staging`, `Game.exe`) giữ nguyên để tương thích và truy nguyên nguồn.
+**Tên game đã chọn:** **Phong Thần Truyền Kỳ** (ASCII tương thích client C++/INI cũ: `Phong Than Truyen Ky`; viết tắt **PTTK**). Tên được cập nhật cho thương hiệu của **giao diện và bản dựng độc lập**; việc đăng ký nhãn hiệu chưa được xác nhận. Repository: [ePlus-Game/phong-than-truyen-ky](https://github.com/ePlus-Game/phong-than-truyen-ky). Mã dự án và đường dẫn gốc (`PhongThanSource`, `PhongThanRuntime-Staging`, `Game.exe`) giữ nguyên để tương thích và truy nguyên nguồn.
 
-**Quan trọng:** Đổi tên không chuyển giao quyền sử dụng mã nguồn, hình ảnh, âm thanh, cốt truyện hoặc PAK từ bên thứ ba. Repo là bản lưu để phân tích/phục dựng, **không phải giấy phép phát hành game**. Xem [hướng dẫn đổi thương hiệu và rà soát quyền IP](docs/BRANDING.md).
+**Quan trọng:** Đổi tên không chuyển giao quyền sử dụng mã nguồn, hình ảnh, âm thanh, cốt truyện hoặc PAK từ bên thứ ba. Repo là bản lưu để phân tích/phục dựng, **không phải giấy phép phát hành game**. Xem [hướng dẫn áp dụng tên mới và rà soát quyền IP](docs/BRANDING.md).
 
 Repository này lưu trữ **bộ PT.zip gốc** (99.352 mục) cùng công cụ kiểm tra,
 phục hồi và nghiên cứu build. **Chưa xác nhận Client/Server có thể chạy game.**
