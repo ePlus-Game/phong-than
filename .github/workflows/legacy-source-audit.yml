@@ -27,6 +27,10 @@ jobs:
             /PhongThanSource/Build/Build-PhongThan.ps1
             /PhongThanSource/Deploy/ProjectContent/script/servertimer.lua
             /PhongThanRuntime-Staging/Server/script/phongthan/sinhhoat/lt_npc.lua
+            /PhongThanRuntime-Staging/Client/Ui/Setting.ini
+            /PhongThanRuntime-Staging/Client/serverlist.ini
+            /AdminWeb/index.html
+            /PhongThanSource/Sources/GameClient/PhongThanClient.cpp
             /docs/LEGACY_HARDENING.md
             /docs/releases/v0.1.0-recovery.1.md
       - uses: actions/setup-python@v5
