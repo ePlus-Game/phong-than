@@ -33,8 +33,12 @@ jobs:
             /PhongThan-Admin.cmd
             /PhongThan-CaiDat.cmd
             /PhongThan-ChayTatCa.cmd
+            /PhongThan-BangDieuKhien.cmd
             /PhongThanSource/Deploy/PhongThan-Control.ps1
+            /PhongThanSource/Deploy/PhongThan-AccountForm.ps1
             /PhongThanSource/Sources/GameClient/PhongThanClient.cpp
+            /README.md
+            /docs/BRANDING.md
             /docs/LEGACY_HARDENING.md
             /docs/releases/v0.1.0-recovery.1.md
       - uses: actions/setup-python@v5
