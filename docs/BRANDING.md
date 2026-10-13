@@ -1,76 +1,54 @@
-# Phong Thần Truyền Kỳ — đổi thương hiệu game an toàn
+# Phong Thần Truyền Kỳ — tên hiển thị
 
-Ngày đề xuất: 13/10/2026
+Tên game: **Phong Thần Truyền Kỳ** (PTTK).
 
-- **Tên hiển thị mới:** Phong Thần Truyền Kỳ
-- **Tên ASCII dành cho client C++/INI cũ:** `Phong Than Truyen Ky`
-- **Trạng thái:** người dùng đã chọn tên game mới; chưa tra cứu/đăng ký nhãn hiệu đầy đủ.
-- **GitHub repository hiện tại:** `ePlus-Game/phong-than-truyen-ky` (tên cũ `ePlus-Game/phong-than`; link GitHub cũ được redirect).
-- **Tên kỹ thuật legacy:** `PhongThanSource`, `PhongThanRuntime-Staging`, `Game.exe`, `PhongThanAccountServer.exe`, `*.pak`, đường dẫn `script/phongthan/*`: giữ nguyên.
-
-## Phạm vi đổi tên thực tế
-
-Tạo *overlay* trên bản sao ngoài repository bằng `tools/build_branding_overlay.py`.
-
-| Tệp nguồn được đọc | Nội dung được đổi trong overlay |
+| Ngữ cảnh | Tên |
 |---|---|
-| `PhongThanRuntime-Staging/Client/Ui/Setting.ini` | GameName, hộp thoại thoát game, tiêu đề thông báo |
-| `PhongThanRuntime-Staging/Client/serverlist.ini` | Nhãn nhóm máy chủ, không đổi IP/port hoặc tên bản đồ |
-| `AdminWeb/index.html` | Browser title và tiêu đề trang quản trị |
-| `PhongThanSource/Sources/GameClient/PhongThanClient.cpp` | Default game name và tên cửa sổ sau rebuild (kể cả khi cấu hình PAK cũ ghi đè tên) |
-| `PhongThan-Admin.cmd`, `PhongThan-CaiDat.cmd`, `PhongThan-ChayTatCa.cmd` | Chỉ đổi tiêu đề cửa sổ lệnh; giữ nguyên đường dẫn thực thi |
-| `PhongThanSource/Deploy/PhongThan-Control.ps1` | Đổi tiêu đề bảng điều khiển, giữ nguyên event name/service IDs |
+| README, tài liệu, giao diện Web Admin | `Phong Thần Truyền Kỳ` |
+| Client C++/INI và cửa sổ lệnh ASCII | `Phong Than Truyen Ky` |
+| GitHub repository | [`ePlus-Game/phong-than-truyen-ky`](https://github.com/ePlus-Game/phong-than-truyen-ky) |
 
-Overlay sửa đúng các chuỗi được xác minh và giữ byte/encoding nguồn ngoài phần
-đổi; không ghi bất kỳ tệp nào trong kho nguồn, bản staging hoặc PAK gốc.
+## Phạm vi
 
-## Tạo overlay và áp dụng
+Tên hiển thị được cấu hình qua [`tools/build_branding_overlay.py`](../tools/build_branding_overlay.py). Công cụ đọc tệp đầu vào tại repository và xuất các tệp chỉnh sửa vào **thư mục bên ngoài** checkout.
 
-Dùng Python 3.10+ tại root repo:
+| Tệp đầu vào | Thay đổi trong bản overlay |
+|---|---|
+| `PhongThanRuntime-Staging/Client/Ui/Setting.ini` | Tên game, thông báo thoát game |
+| `PhongThanRuntime-Staging/Client/serverlist.ini` | Tên hai nhóm máy chủ; giữ nguyên tên máy chủ, IP |
+| `PhongThanSource/Sources/GameClient/PhongThanClient.cpp` | Default game name và tiêu đề cửa sổ client sau khi build |
+| `AdminWeb/index.html` | Browser title và tiêu đề trang |
+| `PhongThan-Admin.cmd`, `PhongThan-CaiDat.cmd`, `PhongThan-ChayTatCa.cmd` | Tiêu đề cửa sổ console |
+| `PhongThan-BangDieuKhien.cmd` | Tiêu đề cửa sổ mở bảng điều khiển |
+| `PhongThanSource/Deploy/PhongThan-Control.ps1` | Tiêu đề form quản lý server/client |
+| `PhongThanSource/Deploy/PhongThan-AccountForm.ps1` | Tiêu đề form tạo tài khoản |
+
+Đường dẫn, tên file thực thi, DLL, PAK, map, NPC, chuỗi kết nối, `script/phongthan/*` và định danh giao thức vẫn giữ nguyên. Các file trong `PhongThanSource/` và `PhongThanRuntime-Staging/` không bị thay trực tiếp bởi PR đổi tên.
+
+## Tạo bản hiển thị tên mới
+
+Chạy từ thư mục gốc repository bằng Python 3.10+:
 
 ```powershell
-# 1. Kiểm tra ngữ cảnh, không ghi file
+# Xem danh sách thay đổi, chưa ghi file
 python tools/build_branding_overlay.py --output-dir D:\PhongThanTruyenKy-Branding
 
-# 2. Xuất các tệp nhỏ đã thay nhãn ra ngoài checkout
+# Xuất các tệp đã thay nhãn ra thư mục bên ngoài repository
 python tools/build_branding_overlay.py --output-dir D:\PhongThanTruyenKy-Branding --write
 
-# 3. Chạy kiểm thử tại nguồn (không chạy Game.exe)
+# Kiểm tra tên và các ngữ cảnh chỉnh sửa
 python -m unittest discover -s tests -p test_branding_overlay.py -v
 ```
 
-**Tải overlay đã tạo sẵn:** vào [GitHub Actions](https://github.com/ePlus-Game/phong-than-truyen-ky/actions/workflows/legacy-source-audit.yml), chọn workflow thành công của commit mới nhất và tải artifact `phong-than-truyen-ky-branding-overlay`. Giải nén artifact rồi áp các file theo đúng cấu trúc đường dẫn tương đối vào bản sao bên ngoài kho gốc; vẫn phải rebuild client để thay title được mã hóa trong EXE.
+Hoặc vào [GitHub Actions](https://github.com/ePlus-Game/phong-than-truyen-ky/actions/workflows/legacy-source-audit.yml), chọn run thành công và tải artifact `phong-than-truyen-ky-branding-overlay`.
 
-Khi muốn build/chạy thử: tạo **bản sao riêng** của Client/Server và source ở
-ngoài checkout. Sau đó merge các tệp trong `D:\PhongThanTruyenKy-Branding` vào bản
-sao theo đúng đường dẫn tương đối; build lại client từ source đã được đổi tên.
-Nếu không rebuild, cấu hình UI có thể hiển thị tên mới, còn title/ảnh/video
-nhúng trong EXE/PAK vẫn có thể dùng nhãn cũ. **Không thay byte PAK trực tiếp**;
-muốn đổi splash/logo/các màn hình nhúng cần dựng lại assets do dự án sở hữu
-hoặc được cấp phép rồi đóng gói qua pipeline mới.
+Để sử dụng, áp các tệp trong overlay lên **bản sao** client/source theo đúng đường dẫn tương đối, rồi build lại client Windows x86. Chỉ thay `Setting.ini` hoặc `serverlist.ini` không thay được mọi chuỗi có sẵn trong EXE hay tài nguyên PAK.
 
-## Trước khi phát hành thương mại hoặc công khai
+## Kiểm tra sau khi build
 
-- [ ] Tra cứu tên và nhãn hiệu tại cơ sở dữ liệu chính thức, tên miền và các cửa hàng game;
-  xin tư vấn pháp lý trước khi sử dụng thương mại.
-- [ ] Chứng minh quyền sử dụng **mã nguồn**, PAK, ảnh/SPR, icon, logo, âm thanh,
-  nhạc, video, thoại, nhân vật, tên NPC, bản đồ và nội dung cốt truyện.
-- [ ] Gỡ/thay thế các tài nguyên hoặc đoạn mã không có giấy phép phù hợp bằng
-  tài nguyên độc lập, do nhóm phát triển tạo ra hoặc được cấp phép; không
-  chỉ đổi tên/đổi màu tài nguyên có bản quyền.
-- [ ] Rà bản phát hành, manifest và version info của `Game.exe`, launcher,
-  màn hình đăng nhập, thông báo, tài liệu, website, chính sách/credits.
-- [ ] Nếu game được phát hành online tại Việt Nam, kiểm tra nghĩa vụ thủ tục
-  cho trò chơi điện tử và yêu cầu chứng minh quyền sở hữu trí tuệ.
-- [ ] Nghiệm thu build Windows x86 và UI thực tế: tiêu đề ứng dụng, danh sách
-  máy chủ, cửa sổ lỗi/thoát, splash, hỗ trợ CP936/TCVN3.
+1. Màn hình chọn máy chủ hiển thị tên nhóm mới; địa chỉ và tên máy chủ không đổi.
+2. Thanh tiêu đề game và hộp thoại thoát game hiển thị `Phong Than Truyen Ky`.
+3. Web Admin và các form quản trị hiển thị tên tương ứng.
+4. Đăng nhập, tạo nhân vật, chọn máy chủ và thoát game không thay đổi chức năng.
 
-**Không nên quảng cáo là game "không dính bản quyền" chỉ vì đổi tên.**
-Bản lưu gốc công khai vẫn chứa dữ liệu/đường dẫn lịch sử; muốn phân phối một
-sản phẩm độc lập phải làm thêm kiểm toán IP và clean-room content package.
-
-## Chưa đổi trong PR đặt tên
-
-- Không đổi EXE/DLL, tên lệnh, file PAK, sprite, logo, tên nhân vật/NPC, địa chỉ máy chủ hoặc đường dẫn Lua; các định danh đó có thể ràng buộc engine.
-- Không chỉnh sửa các tập tin nguồn trong kho ZIP xác thực; chỉ tạo overlay trên **bản sao bên ngoài**.
-- Chưa có logo/splash/login artwork mới, và chưa build hoặc nghiệm thu giao diện Windows x86. Trước khi xuất bản cần dùng artwork có quyền sử dụng rõ ràng.
+Logo, hình nền đăng nhập, SPR và video vẫn sử dụng tài nguyên hiện có. Việc chỉnh sửa hình ảnh là phần riêng, không nằm trong bản đổi chuỗi này.
