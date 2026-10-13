@@ -1,0 +1,55 @@
+name: Quest source integrity
+
+on:
+  pull_request:
+    paths:
+      - 'tools/quest_content_audit.py'
+      - 'tests/test_quest_content_audit.py'
+      - '.github/workflows/quest-content-integrity.yml'
+      - 'docs/QUEST_SYSTEM_STATUS.md'
+      - 'PhongThanSource/Deploy/ProjectContent/NpcQuests/**'
+      - 'PhongThanSource/Deploy/ProjectContent/NpcRestoration/quest_overrides/**'
+      - 'PhongThanSource/Deploy/VNG_TASK_NOTE_CONTRACT.json'
+      - 'PhongThanSource/Tests/fixtures/NpcQuestOriginal/**'
+      - 'PhongThanSource/Tests/fixtures/XichTungTu/**'
+      - 'PhongThanSource/SourceMigration/NpcLuaLibrary/objects/**'
+  push:
+    branches: [main]
+    paths:
+      - 'tools/quest_content_audit.py'
+      - 'tests/test_quest_content_audit.py'
+      - '.github/workflows/quest-content-integrity.yml'
+      - 'PhongThanSource/Deploy/ProjectContent/NpcQuests/**'
+      - 'PhongThanSource/Deploy/ProjectContent/NpcRestoration/quest_overrides/**'
+      - 'PhongThanSource/Deploy/VNG_TASK_NOTE_CONTRACT.json'
+      - 'PhongThanSource/Tests/fixtures/NpcQuestOriginal/**'
+      - 'PhongThanSource/Tests/fixtures/XichTungTu/**'
+      - 'PhongThanSource/SourceMigration/NpcLuaLibrary/objects/**'
+
+permissions:
+  contents: read
+
+jobs:
+  quest-integrity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /tools/quest_content_audit.py
+            /tests/test_quest_content_audit.py
+            /PhongThanSource/Deploy/ProjectContent/NpcQuests/
+            /PhongThanSource/Deploy/ProjectContent/NpcRestoration/quest_overrides/to_ho_task20.lua
+            /PhongThanSource/Deploy/VNG_TASK_NOTE_CONTRACT.json
+            /PhongThanSource/Tests/fixtures/NpcQuestOriginal/
+            /PhongThanSource/Tests/fixtures/XichTungTu/
+            /PhongThanSource/SourceMigration/NpcLuaLibrary/objects/44655595cd21f0748a44cf58270376d68d2b0e5cad3a709f0273d395d07ce438.lua
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test quest integrity checker
+        run: python -m unittest discover -s tests -p 'test_quest_content_audit.py' -v
+      - name: Verify quest content provenance
+        run: python tools/quest_content_audit.py --root .
