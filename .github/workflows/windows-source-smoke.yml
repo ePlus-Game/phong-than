@@ -41,6 +41,7 @@ jobs:
             /PhongThanSource/Sources/Core/Src/KSkillList.cpp
             /PhongThanSource/Sources/Core/Src/KSkills.cpp
             /PhongThanSource/Sources/Core/Src/KPlayer.cpp
+            /PhongThanSource/Sources/MultiServer/Bishop/GameServer.cpp
             /PhongThanSource/Deploy/Start-NativeServer.ps1
             /PhongThanSource/Deploy/Start-StagingClient.ps1
             /PhongThanSource/Deploy/Stop-StagingRuntime.ps1
