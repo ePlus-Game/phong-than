@@ -81,6 +81,30 @@ python -m unittest discover -s tests -p test_reward_pet_overlay.py -v
 Bản vá tìm đúng ngữ cảnh byte, hỗ trợ CRLF/LF, từ chối dữ liệu lệch và
 idempotent. Nó KHÔNG tự deploy, restart hoặc sửa source game gốc.
 
+## Đối soát phát thiếu, hoàn vật liệu và test hồi quy
+
+Sau khi áp overlay lên **bản sao server**, log nằm trong `Server/admin_bridge/`.
+Có thể lấy báo cáo tổng hợp lỗi mà không hiển thị tên nhân vật:
+
+```bash
+python tools/reconcile_reward_logs.py \
+  --daily-log '/isolated/Server/admin_bridge/dailygift_result.log' \
+  --pet-log '/isolated/Server/admin_bridge/pet_refund_result.log' \
+  --admin-log '/isolated/Server/admin_bridge/result.log' \
+  --fail-on-anomaly
+python -m unittest discover -s tests -p test_reconcile_reward_logs.py -v
+```
+
+Chỉ truyền những đường dẫn log đã tồn tại; có thể bỏ từng tuỳ chọn nếu nguồn log đó
+chưa được tạo. Exit code `2` báo cần người quản trị đối soát, không có thao tác
+cấp bù hay sửa số lượng. Báo cáo chỉ chứa số liệu tổng hợp, không in tên nhân vật.
+
+**Kiểm thử bắt buộc trong Windows VM sau khi có engine transaction:** thử túi đầy,
+thiếu vật phẩm, lệnh `giveall` lặp, server crash giữa 2 item, logout trong lúc
+trao đổi, rollback lỗi và restart. Snapshot tiền, vật phẩm, task trước/sau;
+đối soát theo request ID và receipt bền vững. Không được đánh dấu PASS chỉ vì
+bài Python đọc log thành công.
+
 ## Refactor tiếp theo
 
 1. Native transaction `GrantReward` có request ID duy nhất, validate bảng item,
