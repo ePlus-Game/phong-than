@@ -85,6 +85,54 @@ PATCHES["Build/Build-PhongThan.ps1"] = tuple(
 )
 
 
+# Additional source and build fixes applied only to an external build copy.
+PATCHES["Sources/MultiServer/GameServer/KSOServer.cpp"] = (
+    (
+        b'printf("Packing failed. %d, %d, %d\\n", lnID);',
+        b'printf("Packing failed. id=%lu\\n", (unsigned long)lnID);',
+    ),
+)
+PATCHES["Sources/AccountServices/AccountServer/main.cpp"] = (
+    (
+        b"static inline sLogProgram(BOOL bEnter)",
+        b"static inline void sLogProgram(BOOL bEnter)",
+    ),
+    (
+        b"if (SUCCEEDED( pFactroyFun( IID_IServerFactory, reinterpret_cast< void ** >(&pServerFactory ))))",
+        b"if (pFactroyFun && SUCCEEDED( pFactroyFun( IID_IServerFactory, reinterpret_cast< void ** >(&pServerFactory ))) && pServerFactory)",
+    ),
+    (
+        b"~TwoFixBuffer()\n\t{\n\t\t::LeaveCriticalSection(&m_switchsect);\n\t\t::DeleteCriticalSection(&m_switchsect);\n\t}",
+        b"~TwoFixBuffer()\n\t{\n\t\t::DeleteCriticalSection(&m_switchsect);\n\t}",
+    ),
+    (
+        b"if (nLen <= 0 || szInfo == NULL)\n\t\t\treturn FALSE;",
+        b"if (nLen == 0 || szInfo == NULL ||\n\t\t\tnLen > MAX_BUFFER_LEN - sizeof(DWORD))\n\t\t\treturn FALSE;",
+    ),
+)
+PATCHES["Build/Build-Modern.ps1"] += (
+    (
+        b"    $baseFlags = Convert-Cpp (Split-Args $p.Cpp) $p.Dir\n    # Bishop's headers",
+        b"    $baseFlags = Convert-Cpp (Split-Args $p.Cpp) $p.Dir\n"
+        b"    # Represent3 pulls a legacy basetsd.h via the DX9 project include path.\n"
+        b"    # Prefer the installed Windows SDK shared headers to satisfy modern winnt.h.\n"
+        b"    if ($name -eq 'Represent3') {\n"
+        b"        $sdkShared = Join-Path $env:WindowsSdkDir ('Include\\' + $env:WindowsSDKVersion.TrimEnd('\\') + '\\shared')\n"
+        b"        if (-not (Test-Path -LiteralPath (Join-Path $sdkShared 'basetsd.h'))) {\n"
+        b"            throw 'Modern Windows SDK shared basetsd.h not found for Represent3.'\n"
+        b"        }\n"
+        b"        $baseFlags = @('/I' + $sdkShared) + @($baseFlags)\n"
+        b"    }\n"
+        b"    # Bishop's headers",
+    ),
+    (
+        b"$r = Invoke-Tool 'rc.exe' @('/nologo', '/i', (Split-Path -Parent $rc), '/fo', $resOut, '/d', 'NDEBUG', '/l', '0x804', $rcSrc)",
+        b"$r = Invoke-Tool 'rc.exe' @('/nologo', '/i', (Split-Path -Parent $rc), ('/fo' + $resOut), '/d', 'NDEBUG', '/l', '0x804', $rcSrc)",
+    ),
+)
+
+
+
 
 def harden(relative: str, original: bytes) -> bytes:
     """Patch only matching byte spans, preserving ALL untouched original bytes.
