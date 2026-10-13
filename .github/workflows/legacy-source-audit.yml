@@ -30,6 +30,10 @@ jobs:
             /PhongThanRuntime-Staging/Client/Ui/Setting.ini
             /PhongThanRuntime-Staging/Client/serverlist.ini
             /AdminWeb/index.html
+            /PhongThan-Admin.cmd
+            /PhongThan-CaiDat.cmd
+            /PhongThan-ChayTatCa.cmd
+            /PhongThanSource/Deploy/PhongThan-Control.ps1
             /PhongThanSource/Sources/GameClient/PhongThanClient.cpp
             /docs/LEGACY_HARDENING.md
             /docs/releases/v0.1.0-recovery.1.md
@@ -38,6 +42,13 @@ jobs:
           python-version: "3.12"
       - name: Test recovery tooling and original patch contexts
         run: python -m unittest discover -s tests -v
+      - name: Generate Phong Than Truyen Ky branded UI overlay
+        run: python tools/build_branding_overlay.py --output-dir "$RUNNER_TEMP/PhongThanTruyenKy-Branding" --write
+      - uses: actions/upload-artifact@v4
+        with:
+          name: phong-than-truyen-ky-branding-overlay
+          path: ${{ runner.temp }}/PhongThanTruyenKy-Branding/
+          if-no-files-found: error
       - name: Compile and run portable C++98 endpoint parser tests
         run: |
           g++ -std=c++98 -Wall -Wextra -Werror -pedantic tests/cpp/test_gateway_endpoint.cpp -o "$RUNNER_TEMP/pt-gateway-test"
