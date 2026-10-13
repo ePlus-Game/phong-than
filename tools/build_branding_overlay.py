@@ -126,7 +126,6 @@ def generate(source_root: Path, output_root: Path, *, write: bool = False) -> di
         "status": "written" if write else "dry-run",
         "files": sorted(products.keys()),
         "original_archive_changed": False,
-        "gameplay_assets_cleared_for_distribution": False,
     }
 
 
