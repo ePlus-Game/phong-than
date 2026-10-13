@@ -34,7 +34,10 @@ class BrandingOverlayTests(unittest.TestCase):
                 self.assertNotEqual(old, modified)
                 for original, replacement in REPLACEMENTS[relative]:
                     self.assertEqual(old.count(original), 1)
-                    self.assertEqual(modified.count(original), 0)
+                    # SetWindowText call is intentionally preserved after inserting
+                    # a branded strcpy before it; old bytes remain as a substring.
+                    if original not in replacement:
+                        self.assertEqual(modified.count(original), 0)
                     self.assertIn(replacement.replace(b"\n", b"\r\n")
                                   if b"\r\n" in old else replacement, modified)
 
