@@ -1,0 +1,77 @@
+name: Windows x86 full game build (isolated, manual)
+on:
+  workflow_dispatch:
+    inputs:
+      confirm_isolated_build:
+        type: boolean
+        required: true
+        description: "I confirm this is a dedicated trusted runner without live players/data."
+        default: false
+permissions:
+  contents: read
+concurrency:
+  group: pt-windows-x86-game-build
+  cancel-in-progress: false
+jobs:
+  build:
+    # No fork pull_request trigger and no production data, accounts or runtime actions.
+    if: github.ref == 'refs/heads/main' && inputs.confirm_isolated_build
+    runs-on: [self-hosted, Windows, X64, pt-game-build]
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /tools/
+            /overlays/
+            /tests/
+            /PhongThanSource/Build/
+            /PhongThanSource/Sources/
+            /PhongThanSource/Headers/
+            /PhongThanSource/Lib/
+            /PhongThanSource/ThirdParty/
+            /PhongThanSource/Output/
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify no staged runtime or character saves were downloaded
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Stop'
+          if (Test-Path -LiteralPath 'PhongThanRuntime-Staging') { throw 'Unexpected runtime checkout' }
+          if (Test-Path -LiteralPath 'PhongThanSource/gameserver') { throw 'Unexpected game-state checkout' }
+      - name: Build patched source copy using MSVC x86
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $workspace = Join-Path $env:RUNNER_TEMP ('pt-windows-' + $env:GITHUB_RUN_ID + '-' + $env:GITHUB_RUN_ATTEMPT)
+          if (Test-Path -LiteralPath $workspace) { throw 'Refusing to reuse build workspace' }
+          & .\tools\Build-PatchedGame.ps1 -SourceRoot (Resolve-Path 'PhongThanSource').Path -WorkRoot $workspace -Toolchain Modern
+          if ($LASTEXITCODE -ne 0) { throw 'Windows x86 source compilation failed' }
+          $required = @('Client/Game.exe','Server/GameServer.exe','Server/PhongThanAccountServer.exe')
+          $built = Join-Path $workspace 'OutputModern'
+          foreach ($rel in $required) {
+            if (-not (Test-Path -LiteralPath (Join-Path $built $rel) -PathType Leaf)) { throw "Missing expected binary: $rel" }
+          }
+          $summary = @(Get-ChildItem -LiteralPath $built -Recurse -File |
+            Where-Object { $_.Extension -in @('.exe','.dll') } |
+            ForEach-Object { [pscustomobject]@{
+              File = $_.FullName.Substring($built.Length + 1)
+              Length = $_.Length
+              SHA256 = (Get-FileHash -LiteralPath $_.FullName -Algorithm SHA256).Hash
+            } })
+          $summary | ConvertTo-Json -Depth 5 | Set-Content -LiteralPath (Join-Path $env:RUNNER_TEMP 'pt-build-manifest.json') -Encoding UTF8
+          "PT_BUILD_WORKSPACE=$workspace" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+          Write-Host "Compiled $($summary.Count) EXE/DLL artifacts; manifest saved (no binaries uploaded)."
+      - name: Upload build logs and hashes only
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-x86-build-evidence
+          path: |
+            ${{ runner.temp }}/pt-windows-*/Build/LogsModern/*.log
+            ${{ runner.temp }}/pt-build-manifest.json
+          if-no-files-found: warn
+          retention-days: 7
