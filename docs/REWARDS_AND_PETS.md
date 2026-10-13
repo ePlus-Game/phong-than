@@ -17,10 +17,17 @@ Ngày rà soát: 13/10/2026. Nguồn: mã nguồn thực tế trong repository, 
 - Bridge hiện không có bảo đảm exactly-once qua crash; không nên tự động retry
   lệnh phát quà thất bại một phần vì có thể cấp trùng.
 
-**Bản vá overlay hiện tại:** log `giveall` phân biệt OK/PARTIAL, ghi
-targets/complete/partial/failed. Không tự động phát bù. Chưa sửa giao dịch
-quà đăng nhập; yêu cầu API grant + persist có receipt/transaction và hồi phục
-sau crash trước khi thay đổi `PTDG_Deliver`.
+**Bản vá overlay:** log `giveall` phân biệt OK/PARTIAL, ghi
+targets/complete/partial/failed. Quà đăng nhập kiểm tra số vật phẩm
+`AddNormalItemPile` thực sự trả về thành công, chỉ hiển thị thông báo
+nhận đủ quà nếu số lượng khớp; nếu thiếu sẽ báo người chơi và ghi
+`Server/admin_bridge/dailygift_result.log` (PARTIAL).
+
+**Giới hạn còn lại:** `PTDG_Deliver` vẫn giảm số quà chờ trước khi cấp,
+và `PTDG_GiveList` gọi `Earn` không trả về một receipt có thể kiểm tra.
+Nếu cấp một phần, hệ thống **không tự phát bù**, do phát lại toàn bộ
+có thể nhân đôi vật phẩm/tiền. Cần API grant có transaction/receipt bền
+vững và công cụ đối soát GM trước khi sửa luồng trừ số quà chờ.
 
 ## Thú: ba hệ thống khác nhau
 
@@ -42,9 +49,12 @@ GM nếu hoàn nguyên liệu không đủ. Đây chỉ là xử lý lỗi có b
 giao dịch nguyên tử bền vững**.
 
 **Rủi ro tiến hóa:** `PTLT_Evo` trừ các nhóm vật liệu qua
-`PTSH_TierTake` và `Pay`, khi lỗi hoàn tác bằng `PTSH_GiveBack`;
-hàm hoàn tác không kiểm tra từng món trả lại. Cần API giao dịch thống nhất
-để không mất đồ hoặc nhân đồ khi disconnect/server crash.
+`PTSH_TierTake` và `Pay`, khi lỗi hoàn tác bằng `PTSH_GiveBack`.
+Overlay mới kiểm tra số lượng trả lại khi hoàn vật liệu theo cấp hoặc
+hoàn trong `PTSH_TakeAll`. Nếu thiếu, ghi
+`Server/admin_bridge/pet_refund_result.log` (PARTIAL) và cảnh báo
+người chơi liên hệ GM. Chưa có xử lý giao dịch nguyên tử hoặc bù
+tự động sau crash/disconnect.
 
 Tham khảo luật gốc VNG: https://phongthan.vinagame.com.vn/su-kien/tinh-hoa-linh-thu/tinh-hoa-342.html
 có NPC Thầy Tướng Số, linh lực, nguyên liệu tịnh hóa, đổi tư chất và
@@ -57,6 +67,8 @@ Tạo một **bản sao Server ở ngoài checkout Git** có ít nhất:
 
 - `script/servertimer.lua`
 - `script/phongthan/sinhhoat/lt_npc.lua`
+- `script/phongthan/content/dg_lib.lua`
+- `script/phongthan/sinhhoat/sh_lib.lua`
 
 Sau đó chạy:
 
