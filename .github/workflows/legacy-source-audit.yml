@@ -27,6 +27,8 @@ jobs:
             /PhongThanSource/Build/Build-PhongThan.ps1
             /PhongThanSource/Deploy/ProjectContent/script/servertimer.lua
             /PhongThanRuntime-Staging/Server/script/phongthan/sinhhoat/lt_npc.lua
+            /PhongThanRuntime-Staging/Server/script/phongthan/sinhhoat/sh_lib.lua
+            /PhongThanRuntime-Staging/Server/script/phongthan/content/dg_lib.lua
             /PhongThanRuntime-Staging/Client/Ui/Setting.ini
             /PhongThanRuntime-Staging/Client/serverlist.ini
             /AdminWeb/index.html
@@ -53,6 +55,8 @@ jobs:
           name: phong-than-truyen-ky-branding-overlay
           path: ${{ runner.temp }}/PhongThanTruyenKy-Branding/
           if-no-files-found: error
+      - name: Validate reward and pet Lua patch contexts
+        run: python -m unittest discover -s tests -p test_reward_pet_overlay.py -v
       - name: Compile and run portable C++98 endpoint parser tests
         run: |
           g++ -std=c++98 -Wall -Wextra -Werror -pedantic tests/cpp/test_gateway_endpoint.cpp -o "$RUNNER_TEMP/pt-gateway-test"
