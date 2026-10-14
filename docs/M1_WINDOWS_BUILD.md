@@ -95,6 +95,32 @@ a clean rebuild of all transitive archived libraries, not a completed
 and GameClient/Game.exe, then full 22-output verification in a clean
 release build; isolated Windows world-ready/login/save UAT follows.
 
+## GitHub-hosted native Server build gate (14/10/2026 - 15/15 PASS)
+
+`.github/workflows/windows-server-modules.yml` uses a fresh external Windows
+source build on `windows-2022`. The source-only sparse checkout excludes
+`PhongThanRuntime-Staging`, SQL, PAK, player saves, and historical build outputs.
+The existing AccountServer compatibility overlay is applied **only to the
+external copy**, never to the tracked archive.
+
+[Windows server build run #38526607624](https://github.com/ePlus-Game/phong-than-truyen-ky/actions/runs/38526607624)
+verified **15/15 newly built targets** by compile/link and PE32/i386 or COFF
+signature plus SHA-256. This includes five real server executable outputs:
+`Goddess.exe`, `PhongThanAccountServer.exe`, `PhongThanRelay.exe`,
+`Bishop.exe`, and `GameServer.exe`.
+
+The other ten targets are LuaLibDll, Engine, Common, ExpandPackageStaticLib,
+FilterTextStatic, CoreServer, ExpandPackage, FilterText, Heaven, and Rainbow.
+Some linker inputs are still archived legacy `Lib/release` libraries;
+the job does not prove a fully self-contained clean rebuild of all
+transitive dependencies.
+
+**Not tested:** starting any server process, DB readiness, 102-map world
+registration, login, character persistence, gameplay, or public network.
+Next: complete the missing Client modules and `Game.exe`, verify the
+entire fresh 22-role EXE/DLL matrix in a release workspace, and then
+perform M2 testing using an isolated test-only Windows runner/VM.
+
 ## Manual execution and evidence
 
 1. Provision the dedicated trusted Windows x64 runner with MSVC x86 tools,
