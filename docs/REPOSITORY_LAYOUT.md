@@ -51,6 +51,11 @@ python tools/restore_split_files.py --repo-root .
 The second command can require more than 7 GiB of free space and recreates
 PAKs at their current root-relative paths with SHA-256 verification.
 
+A lightweight checkout for tooling work is documented in
+[REPOSITORY_HYGIENE.md](REPOSITORY_HYGIENE.md). Existing backup, logs,
+PDBs and historical binaries remain tracked intentionally until an
+independently verified archive migration is completed.
+
 The original `.git` members inside the original ZIP were already archived
 in `PhongThanSource/__historical_git__/original-dot-git.zip`. They are not
 the active Git repository metadata.
