@@ -72,6 +72,20 @@ Các thành phần cần thử: **Goddess**, **PhongThanAccountServer**, **Phong
 | RT-03 | World/map registry | 102 map (nếu cấu hình chuẩn có đủ) đăng ký và có thể vào map test |
 | RT-04 | Restart an toàn | Dừng từng service theo dependency, không nhân đôi session hay mất dữ liệu |
 
+### 3A. Thu thập bằng chứng dịch vụ đang chạy (chỉ đọc)
+
+Sau khi đã khởi động **bản sao server trên VM cách ly** bằng quy trình vận hành được kiểm soát, dùng script [Read-WindowsRuntimeEvidence.ps1](../tools/Read-WindowsRuntimeEvidence.ps1) để quan sát 5 service, PID của từng EXE, cổng TCP thực sự do PID đó sở hữu, cấu hình 102 map, và dấu \`WORLD_READY\` **mới** khớp Bishop PID/ServiceId/map count. Script chỉ đọc tiến trình/log/config và không tự bật/tắt game, không kết nối SQL. Cần tạo trước thư mục \`D:\PT-UAT\reports\` bên ngoài runtime.
+
+\`\`\`powershell
+powershell.exe -NoProfile -File tools\Read-WindowsRuntimeEvidence.ps1 -RuntimeRoot "D:\PT-UAT\PhongThanRuntime-Staging" -ManifestPath "PhongThanSource\Deploy\RUNTIME_CONTENT_MANIFEST.json" -ExpectedMapCount 102 -CheckClient -ReportPath "D:\PT-UAT\reports\live-readiness.json"
+\`\`\`
+
+- \`READY_FOR_LOGIN_CHECK\` = tất cả 5 service có một PID đúng đường dẫn, đúng cổng, và dấu WORLD_READY khớp phiên Bishop đang chạy. **Không đồng nghĩa đăng nhập hay lưu nhân vật đã PASS.**
+- \`BLOCKED\` (exit code 2) = thiếu dịch vụ, thiếu cổng, sai manifest, sai map hoặc không có marker mới. Xem trường \`blockers\` của JSON để xử lý, không tự restart khi có phiên chơi thật.
+- Báo cáo chỉ chứa tên dịch vụ, PID, cổng, cờ kết quả và tên lỗi; không chứa chuỗi cấu hình SQL, nội dung log, đường dẫn tuyệt đối hoặc danh tính người chơi. Chỉ dùng trên môi trường kiểm thử, tránh công khai port của server production.
+
+Workflow [Windows live readiness evidence tool tests](../.github/workflows/windows-runtime-live-evidence.yml) kiểm thử parser marker/port với dữ liệu giả trên GitHub-hosted Windows; CI **không** tự bật 5 dịch vụ hay login. Chỉ đánh dấu RT-02/RT-03 PASS sau khi có báo cáo từ VM thật và người kiểm thử đối chiếu các cổng, logs với phiên thử.
+
 ## 4. Gameplay người chơi mới
 
 Dùng account mới và nhân vật thử cho cả ba lớp **Giáp Sĩ ID 0, Đạo Sĩ ID 1, Dị Nhân ID 2**.
