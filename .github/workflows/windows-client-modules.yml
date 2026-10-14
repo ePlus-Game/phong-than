@@ -63,9 +63,11 @@ jobs:
             /PhongThanSource/Sources/MultiServer/Heaven/*.h
             /PhongThanSource/Sources/MultiServer/Heaven/*.cpp
             /PhongThanSource/Sources/MultiServer/Heaven/Heaven.dsp
+            /PhongThanSource/Sources/MultiServer/Heaven/Heaven.def
             /PhongThanSource/Sources/MultiServer/Rainbow/*.h
             /PhongThanSource/Sources/MultiServer/Rainbow/*.cpp
             /PhongThanSource/Sources/MultiServer/Rainbow/Rainbow.dsp
+            /PhongThanSource/Sources/MultiServer/Rainbow/*.inl
             /PhongThanSource/Sources/MultiServer/Rainbow/Interface/
             /PhongThanSource/Sources/AccountServices/AccountServer/msado15.tlh
             /PhongThanSource/Sources/AccountServices/AccountServer/msado15.tli
@@ -109,6 +111,18 @@ jobs:
           $work = Join-Path $env:RUNNER_TEMP ("pt-client-${{ github.run_id }}-${{ github.run_attempt }}")
           if (Test-Path -LiteralPath $work) { throw 'Refusing reused workspace' }
           Copy-Item -LiteralPath $source -Destination $work -Recurse -ErrorAction Stop
+          # Represent3's VC6-era DX9 Include contains basetsd.h/rpcsal.h that
+          # shadow newer Windows SDK headers when supplied through /I.
+          # The builder already adds DX9 at the END of INCLUDE; remove only
+          # this obsolete priority override from the EXTERNAL copied .dsp.
+          $dsp = Join-Path $work 'Sources/Represent/Represent3/Represent3.dsp'
+          $latin1 = [Text.Encoding]::GetEncoding(28591)
+          $dspText = [IO.File]::ReadAllText($dsp, $latin1)
+          $legacyFlag = '/I "../../../ThirdParty/dx9csdk/Include"'
+          $occurrences = $dspText.Split(@($legacyFlag), [StringSplitOptions]::None).Length - 1
+          if ($occurrences -ne 2) { throw "Unexpected Represent3 include flags: $occurrences" }
+          [IO.File]::WriteAllText($dsp, $dspText.Replace($legacyFlag, ''), $latin1)
+          Write-Host 'Moved legacy DX9 header lookup behind Windows SDK in external Represent3 copy.'
           "PT_CLIENT_WORKSPACE=$work" | Out-File $env:GITHUB_ENV -Append -Encoding utf8
           Write-Host 'Only copied C++ project sources will be compiled. No game process will be launched.'
 
