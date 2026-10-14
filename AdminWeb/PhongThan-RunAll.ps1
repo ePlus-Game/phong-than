@@ -37,6 +37,13 @@ try {
         }
     }
 
+    # Restore missing split PAKs before native runtime validation; never mutate
+    # assets while any game services are already running.
+    if ($running.Count -eq 0) {
+        Step '0/3 Khoi phuc PAK (Windows PowerShell, khong can Python)'
+        & (Join-Path $Root 'tools\Restore-SplitPaks.ps1') -RepoRoot $Root
+    }
+
     Step '1/3 Kiem tra SQL LocalDB va database account'
     if ($running.Count -eq 0) {
         & powershell.exe -NoProfile -ExecutionPolicy Bypass -File (Join-Path $PSScriptRoot 'PhongThan-Setup.ps1') -Step all
