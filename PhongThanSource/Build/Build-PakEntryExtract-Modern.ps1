@@ -56,6 +56,10 @@ if ($status -ne 0 -or -not (Test-Path -LiteralPath $exe -PathType Leaf)) {
     throw "MSVC PakEntryExtract build failed: exit=$status"
 }
 Copy-Item -LiteralPath $engineDll -Destination $engineCopy -Force
+Write-Host '=== PAK EXE IMPORTS ==='
+& dumpbin.exe /dependents $exe | ForEach-Object { Write-Host $_ }
+Write-Host '=== ENGINE DLL IMPORTS ==='
+& dumpbin.exe /dependents $engineCopy | ForEach-Object { Write-Host $_ }
 [pscustomobject]@{
     Status='BUILT_NOT_RUNTIME_VERIFIED'
     Executable=$exe
