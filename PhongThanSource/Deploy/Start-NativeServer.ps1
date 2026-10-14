@@ -28,7 +28,7 @@ $serverRoot=Join-Path $RuntimeRoot 'Server'
 # No database setup or client changes are permitted if a runtime is already active.
 # Check before LocalDB setup/restore, which can change data and locks.
 $existing=@(Get-CimInstance Win32_Process -ErrorAction Stop | Where-Object {
-    $_.ExecutablePath -and $_.ExecutablePath.StartsWith($serverRoot+'\\',[StringComparison]::OrdinalIgnoreCase)
+    $_.ExecutablePath -and $_.ExecutablePath.StartsWith($serverRoot+'\',[StringComparison]::OrdinalIgnoreCase)
 })
 if($existing){throw "Server already running: $($existing.Name -join ', ')"}
 $manifest=Get-Content (Join-Path $PSScriptRoot 'RUNTIME_CONTENT_MANIFEST.json') -Raw | ConvertFrom-Json
