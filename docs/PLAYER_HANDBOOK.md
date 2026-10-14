@@ -32,7 +32,7 @@ Phong Thần Truyền Kỳ là dự án phục dựng client/server Windows x86.
 | **Đạo Sĩ** | Pháp sư | Âm dương, ngũ hành, địa/thủy/phong/hỏa; dùng thần điểu di chuyển | Chưa xác định hệ phép hay tỷ lệ thuộc tính tối ưu của server hiện tại |
 | **Dị Nhân** | Triệu hồi & bùa chú | Gọi lực sĩ, tinh quân, thiên quân, thần thú; bùa chú tiêu hao; có cánh bay | Cần phân biệt triệu hồi kỹ năng với đệ tử pet/linh thú custom |
 
-**Không phải hệ phái:** Côn Lôn, Thiên Sơn, Tiêu Dao từng được ghi sai trong tài liệu cũ. Ba lớp nhân vật cần dùng xuyên suốt tài liệu là Giáp Sĩ, Đạo Sĩ, Dị Nhân.
+**Đã đối chiếu với C++:** `KProfession.cpp` xác định **ID 0 = Giáp Sĩ (`giapsi`), ID 1 = Đạo Sĩ (`daosi`), ID 2 = Dị Nhân (`dinhan`)**. Đây là danh sách lớp nhân vật thuộc registry của engine; vẫn cần nghiệm thu màn hình tạo nhân vật. **Không phải hệ phái:** Côn Lôn, Thiên Sơn, Tiêu Dao từng được ghi sai trong tài liệu cũ.
 
 Nguồn: [Giáp Sĩ](https://phongthan.vinagame.com.vn/cam-nang/gioi-thieu/tam-gioi-giap-si.html), [Đạo Sĩ](https://phongthan.vinagame.com.vn/cam-nang/gioi-thieu/tam-gioi-dao-si.html), [Dị Nhân](https://phongthan.vinagame.com.vn/cam-nang/gioi-thieu/tam-gioi-di-nhan.html). **[VNG]**
 
@@ -150,7 +150,7 @@ Nguồn [Hệ thống trang bị](https://phongthan.vinagame.com.vn/tin-tuc/can-
 
 | Chủ đề | Có nguồn VNG | Có chứng cứ source dự án | Đã test gameplay | Việc cần thực hiện |
 | --- | --- | --- | --- | --- |
-| 3 hệ phái | Có | Chưa đối chiếu đầy đủ mapping | Không | Mapping class IDs, UI tạo nhân vật, kỹ năng |
+| 3 hệ phái | Có | `KProfession.cpp` xác minh ID 0/1/2 | Không | Kiểm tra UI tạo nhân vật, protocol và bộ kỹ năng theo nghề |
 | Nhiệm vụ đầu game | Có | Quest foundation, kiểm kê NPC | Không | Thử từng bước và phần thưởng |
 | Level cap | Có tài liệu VNG | MAX_LEVEL=200, bảng EXP 1–200; overflow risk cấp 131+ | Không | Test parsing EXP > int32 và tăng cấp đến 200 trong VM |
 | Skill và điểm | Có mô tả VNG | Chưa tổng hợp skill IDs/công thức | Không | Xuất bảng kỹ năng, skill tests |
