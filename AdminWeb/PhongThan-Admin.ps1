@@ -58,18 +58,11 @@ function Get-Plain([string]$Text) {
 }
 
 # ---------------------------------------------------------------- catalogs
-Write-Host 'Dang trich bang vat pham tu PAK...'
-New-Item -ItemType Directory -Force $ItemDir | Out-Null
+Write-Host 'Dang chuan bi bang vat pham...'
 $pakTool = Join-Path $Root 'PhongThanSource\Output\Tools\PakEntryExtract.exe'
-$pathFile = Join-Path $ItemDir '_path.txt'
-Push-Location $ServerRoot
-try {
-    foreach ($t in 'meleeweapon', 'rangeweapon', 'armor', 'ring', 'amulet', 'boot', 'belt', 'helm', 'cuff', 'pendant', 'horse', 'ibitem', 'magicscript', 'material', 'questkey') {
-        [IO.File]::WriteAllBytes($pathFile, $Enc1252.GetBytes("\settings\item\001\$t.txt"))
-        & $pakTool (Join-Path $ServerRoot 'package.ini') "@$pathFile" (Join-Path $ItemDir "$t.txt") | Out-Null
-        if (-not (Test-Path -LiteralPath (Join-Path $ItemDir "$t.txt"))) { Copy-Item -LiteralPath (Join-Path $ServerRoot "settings\item\001\$t.txt") (Join-Path $ItemDir "$t.txt") }
-    }
-} finally { Pop-Location }
+$catalog = & (Join-Path $PSScriptRoot 'Initialize-ItemTables.ps1') -ServerRoot $ServerRoot -ItemDir $ItemDir -PakTool $pakTool
+$script:PakItemCatalogVerified = [bool]$catalog.PakVerified
+Write-Host "Bang vat pham: $($catalog.Tables) | Nguon: $($catalog.Source)"
 Write-Host 'Dang nap danh muc vat pham...'
 $Items = New-Object Collections.Generic.List[object]
 $lookup = Join-Path $Root 'Tra-cuu-vat-pham.txt'
@@ -264,6 +257,7 @@ $ThanKy = @{
 $ThanKyStones = @(6854, 6982) + @(6855..6866)
 $TableCache = @{}
 function Get-ItemCode([string]$Key) {
+    if (-not $script:PakItemCatalogVerified) { throw 'Bang vat pham chua duoc xac minh voi PAK. Chuc nang phat vat pham da bi khoa de tranh sai item ID; build PakEntryExtract.exe de bat lai.' }
     # Project starter bag (Sources\Core\Src\PhongThanStarterBag.h): reusable item picker.
     if ($Key -eq 'StarterBag') { return @{ g = 6; d = 61000; p = 0; lv = 1; se = 0; name = 'Tui tan thu' } }
     # World-boss token (ptfix.pak magicscript row 61001, script\phongthan\item\boss_lenhbai.lua).

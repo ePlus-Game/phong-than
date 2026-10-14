@@ -25,3 +25,11 @@ Các file `.cmd` cài đặt và chạy tất cả có `pause` như trước đ�
 - Khi phát hiện lỗi vá, launcher ngừng tiếp tục nhưng **không tự rollback** các byte đã thay đổi trước khi xảy ra lỗi. Kiểm tra thư mục `_backup/client-patch/`, manifest và hash trước khi thử lại.
 - Không coi việc script vá trả code 0 là kiểm chứng đầy đủ chữ ký/version của mọi binary; script có thể bỏ qua file bị khóa hoặc không khớp phiên bản. Không triển khai public từ kết quả này.
 - Không kill force hoặc tự khởi động lại một cụm đã chạy một phần nếu có thể tồn tại phiên người chơi; cần thao tác vận hành thủ công theo quy trình sao lưu.
+
+## Web Admin: thieu PakEntryExtract.exe
+
+Web Admin dung `PhongThanSource/Output/Tools/PakEntryExtract.exe` de trich bang item tu PAK. File nay la output build, khong duoc commit trong repo. Khi chua co file, Admin tu nap 15 bang `PhongThanRuntime-Staging/Server/settings/item/001/*.txt` (loose fallback), hien canh bao va **khoa phat vat pham/tao ma item** de tranh sai item ID vi game uu tien du lieu trong PAK. Khong coi bang loose la tuong duong PAK.
+
+De bat lai tinh nang phat vat pham dung ma PAK, build tool tu source bang `PhongThanSource/Build/Build-PakEntryExtract.ps1` (can VC6 CL.EXE va `Sources/Engine/Release/Engine.lib`). Khong can build tool de mo cac trang Admin khong phu thuoc ma item.
+
+Neu Web Admin gap loi khi khoi dong, cua so Admin PowerShell se giu mo va ghi `PhongThanRuntime-State/logs/admin-startup.log`. Thay doi nay khong tu dong khoi dong lai 5 native services hoac sua database.
