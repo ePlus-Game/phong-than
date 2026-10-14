@@ -1,0 +1,203 @@
+name: Windows x86 native Client build (hosted, no runtime)
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/windows-client-modules.yml'
+      - 'PhongThanSource/Build/Build-Modern.ps1'
+      - 'PhongThanSource/Sources/GameClient/**'
+      - 'PhongThanSource/Sources/Represent/**'
+      - 'PhongThanSource/Sources/Core/**'
+      - 'PhongThanSource/Sources/Engine/**'
+      - 'PhongThanSource/Sources/Library/LuaLib/**'
+      - 'PhongThanSource/Headers/**'
+      - 'tools/verify_native_module_build.py'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/windows-client-modules.yml'
+      - 'PhongThanSource/Build/Build-Modern.ps1'
+      - 'PhongThanSource/Sources/GameClient/**'
+      - 'PhongThanSource/Sources/Represent/**'
+      - 'PhongThanSource/Sources/Core/**'
+      - 'PhongThanSource/Sources/Engine/**'
+      - 'tools/verify_native_module_build.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pt-client-modules-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  compile-client:
+    runs-on: windows-2022
+    timeout-minutes: 100
+    steps:
+      - name: Sparse checkout C++ Client source without output binaries or player data
+        uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /PhongThanSource/Build/Build-Modern.ps1
+            /PhongThanSource/Headers/
+            /PhongThanSource/Lib/release/
+            /PhongThanSource/Sources/Core/Core.dsp
+            /PhongThanSource/Sources/Core/Src/
+            /PhongThanSource/Sources/Engine/Engine.dsp
+            /PhongThanSource/Sources/Engine/Include/
+            /PhongThanSource/Sources/Engine/Src/
+            /PhongThanSource/Sources/Represent/iRepresent/
+            /PhongThanSource/Sources/Represent/Represent2/*.cpp
+            /PhongThanSource/Sources/Represent/Represent2/*.h
+            /PhongThanSource/Sources/Represent/Represent2/Represent2.dsp
+            /PhongThanSource/Sources/Represent/Represent3/*.cpp
+            /PhongThanSource/Sources/Represent/Represent3/*.h
+            /PhongThanSource/Sources/Represent/Represent3/Represent3.dsp
+            /PhongThanSource/Sources/MultiServer/Common/
+            /PhongThanSource/Sources/MultiServer/Heaven/Interface/
+            /PhongThanSource/Sources/MultiServer/Heaven/*.h
+            /PhongThanSource/Sources/MultiServer/Heaven/*.cpp
+            /PhongThanSource/Sources/MultiServer/Heaven/Heaven.dsp
+            /PhongThanSource/Sources/MultiServer/Heaven/Heaven.def
+            /PhongThanSource/Sources/MultiServer/Rainbow/*.h
+            /PhongThanSource/Sources/MultiServer/Rainbow/*.cpp
+            /PhongThanSource/Sources/MultiServer/Rainbow/Rainbow.dsp
+            /PhongThanSource/Sources/MultiServer/Rainbow/Rainbow.def
+            /PhongThanSource/Sources/MultiServer/Rainbow/*.inl
+            /PhongThanSource/Sources/MultiServer/Rainbow/Interface/
+            /PhongThanSource/Sources/AccountServices/AccountServer/msado15.tlh
+            /PhongThanSource/Sources/AccountServices/AccountServer/msado15.tli
+            /PhongThanSource/Sources/AccountServices/AccountServer/*.h
+            /PhongThanSource/Sources/AccountServices/RelayServer/*.h
+            /PhongThanSource/Sources/Library/LuaLib/LuaLibDll.dsp
+            /PhongThanSource/Sources/Library/LuaLib/src/
+            /PhongThanSource/Sources/ExpandPackageStaticLib/
+            /PhongThanSource/Sources/ExpandPackage2.0/
+            /PhongThanSource/Sources/FilterText/
+            /PhongThanSource/Sources/Pack/ucl-1.01/include/
+            /PhongThanSource/Sources/GameClient/*.cpp
+            /PhongThanSource/Sources/GameClient/*.h
+            /PhongThanSource/Sources/GameClient/*.dsp
+            /PhongThanSource/Sources/GameClient/*.rc
+            /PhongThanSource/Sources/GameClient/*.ico
+            /PhongThanSource/Sources/GameClient/Login/
+            /PhongThanSource/Sources/GameClient/NetConnect/
+            /PhongThanSource/Sources/GameClient/TextCtrlCmd/
+            /PhongThanSource/Sources/GameClient/Ui/
+            /PhongThanSource/ThirdParty/WindowsSDK/GDIPlus/Include/
+            /PhongThanSource/ThirdParty/WindowsSDK/GDIPlus/Lib/x86/
+            /PhongThanSource/ThirdParty/dx9csdk/Include/
+            /PhongThanSource/ThirdParty/dx9csdk/Lib/
+            /tools/verify_windows_build.py
+            /tools/verify_native_module_build.py
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Copy into fresh isolated build workspace
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $source = (Resolve-Path 'PhongThanSource').Path
+          foreach ($old in @('Output','OutputModern','Build/LogsModern')) {
+            if (Test-Path -LiteralPath (Join-Path $source $old)) { throw "Refusing stale $old output" }
+          }
+          if (Test-Path -LiteralPath 'PhongThanRuntime-Staging') { throw 'Runtime checkout forbidden' }
+          $work = Join-Path $env:RUNNER_TEMP ("pt-client-${{ github.run_id }}-${{ github.run_attempt }}")
+          if (Test-Path -LiteralPath $work) { throw 'Refusing reused workspace' }
+          Copy-Item -LiteralPath $source -Destination $work -Recurse -ErrorAction Stop
+          # Represent3's VC6-era DX9 Include contains basetsd.h/rpcsal.h that
+          # shadow newer Windows SDK headers when supplied through /I.
+          # The builder already adds DX9 at the END of INCLUDE; remove only
+          # this obsolete priority override from the EXTERNAL copied .dsp.
+          $dsp = Join-Path $work 'Sources/Represent/Represent3/Represent3.dsp'
+          $latin1 = [Text.Encoding]::GetEncoding(28591)
+          $dspText = [IO.File]::ReadAllText($dsp, $latin1)
+          $legacyFlag = '/I "../../../ThirdParty/dx9csdk/Include"'
+          $occurrences = [regex]::Matches($dspText, [regex]::Escape($legacyFlag)).Count
+          if ($occurrences -lt 2 -or $occurrences -gt 8) { throw "Unexpected Represent3 include flags: $occurrences" }
+          $patchedDsp = $dspText.Replace($legacyFlag, '')
+          # ddraw.h and modern windef.h both introduce HMONITOR unless this
+          # guard is set. Bishop already uses the same compatibility define.
+          $define = '/D "REPRESENT3_EXPORTS"'
+          $defineCount = [regex]::Matches($patchedDsp, [regex]::Escape($define)).Count
+          if ($defineCount -ne 4) { throw "Unexpected Represent3 project defines: $defineCount" }
+          $patchedDsp = $patchedDsp.Replace($define, $define + ' /DHMONITOR_DECLARED')
+          [IO.File]::WriteAllText($dsp, $patchedDsp, $latin1)
+          # HMONITOR_DECLARED prevents ddraw.h from defining HMONITOR again.
+          # Force windows.h first for files such as KFontData.cpp that otherwise
+          # include ddraw.h before windef.h. Patch only the copied builder.
+          $builderPath = Join-Path $work 'Build/Build-Modern.ps1'
+          $builderSource = [IO.File]::ReadAllText($builderPath, [Text.Encoding]::ASCII)
+          $builderAnchor = '    $baseFlags = Convert-Cpp (Split-Args $p.Cpp) $p.Dir'
+          if (-not $builderSource.Contains($builderAnchor)) { throw 'Modern builder changed; cannot stage Represent3 fix' }
+          $builderPatch = '    if ($name -eq ''Represent3'') { $baseFlags = @($baseFlags) + ''/FIwindows.h'' }'
+          $builderSource = $builderSource.Replace($builderAnchor, $builderAnchor + "`r`n" + $builderPatch)
+          [IO.File]::WriteAllText($builderPath, $builderSource, [Text.Encoding]::ASCII)
+
+          Write-Host 'Moved legacy DX9 header lookup behind Windows SDK in external Represent3 copy.'
+          "PT_CLIENT_WORKSPACE=$work" | Out-File $env:GITHUB_ENV -Append -Encoding utf8
+          Write-Host 'Only copied C++ project sources will be compiled. No game process will be launched.'
+
+      - name: Compile and link Game.exe with native renderer dependencies
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $targets = @(
+            'LuaLibDll','Engine','Common','ExpandPackageStaticLib','FilterTextStatic',
+            'CoreClient','ExpandPackage','FilterText','Heaven','Rainbow',
+            'Represent2','Represent3','GameClient'
+          )
+          & (Join-Path $env:PT_CLIENT_WORKSPACE 'Build/Build-Modern.ps1') -Targets $targets -Jobs 2 -Clean -KeepGoing
+          if ($LASTEXITCODE -ne 0) { throw 'Client module build failed; see per-target diagnostics in following step' }
+
+      - name: Verify freshly built Client PE32 outputs and COFF libraries
+        if: always()
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Continue'
+          if (-not $env:PT_CLIENT_WORKSPACE) { throw 'Client build workspace was not created; skip binary inspection' }
+          $modules = @(
+            'LuaLibDll','Engine','Common','ExpandPackageStaticLib','FilterTextStatic',
+            'CoreClient','ExpandPackage','FilterText','Heaven','Rainbow',
+            'Represent2','Represent3','GameClient'
+          )
+          $report = Join-Path $env:RUNNER_TEMP 'pt-client-modules.json'
+          $verifyArgs = @('-m','tools.verify_native_module_build','--output-root',(Join-Path $env:PT_CLIENT_WORKSPACE 'OutputModern'),'--report',$report)
+          foreach ($module in $modules) { $verifyArgs += @('--module',$module) }
+          & python @verifyArgs
+          $code = $LASTEXITCODE
+          if (Test-Path -LiteralPath $report) {
+            $result = Get-Content -LiteralPath $report -Raw | ConvertFrom-Json
+            "### Client MSVC x86 source build - $($result.status)" | Out-File $env:GITHUB_STEP_SUMMARY -Append -Encoding utf8
+            foreach ($module in $modules) {
+              "- $module : $($result.modules.$module.status)" | Out-File $env:GITHUB_STEP_SUMMARY -Append -Encoding utf8
+            }
+            "Compiler/linker outputs only. No client process, account or game data executed." | Out-File $env:GITHUB_STEP_SUMMARY -Append -Encoding utf8
+          }
+          foreach ($module in $modules) {
+            $log = Join-Path $env:PT_CLIENT_WORKSPACE "Build/LogsModern/$module.log"
+            if (Test-Path -LiteralPath $log) {
+              $errs = @(Select-String -LiteralPath $log -Pattern 'fatal error|error C[0-9]+|error LNK[0-9]+|THIEU FILE' | Select-Object -First 10)
+              if ($errs.Count) {
+                Write-Host "Diagnostics from $module :"
+                $errs | ForEach-Object { Write-Host $_.Line }
+              }
+            }
+          }
+          if ($code -ne 0) { throw 'Fresh Client binary verification failed' }
+
+      - name: Upload checksum evidence only
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-client-module-evidence
+          path: ${{ runner.temp }}/pt-client-modules.json
+          if-no-files-found: warn
+          retention-days: 7
