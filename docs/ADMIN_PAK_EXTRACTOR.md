@@ -6,16 +6,17 @@ in Server/settings/item/001, before allowing item-code actions / item grants.
 ## Windows distribution without Python or VC6
 
 GitHub Actions workflow: `.github/workflows/windows-pak-extractor.yml`.
-It builds a fresh Engine.dll + PakEntryExtract.exe with modern MSVC **outside**
+It builds a fresh Engine.dll + LuaLibDll.dll + PakEntryExtract.exe with modern MSVC **outside**
 the game runtime. Once the workflow succeeds, download artifact
-`phongthan-pak-extractor-win32` from its Actions run and extract both files to:
+`phongthan-pak-extractor-win32` from its Actions run and extract all three files to:
 
 ```
 AdminWeb/bin/PakEntryExtract.exe
 AdminWeb/bin/Engine.dll
+AdminWeb/bin/LuaLibDll.dll
 ```
 
-Do not copy the bundled Engine.dll to `PhongThanRuntime-Staging/Client` or
+Do not copy the bundled Engine.dll or LuaLibDll.dll to `PhongThanRuntime-Staging/Client` or
 `PhongThanRuntime-Staging/Server`. It is an isolated dependency of this tool
 only and may be binary-incompatible with the live game DLL.
 
