@@ -134,6 +134,17 @@ PATCHES["Build/Build-Modern.ps1"] += (
 
 
 
+# AccountServer legacy utilities relied on windows.h importing Winsock 1.
+# The modern build deliberately suppresses Winsock 1 to avoid conflicts;
+# include Winsock 2 before the Windows types instead, only on a build copy.
+PATCHES["Sources/AccountServices/AccountServer/GlobalFun.h"] = (
+    (
+        b'#include "GlobalDTD.h"\n#include <WTypes.h>',
+        b'#include <winsock2.h>\n#include "GlobalDTD.h"\n#include <WTypes.h>',
+    ),
+)
+
+
 def harden(relative: str, original: bytes) -> bytes:
     """Patch only matching byte spans, preserving ALL untouched original bytes.
 
