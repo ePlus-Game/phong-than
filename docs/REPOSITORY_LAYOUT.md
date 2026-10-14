@@ -11,7 +11,7 @@ wrapper; it does not rebuild, re-encode or filter the archived game files.
 | `PhongThanRuntime-State/` | Original runtime state archived in PT.zip |
 | `AdminWeb/` | Original administration utilities |
 | `install/` | SQL LocalDB original installers, relocated byte-for-byte from historical `Setup/` |
-| `_backup/` | Archived backup materials (leave untouched) |
+| `_backup/` | Named in the old PT.zip layout but absent from the current repository root |
 | `PhongThan-*.cmd`, `CHANGELOG.md` | Original ZIP-root scripts and changelog |
 | `docs/original-pt/` | **Original PT/docs/**, kept separate from repository docs |
 | `archive/PT_EXACT_ZIP_MANIFEST.csv` | Unmodified import-time SHA-256 inventory |
@@ -52,9 +52,7 @@ The second command can require more than 7 GiB of free space and recreates
 PAKs at their current root-relative paths with SHA-256 verification.
 
 A lightweight checkout for tooling work is documented in
-[REPOSITORY_HYGIENE.md](REPOSITORY_HYGIENE.md). Existing backup, logs,
-PDBs and historical binaries remain tracked intentionally until an
-independently verified archive migration is completed.
+[REPOSITORY_HYGIENE.md](REPOSITORY_HYGIENE.md). Generated source outputs, runtime snapshots, payserver logs and runtime PDBs were removed in the cleanup branch. Original runtime executables, game assets, SQL databases, archive manifests and the historical Git backup are retained. Full history rewriting is deferred until independently verified recovery.
 
 The original `.git` members inside the original ZIP were already archived
 in `PhongThanSource/__historical_git__/original-dot-git.zip`. They are not
