@@ -1,0 +1,30 @@
+name: Historical repository inventory (manual)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pt-repository-inventory
+  cancel-in-progress: false
+
+jobs:
+  metadata-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /tools/repository_hygiene.py
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Read Git tree metadata and publish aggregate summary
+        run: |
+          python tools/repository_hygiene.py --format markdown --output "$RUNNER_TEMP/repository-hygiene.md"
+          cat "$RUNNER_TEMP/repository-hygiene.md" >> "$GITHUB_STEP_SUMMARY"
