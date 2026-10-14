@@ -8,6 +8,8 @@
 2. Chỉ tải client từ nguồn phát hành chính thức của dự án khi có bản phát hành được xác nhận. **Chưa có hướng dẫn đăng ký, tải và vào server được nghiệm thu**.
 3. Khi có bản chơi thử, ưu tiên trải nghiệm nhân vật mới với túi đồ trống và giữ lại thông tin lỗi để báo nhóm phát triển; không dùng tài khoản hoặc dữ liệu nhân vật quan trọng trên môi trường thử nghiệm.
 
+> **Hướng dẫn theo nhiệm vụ và mốc cấp:** [Lộ trình tân thủ của Giáp Sĩ, Đạo Sĩ và Dị Nhân](BEGINNER_QUESTS.md).
+
 ## 2. Ba hệ phái: Giáp Sĩ, Đạo Sĩ, Dị Nhân
 
 **Đính chính:** Ba hệ phái theo cẩm nang Phong Thần VinaGame là **Giáp Sĩ, Đạo Sĩ và Dị Nhân**. Tài liệu trước đã nhầm Côn Lôn, Thiên Sơn, Tiêu Dao thành hệ phái. Không dùng ba tên này để hướng dẫn chọn lớp nhân vật.
