@@ -60,6 +60,7 @@ jobs:
             /PhongThanSource/Deploy/Start-NativeServer.ps1
             /PhongThan-MoGame.cmd
             /PhongThan-ChayTatCa.cmd
+            /PhongThan-CaiDat.cmd
             /AdminWeb/PhongThan-RunAll.ps1
             /tools/verify_windows_build.py
             /tests/test_windows_launchers.py
