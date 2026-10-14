@@ -10,6 +10,7 @@ Dự án gồm mã nguồn game, dữ liệu runtime và công cụ phục dựn
 - **[Master Roadmap — build, gameplay, online, multi-server](docs/MASTER_ROADMAP.md)**
 - [Lộ trình refactor engine và network](docs/REFACTORING.md)
 - [Ma trận kiểm thử / tiêu chí nghiệm thu](docs/TEST_MATRIX.md)
+- [M1: Full build Windows x86 và xác minh 22 EXE/DLL](docs/M1_WINDOWS_BUILD.md)
 - [Tình trạng hệ thống nhiệm vụ](docs/QUEST_SYSTEM_STATUS.md)
 - [Phát thưởng và Linh Thú](docs/REWARDS_AND_PETS.md)
 
