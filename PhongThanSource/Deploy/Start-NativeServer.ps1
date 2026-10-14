@@ -37,7 +37,10 @@ $db=Set-AccountDatabaseIni (Join-Path $serverRoot 'DataBase.ini') $pipe
 # LocalDB can come back without [account] registered: re-attach it from
 # PhongThanRuntime-State\sql, or restore Server\database\account.bak on a new machine.
 $ptSetup=Join-Path (Split-Path -Parent $ProjectRoot) 'AdminWeb\PhongThan-Setup.ps1'
-if(Test-Path -LiteralPath $ptSetup){ & powershell.exe -NoProfile -ExecutionPolicy Bypass -File $ptSetup -Step database | Out-Null }
+if (Test-Path -LiteralPath $ptSetup) {
+    & powershell.exe -NoProfile -ExecutionPolicy Bypass -File $ptSetup -Step database | Out-Null
+    if ($LASTEXITCODE -ne 0) { throw 'Account database setup failed; refusing to start services.' }
+}
 Test-AccountDatabase32 $db 'account'
 $expectedMapCount=[int]$manifest.DataRegistries.Gameplay.Map.ExpectedActiveMapCount
 if($expectedMapCount -le 0){throw 'Missing ExpectedActiveMapCount in runtime content manifest.'}
