@@ -17,6 +17,7 @@
 #include "CoreServerShell.h"
 #endif
 #include "KPlayerSet.h"
+#include "PhongThanExpCompat.h"
 #include "Text.h"
 #include "Cryptography/EDOneTimePad.h"
 #include "CoreUseNameDef.h"
@@ -562,9 +563,25 @@ BOOL	KLevelAdd::Init()
 	{
 		for (j = 0; j < MAX_LEVEL; j++)
 		{
-			if(i == 0)
-				LevelExp.GetInteger(j + 2, 2, 0, &m_nLevelExp[j]);
-			LevelExp.GetInteger(j + 2, 3+i, 0, &m_nLevelExpAdd[i][j]);
+			if (i == 0)
+			{
+				char value[64];
+				value[0] = 0;
+				if (!LevelExp.GetString(j + 2, 2, "", value, sizeof(value)) ||
+					!PhongThanParseBaseLevelExp(value, j + 1, &m_nLevelExp[j]))
+				{
+					printf("[PHONGTHAN][PLAYER][FATAL] Invalid level EXP at level %d: %s\n", j + 1, value);
+					return FALSE;
+				}
+			}
+			char bonus[64] = "0";
+			LevelExp.GetString(j + 2, 3+i, "0", bonus, sizeof(bonus));
+			if (!PhongThanParseNonnegativeInt32(bonus, &m_nLevelExpAdd[i][j]) ||
+				m_nLevelExpAdd[i][j] > INT_MAX - m_nLevelExp[j])
+			{
+				printf("[PHONGTHAN][PLAYER][FATAL] Invalid transcendence EXP: level=%d, translife=%d\n", j + 1, i);
+				return FALSE;
+			}
 		}
 	}
 	KTabFile	LevelAdd;
@@ -608,7 +625,8 @@ BOOL	KLevelAdd::Init()
 //---------------------------------------------------------------------------
 int		KLevelAdd::GetLevelExp(int nLevel, int nTranslife)
 {
-	if (nLevel < 1 || nLevel > MAX_LEVEL)
+	if (nLevel < 1 || nLevel > MAX_LEVEL ||
+		nTranslife < 0 || nTranslife >= MAX_TRANSLIFE_VALUE)
 		return 0;
 	return m_nLevelExp[nLevel - 1] + m_nLevelExpAdd[nTranslife][nLevel - 1];
 }
