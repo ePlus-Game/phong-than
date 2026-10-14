@@ -21,15 +21,18 @@ MODULE_OUTPUTS = {
     "FilterTextStatic": ("lib/FilterText_StaticLib.lib",),
     "CoreServer": ("Server/CoreServer.dll",),
     "CoreClient": ("Client/CoreClient.dll",),
-    "ExpandPackage": ("Server/ExpandPackage.dll",),
-    "FilterText": ("Server/FilterText.dll",),
-    "Heaven": ("Server/Heaven.dll",),
-    "Rainbow": ("Server/Rainbow.dll",),
+    "ExpandPackage": ("Client/ExpandPackage.dll", "Server/ExpandPackage.dll"),,
+    "FilterText": ("Client/FilterText.dll", "Server/FilterText.dll"),,
+    "Heaven": ("Client/Heaven.dll", "Server/Heaven.dll"),,
+    "Rainbow": ("Client/Rainbow.dll", "Server/Rainbow.dll"),,
     "PhongThanRelay": ("Server/PhongThanRelay.exe",),
     "AccountServer": ("Server/PhongThanAccountServer.exe",),
     "Bishop": ("Server/Bishop.exe",),
     "Goddess": ("Server/Goddess.exe",),
     "GameServer": ("Server/GameServer.exe",),
+    "Represent2": ("Client/Represent2.dll",),
+    "Represent3": ("Client/Represent3.dll",),
+    "GameClient": ("Client/Game.exe",),
 }
 
 
