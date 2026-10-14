@@ -127,7 +127,7 @@ jobs:
           # guard is set. Bishop already uses the same compatibility define.
           $define = '/D "REPRESENT3_EXPORTS"'
           $defineCount = [regex]::Matches($patchedDsp, [regex]::Escape($define)).Count
-          if ($defineCount -ne 2) { throw "Unexpected Represent3 Release/Debug defines: $defineCount" }
+          if ($defineCount -ne 4) { throw "Unexpected Represent3 project defines: $defineCount" }
           $patchedDsp = $patchedDsp.Replace($define, $define + ' /DHMONITOR_DECLARED')
           [IO.File]::WriteAllText($dsp, $patchedDsp, $latin1)
           Write-Host 'Moved legacy DX9 header lookup behind Windows SDK in external Represent3 copy.'
