@@ -58,6 +58,22 @@ Run the verification only against a **fresh completed build**, not archived
 `OutputModern/` or a partly rebuilt directory. A structurally valid PE is
 not proof its Windows DLL imports resolve or the game can actually start.
 
+## GitHub-hosted native module baseline (new; pending CI evidence)
+
+`.github/workflows/windows-native-modules.yml` builds **LuaLibDll** and **Engine**
+from a fresh, source-only external copy on `windows-2022` (MSVC x86).
+It uses a sparse checkout of relevant source/headers and excludes
+`Output/`, `OutputModern/`, PAK, SQL, runtime saves and staged binaries.
+The job compiles/links both projects and checks the freshly generated
+Client/Server DLL files as PE32/i386, with SHA-256 in a metadata-only artifact.
+Each target is reported independently even when another target fails.
+
+- Automatic: relevant PRs and changes on `main`; manual: `workflow_dispatch`.
+- **No** compilation success is claimed until the CI job itself is green.
+- Green module CI is not the 22-binary full build and does not execute the game.
+- Next stage after module successes: dependency-aware `CoreServer` and
+  `GameServer`/client build in an isolated workspace, then M2 runtime UAT.
+
 ## Manual execution and evidence
 
 1. Provision the dedicated trusted Windows x64 runner with MSVC x86 tools,
