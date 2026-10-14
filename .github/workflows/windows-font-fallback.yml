@@ -1,0 +1,51 @@
+name: Windows font-id fallback smoke
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/windows-font-fallback.yml'
+      - 'PhongThanSource/Sources/Represent/Represent2/FontIdSelection.h'
+      - 'PhongThanSource/Sources/Represent/Represent2/KRepresentShell2.cpp'
+      - 'tests/font_id_selection_test.cpp'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  font-id-smoke:
+    runs-on: windows-2022
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /PhongThanSource/Sources/Represent/Represent2/FontIdSelection.h
+            /PhongThanSource/Sources/Represent/Represent2/KRepresentShell2.cpp
+            /tests/font_id_selection_test.cpp
+      - name: Verify all Represent2 text routes use same selection
+        shell: powershell
+        run: |
+          $ErrorActionPreference='Stop'
+          $src=Get-Content -LiteralPath 'PhongThanSource/Sources/Represent/Represent2/KRepresentShell2.cpp' -Raw
+          foreach($name in @('OutputText','OutputVNText','OutputRichText','LocateRichText')) {
+            $pattern='(?s)KRepresentShell2::' + $name + '\(.*?(?=\n(?:void|int) KRepresentShell2::)'
+            $match=[regex]::Match($src,$pattern)
+            if (-not $match.Success -or $match.Value -notmatch 'PT_SelectLoadedFont') {
+              throw "Font lookup missing in $name"
+            }
+            if ($match.Value -notmatch 'if \(i >= 0 && m_FontTable\[i\]\.pFontObj\)') {
+              throw "Safe missing-font guard missing in $name"
+            }
+          }
+          Write-Host 'PASS: four Represent2 entry points select a loaded font'
+      - name: Compile and run native selector tests with MSVC x86
+        shell: powershell
+        run: |
+          $ErrorActionPreference='Stop'
+          $vswhere=Join-Path (${env:ProgramFiles(x86)}) 'Microsoft Visual Studio\Installer\vswhere.exe'
+          $vs=& $vswhere -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath
+          if (-not $vs) { throw 'MSVC x86 not installed on runner' }
+          $bat=Join-Path $vs 'VC\Auxiliary\Build\vcvarsall.bat'
+          $exe=Join-Path $env:RUNNER_TEMP 'font_id_selection_test.exe'
+          $cmd='call "' + $bat + '" x86 >nul && cl /nologo /EHsc /W4 /Fe:"' + $exe + '" tests\font_id_selection_test.cpp && "' + $exe + '"'
+          & cmd.exe /d /c $cmd
+          if ($LASTEXITCODE -ne 0) { throw "Font ID smoke failed: $LASTEXITCODE" }
