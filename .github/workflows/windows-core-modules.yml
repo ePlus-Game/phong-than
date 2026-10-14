@@ -42,7 +42,7 @@ jobs:
     timeout-minutes: 60
     steps:
       - name: Sparse checkout legacy C++ dependencies only
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           filter: blob:none
           sparse-checkout-cone-mode: false
@@ -79,7 +79,7 @@ jobs:
             /tools/verify_native_module_build.py
             /tools/verify_windows_build.py
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
 
@@ -139,7 +139,7 @@ jobs:
 
       - name: Upload metadata only (never binaries, game state or raw logs)
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: windows-core-modules-evidence
           path: ${{ runner.temp }}/pt-core-module-evidence.json

@@ -42,7 +42,7 @@ jobs:
     timeout-minutes: 20
     steps:
       - name: Checkout only native runtime executables and metadata
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           filter: blob:none
           sparse-checkout-cone-mode: false
@@ -66,7 +66,7 @@ jobs:
             /tests/test_windows_launchers.py
             /docs/LAUNCHER_BEHAVIOR.md
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
 
@@ -121,7 +121,7 @@ jobs:
 
       - name: Upload metadata-only runtime evidence
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: staging-runtime-pe32-inventory
           path: ${{ runner.temp }}/pt-staging-runtime-inventory.json

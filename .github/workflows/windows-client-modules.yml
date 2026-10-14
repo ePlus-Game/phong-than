@@ -38,7 +38,7 @@ jobs:
     timeout-minutes: 100
     steps:
       - name: Sparse checkout C++ Client source without output binaries or player data
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           filter: blob:none
           sparse-checkout-cone-mode: false
@@ -96,7 +96,7 @@ jobs:
             /tools/verify_windows_build.py
             /tools/verify_native_module_build.py
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
 
@@ -195,7 +195,7 @@ jobs:
 
       - name: Upload checksum evidence only
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: windows-client-module-evidence
           path: ${{ runner.temp }}/pt-client-modules.json

@@ -33,7 +33,7 @@ jobs:
   quest-integrity:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           filter: blob:none
           sparse-checkout-cone-mode: false
@@ -46,7 +46,7 @@ jobs:
             /PhongThanSource/Tests/fixtures/NpcQuestOriginal/
             /PhongThanSource/Tests/fixtures/XichTungTu/
             /PhongThanSource/SourceMigration/NpcLuaLibrary/objects/44655595cd21f0748a44cf58270376d68d2b0e5cad3a709f0273d395d07ce438.lua
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
       - name: Test quest integrity checker
