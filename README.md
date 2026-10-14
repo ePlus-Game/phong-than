@@ -27,13 +27,12 @@ pt/
 ├── PhongThanRuntime-State/    # Dữ liệu trạng thái trong PT.zip gốc
 ├── AdminWeb/                  # Công cụ quản trị gốc
 ├── install/                   # Bộ cài ban đầu: SQL LocalDB (MSI, bootstrapper)
-├── _backup/                   # Bản lưu trong PT.zip gốc
 ├── PhongThan-*.cmd            # Script khởi chạy gốc (chưa xác minh an toàn)
 ├── CHANGELOG.md               # Changelog gốc
 ├── docs/
 │   ├── original-pt/           # Nội dung PT/docs/ của ZIP gốc
 │   └── REPOSITORY_LAYOUT.md   # Giải thích tổ chức source mới
-├── archive/                    # Manifest SHA-256 và đường dẫn lịch sử
+├── archive/                   # Manifest SHA-256 và đường dẫn lịch sử
 ├── tools/                      # Công cụ kiểm tra, ghép PAK, thử build
 ├── tests/                      # Kiểm thử công cụ
 └── .github/workflows/          # Kiểm thử CI
@@ -45,6 +44,10 @@ riêng thư mục `PT/docs/` được chuyển sang `docs/original-pt/`
 để không trùng với tài liệu duy trì repository. Hai bộ cài gốc từ
 `Setup/` cũng được **đổi đường dẫn Git** sang `install/` (giữ nguyên blob SHA).
 Các lệnh mở game/cài đặt `.cmd` vẫn ở root để giữ khả năng chạy như cũ.
+
+## Cleanup source outputs
+
+Nhánh cleanup loại bỏ các output build/test đã track trong `PhongThanSource/Output/` (giữ thư mục bằng `.gitkeep`) và `OutputModern/`, đồng thời bỏ snapshot, log payserver và PDB debug tại runtime staging. Các file `.exe`/`.dll` chạy game, game assets, manifest archive và database gốc vẫn được giữ. Git history chưa được rewrite; muốn khôi phục file lịch sử dùng commit trước khi cleanup. Xem [repository hygiene](docs/REPOSITORY_HYGIENE.md).
 
 ## Tải source về máy
 
