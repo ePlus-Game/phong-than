@@ -43,6 +43,7 @@ jobs:
           sparse-checkout: |
             /PhongThanSource/Build/Build-Modern.ps1
             /PhongThanSource/Headers/
+            /PhongThanSource/Lib/release/
             /PhongThanSource/Sources/Engine/Engine.dsp
             /PhongThanSource/Sources/Engine/Include/
             /PhongThanSource/Sources/Engine/Src/
