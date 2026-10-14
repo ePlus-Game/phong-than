@@ -50,21 +50,20 @@ jobs:
           if (Test-Path -LiteralPath $workspace) { throw 'Refusing to reuse build workspace' }
           & .\tools\Build-PatchedGame.ps1 -SourceRoot (Resolve-Path 'PhongThanSource').Path -WorkRoot $workspace -Toolchain Modern
           if ($LASTEXITCODE -ne 0) { throw 'Windows x86 source compilation failed' }
-          $required = @('Client/Game.exe','Server/GameServer.exe','Server/PhongThanAccountServer.exe')
-          $built = Join-Path $workspace 'OutputModern'
-          foreach ($rel in $required) {
-            if (-not (Test-Path -LiteralPath (Join-Path $built $rel) -PathType Leaf)) { throw "Missing expected binary: $rel" }
-          }
-          $summary = @(Get-ChildItem -LiteralPath $built -Recurse -File |
-            Where-Object { $_.Extension -in @('.exe','.dll') } |
-            ForEach-Object { [pscustomobject]@{
-              File = $_.FullName.Substring($built.Length + 1)
-              Length = $_.Length
-              SHA256 = (Get-FileHash -LiteralPath $_.FullName -Algorithm SHA256).Hash
-            } })
-          $summary | ConvertTo-Json -Depth 5 | Set-Content -LiteralPath (Join-Path $env:RUNNER_TEMP 'pt-build-manifest.json') -Encoding UTF8
+          # The explicit role/PE32 contract is verified in the next step.
           "PT_BUILD_WORKSPACE=$workspace" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
-          Write-Host "Compiled $($summary.Count) EXE/DLL artifacts; manifest saved (no binaries uploaded)."
+          Write-Host "Source build finished; verifying all client/server executables and DLLs."
+      - name: Verify 22 required Windows x86 EXE/DLL artifacts and hashes
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Stop'
+          if (-not $env:PT_BUILD_WORKSPACE) { throw 'Missing build workspace' }
+          & python tools/verify_windows_build.py --output-root (Join-Path $env:PT_BUILD_WORKSPACE 'OutputModern') --report (Join-Path $env:RUNNER_TEMP 'pt-build-manifest.json')
+          if ($LASTEXITCODE -ne 0) { throw 'Windows PE32 artifact matrix invalid; see the report.' }
+          $result = Get-Content -LiteralPath (Join-Path $env:RUNNER_TEMP 'pt-build-manifest.json') -Raw | ConvertFrom-Json
+          if ($result.status -ne 'PASS' -or $result.verified_binary_count -ne $result.expected_binary_count) { throw 'Incomplete Windows artifact inventory.' }
+          "### Windows x86 build evidence" | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append -Encoding utf8
+          "Verified $($result.verified_binary_count) PE32 x86 client/server EXE/DLL binaries with SHA-256. Runtime/gameplay NOT tested." | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append -Encoding utf8
       - name: Upload build logs and hashes only
         if: always()
         uses: actions/upload-artifact@v4
