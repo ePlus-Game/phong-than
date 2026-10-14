@@ -51,7 +51,7 @@ Tài liệu legacy của `S3Relay`: [S3Relay/ReadMe.txt](../PhongThanSource/Sour
 | `PhongThanSource/Sources/*/Release/` | Đầu ra của từng VC6 project hoặc bản đã biên dịch trước đó | Không dùng làm đường dẫn triển khai chính |
 | `PhongThanSource/Sources/*/Modern/Win32Release/` | Đầu ra biên dịch theo từng project hiện đại | Artifact trung gian; cần thu thập đủ dependency |
 | `_backup/` | Bản sao hồi phục theo ngày (nhiều EXE trùng tên) | Không chạy trực tiếp hoặc xóa tự động |
-| `Setup/SQL2022-SSEI-Expr.exe` | Trình cài Microsoft SQL Server Express, **không phải file game** | Chỉ cài khi cần trong môi trường quản trị tin cậy |
+| `install/SQL2022-SSEI-Expr.exe` | Trình cài Microsoft SQL Server Express, **không phải file game** | Chỉ cài khi cần trong môi trường quản trị tin cậy |
 
 **Chú ý:** Repo lưu byte gốc nên không dọn các EXE cũ bằng cách xóa file tracked. Nếu muốn giảm kích thước clone hoặc đơn giản hóa phát hành, cần chiến lược archive/release riêng, không sửa cây gốc.
 
