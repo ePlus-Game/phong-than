@@ -67,6 +67,7 @@ jobs:
             /PhongThanSource/Sources/MultiServer/Rainbow/*.h
             /PhongThanSource/Sources/MultiServer/Rainbow/*.cpp
             /PhongThanSource/Sources/MultiServer/Rainbow/Rainbow.dsp
+            /PhongThanSource/Sources/MultiServer/Rainbow/Rainbow.def
             /PhongThanSource/Sources/MultiServer/Rainbow/*.inl
             /PhongThanSource/Sources/MultiServer/Rainbow/Interface/
             /PhongThanSource/Sources/AccountServices/AccountServer/msado15.tlh
@@ -121,7 +122,14 @@ jobs:
           $legacyFlag = '/I "../../../ThirdParty/dx9csdk/Include"'
           $occurrences = [regex]::Matches($dspText, [regex]::Escape($legacyFlag)).Count
           if ($occurrences -lt 2 -or $occurrences -gt 8) { throw "Unexpected Represent3 include flags: $occurrences" }
-          [IO.File]::WriteAllText($dsp, $dspText.Replace($legacyFlag, ''), $latin1)
+          $patchedDsp = $dspText.Replace($legacyFlag, '')
+          # ddraw.h and modern windef.h both introduce HMONITOR unless this
+          # guard is set. Bishop already uses the same compatibility define.
+          $define = '/D "REPRESENT3_EXPORTS"'
+          $defineCount = [regex]::Matches($patchedDsp, [regex]::Escape($define)).Count
+          if ($defineCount -ne 2) { throw "Unexpected Represent3 Release/Debug defines: $defineCount" }
+          $patchedDsp = $patchedDsp.Replace($define, $define + ' /DHMONITOR_DECLARED')
+          [IO.File]::WriteAllText($dsp, $patchedDsp, $latin1)
           Write-Host 'Moved legacy DX9 header lookup behind Windows SDK in external Represent3 copy.'
           "PT_CLIENT_WORKSPACE=$work" | Out-File $env:GITHUB_ENV -Append -Encoding utf8
           Write-Host 'Only copied C++ project sources will be compiled. No game process will be launched.'
