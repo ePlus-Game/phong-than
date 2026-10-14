@@ -92,6 +92,19 @@ class ReadOnlyRuntimeTests(unittest.TestCase):
             self.assertEqual(report["status"], "BLOCKED")
             self.assertTrue(any("GameServer.exe" in x for x in report["failures"]))
 
+    def test_repo_manifest_matches_native_relay(self):
+        manifest = (Path(__file__).resolve().parents[1] /
+                    "PhongThanSource/Deploy/RUNTIME_CONTENT_MANIFEST.json")
+        content = json.loads(manifest.read_text(encoding="utf-8"))
+        ports = content["RuntimeSettings"]["ExpectedListeningPorts"]
+        self.assertEqual(ports["PhongThanRelay.exe"], [5003])
+        self.assertNotIn("S3Relay.exe", ports)
+        artifacts = content["RuntimeContent"]["Server"]["ArtifactFiles"] if "RuntimeContent" in content else None
+        if artifacts is not None:
+            self.assertIn("PhongThanRelay.exe", artifacts)
+            self.assertNotIn("S3Relay.exe", artifacts)
+            self.assertNotIn("PhongThanRelayServer.exe", artifacts)
+
     def test_bundle_mode_never_claims_gameplay(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp) / "bundle"
