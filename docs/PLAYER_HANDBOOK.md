@@ -2,6 +2,8 @@
 
 > **Cập nhật 14/10/2026 — bản nghiên cứu dành cho tân thủ và nhóm phục dựng.** Tài liệu gốc VNG là nguồn tham khảo về thiết kế game, **không** chứng minh tính năng có thể chơi trên bản phục dựng hiện tại. Đọc nhãn nguồn trước khi làm theo hướng dẫn.
 
+> **Đối chiếu code (14/10/2026):** [Bảng xác minh gameplay từ Lua/C++ và các mục chưa chứng minh](GAMEPLAY_SOURCE_AUDIT.md).
+
 ## Mục lục
 
 1. [Bắt đầu](#1-bắt-đầu)
