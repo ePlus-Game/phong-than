@@ -38,7 +38,7 @@ Một số tài nguyên lớn được lưu thành **16 PAK chia 102 phần**. S
 python tools/restore_split_files.py --repo-root .
 ```
 
-Công cụ sử dụng manifest để ghép và xác minh SHA-256; cần có đủ các tệp `*.pak.parts/part-*.bin` và dung lượng đĩa trống. Không sửa hoặc đổi mã hóa tài nguyên gốc.
+Công cụ dùng **Windows PowerShell 5.1 có sẵn**, không cần cài Python. Lệnh `PhongThan-ChayTatCa.cmd game` cũng tự gọi công cụ này nếu chưa có runtime đang chạy. Công cụ dùng manifest để ghép PAK thiếu và xác minh SHA-256; các PAK đã tồn tại được kiểm tra kích thước (dùng `-VerifyExisting` để kiểm tra SHA-256 đầy đủ). Cần có đủ `*.pak.parts/part-*.bin` và dung lượng đĩa trống. Không sửa hoặc đổi mã hóa tài nguyên gốc.
 
 ### 3. Kiểm tra công cụ và bản build
 
@@ -56,7 +56,7 @@ Kết quả `READY_FOR_RUNTIME_TEST` **chỉ cho biết các tệp/cấu hình �
 
 ### 4. Cài đặt và khởi chạy thử
 
-Dự án hiện phục vụ **phục dựng/phát triển**, chưa cung cấp quy trình cài đặt đơn giản cho người chơi cuối. Trước khi chạy các file `.cmd` hoặc `.exe`, hãy đọc [hướng dẫn launcher](docs/LAUNCHER_BEHAVIOR.md), [vai trò các EXE](docs/EXECUTABLE_GUIDE.md) và [bộ cài phụ thuộc](install/README.md). Chỉ thử trên **Windows VM cách ly và bản sao dữ liệu**, không trỏ vào database/tài khoản thật.
+Dự án hiện phục vụ **phục dựng/phát triển**, chưa được xác nhận là game có thể chơi ổn định. Trên bản sao thử nghiệm Windows, `PhongThan-ChayTatCa.cmd game` sẽ khôi phục PAK còn thiếu, chuẩn bị SQL LocalDB, kiểm tra và khởi động server, sau đó mở admin/client. Trước khi chạy các file `.cmd` hoặc `.exe`, hãy đọc [hướng dẫn launcher](docs/LAUNCHER_BEHAVIOR.md), [vai trò các EXE](docs/EXECUTABLE_GUIDE.md) và [bộ cài phụ thuộc](install/README.md). Chỉ thử trên **Windows VM cách ly và bản sao dữ liệu**, không trỏ vào database/tài khoản thật.
 
 ## Cấu trúc repository
 
