@@ -26,7 +26,7 @@
 - `KPlayer.cpp:2994,3063,3084`: tăng cấp kiểm tra `m_Level < MAX_LEVEL` và chặn ở trần 200; `KPlayer.cpp:4513` cũng không chấp nhận đặt cấp vượt 200.
 - `CoreUseNameDef.h:65`: đường dẫn bảng EXP `\\settings\\npc\\player\\level_exp.txt`. Bản Server/Client có cùng Git blob SHA `e513c4ff0d65fe3246365143be89642bcc986b20`, chứa **200 dòng**, level 1 đến 200.
 - Dòng **131–200** có mức EXP `5300556000` mỗi dòng; cấp 130 là `496166400`. Con số **5.300.556.000 > 2.147.483.647**.
-- `KPlayerSet.h:20–21` dùng mảng `int` cho EXP; `KPlayerSet.cpp:566` đọc bằng `GetInteger` vào `int`, `GetLevelExp` trả `int` (609–613). Đây là **rủi ro tràn số hoặc parse không đúng**, không khẳng định đã gây lỗi live; cần unit test parser và runtime trước khi sửa kiểu dữ liệu.
+- `KPlayerSet.h:20–21` dùng mảng `int` cho EXP; `KPlayerSet.cpp:566` đọc bằng `GetInteger` vào `int`, `GetLevelExp` trả `int` (609–613). Đây là **rủi ro tràn số hoặc parse không đúng**: `Sources/Engine/Src/KTabFile.cpp:445–452` dùng `atoi(Buffer)` để đọc số vào `int`. Không khẳng định đã gây lỗi live; cần unit test parser và runtime trước khi sửa kiểu dữ liệu. [Issue #68](https://github.com/ePlus-Game/phong-than-truyen-ky/issues/68).
 
 Cần tránh nhầm `MAX_SERIES = 5` (ngũ hành Kim/Mộc/Thủy/Hỏa/Thổ, `level_add.txt`) với **ba hệ phái** (Giáp Sĩ/Đạo Sĩ/Dị Nhân): bảng ngũ hành không phải mapping class.
 
@@ -42,6 +42,21 @@ Cần tránh nhầm `MAX_SERIES = 5` (ngũ hành Kim/Mộc/Thủy/Hỏa/Thổ, `
 **Điểm cấp [CODE]:** `KPlayer.cpp:71–73` khai báo tăng **5 điểm thuộc tính** và **1 điểm kỹ năng** mỗi lần lên cấp; `LevelUp()` cập nhật các điểm này. Không đồng nghĩa có thể khuyên tỷ lệ cộng điểm cụ thể từng nghề.
 
 **Skill table [CODE]:** `PhongThanRuntime-Staging/Server/settings/Skills.txt` có 99 cột và 2.703 hàng; trong đó cột `SkillId`, `SkillName`, `CharClass`, `ReqLevel`, `MaxLevel`. `CharClass` xuất hiện giá trị 0/1/3 nhưng **chưa xác nhận cách giải nghĩa field này**, không được lấy trực tiếp làm ID nghề Giáp Sĩ/Đạo Sĩ/Dị Nhân. Bảng có thể chứa kỹ năng cũ, phụ trợ hoặc không khả dụng, nên 2.703 hàng **không phải 2.703 kỹ năng đang dùng được**.
+
+## Bảng kỹ năng gốc trong code [CODE, chưa nghiệm thu gameplay]
+
+- `PhongThanRuntime-Staging/Server/settings/Skills.txt` và bản Client: cùng SHA `fbb351d766baf9772afe6721821828d26e27b11c`.
+- Có **2.703 dòng với SkillId số hợp lệ** trên **99 cột**. Các cột gồm `SkillName`, `SkillId`, `Attrib`, `SkillStyle`, `CharClass`, `SkillCostType`, `CostValue`, `TimePerCast`, v.v.
+- Các giá trị `CharClass`: **0 (2.618), 1 (14), 3 (71)**. **KHÔNG tự gán CharClass thành Giáp Sĩ/Đạo Sĩ/Dị Nhân** nếu chưa đọc rõ logic ánh xạ. Bảng còn có kỹ năng NPC, biến thể và kỹ năng theo level.
+- Tên gốc chứa văn bản mã hóa legacy; muốn làm cẩm nang phải giải mã đúng TCVN3/GB18030, loại bỏ kỹ năng NPC, xác nhận cấp học, sở hữu và hiệu lực của skill.
+- Các kỹ năng sinh hoạt trong `sh_lib.lua` (5 nghề, cap 9/10) **khác** hệ thống kỹ năng chiến đấu `Skills.txt` và giới hạn cấp nhân vật.
+
+## GitHub Actions audit thực thi
+
+- PR [#67](https://github.com/ePlus-Game/phong-than-truyen-ky/pull/67), [run #38557516369](https://github.com/ePlus-Game/phong-than-truyen-ky/actions/runs/38557516369): **PASS**.
+- Đã quét tĩnh **3.116 file** từ source và settings (865 file GB18030, 1.927 UTF-8, 315 CP1252, 9 file thay ký tự lỗi).
+- Tự động xác nhận: `MAX_LEVEL=200`, bảng EXP **200 dòng**, **server/client giống nhau**, **giá trị vượt int32 bắt đầu ở cấp 131**.
+- Đây là kết quả đối chiếu code/data, **không phải kiểm thử gameplay hoặc toàn bộ source**.
 
 ## Bảng Linh Thú từ Lua
 
