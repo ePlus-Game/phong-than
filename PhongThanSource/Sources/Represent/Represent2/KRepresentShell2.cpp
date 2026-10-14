@@ -992,24 +992,19 @@ void KRepresentShell2::LookAt(int nX, int nY, int nZ)
 }
 
 //##ModelId=3DCA0BAE00E4
-int KRepresentShell2::FindFontSlot(int requestedFontId) const
-{
-	int ids[RS2_MAX_FONT_ITEM_NUM];
-	unsigned char loaded[RS2_MAX_FONT_ITEM_NUM];
-	for (int i = 0; i < RS2_MAX_FONT_ITEM_NUM; ++i)
-	{
-		ids[i] = m_FontTable[i].nId;
-		loaded[i] = m_FontTable[i].pFontObj != NULL ? 1 : 0;
-	}
-	return PT_SelectLoadedFont(requestedFontId, ids, loaded, RS2_MAX_FONT_ITEM_NUM);
-}
-
 void KRepresentShell2::OutputText(int nFontId, const char* psText, int nCount, int nX, int nY, unsigned int Color, int nLineWidth, int nZ, unsigned int BorderColor)
 {
 	if (psText == NULL || psText[0] == 0)
 		return;
 
-	const int i = FindFontSlot(nFontId);
+	int ids[RS2_MAX_FONT_ITEM_NUM];
+	unsigned char loaded[RS2_MAX_FONT_ITEM_NUM];
+	for (int j = 0; j < RS2_MAX_FONT_ITEM_NUM; ++j)
+	{
+		ids[j] = m_FontTable[j].nId;
+		loaded[j] = m_FontTable[j].pFontObj != NULL ? 1 : 0;
+	}
+	const int i = PT_SelectLoadedFont(nFontId, ids, loaded, RS2_MAX_FONT_ITEM_NUM);
 	if (i >= 0 && m_FontTable[i].pFontObj)
 	{
 		if (nZ != TEXT_IN_SINGLE_PLANE_COORD)
@@ -1022,7 +1017,14 @@ void KRepresentShell2::OutputText(int nFontId, const char* psText, int nCount, i
 }
 void KRepresentShell2::OutputVNText(int nFontId, char* psText, int nCount, int nX, int nY, unsigned int Color, int nLineWidth, int nZ, unsigned int BorderColor)
 {
-	const int i = FindFontSlot(nFontId);
+	int ids[RS2_MAX_FONT_ITEM_NUM];
+	unsigned char loaded[RS2_MAX_FONT_ITEM_NUM];
+	for (int j = 0; j < RS2_MAX_FONT_ITEM_NUM; ++j)
+	{
+		ids[j] = m_FontTable[j].nId;
+		loaded[j] = m_FontTable[j].pFontObj != NULL ? 1 : 0;
+	}
+	const int i = PT_SelectLoadedFont(nFontId, ids, loaded, RS2_MAX_FONT_ITEM_NUM);
 	if (i >= 0 && m_FontTable[i].pFontObj)
 	{
 		if (nZ != TEXT_IN_SINGLE_PLANE_COORD)
@@ -1041,7 +1043,14 @@ int KRepresentShell2::OutputRichText(int nFontId, KOutputTextParam* pParam,
 {
 	if (pParam == NULL)
 		return 0;
-	const int i = FindFontSlot(nFontId);
+	int ids[RS2_MAX_FONT_ITEM_NUM];
+	unsigned char loaded[RS2_MAX_FONT_ITEM_NUM];
+	for (int j = 0; j < RS2_MAX_FONT_ITEM_NUM; ++j)
+	{
+		ids[j] = m_FontTable[j].nId;
+		loaded[j] = m_FontTable[j].pFontObj != NULL ? 1 : 0;
+	}
+	const int i = PT_SelectLoadedFont(nFontId, ids, loaded, RS2_MAX_FONT_ITEM_NUM);
 	if (i >= 0 && m_FontTable[i].pFontObj)
 	{
 		KTextProcess	tp(psText, nCount, nLineWidth * 2 / nFontId);
@@ -1069,7 +1078,14 @@ int KRepresentShell2::LocateRichText(int nX, int nY,
 {
 	if (pParam == NULL)
 		return -1;
-	const int i = FindFontSlot(nFontId);
+	int ids[RS2_MAX_FONT_ITEM_NUM];
+	unsigned char loaded[RS2_MAX_FONT_ITEM_NUM];
+	for (int j = 0; j < RS2_MAX_FONT_ITEM_NUM; ++j)
+	{
+		ids[j] = m_FontTable[j].nId;
+		loaded[j] = m_FontTable[j].pFontObj != NULL ? 1 : 0;
+	}
+	const int i = PT_SelectLoadedFont(nFontId, ids, loaded, RS2_MAX_FONT_ITEM_NUM);
 	if (i >= 0 && m_FontTable[i].pFontObj)
 	{
 		KTextProcess	tp(psText, nCount, nLineWidth * 2 / nFontId);
