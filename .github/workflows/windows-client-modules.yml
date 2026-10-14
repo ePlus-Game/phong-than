@@ -137,9 +137,7 @@ jobs:
           $builderSource = [IO.File]::ReadAllText($builderPath, [Text.Encoding]::ASCII)
           $builderAnchor = '    $baseFlags = Convert-Cpp (Split-Args $p.Cpp) $p.Dir'
           if (-not $builderSource.Contains($builderAnchor)) { throw 'Modern builder changed; cannot stage Represent3 fix' }
-          $builderPatch = @'
-    if ($name -eq 'Represent3') { $baseFlags = @($baseFlags) + '/FIwindows.h' }
-'@
+          $builderPatch = '    if ($name -eq ''Represent3'') { $baseFlags = @($baseFlags) + ''/FIwindows.h'' }'
           $builderSource = $builderSource.Replace($builderAnchor, $builderAnchor + "`r`n" + $builderPatch)
           [IO.File]::WriteAllText($builderPath, $builderSource, [Text.Encoding]::ASCII)
 
