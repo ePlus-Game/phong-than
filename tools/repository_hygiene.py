@@ -42,7 +42,12 @@ def parse_tree(data: bytes):
             continue
         try:
             header, raw_path = record.split(b"\t", 1)
-            mode, kind, raw_sha, raw_size = header.split(b" ")
+            fields = header.split(b" ")
+            if len(fields) == 3:
+                mode, kind, raw_sha = fields
+                raw_size = b"-"
+            else:
+                mode, kind, raw_sha, raw_size = fields
         except ValueError as exc:
             raise ValueError("Malformed Git tree entry") from exc
         if kind != b"blob":
