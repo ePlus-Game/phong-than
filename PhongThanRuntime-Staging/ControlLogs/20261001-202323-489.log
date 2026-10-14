@@ -1,9 +1,0 @@
-WARNING: Khong co VC6 DUMPBIN; bo qua Test-GdiPlusAbi (renderer da kiem tra bang hash).
-
-
-Pid                : 20112
-Path               : E:\VL\Phong than\PT\PhongThanRuntime-Staging\Client\Game.exe
-WindowTitle        : Phong Than Online
-Responding         : True
-CompatibilityLayer : HIGHDPIAWARE
-

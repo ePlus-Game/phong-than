@@ -1,9 +1,0 @@
-
-Service                      Pid Ports  Status   
--------                      --- -----  ------   
-Goddess.exe                50548 {5001} LISTENING
-PhongThanAccountServer.exe 27800 {5002} LISTENING
-PhongThanRelay.exe         35380 {5003} LISTENING
-Bishop.exe                 53208 {56... LISTENING
-GameServer.exe             35728 {6666} LISTENING
-PhongThan world            35728        READY_...
