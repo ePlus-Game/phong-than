@@ -1,5 +1,5 @@
 [CmdletBinding()]
-param([string]$ProjectRoot=(Split-Path -Parent $PSScriptRoot),[string]$RuntimeRoot='D:\Lam game phong than\PhongThanRuntime-Staging',[int]$TimeoutSeconds=60)
+param([string]$ProjectRoot=(Split-Path -Parent $PSScriptRoot),[string]$RuntimeRoot=(Join-Path (Split-Path -Parent (Split-Path -Parent $PSScriptRoot)) 'PhongThanRuntime-Staging'),[int]$TimeoutSeconds=60,[int]$WorldReadyTimeoutSeconds=900)
 $ErrorActionPreference='Stop'
 function Read-NativeWorldReadyMarker {
     param([string]$Path,[long]$AfterOffset,[int]$BishopPid,[int]$ServiceId,[int]$ExpectedMapCount)
@@ -93,7 +93,8 @@ try{
 }
 # Deliberately outside the force-cleanup block: a readiness timeout must not
 # kill a live game process that may already own a character session.
-$readyDeadline=[DateTime]::UtcNow.AddSeconds($TimeoutSeconds)
+$readyDeadline=[DateTime]::UtcNow.AddSeconds($WorldReadyTimeoutSeconds)
+$nextProgress=[DateTime]::UtcNow
 $ready=$null
 do{
     $bishopProcess.Refresh()
@@ -103,7 +104,17 @@ do{
     }
     $ready=Read-NativeWorldReadyMarker -Path $readyLog -AfterOffset $readyOffset -BishopPid $bishopProcess.Id -ServiceId $expectedServiceId -ExpectedMapCount $expectedMapCount
     if($ready){break}
-    Start-Sleep -Milliseconds 250
+    if([DateTime]::UtcNow -ge $nextProgress){
+        $mapLog=Join-Path $serverRoot 'core_map_load_diag.log'
+        $tail=if(Test-Path -LiteralPath $mapLog){(Get-Content -LiteralPath $mapLog -Tail 16) -join "`n"}else{''}
+        $slots=[regex]::Matches($tail,'world_slot=(\d+) configured_id=(\d+)')
+        if($slots.Count){
+            $last=$slots[$slots.Count-1]
+            Write-Host "Dang nap map: $([int]$last.Groups[1].Value+1)/$expectedMapCount (map $($last.Groups[2].Value)). Cho Bishop xac nhan WORLD_READY..."
+        }else{Write-Host 'Dang nap the gioi. Cho Bishop xac nhan WORLD_READY...'}
+        $nextProgress=[DateTime]::UtcNow.AddSeconds(15)
+    }
+    Start-Sleep -Milliseconds 1000
 }while([DateTime]::UtcNow -lt $readyDeadline)
 if(-not $ready){
     throw "Game socket is listening, but Bishop has not confirmed all $expectedMapCount maps. Services remain running; do not log in until world registration completes. Check $readyLog."

@@ -30,6 +30,8 @@ function Assert-ExistingServerReady {
     if (-not (Test-Path -LiteralPath $observer -PathType Leaf)) {
         throw "Khong tim thay cong cu kiem tra WORLD_READY: $observer"
     }
+    $deadline = [DateTime]::UtcNow.AddSeconds(900)
+    do {
     $output = @(& powershell.exe -NoProfile -ExecutionPolicy Bypass -File $observer `
         -RuntimeRoot $Runtime -ManifestPath $manifest -ExpectedMapCount 102 2>&1)
     $code = $LASTEXITCODE
@@ -38,12 +40,20 @@ function Assert-ExistingServerReady {
     } catch {
         throw "Khong doc duoc bao cao WORLD_READY; exit=$code. $($output -join ' ')"
     }
+    if ($code -eq 0 -and $report.status -eq 'READY_FOR_LOGIN_CHECK' -and $report.world_ready) { break }
+    $unexpected = @($report.blockers | Where-Object { $_ -notin @('fresh matching WORLD_READY marker missing', 'missing port listener for GameServer.exe') })
+    if ($unexpected.Count -eq 0 -and -not $report.world_ready -and [DateTime]::UtcNow -lt $deadline) {
+        Write-Host 'Server dang nap map, cho WORLD_READY (toi da 15 phut). Khong can chay lai launcher.' -ForegroundColor Cyan
+        Start-Sleep -Seconds 10
+        continue
+    }
     if ($code -ne 0 -or $report.status -ne 'READY_FOR_LOGIN_CHECK' -or -not $report.world_ready) {
         $reason = if (@($report.blockers).Count -gt 0) {
             @($report.blockers) -join '; '
         } else { 'WORLD_READY chua duoc xac nhan' }
         throw "5 service dang chay nhung world CHUA SAN SANG: $reason. Khong mo client/admin, khong restart hoac sua database."
     }
+    } while ($true)
     Write-Host 'Da xac nhan 5 service, cong TCP va WORLD_READY cho 102 maps.' -ForegroundColor Green
 }
 
@@ -71,6 +81,7 @@ try {
         Step '0/3 Khoi phuc PAK (Windows PowerShell, khong can Python)'
         & (Join-Path $Root 'tools\Restore-SplitPaks.ps1') -RepoRoot $Root
     }
+
 
     Step '1/3 Kiem tra SQL LocalDB va database account'
     if ($running.Count -eq 0) {

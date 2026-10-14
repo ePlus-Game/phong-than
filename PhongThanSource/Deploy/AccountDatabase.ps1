@@ -40,13 +40,26 @@ function Set-AccountDatabaseIni([string]$Path, [string]$PipeName) {
     if (-not (Test-Path -LiteralPath $Path -PathType Leaf)) {
         throw "Thieu DataBase.ini: $Path"
     }
-    $text = [IO.File]::ReadAllText($Path)
+    $original = [IO.File]::ReadAllText($Path)
     $serverValue = "$PipeName;Trusted_Connection=Yes"
-    if ($text -notmatch '(?im)^Server=.*$') {
+    if ($original -notmatch '(?im)^Server=[^\r\n]*') {
         throw "DataBase.ini khong co khoa Server: $Path"
     }
-    $text = [regex]::Replace($text, '(?im)^Server=.*$', "Server=$serverValue", 1)
-    [IO.File]::WriteAllText($Path, $text, [Text.Encoding]::ASCII)
+    # Preserve CRLF and avoid truncating a file mapped by the native server.
+    $text = [regex]::Replace($original, '(?im)^Server=[^\r\n]*', "Server=$serverValue")
+    if ($text -ne $original) {
+        $fullPath = [IO.Path]::GetFullPath($Path)
+        $temporary = $fullPath + '.' + [guid]::NewGuid().ToString('N') + '.tmp'
+        $backup = $fullPath + '.' + [guid]::NewGuid().ToString('N') + '.bak'
+        try {
+            [IO.File]::WriteAllText($temporary, $text, [Text.Encoding]::ASCII)
+            [IO.File]::Replace($temporary, $fullPath, $backup)
+        } catch {
+            throw "Khong cap nhat duoc DataBase.ini '$fullPath'. Hay dong tien trinh dang giu file va chay lai. Loi: $($_.Exception.Message)"
+        } finally {
+            if ([IO.File]::Exists($temporary)) { [IO.File]::Delete($temporary) }
+        }
+    }
     return $serverValue
 }
 

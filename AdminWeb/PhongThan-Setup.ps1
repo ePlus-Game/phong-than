@@ -143,8 +143,9 @@ function Start-Instance {
 function Update-DbIni([string]$pipe) {
     if (-not (Test-Path -LiteralPath $DbIni)) { Write-Log "Khong co $DbIni, bo qua."; return }
     $t = [IO.File]::ReadAllText($DbIni)
-    $n = [regex]::Replace($t, '(?m)^Server=.*$', "Server=$pipe;Trusted_Connection=Yes")
-    if ($n -ne $t) { [IO.File]::WriteAllText($DbIni, $n, [Text.Encoding]::ASCII); Write-Log 'Da cap nhat DataBase.ini.' }
+    . (Join-Path $Root 'PhongThanSource\Deploy\AccountDatabase.ps1')
+    [void](Set-AccountDatabaseIni -Path $DbIni -PipeName $pipe)
+    if ([IO.File]::ReadAllText($DbIni) -ne $t) { Write-Log 'Da cap nhat DataBase.ini.' }
 }
 
 function Initialize-AccountDb {
