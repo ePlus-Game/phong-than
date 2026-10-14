@@ -1,0 +1,49 @@
+name: Windows mouse cursor fallback
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/windows-client-cursor.yml'
+      - 'PhongThanSource/Sources/GameClient/Ui/Elem/UiCursor.cpp'
+      - 'PhongThanSource/Sources/GameClient/Ui/Elem/CursorFallback.h'
+      - 'tests/client_cursor_fallback_test.cpp'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  fallback-smoke:
+    runs-on: windows-2022
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /PhongThanSource/Sources/GameClient/Ui/Elem/UiCursor.cpp
+            /PhongThanSource/Sources/GameClient/Ui/Elem/CursorFallback.h
+            /tests/client_cursor_fallback_test.cpp
+      - name: Confirm no NULL hardware cursor and correct ShowCursor state management
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $source = Get-Content -LiteralPath 'PhongThanSource/Sources/GameClient/Ui/Elem/UiCursor.cpp' -Raw
+          $start = $source.IndexOf('void KUiCursor::SetImage(')
+          $end = $source.IndexOf('int KUiCursor::SwitchImage(')
+          if ($start -lt 0 -or $end -lt $start) { throw 'SetImage or SwitchImage missing' }
+          $hardware = $source.Substring($start, $end-$start).Split('#else')[0]
+          if ($hardware -notmatch 'PT_UsableCursor\(hLoaded\)') { throw 'Failed resource fallback missing' }
+          if ($hardware -match 'SetCursor\(m_CursorImages\[') { throw 'Direct nullable cursor call remains' }
+          if ($source -notmatch 'PT_CursorVisibilityChanged\(m_bShow, bVisible\)') { throw 'Win32 ShowCursor calls are not idempotent' }
+          if ($source -notmatch 'ui_cursor_load\.log') { throw 'Missing cursor diagnosis log' }
+          Write-Host 'PASS: no nullable hardware cursor and idempotent visibility'
+      - name: Compile and run native Win32 cursor fallback tests
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $vswhere = Join-Path ([Environment]::GetFolderPath('ProgramFilesX86')) 'Microsoft Visual Studio\Installer\vswhere.exe'
+          $vs = & $vswhere -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath
+          if (-not $vs) { throw 'Missing MSVC x86 toolchain' }
+          $bat = Join-Path $vs 'VC\Auxiliary\Build\vcvarsall.bat'
+          $exe = Join-Path $env:RUNNER_TEMP 'cursor_fallback_test.exe'
+          $cmd = 'call "' + $bat + '" x86 >nul && cl /nologo /W4 /EHsc /Fe:"' + $exe + '" tests\client_cursor_fallback_test.cpp user32.lib && "' + $exe + '"'
+          & cmd.exe /d /c $cmd
+          if ($LASTEXITCODE -ne 0) { throw "Win32 cursor smoke failed: $LASTEXITCODE" }
