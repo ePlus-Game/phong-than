@@ -1,0 +1,175 @@
+name: Windows x86 combined 22-binary source build (hosted)
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/windows-combined-build.yml'
+      - 'PhongThanSource/Build/Build-Modern.ps1'
+      - 'tools/stage_accountserver_smoke.py'
+      - 'tools/verify_windows_build.py'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/windows-combined-build.yml'
+      - 'PhongThanSource/Build/Build-Modern.ps1'
+      - 'tools/stage_accountserver_smoke.py'
+      - 'tools/verify_windows_build.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pt-combined-x86-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  fresh-22-binary:
+    runs-on: windows-2022
+    timeout-minutes: 100
+    steps:
+      - name: Checkout source-only game projects, not staging runtime
+        uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /PhongThanSource/Build/Build-Modern.ps1
+            /PhongThanSource/Headers/
+            /PhongThanSource/Lib/release/
+            /PhongThanSource/Sources/Core/Core.dsp
+            /PhongThanSource/Sources/Core/Src/
+            /PhongThanSource/Sources/Engine/Engine.dsp
+            /PhongThanSource/Sources/Engine/Include/
+            /PhongThanSource/Sources/Engine/Src/
+            /PhongThanSource/Sources/Represent/iRepresent/
+            /PhongThanSource/Sources/Represent/Represent2/*.cpp
+            /PhongThanSource/Sources/Represent/Represent2/*.h
+            /PhongThanSource/Sources/Represent/Represent2/Represent2.dsp
+            /PhongThanSource/Sources/Represent/Represent3/*.cpp
+            /PhongThanSource/Sources/Represent/Represent3/*.h
+            /PhongThanSource/Sources/Represent/Represent3/Represent3.dsp
+            /PhongThanSource/Sources/MultiServer/Common/
+            /PhongThanSource/Sources/MultiServer/Heaven/
+            /PhongThanSource/Sources/MultiServer/Rainbow/
+            /PhongThanSource/Sources/MultiServer/PhongThanRelay/
+            /PhongThanSource/Sources/MultiServer/Bishop/
+            /PhongThanSource/Sources/MultiServer/Goddess/
+            /PhongThanSource/Sources/MultiServer/GameServer/
+            /PhongThanSource/Sources/AccountServices/AccountServer/
+            /PhongThanSource/Sources/AccountServices/RelayServer/*.h
+            /PhongThanSource/Sources/Library/LuaLib/LuaLibDll.dsp
+            /PhongThanSource/Sources/Library/LuaLib/src/
+            /PhongThanSource/Sources/ExpandPackageStaticLib/
+            /PhongThanSource/Sources/ExpandPackage2.0/
+            /PhongThanSource/Sources/FilterText/
+            /PhongThanSource/Sources/Pack/ucl-1.01/include/
+            /PhongThanSource/Sources/GameClient/*.cpp
+            /PhongThanSource/Sources/GameClient/*.h
+            /PhongThanSource/Sources/GameClient/*.dsp
+            /PhongThanSource/Sources/GameClient/*.rc
+            /PhongThanSource/Sources/GameClient/*.ico
+            /PhongThanSource/Sources/GameClient/Login/
+            /PhongThanSource/Sources/GameClient/NetConnect/
+            /PhongThanSource/Sources/GameClient/TextCtrlCmd/
+            /PhongThanSource/Sources/GameClient/Ui/
+            /PhongThanSource/ThirdParty/WindowsSDK/GDIPlus/Include/
+            /PhongThanSource/ThirdParty/WindowsSDK/GDIPlus/Lib/x86/
+            /PhongThanSource/ThirdParty/dx9csdk/Include/
+            /PhongThanSource/ThirdParty/dx9csdk/Lib/
+            /overlays/legacy/
+            /tools/verify_windows_build.py
+            /tools/stage_accountserver_smoke.py
+            /tools/legacy_hardening.py
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Copy and stage legacy source compatibility in external workspace only
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $source = (Resolve-Path 'PhongThanSource').Path
+          foreach ($old in @('Output','OutputModern','Build/LogsModern')) {
+            if (Test-Path -LiteralPath (Join-Path $source $old)) { throw "Stale source output was checked out: $old" }
+          }
+          if (Test-Path -LiteralPath 'PhongThanRuntime-Staging') { throw 'Real runtime/character data checkout is not allowed' }
+          $work = Join-Path $env:RUNNER_TEMP ("pt-combined-${{ github.run_id }}-${{ github.run_attempt }}")
+          if (Test-Path -LiteralPath $work) { throw 'Refusing reused build workspace' }
+          Copy-Item -LiteralPath $source -Destination $work -Recurse -ErrorAction Stop
+
+          & python -m tools.stage_accountserver_smoke --target $work
+          if ($LASTEXITCODE -ne 0) { throw 'Failed to prepare external AccountServer compatibility overlay' }
+
+          $dsp = Join-Path $work 'Sources/Represent/Represent3/Represent3.dsp'
+          $latin1 = [Text.Encoding]::GetEncoding(28591)
+          $dspText = [IO.File]::ReadAllText($dsp, $latin1)
+          $legacyFlag = '/I "../../../ThirdParty/dx9csdk/Include"'
+          $occurrences = [regex]::Matches($dspText, [regex]::Escape($legacyFlag)).Count
+          if ($occurrences -ne 5) { throw "Unexpected legacy Represent3 include flags: $occurrences" }
+          $dspText = $dspText.Replace($legacyFlag, '')
+          $define = '/D "REPRESENT3_EXPORTS"'
+          $defines = [regex]::Matches($dspText, [regex]::Escape($define)).Count
+          if ($defines -ne 4) { throw "Unexpected Represent3 defines: $defines" }
+          $dspText = $dspText.Replace($define, $define + ' /DHMONITOR_DECLARED')
+          [IO.File]::WriteAllText($dsp, $dspText, $latin1)
+
+          $builderPath = Join-Path $work 'Build/Build-Modern.ps1'
+          $builder = [IO.File]::ReadAllText($builderPath, [Text.Encoding]::ASCII)
+          $anchor = '    $baseFlags = Convert-Cpp (Split-Args $p.Cpp) $p.Dir'
+          if (-not $builder.Contains($anchor)) { throw 'Build-Modern base flags anchor changed' }
+          $patch = '    if ($name -eq ''Represent3'') { $baseFlags = @($baseFlags) + ''/FIwindows.h'' }'
+          $builder = $builder.Replace($anchor, $anchor + "`r`n" + $patch)
+          [IO.File]::WriteAllText($builderPath, $builder, [Text.Encoding]::ASCII)
+
+          "PT_FULL_BUILD_WORKSPACE=$work" | Out-File $env:GITHUB_ENV -Append -Encoding utf8
+          Write-Host 'Only temporary copied projects patched. No game/SQL started.'
+
+      - name: Compile all 19 projects in a SINGLE fresh MSVC x86 workspace
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $targets = @(
+            'LuaLibDll','Engine','Common','ExpandPackageStaticLib','FilterTextStatic',
+            'CoreServer','CoreClient','ExpandPackage','FilterText','Heaven','Rainbow',
+            'Represent2','Represent3','GameClient','AccountServer','PhongThanRelay',
+            'Bishop','Goddess','GameServer'
+          )
+          & (Join-Path $env:PT_FULL_BUILD_WORKSPACE 'Build/Build-Modern.ps1') -Targets $targets -Jobs 2 -Clean -KeepGoing
+          if ($LASTEXITCODE -ne 0) { throw 'Full source compile/link failed; see individual project errors in next step' }
+
+      - name: Confirm exactly 22 expected role-specific PE32 x86 artifacts
+        if: always()
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Continue'
+          if (-not $env:PT_FULL_BUILD_WORKSPACE) { throw 'No external build workspace; cannot verify binaries' }
+          $report = Join-Path $env:RUNNER_TEMP 'pt-combined-22-binary-evidence.json'
+          $output = Join-Path $env:PT_FULL_BUILD_WORKSPACE 'OutputModern'
+          & python tools/verify_windows_build.py --output-root $output --report $report
+          $code = $LASTEXITCODE
+          if (Test-Path -LiteralPath $report) {
+            $data = Get-Content -LiteralPath $report -Raw | ConvertFrom-Json
+            "### Full combined x86 build - $($data.status)" | Out-File $env:GITHUB_STEP_SUMMARY -Append -Encoding utf8
+            "Verified: $($data.verified_binary_count) / $($data.expected_binary_count) fresh role-specific EXE/DLL files. SHA-256 captured." | Out-File $env:GITHUB_STEP_SUMMARY -Append -Encoding utf8
+            "Compiled together in one copied workspace; binary import resolution, runtime and gameplay NOT tested." | Out-File $env:GITHUB_STEP_SUMMARY -Append -Encoding utf8
+          }
+          foreach ($module in @('Represent3','GameClient','AccountServer','Bishop','Goddess','GameServer')) {
+            $log = Join-Path $env:PT_FULL_BUILD_WORKSPACE "Build/LogsModern/$module.log"
+            if (Test-Path -LiteralPath $log) {
+              $errs = @(Select-String -LiteralPath $log -Pattern 'fatal error|error C[0-9]+|error LNK[0-9]+|THIEU FILE' | Select-Object -First 8)
+              $errs | ForEach-Object { Write-Host "$module : $($_.Line)" }
+            }
+          }
+          if ($code -ne 0) { throw '22-output release matrix failed' }
+
+      - name: Upload only hashes and artifact manifest
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-combined-22-evidence
+          path: ${{ runner.temp }}/pt-combined-22-binary-evidence.json
+          if-no-files-found: warn
+          retention-days: 7
