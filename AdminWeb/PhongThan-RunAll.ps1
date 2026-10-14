@@ -27,9 +27,23 @@ try {
         throw "Khong tim thay client: $ClientExe"
     }
 
+    # Reject a partially running native server before *any* DB or client changes.
+    $running = @(Get-ServerProcs)
+    if ($running.Count -gt 0) {
+        $found = @($running | ForEach-Object { $_.Name.ToLowerInvariant() } | Sort-Object -Unique)
+        $missing = @($RequiredServerNames | Where-Object { $found -notcontains $_.ToLowerInvariant() })
+        if ($missing.Count -gt 0) {
+            throw "Server dang chay mot phan (thieu: $($missing -join ', ')). Khong setup DB hoac client cho den khi duoc xu ly."
+        }
+    }
+
     Step '1/3 Kiem tra SQL LocalDB va database account'
-    & powershell.exe -NoProfile -ExecutionPolicy Bypass -File (Join-Path $PSScriptRoot 'PhongThan-Setup.ps1') -Step all
-    if ($LASTEXITCODE -ne 0) { throw 'Cai dat database that bai (xem dong LOI o tren).' }
+    if ($running.Count -eq 0) {
+        & powershell.exe -NoProfile -ExecutionPolicy Bypass -File (Join-Path $PSScriptRoot 'PhongThan-Setup.ps1') -Step all
+        if ($LASTEXITCODE -ne 0) { throw 'Cai dat database that bai (xem dong LOI o tren).' }
+    } else {
+        Write-Host 'Da co du 5 service. Bo qua setup/restore DB de bao toan phien dang chay.'
+    }
 
     if ($WithClient) {
         Step 'Kiem tra va client truoc khi mo game'
