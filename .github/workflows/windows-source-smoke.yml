@@ -16,6 +16,9 @@ on:
       - 'PhongThanSource/Headers/PhongThanRelayProtocol.h'
       - 'tools/verify_windows_build.py'
       - 'tools/Build-PatchedGame.ps1'
+      - 'tools/stage_accountserver_smoke.py'
+      - 'PhongThanSource/Sources/AccountServices/AccountServer/**'
+      - 'PhongThanSource/Sources/MultiServer/Heaven/Interface/**'
     branches: [main]
   push:
     branches: [main]
@@ -27,6 +30,9 @@ on:
       - 'PhongThanSource/Sources/MultiServer/PhongThanRelay/**'
       - 'PhongThanSource/Build/Build-Modern.ps1'
       - 'tools/verify_windows_build.py'
+      - 'tools/stage_accountserver_smoke.py'
+      - 'PhongThanSource/Sources/AccountServices/AccountServer/**'
+      - 'PhongThanSource/Sources/MultiServer/Heaven/Interface/**'
 permissions:
   contents: read
 concurrency:
@@ -51,6 +57,17 @@ jobs:
             /PhongThanSource/Sources/MultiServer/PhongThanRelay/
             /PhongThanSource/Headers/
             /tools/verify_windows_build.py
+            /tools/stage_accountserver_smoke.py
+            /tools/legacy_hardening.py
+            /overlays/legacy/
+            /PhongThanSource/Sources/AccountServices/AccountServer/*.cpp
+            /PhongThanSource/Sources/AccountServices/AccountServer/*.h
+            /PhongThanSource/Sources/AccountServices/AccountServer/*.dsp
+            /PhongThanSource/Sources/AccountServices/AccountServer/*.rc
+            /PhongThanSource/Sources/AccountServices/AccountServer/*.ico
+            /PhongThanSource/Sources/AccountServices/AccountServer/*.tlh
+            /PhongThanSource/Sources/AccountServices/AccountServer/*.tli
+            /PhongThanSource/Sources/MultiServer/Heaven/Interface/
             /PhongThanSource/Deploy/Start-NativeServer.ps1
             /PhongThanSource/Deploy/Start-StagingClient.ps1
             /PhongThanSource/Deploy/Stop-StagingRuntime.ps1
@@ -100,3 +117,25 @@ jobs:
           & python -c "import sys; from pathlib import Path; from tools.verify_windows_build import inspect_pe; s,h = inspect_pe(Path(sys.argv[1]), require_dll=False); print('PASS x86 PE32 relay bytes=',s,'sha256=',h)" $exe
           if ($LASTEXITCODE -ne 0) { throw 'Native relay output is not valid PE32 i386' }
           "PASS: GitHub-hosted Windows actually compiled and linked PhongThanRelay.exe. This is a **partial** binary smoke, not a complete game build." | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append -Encoding utf8
+      - name: Compile and link patched AccountServer.exe on GitHub Windows runner
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Stop'
+          # The archive is never modified: all C++ compat patches are staged into a fresh temp copy.
+          $work = Join-Path $env:RUNNER_TEMP ('pt-account-' + $env:GITHUB_RUN_ID + '-' + $env:GITHUB_RUN_ATTEMPT)
+          if (Test-Path -LiteralPath $work) { throw 'Refusing to reuse Windows AccountServer workspace' }
+          New-Item -Path $work -ItemType Directory -Force | Out-Null
+          Copy-Item -LiteralPath 'PhongThanSource/Build' -Destination (Join-Path $work 'Build') -Recurse
+          Copy-Item -LiteralPath 'PhongThanSource/Headers' -Destination (Join-Path $work 'Headers') -Recurse
+          New-Item -Path (Join-Path $work 'Sources/AccountServices') -ItemType Directory -Force | Out-Null
+          Copy-Item -LiteralPath 'PhongThanSource/Sources/AccountServices/AccountServer' -Destination (Join-Path $work 'Sources/AccountServices/AccountServer') -Recurse
+          New-Item -Path (Join-Path $work 'Sources/MultiServer') -ItemType Directory -Force | Out-Null
+          Copy-Item -LiteralPath 'PhongThanSource/Sources/MultiServer/Heaven' -Destination (Join-Path $work 'Sources/MultiServer/Heaven') -Recurse
+          & python -m tools.stage_accountserver_smoke --target $work
+          if ($LASTEXITCODE -ne 0) { throw 'AccountServer external-source overlay failed' }
+          & powershell.exe -NoProfile -ExecutionPolicy Bypass -File (Join-Path $work 'Build/Build-Modern.ps1') -Targets AccountServer -Jobs 2
+          if ($LASTEXITCODE -ne 0) { throw 'AccountServer native compilation/link failed' }
+          $exe = Join-Path $work 'OutputModern/Server/PhongThanAccountServer.exe'
+          & python -c "import sys; from pathlib import Path; from tools.verify_windows_build import inspect_pe; s,h = inspect_pe(Path(sys.argv[1]), require_dll=False); print('PASS x86 PE32 AccountServer bytes=',s,'sha256=',h)" $exe
+          if ($LASTEXITCODE -ne 0) { throw 'AccountServer output is not valid PE32 i386' }
+          "PASS: GitHub-hosted Windows compiled and linked PhongThanAccountServer.exe with external overlays. Full game/runtime NOT tested." | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append -Encoding utf8

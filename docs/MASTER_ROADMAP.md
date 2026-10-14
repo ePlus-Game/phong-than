@@ -55,6 +55,7 @@ Trạng thái quy ước: **Planned → Implemented → CI PASS → Windows Buil
 - [ ] Chạy workflow `windows-x86-build.yml` thủ công trên `main` và lưu log/hashes; sửa compiler errors bằng overlay nhỏ.
 - [ ] Kiểm tra `Game.exe`, `GameServer.exe`, `PhongThanAccountServer.exe` cùng toàn bộ DLL dependency, manifest, architecture x86.
 - [x] Thêm bộ xác minh 22 binary PE32/i386, loại EXE/DLL, kích thước và SHA-256 trên output build; test bằng fixture giả lập (chưa có kết quả build thực). Xem [M1_WINDOWS_BUILD.md](M1_WINDOWS_BUILD.md).
+- [x] Xác nhận 2 module native build/link Windows thật: `PhongThanRelay.exe` và `PhongThanAccountServer.exe` (MSVC x86, PE32, SHA-256), theo [M1_WINDOWS_BUILD.md](M1_WINDOWS_BUILD.md); **không thay thế gate full build/gameplay**.
 - [ ] Phân loại thay đổi: **Lua/config/data: không rebuild EXE**; **C++: chỉ module & dependency**; **release: clean full build**.
 - [ ] Thiết kế incremental build không tái sử dụng cache không tương thích; kiểm tra clean vs incremental artifacts.
 - [ ] Tách content patching khỏi native binary delivery, ký/hash artifact; xác minh quyền phân phối assets.
