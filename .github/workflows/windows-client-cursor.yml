@@ -29,7 +29,7 @@ jobs:
           $start = $source.IndexOf('void KUiCursor::SetImage(')
           $end = $source.IndexOf('int KUiCursor::SwitchImage(')
           if ($start -lt 0 -or $end -lt $start) { throw 'SetImage or SwitchImage missing' }
-          $hardware = $source.Substring($start, $end-$start).Split('#else')[0]
+          $hardware = [regex]::Split($source.Substring($start, $end-$start), '(?m)^#else')[0]
           if ($hardware -notmatch 'PT_UsableCursor\(hLoaded\)') { throw 'Failed resource fallback missing' }
           if ($hardware -match 'SetCursor\(m_CursorImages\[') { throw 'Direct nullable cursor call remains' }
           if ($source -notmatch 'PT_CursorVisibilityChanged\(m_bShow, bVisible\)') { throw 'Win32 ShowCursor calls are not idempotent' }
