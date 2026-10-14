@@ -61,6 +61,7 @@ jobs:
             /PhongThanSource/Sources/MultiServer/Heaven/*.h
             /PhongThanSource/Sources/AccountServices/AccountServer/msado15.tlh
             /PhongThanSource/Sources/AccountServices/AccountServer/msado15.tli
+            /PhongThanSource/Sources/AccountServices/AccountServer/*.h
             /PhongThanSource/Sources/AccountServices/RelayServer/*.h
             /PhongThanSource/Sources/GameClient/Ui/UiCase/
             /PhongThanSource/Sources/GameClient/Ui/Elem/
