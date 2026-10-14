@@ -82,3 +82,23 @@ Desktop.ini
 /reports/
 /coverage/
 /.hygiene/
+
+# Local admin backups, previews and extracted package caches
+/AdminWeb/*.backup-*
+/AdminWeb/admin-ui-preview.png
+/AdminWeb/data/git-update-backup/
+/AdminWeb/data/history.json
+/AdminWeb/data/bots.json
+/AdminWeb/data/pak_item_tables/
+__pycache__/
+*.pyc
+
+# Reassembled PAK files; tracked split parts remain the distribution source
+/PhongThanRuntime-Staging/Client/data/*.pak
+/PhongThanRuntime-Staging/Server/data/*.pak
+/PhongThanRuntime-Staging/Server/admin_bridge/upgrade_items.txt
+
+# Build products and live bridge status are recreated locally
+**/Modern/
+/PhongThanRuntime-Staging/Server/admin_bridge/*.txt
+/PhongThanRuntime-Staging/Server/admin_bridge/*.log
