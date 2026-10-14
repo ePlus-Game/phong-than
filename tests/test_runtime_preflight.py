@@ -95,6 +95,10 @@ class ReadOnlyRuntimeTests(unittest.TestCase):
     def test_repo_manifest_matches_native_relay(self):
         manifest = (Path(__file__).resolve().parents[1] /
                     "PhongThanSource/Deploy/RUNTIME_CONTENT_MANIFEST.json")
+        if not manifest.is_file():
+            # Broad archive suites use sparse checkout without the manifest.
+            # The dedicated runtime-preflight workflow includes it explicitly.
+            self.skipTest("runtime manifest omitted by sparse checkout")
         content = json.loads(manifest.read_text(encoding="utf-8"))
         ports = content["RuntimeSettings"]["ExpectedListeningPorts"]
         self.assertEqual(ports["PhongThanRelay.exe"], [5003])
