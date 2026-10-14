@@ -16,6 +16,8 @@ on:
       - 'PhongThanSource/Headers/PhongThanRelayProtocol.h'
       - 'tools/verify_windows_build.py'
       - 'tools/Build-PatchedGame.ps1'
+      - 'tools/prepare_modern_build.py'
+      - 'tests/test_prepare_modern_build.py'
       - 'AdminWeb/PhongThan-Setup.ps1'
       - 'AdminWeb/PhongThan-RunAll.ps1'
       - 'AdminWeb/PhongThan-ClientPatch.ps1'
@@ -86,6 +88,8 @@ jobs:
             /PhongThanSource/Deploy/Stop-StagingRuntime.ps1
             /PhongThanSource/Build/Build-Modern.ps1
             /tools/Build-PatchedGame.ps1
+            /tools/prepare_modern_build.py
+            /tests/test_prepare_modern_build.py
             /AdminWeb/PhongThan-Setup.ps1
             /AdminWeb/PhongThan-RunAll.ps1
             /AdminWeb/PhongThan-ClientPatch.ps1
@@ -120,6 +124,9 @@ jobs:
       - name: Check Windows launcher contracts (game executable intentionally missing)
         shell: powershell
         run: python -m unittest discover -s tests -p test_windows_launchers.py -v
+      - name: Verify modern build cleans stale outputs in external copy only
+        shell: powershell
+        run: python -m unittest discover -s tests -p test_prepare_modern_build.py -v
       - name: Native server readiness marker regression (no service startup)
         shell: powershell
         run: python -m unittest discover -s PhongThanSource/Tests -p test_server_readiness.py -v

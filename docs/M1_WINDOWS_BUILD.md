@@ -40,6 +40,20 @@ python tools/verify_windows_build.py `
 if ($LASTEXITCODE -ne 0) { throw 'Required PE32 x86 binaries missing or invalid.' }
 ```
 
+### Preventing stale binary false positives
+
+The archive can contain historical `OutputModern/` EXE/DLL and
+`Build/LogsModern/` files. `tools/Build-PatchedGame.ps1` now runs
+`tools/prepare_modern_build.py` **after copying sources outside the checkout**:
+it rejects source/repository overlap, unexpected files and symlink/junction
+output directories, then removes only the copied output and log directories.
+The builder also receives `-Clean` to recompile project intermediates.
+
+A `PASS` from `verify_windows_build.py` therefore requires 22 files emitted
+again in that cleaned external workspace; it does **not** prove runtime
+imports, gameplay or reproducibility across separate toolchain installs.
+Tests use synthetic tiny directories and never execute the game.
+
 Run the verification only against a **fresh completed build**, not archived
 `OutputModern/` or a partly rebuilt directory. A structurally valid PE is
 not proof its Windows DLL imports resolve or the game can actually start.
