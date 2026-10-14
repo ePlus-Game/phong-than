@@ -79,6 +79,36 @@ def inspect_level_cap(root: Path) -> dict:
             result["warnings"].append("MAX_LEVEL differs from last level in EXP file")
     return result
 
+def inspect_skill_table(root: Path) -> dict:
+    """Summarize Skills.txt without assuming CharClass equals a player sect."""
+    path = root / "PhongThanRuntime-Staging/Server/settings/Skills.txt"
+    client = root / "PhongThanRuntime-Staging/Client/settings/Skills.txt"
+    info = {"valid_skill_rows": 0, "columns": 0, "charclass_counts": {},
+            "server_client_identical": None}
+    if not path.is_file():
+        return info
+    content, _ = decode_legacy(path.read_bytes())
+    rows = content.splitlines()
+    if not rows:
+        return info
+    header = rows[0].split("\t")
+    info["columns"] = len(header)
+    if "SkillId" not in header or "CharClass" not in header:
+        return info
+    i = header.index("SkillId")
+    j = header.index("CharClass")
+    values = Counter()
+    for row in rows[1:]:
+        cells = row.split("\t")
+        if len(cells) <= max(i, j) or not cells[i].strip().isdigit():
+            continue
+        info["valid_skill_rows"] += 1
+        values[cells[j].strip()] += 1
+    info["charclass_counts"] = dict(values)
+    if client.is_file():
+        info["server_client_identical"] = path.read_bytes() == client.read_bytes()
+    return info
+
 def audit(root: Path) -> dict:
     result = {"roots": [], "files_scanned": 0, "skipped": Counter(),
               "encodings": Counter(), "candidate_files": [], "hits": {k: [] for k in PATTERNS}}
@@ -111,6 +141,7 @@ def audit(root: Path) -> dict:
                 if len(result["hits"][category]) < LIMIT:
                     result["hits"][category].append(hit)
     result["level_cap"] = inspect_level_cap(root)
+    result["skill_table"] = inspect_skill_table(root)
     result["encodings"] = dict(result["encodings"])
     result["skipped"] = dict(result["skipped"])
     return result
@@ -130,6 +161,10 @@ def markdown(data: dict) -> str:
         "## Player level cap cross-check",
         "",
         json.dumps(data.get("level_cap", {}), ensure_ascii=False, indent=2),
+        "",
+        "## Skills.txt cross-check (CharClass does not prove player sect)",
+        "",
+        json.dumps(data.get("skill_table", {}), ensure_ascii=False, indent=2),
         "",
         "## Candidate filenames (first 120)",
     ]
