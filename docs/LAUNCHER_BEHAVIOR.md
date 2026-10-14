@@ -15,6 +15,8 @@ Các file `.cmd` cài đặt và chạy tất cả có `pause` như trước đ�
 
 `PhongThan-RunAll.ps1` kiểm tra tên của đủ **5** executable native (`Goddess.exe`, `PhongThanAccountServer.exe`, `PhongThanRelay.exe`, `Bishop.exe`, `GameServer.exe`) trong thư mục staging server. Nếu chỉ thấy một phần, launcher báo lỗi và không tự bật chồng server mới. Đối với lần khởi động mới, script native phải trả về `READY_FOR_LOGIN` sau tín hiệu `WORLD_READY`. Khi đủ 5 process đã chạy từ trước, kiểm tra tên tiến trình **không thay thế** kiểm tra health, port, log, dữ liệu nhân vật hoặc readiness thực tế. Cần xác minh `WORLD_READY` với đúng Bishop PID trong log.
 
+**Đã kiểm tra chuỗi gọi lồng nhau:** `PhongThan-ChayTatCa.cmd` → `PhongThan-RunAll.ps1` → `Start-NativeServer.ps1`. Server-only **không được gọi** `PhongThan-ClientPatch.ps1`; script khởi động server kiểm tra tiến trình đã chạy **trước** mọi thao tác chuẩn bị LocalDB/khôi phục DB và dừng ngay nếu lệnh setup database trả mã lỗi. Các thay đổi này là hàng rào bảo vệ startup, **không thay thế nghiệm thu save/relogin**.
+
 ## Giới hạn bảo toàn dữ liệu
 
 - Chế độ server/admin-only không gọi byte-patch client. Chỉ hai đường mở client nêu trên mới kích hoạt script vá hiện có; script này **có thể ghi lại binary runtime và manifest** và cần được chạy trên **bản sao phục dựng**, không dùng dữ liệu live.
