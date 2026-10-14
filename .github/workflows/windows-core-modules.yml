@@ -57,6 +57,10 @@ jobs:
             /PhongThanSource/Sources/Engine/Src/
             /PhongThanSource/Sources/Represent/iRepresent/
             /PhongThanSource/Sources/MultiServer/Common/
+            /PhongThanSource/Sources/MultiServer/Heaven/Interface/
+            /PhongThanSource/Sources/AccountServices/AccountServer/msado15.tlh
+            /PhongThanSource/Sources/AccountServices/AccountServer/msado15.tli
+            /PhongThanSource/Sources/GameClient/Ui/UiCase/
             /PhongThanSource/Sources/Library/LuaLib/LuaLibDll.dsp
             /PhongThanSource/Sources/Library/LuaLib/src/
             /PhongThanSource/Sources/ExpandPackageStaticLib/
