@@ -150,7 +150,7 @@ EXE and DLL roles** from a single copied source workspace. PE32/i386 and
 SHA-256 validation passed. This supersedes the earlier unverified full-build
 status; archive and staging content remain unchanged.
 
-The next `.github/workflows/windows-combined-build.yml` stage
+The `.github/workflows/windows-combined-build.yml` stage
 (`tools/audit_windows_imports.py`) statically inspects **normal imports
 and delay-load DLL descriptors** of each newly built PE32 file. A missing
 project DLL in the required Client/Server role or malformed import table
@@ -158,6 +158,8 @@ fails CI. External DLL names are recorded separately as runtime
 requirements **not yet verified** on a clean Windows test VM. The JSON
 artifact contains filenames and import metadata only, no EXE/DLL bytes,
 passwords, game state or player saves.
+
+[PASS import audit run #38546154123](https://github.com/ePlus-Game/phong-than-truyen-ky/actions/runs/38546154123) parsed normal and delay-load imports for **22/22 binaries**, with no missing project-local DLL role or malformed import table. Four names remain to verify in the disposable Windows runtime environment: `dinput8.dll` and `odbc32.dll` (Windows components), and `msvcp140.dll` plus `vcruntime140.dll` (Visual C++ runtime components). The audit did **not** verify availability or version on a target VM.
 
 This audit is **not** proof of OS loader success: dependent DLL files can
 still be absent from the intended deployment, have wrong exports, or fail
