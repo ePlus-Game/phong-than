@@ -139,8 +139,8 @@ PATCHES["Build/Build-Modern.ps1"] += (
 # include Winsock 2 before the Windows types instead, only on a build copy.
 PATCHES["Sources/AccountServices/AccountServer/GlobalFun.h"] = (
     (
-        b'#include "GlobalDTD.h"\n#include <WTypes.h>',
-        b'#include <winsock2.h>\n#include "GlobalDTD.h"\n#include <WTypes.h>',
+        b'#define _GLOBALFUN_H_\n\n#include "GlobalDTD.h"',
+        b'#define _GLOBALFUN_H_\n\n#include <winsock2.h>\n#include "GlobalDTD.h"',
     ),
 )
 
