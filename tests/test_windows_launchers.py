@@ -59,6 +59,15 @@ class WindowsLauncherTests(unittest.TestCase):
         self.assertIn("if ($LASTEXITCODE -ne 0) { throw 'Client patch", script)
         self.assertIn("$WithClient -and -not (Test-Path -LiteralPath $ClientExe -PathType Leaf)", script)
 
+    def test_runall_checks_live_cluster_before_database_setup(self):
+        script = read("AdminWeb/PhongThan-RunAll.ps1")
+        self.assertLess(script.index("$running = @(Get-ServerProcs)"), script.index("-Step all"))
+        self.assertIn("if ($running.Count -eq 0) {", script)
+        self.assertIn("Bo qua setup/restore DB", script)
+        self.assertLess(script.index("Server dang chay mot phan"), script.index("-Step all"))
+        self.assertLess(script.index("Server dang chay mot phan"), script.index("PhongThan-ClientPatch.ps1"))
+        self.assertIn("$running = @(Get-ServerProcs)", script)
+
     def test_native_server_only_never_patches_client_or_database_before_duplicate_guard(self):
         # Admin-only launch passes through Start-NativeServer.ps1; protect the
         # nested script rather than relying on RunAll's WithClient condition.
