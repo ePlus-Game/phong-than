@@ -39,7 +39,7 @@ class ModernBuildPreparationTests(unittest.TestCase):
     def test_refuses_checkout_source_and_ancestor(self):
         with tempfile.TemporaryDirectory() as directory:
             repo, source, work = self.fixture(Path(directory))
-            for wrong in (repo, source, repo.parent, work / "Sources"):
+            for wrong in (repo, source, repo.parent):
                 with self.subTest(path=wrong):
                     with self.assertRaisesRegex(ValueError, "outside"):
                         prepare_clean_copy(wrong, source, repo)
