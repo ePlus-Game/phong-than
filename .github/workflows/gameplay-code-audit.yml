@@ -1,0 +1,40 @@
+name: Gameplay code and table inventory
+
+on:
+  pull_request:
+    paths:
+      - 'tools/gameplay_code_audit.py'
+      - 'tests/test_gameplay_code_audit.py'
+      - '.github/workflows/gameplay-code-audit.yml'
+      - 'docs/GAMEPLAY_SOURCE_AUDIT.md'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  scan-gameplay-data:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /tools/gameplay_code_audit.py
+            /tests/test_gameplay_code_audit.py
+            /PhongThanSource/Sources/
+            /PhongThanRuntime-Staging/Server/settings/
+            /PhongThanRuntime-Staging/Client/settings/
+            /PhongThanRuntime-Staging/Server/script/phongthan/
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Test scanner with legacy GB18030
+        run: python -m unittest discover -s tests -p 'test_gameplay_code_audit.py' -v
+      - name: Read-only scan
+        run: |
+          python tools/gameplay_code_audit.py --root . --output /tmp/gameplay-source-audit.md --json /tmp/gameplay-source-audit.json
+          cat /tmp/gameplay-source-audit.md >> "$GITHUB_STEP_SUMMARY"
+          sed -n '1,240p' /tmp/gameplay-source-audit.md
