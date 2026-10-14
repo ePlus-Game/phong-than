@@ -14,6 +14,7 @@ Dự án gồm mã nguồn game, dữ liệu runtime và công cụ phục dựn
 - [M1: Full build Windows x86 và xác minh 22 EXE/DLL](docs/M1_WINDOWS_BUILD.md)
 - [Tình trạng hệ thống nhiệm vụ](docs/QUEST_SYSTEM_STATUS.md)
 - [Phát thưởng và Linh Thú](docs/REWARDS_AND_PETS.md)
+- [Bộ cài phụ thuộc và hướng dẫn cài lần đầu](install/README.md)
 
 ## Cấu trúc
 
@@ -23,7 +24,7 @@ pt/
 ├── PhongThanRuntime-Staging/  # Runtime Client/Server gốc
 ├── PhongThanRuntime-State/    # Dữ liệu trạng thái trong PT.zip gốc
 ├── AdminWeb/                  # Công cụ quản trị gốc
-├── Setup/                     # Bộ cài đặt gốc
+├── install/                   # Bộ cài ban đầu: SQL LocalDB (MSI, bootstrapper)
 ├── _backup/                   # Bản lưu trong PT.zip gốc
 ├── PhongThan-*.cmd            # Script khởi chạy gốc (chưa xác minh an toàn)
 ├── CHANGELOG.md               # Changelog gốc
@@ -39,7 +40,9 @@ pt/
 Nội dung trước đây tại `source/PT/` đã được đưa lên **ngay thư mục gốc**.
 Không sao chép lại source cũ. Toàn bộ blob gốc được giữ nguyên SHA Git;
 riêng thư mục `PT/docs/` được chuyển sang `docs/original-pt/`
-để không trùng với tài liệu duy trì repository.
+để không trùng với tài liệu duy trì repository. Hai bộ cài gốc từ
+`Setup/` cũng được **đổi đường dẫn Git** sang `install/` (giữ nguyên blob SHA).
+Các lệnh mở game/cài đặt `.cmd` vẫn ở root để giữ khả năng chạy như cũ.
 
 ## Tải source về máy
 
