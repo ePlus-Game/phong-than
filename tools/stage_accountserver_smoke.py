@@ -15,6 +15,7 @@ ACCOUNT_PATCH_PATHS = (
     "Build/Build-Modern.ps1",
     "Sources/AccountServices/AccountServer/main.cpp",
     "Sources/AccountServices/AccountServer/S3PDBSocketPool.cpp",
+    "Sources/AccountServices/AccountServer/GlobalFun.h",
 )
 
 
