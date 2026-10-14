@@ -21,7 +21,7 @@ foreach($number in @($expected.Keys)) {
     $line=$lines[$number-1]
     if ($line -notmatch '^Text=(.*)$') { throw "Missing Text at line $number" }
     $hex=[BitConverter]::ToString($latin1.GetBytes($Matches[1]))
-    if ($hex -cne $expected[$number]) { throw "Wrong TCVN3 bitmap code at line $number: $hex" }
+    if ($hex -cne $expected[$number]) { throw "Wrong TCVN3 bitmap code at line ${number}: $hex" }
 }
 $fbytes=[IO.File]::ReadAllBytes($font)
 if ($fbytes.Length -lt 1040) { throw 'Font 14 is missing/incomplete' }
