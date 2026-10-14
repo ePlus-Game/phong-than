@@ -1,5 +1,7 @@
 # Refactor roadmap — preserve the original archive
 
+For the authoritative milestone tracker, dependencies, acceptance gates and online/multi-server scope, see [MASTER_ROADMAP.md](MASTER_ROADMAP.md). This file details the legacy-engine/network refactor only.
+
 The root \`PhongThanSource/\` and runtime files are a byte-verified copy of
 the original ~9 GB PT.zip. Do not reformat, move, overwrite or delete them
 during modernization; work through the overlays and a separate copied tree.
