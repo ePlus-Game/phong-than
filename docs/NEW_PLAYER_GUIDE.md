@@ -34,7 +34,7 @@ Nguồn chính thức: [Giáp Sĩ](https://phongthan.vinagame.com.vn/cam-nang/gi
 
 ## 3. Cấp độ và lộ trình phát triển
 
-**Cấp tối đa của bản phục dựng chưa xác minh.** Con số 150 nêu trước đây chưa có bằng chứng cụ thể từ code. [Cẩm nang chuyển sinh của VNG](https://phongthan.vinagame.com.vn/cam-nang/tinh-nang/chuyen-sinh.html) đề cập mốc cấp 200, nhưng không được tự áp dụng cho bản phục dựng.
+**Giới hạn cấp được định nghĩa trong code: 200.** Kiểm tra `GameDataDef.h:74` và `KPlayer.cpp`; file `settings/npc/player/level_exp.txt` có 200 dòng. **Chưa được nghiệm thu đạt cấp 200 thực tế** vì dữ liệu EXP từ cấp 131 có giá trị lớn hơn số nguyên 32-bit mà engine đang sử dụng. Xem [báo cáo đối chiếu source](GAMEPLAY_SOURCE_AUDIT.md).
 
 ### Lộ trình cho tân thủ
 
@@ -72,7 +72,7 @@ Kết quả nghiên cứu trước xác định **chín nhóm trang bị**: **v�
 
 ## 6. Câu hỏi thường gặp
 
-**Level tối đa là bao nhiêu?** Chưa được chứng minh bằng source/runtime; mốc 150 trước đây chưa có chứng cứ, còn tài liệu VNG có đề cập cấp 200.
+**Level tối đa là bao nhiêu?** **200 theo định nghĩa trong code**, nhưng chưa có kiểm thử chứng minh nhân vật có thể lên cấp 200 ổn định; có rủi ro xử lý EXP từ cấp 131.
 
 **Có những hệ phái nào?** **Giáp Sĩ, Đạo Sĩ và Dị Nhân**. Khuyến nghị build cụ thể vẫn cần xác minh kỹ năng và độ cân bằng.
 
@@ -84,7 +84,8 @@ Kết quả nghiên cứu trước xác định **chín nhóm trang bị**: **v�
 
 - [x] Xác minh tên ba hệ phái theo cẩm nang VNG: Giáp Sĩ, Đạo Sĩ, Dị Nhân.
 - [ ] Đối chiếu nhánh kỹ năng, điểm thuộc tính từng hệ phái với source/runtime kèm đường dẫn và ID.
-- [ ] Đối chiếu mốc 150 đã nêu trước đây với server, bảng EXP, client; không suy ra cap từ bản VNG.
+- [x] Đã đối chiếu MAX_LEVEL=200 và bảng EXP server/client 1–200 từ code.
+- [ ] Nghiệm thu xử lý EXP cấp 131–200 vượt signed-int32 và kiểm thử nhân vật tăng cấp trong game.
 - [ ] Kiểm tra lại cap level bằng code server + EXP table + kiểm thử client.
 - [x] Khôi phục danh sách chín nhóm trang bị từ nghiên cứu trước.
 - [ ] Đối chiếu danh sách trang bị (ID, tên, hệ phái, yêu cầu cấp, chỉ số, cách nhận).
