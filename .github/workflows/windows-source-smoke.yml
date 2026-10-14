@@ -131,7 +131,7 @@ jobs:
           Copy-Item -LiteralPath 'PhongThanSource/Sources/AccountServices/AccountServer' -Destination (Join-Path $work 'Sources/AccountServices/AccountServer') -Recurse
           New-Item -Path (Join-Path $work 'Sources/MultiServer') -ItemType Directory -Force | Out-Null
           Copy-Item -LiteralPath 'PhongThanSource/Sources/MultiServer/Heaven' -Destination (Join-Path $work 'Sources/MultiServer/Heaven') -Recurse
-          & python tools/stage_accountserver_smoke.py --target $work
+          & python -m tools.stage_accountserver_smoke --target $work
           if ($LASTEXITCODE -ne 0) { throw 'AccountServer external-source overlay failed' }
           & powershell.exe -NoProfile -ExecutionPolicy Bypass -File (Join-Path $work 'Build/Build-Modern.ps1') -Targets AccountServer -Jobs 2
           if ($LASTEXITCODE -ne 0) { throw 'AccountServer native compilation/link failed' }
