@@ -130,6 +130,19 @@ jobs:
           if ($defineCount -ne 4) { throw "Unexpected Represent3 project defines: $defineCount" }
           $patchedDsp = $patchedDsp.Replace($define, $define + ' /DHMONITOR_DECLARED')
           [IO.File]::WriteAllText($dsp, $patchedDsp, $latin1)
+          # HMONITOR_DECLARED prevents ddraw.h from defining HMONITOR again.
+          # Force windows.h first for files such as KFontData.cpp that otherwise
+          # include ddraw.h before windef.h. Patch only the copied builder.
+          $builderPath = Join-Path $work 'Build/Build-Modern.ps1'
+          $builderSource = [IO.File]::ReadAllText($builderPath, [Text.Encoding]::ASCII)
+          $builderAnchor = '    $baseFlags = Convert-Cpp (Split-Args $p.Cpp) $p.Dir'
+          if (-not $builderSource.Contains($builderAnchor)) { throw 'Modern builder changed; cannot stage Represent3 fix' }
+          $builderPatch = @'
+    if ($name -eq 'Represent3') { $baseFlags = @($baseFlags) + '/FIwindows.h' }
+'@
+          $builderSource = $builderSource.Replace($builderAnchor, $builderAnchor + "`r`n" + $builderPatch)
+          [IO.File]::WriteAllText($builderPath, $builderSource, [Text.Encoding]::ASCII)
+
           Write-Host 'Moved legacy DX9 header lookup behind Windows SDK in external Represent3 copy.'
           "PT_CLIENT_WORKSPACE=$work" | Out-File $env:GITHUB_ENV -Append -Encoding utf8
           Write-Host 'Only copied C++ project sources will be compiled. No game process will be launched.'
