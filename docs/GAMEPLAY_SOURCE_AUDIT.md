@@ -6,9 +6,9 @@
 
 | Khẳng định trong cẩm nang | Kết quả | Bằng chứng/hướng xử lý |
 | --- | --- | --- |
-| Ba hệ phái Giáp Sĩ, Đạo Sĩ, Dị Nhân | **VNG-ONLY**; chưa đối chiếu class ID/client selection | [Cẩm nang VNG](https://phongthan.vinagame.com.vn/cam-nang/gioi-thieu/tam-gioi-giap-si.html) và [cẩm nang hệ phái](PLAYER_HANDBOOK.md); cần source class definitions/character creator |
+| Ba hệ phái Giáp Sĩ, Đạo Sĩ, Dị Nhân | **CODE**: 3 ID `0=Giáp Sĩ`, `1=Đạo Sĩ`, `2=Dị Nhân`; chưa test UI tạo nhân vật | [`KProfession.cpp`](../PhongThanSource/Sources/Core/Src/KProfession.cpp) dòng 6–29 khai báo `giapsi`, `daosi`, `dinhan` và ánh xạ ID theo thứ tự; [`KProfession.h`](../PhongThanSource/Sources/Core/Src/KProfession.h) dòng 6–19 xác nhận registry riêng |
 | Giới hạn nhân vật | **CODE**: MAX_LEVEL = **200**; gameplay chưa nghiệm thu | GameDataDef.h:74; KPlayer.cpp:2994, 3063, 3084, 4513; KPlayerSet.cpp:555–568, 609–613; cả Server/Client level_exp.txt có 200 dòng |
-| Danh sách kỹ năng và build 3 hệ phái | **UNVERIFIED** | Tài liệu dự án nêu đã nạp 104 sách kỹ năng, nhưng chưa trích ID/tên/cấp học/công thức từng nghề |
+| Danh sách kỹ năng và build 3 hệ phái | **CODE + UNVERIFIED**: đã tìm bảng skill, chưa chứng minh build/cấp học theo nghề | `PhongThanRuntime-Staging/Server/settings/Skills.txt`: 99 cột, 2.703 dòng dữ liệu, có `SkillId`, `SkillName`, `CharClass`, `ReqLevel`, `MaxLevel`; `KPlayer.cpp` dòng 4708 giới hạn tăng skill theo cấp nhân vật và cấp yêu cầu |
 | Chín nhóm trang bị, tên bộ và món mạnh nhất | **UNVERIFIED** với bản phục dựng | Nguồn VNG phân biệt Lục/Cam/Hoàng Kim/Tiên Ma, nhưng chưa đối chiếu item table và slot/server gating |
 | Nhiệm vụ Hộp Gấm của Tô Hộ | **PROJECT-DOC** có code nhiệm vụ và test Lua 4 | [NPC_QUEST_FOUNDATION_HANDOFF.md](../PhongThanSource/Docs/NPC_QUEST_FOUNDATION_HANDOFF.md) nêu QuestExchange và kiểm thử 5 chuỗi / 24 ca / 1.112 assertions; chưa test client/server E2E |
 | 126 NPC phục dựng | **PROJECT-DOC** | [NPC_AUTHORED_126_RESULT.md](../PhongThanSource/Docs/NPC_AUTHORED_126_RESULT.md): 125/126 đặt được; 84 NPC mới chỉ hướng dẫn, 42 có nhánh Lua gốc; không gọi 126 nhiệm vụ đã hoàn thành |
@@ -29,6 +29,19 @@
 - `KPlayerSet.h:20–21` dùng mảng `int` cho EXP; `KPlayerSet.cpp:566` đọc bằng `GetInteger` vào `int`, `GetLevelExp` trả `int` (609–613). Đây là **rủi ro tràn số hoặc parse không đúng**, không khẳng định đã gây lỗi live; cần unit test parser và runtime trước khi sửa kiểu dữ liệu.
 
 Cần tránh nhầm `MAX_SERIES = 5` (ngũ hành Kim/Mộc/Thủy/Hỏa/Thổ, `level_add.txt`) với **ba hệ phái** (Giáp Sĩ/Đạo Sĩ/Dị Nhân): bảng ngũ hành không phải mapping class.
+
+
+## Đối chiếu sâu mã nghề, giới hạn cấp và skill table
+
+**Hệ phái từ C++ [CODE]:** `PhongThanSource/Sources/Core/Src/KProfession.cpp:8–23` khai báo mảng nghề theo thứ tự `giapsi`, `daosi`, `dinhan`; ID gán bằng chỉ số mảng `i`. Tức **0 = Giáp Sĩ, 1 = Đạo Sĩ, 2 = Dị Nhân**. `KProfession.h` ghi rõ registry code-owned, không phụ thuộc `faction.ini`.
+
+**Giới hạn nhân vật [CODE]:** `PhongThanSource/Sources/Core/Src/GameDataDef.h:74` đặt `#define MAX_LEVEL 200`. `KPlayer.cpp:3081–3087` chặn `LevelUp()` tại `>= MAX_LEVEL`; `KPlayer.cpp:4513` từ chối `SetLevel` vượt quá 200. Cấp 200 là **cap khai báo trong source**, chưa chứng minh đạt được khi chạy game.
+
+**EXP [CODE + RISK]:** `PhongThanRuntime-Staging/{Server,Client}/settings/npc/player/level_exp.txt` có **200 dòng cấp 1–200**; hai file cùng blob SHA `e513c4ff0d65fe3246365143be89642bcc986b20`. Các mốc: cấp 1 = 100 EXP; 100 = 51.599.400; 130 = 496.166.400; từ **131 đến 200 đều đặt 5.300.556.000 EXP**. Con số 5.300.556.000 vượt cả signed 32-bit (`2.147.483.647`) và unsigned 32-bit (`4.294.967.295`). Trong khi đó `KPlayer.h:204–205` định nghĩa `m_nExp`, `m_nNextLevelExp` kiểu `int`; `KPlayerSet.h:20–21` lưu EXP theo mảng `int`; `KPlayerSet.cpp:555–567` đọc bằng `GetInteger` và `KPlayerSet.cpp:609–613` trả về `int`. **Đây là nguy cơ tràn số/mốc EXP không hợp lệ từ cấp 131**, phải kiểm tra loader và chạy test biên trước khi mở level cap 200 công khai. Không được tự thay hàng loạt bảng EXP khi chưa có thiết kế tương thích save/protocol.
+
+**Điểm cấp [CODE]:** `KPlayer.cpp:71–73` khai báo tăng **5 điểm thuộc tính** và **1 điểm kỹ năng** mỗi lần lên cấp; `LevelUp()` cập nhật các điểm này. Không đồng nghĩa có thể khuyên tỷ lệ cộng điểm cụ thể từng nghề.
+
+**Skill table [CODE]:** `PhongThanRuntime-Staging/Server/settings/Skills.txt` có 99 cột và 2.703 hàng; trong đó cột `SkillId`, `SkillName`, `CharClass`, `ReqLevel`, `MaxLevel`. `CharClass` xuất hiện giá trị 0/1/3 nhưng **chưa xác nhận cách giải nghĩa field này**, không được lấy trực tiếp làm ID nghề Giáp Sĩ/Đạo Sĩ/Dị Nhân. Bảng có thể chứa kỹ năng cũ, phụ trợ hoặc không khả dụng, nên 2.703 hàng **không phải 2.703 kỹ năng đang dùng được**.
 
 ## Bảng Linh Thú từ Lua
 
@@ -69,7 +82,7 @@ Bảng cấp EXP, item, kỹ năng ở thư mục settings có thể dùng mã h
 
 ### Chưa có bằng chứng để kết luận
 
-- Class IDs của Giáp Sĩ / Đạo Sĩ / Dị Nhân trong code và UI chọn nghề.
+- **Đã tìm được** ID `0/1/2` của ba hệ phái từ `KProfession.cpp`; còn phải kiểm tra màn hình chọn nhân vật và luồng nhận ID qua server.
 - Khả năng **đạt cấp 200 thực tế**, và cách xử lý giá trị EXP vượt signed-int32 từ cấp 131 trở đi (khác max level được khai báo).
 - Danh sách skill ID/cấp học/tác dụng, phân bổ Sức mạnh/Thể lực/Trí lực theo PvE/PvP.
 - Tên, ID, thuộc tính và thứ hạng của toàn bộ trang bị trong bản phục dựng.
