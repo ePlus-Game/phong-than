@@ -111,11 +111,11 @@ if ($processes.ContainsKey('Bishop.exe') -and $serviceId -gt 0) {
         $log = Get-Item -LiteralPath (Join-Path $serverRoot 'native_world_ready.log')
         $start = ([datetime]$bishop.CreationDate).ToUniversalTime()
         $freshLog = $log.LastWriteTimeUtc -ge $start.AddSeconds(-1)
-        $args = @{ Content=[IO.File]::ReadAllText($log.FullName)
+        $markerParams = @{ Content=[IO.File]::ReadAllText($log.FullName)
                    BishopPid=[int]$bishop.ProcessId
                    ServiceId=$serviceId
                    ExpectedMapCount=$ExpectedMapCount }
-        $worldReady = $freshLog -and (Test-WorldReadyRecord @args)
+        $worldReady = $freshLog -and (Test-WorldReadyRecord @markerParams)
     } catch { $issues.Add('world readiness marker unreadable') }
 }
 if (-not $worldReady) { $issues.Add('fresh matching WORLD_READY marker missing') }
