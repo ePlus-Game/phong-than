@@ -142,6 +142,30 @@ workspace, verify **22/22 role-specific EXE/DLL** via
 `tools/verify_windows_build.py`, and inspect native import dependencies.
 A successful Client build alone is not evidence of playable gameplay or DB.
 
+## Combined hosted build and static dependency gate (14/10/2026)
+
+The [combined Windows x86 build run #38531158753](https://github.com/ePlus-Game/phong-than-truyen-ky/actions/runs/38531158753)
+compiled **19/19 projects** and verified **22/22 freshly emitted Client/Server
+EXE and DLL roles** from a single copied source workspace. PE32/i386 and
+SHA-256 validation passed. This supersedes the earlier unverified full-build
+status; archive and staging content remain unchanged.
+
+The next `.github/workflows/windows-combined-build.yml` stage
+(`tools/audit_windows_imports.py`) statically inspects **normal imports
+and delay-load DLL descriptors** of each newly built PE32 file. A missing
+project DLL in the required Client/Server role or malformed import table
+fails CI. External DLL names are recorded separately as runtime
+requirements **not yet verified** on a clean Windows test VM. The JSON
+artifact contains filenames and import metadata only, no EXE/DLL bytes,
+passwords, game state or player saves.
+
+This audit is **not** proof of OS loader success: dependent DLL files can
+still be absent from the intended deployment, have wrong exports, or fail
+initialization. The next gate is to assemble a disposable test package,
+validate imports against a Windows x86 VM and safely launch five services
+with a test-only database (M2). Do not start native code on untrusted
+self-hosted runners or production data.
+
 ## Manual execution and evidence
 
 1. Provision the dedicated trusted Windows x64 runner with MSVC x86 tools,
@@ -175,15 +199,13 @@ A failed run exposed missing `SOCKET`/Winsock declarations in the legacy
 `GlobalFun.h`. The verified patch fixes this **in the copied source**;
 the archived source and runtime data remain unmodified.
 
-**Next:** build `CoreServer`, `GameServer` and `Game.exe` with dependency-aware stages; work towards a complete clean 22-binary matrix. Do not treat the existing staged binary inventory or the current two new DLLs as full M1 acceptance. A module build may succeed while the real full build or live
-service startup fails.
+**Next:** verify imported dependencies and disposable Windows package for the complete 22/22 build, then test native service startup and gameplay in isolation. A successful compile does not establish runtime readiness.
 
 ## Existing guarantees and missing tests
 
 - **Present**: Python/C++98 static-source checks, PowerShell syntax checks,
   readiness marker parser tests, and 22-binary PE32/x86/hash contract tests.
-- **Not yet demonstrated**: successful full Windows x86 build in GitHub
-  Actions; DLL import resolution; process startup; login/reconnect;
+- **Not yet demonstrated**: Windows loader/import resolution on a clean VM; process startup; login/reconnect;
   player save persistence; gameplay; or Internet/multi-server stability.
 - **Do not release publicly** until M2/M3 transaction and persistence acceptance
   conditions in [MASTER_ROADMAP.md](MASTER_ROADMAP.md) pass.
