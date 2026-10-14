@@ -35,7 +35,7 @@ Bạn cũng có thể chọn **Code → Download ZIP** trên GitHub. Tuy nhiên 
 Một số tài nguyên lớn được lưu thành **16 PAK chia 102 phần**. Sau khi tải **đầy đủ** các phần, chạy tại thư mục gốc:
 
 ```powershell
-python tools/restore_split_files.py --repo-root .
+powershell.exe -NoProfile -File .\tools\Restore-SplitPaks.ps1 -RepoRoot .
 ```
 
 Công cụ dùng **Windows PowerShell 5.1 có sẵn**, không cần cài Python. Lệnh `PhongThan-ChayTatCa.cmd game` cũng tự gọi công cụ này nếu chưa có runtime đang chạy. Công cụ dùng manifest để ghép PAK thiếu và xác minh SHA-256; các PAK đã tồn tại được kiểm tra kích thước (dùng `-VerifyExisting` để kiểm tra SHA-256 đầy đủ). Cần có đủ `*.pak.parts/part-*.bin` và dung lượng đĩa trống. Không sửa hoặc đổi mã hóa tài nguyên gốc.
@@ -57,6 +57,10 @@ Kết quả `READY_FOR_RUNTIME_TEST` **chỉ cho biết các tệp/cấu hình �
 ### 4. Cài đặt và khởi chạy thử
 
 Dự án hiện phục vụ **phục dựng/phát triển**, chưa được xác nhận là game có thể chơi ổn định. Trên bản sao thử nghiệm Windows, `PhongThan-ChayTatCa.cmd game` sẽ khôi phục PAK còn thiếu, chuẩn bị SQL LocalDB, kiểm tra và khởi động server, sau đó mở admin/client. Trước khi chạy các file `.cmd` hoặc `.exe`, hãy đọc [hướng dẫn launcher](docs/LAUNCHER_BEHAVIOR.md), [vai trò các EXE](docs/EXECUTABLE_GUIDE.md) và [bộ cài phụ thuộc](install/README.md). Chỉ thử trên **Windows VM cách ly và bản sao dữ liệu**, không trỏ vào database/tài khoản thật.
+
+### Web Admin: mở khóa phát vật phẩm đúng PAK
+
+Web Admin vẫn tạo tài khoản khi thiếu `PakEntryExtract.exe`, nhưng việc phát vật phẩm bị khóa cho đến khi **trích xuất thành công toàn bộ 15 bảng từ PAK**. Có thể sử dụng [quy trình build PAK extractor Windows x86 trên GitHub Actions](docs/ADMIN_PAK_EXTRACTOR.md) và giải nén artifact riêng vào `AdminWeb/bin/` (không thay thế DLL trong runtime game). Công cụ cần xác minh bằng PAK thật trên máy thử nghiệm.
 
 ## Cấu trúc repository
 

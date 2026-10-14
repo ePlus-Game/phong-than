@@ -59,7 +59,12 @@ function Get-Plain([string]$Text) {
 
 # ---------------------------------------------------------------- catalogs
 Write-Host 'Dang chuan bi bang vat pham...'
-$pakTool = Join-Path $Root 'PhongThanSource\Output\Tools\PakEntryExtract.exe'
+# Prefer a self-contained tool bundle built on GitHub Actions. The adjacent
+# Engine.dll belongs to this tool ONLY; never copy it into Client/Server.
+$pakTool = Join-Path $PSScriptRoot 'bin\PakEntryExtract.exe'
+if (-not (Test-Path -LiteralPath $pakTool -PathType Leaf)) {
+    $pakTool = Join-Path $Root 'PhongThanSource\Output\Tools\PakEntryExtract.exe'
+}
 $catalog = & (Join-Path $PSScriptRoot 'Initialize-ItemTables.ps1') -ServerRoot $ServerRoot -ItemDir $ItemDir -PakTool $pakTool
 $script:PakItemCatalogVerified = [bool]$catalog.PakVerified
 Write-Host "Bang vat pham: $($catalog.Tables) | Nguon: $($catalog.Source)"
