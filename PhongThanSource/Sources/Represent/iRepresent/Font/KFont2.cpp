@@ -2,10 +2,11 @@
 // FileName			:	KFont2.h
 // FileAuthor		:	Wooy
 // FileCreateDate	:	2002-9-5
-// FileDescription	:	×ÖÌåÀà
+// FileDescription	:	å­—ä½“ç±»
 // Revision Count	:	
 *******************************************************************************/
 #include "KFont2.h"
+#include "FontTextLineBreak.h"
 #include "string.h"
 #include "../KRepresentUnit.h"
 #include "../../../Engine/Src/KEngine.h"
@@ -13,7 +14,7 @@
 #include "../../../Engine/Src/KColors.h"
 
 /*!*****************************************************************************
-// Purpose		:  ¹¹Ôìº¯Êı
+// Purpose		:  æ„é€ å‡½æ•°
 *****************************************************************************/
 KFont2::KFont2()
 {
@@ -32,7 +33,7 @@ KFont2::KFont2()
 }
 
 /*!*****************************************************************************
-// Purpose		:  Îö¹¹º¯Êı
+// Purpose		:  ææ„å‡½æ•°
 *****************************************************************************/
 KFont2::~KFont2()
 {
@@ -41,9 +42,9 @@ KFont2::~KFont2()
 
 /*!*****************************************************************************
 // Function		: KFont2::Init
-// Purpose		: ³õÊ¼»¯
-// Return		: bool ÊÇ·ñ³É¹¦
-// Argumant		: void* pDrawDevice -> ½Ó¿ÚµÄÊµÀıµÄÖ¸Õë
+// Purpose		: åˆå§‹åŒ–
+// Return		: bool æ˜¯å¦æˆåŠŸ
+// Argumant		: void* pDrawDevice -> æ¥å£çš„å®ä¾‹çš„æŒ‡é’ˆ
 *****************************************************************************/
 bool KFont2::Init(void* pDrawDevice)
 {
@@ -55,7 +56,7 @@ bool KFont2::Init(void* pDrawDevice)
 
 /*!*****************************************************************************
 // Function		: KFont2::Terminate
-// Purpose		: ½áÊø£¬Çå³ı²Ù×÷
+// Purpose		: ç»“æŸï¼Œæ¸…é™¤æ“ä½œ
 *****************************************************************************/
 void KFont2::Terminate()
 {
@@ -66,9 +67,9 @@ void KFont2::Terminate()
 
 /*!*****************************************************************************
 // Function		: KFont2::Load
-// Purpose		: ÔØÈë×Ö¿â
-// Return		: bool ÊÇ·ñ³É¹¦
-// Argumant		: cosnt char *pszFontFile ×Ö¿âÎÄ¼şÃû
+// Purpose		: è½½å…¥å­—åº“
+// Return		: bool æ˜¯å¦æˆåŠŸ
+// Argumant		: cosnt char *pszFontFile å­—åº“æ–‡ä»¶å
 *****************************************************************************/
 bool KFont2::Load(const char* pszFontFile)
 {
@@ -76,7 +77,7 @@ bool KFont2::Load(const char* pszFontFile)
 	m_bLoaded = false;
 	if (m_pDevice)
 	{
-		//³õÊ¼»¯×ÖÌå×Ö¿â×ÊÔ´
+		//åˆå§‹åŒ–å­—ä½“å­—åº“èµ„æº
 		if (m_Resources.Load(pszFontFile))
 		{
 			m_Resources.GetInfo(m_nFontWidth, m_nFontHeight);
@@ -89,17 +90,17 @@ bool KFont2::Load(const char* pszFontFile)
 
 /*!*****************************************************************************
 // Function		: KFont2::TextOut
-// Purpose		: ÏÔÊ¾×Ö·û´®
-// Argumant		: cosnt char *pszText ×Ö·û´®
-// Argumant		: int nCount  ×Ö·û´®µÄ³¤¶È(BYTE)£¬Ä¬ÈÏÖµÎª-1£¬±íÊ¾´Ë×Ö·û´®ÊÇÒÔ'\0'½áÎ²¡£
-// Argumant		: int nX	  ×Ö·û´®ÏÔÊ¾Æğµã×ø±êX£¬Èç¹û´«ÈëÖµÎªKF_FOLLOW£¬
-//							  Ôò´Ë×Ö·û´®½ô½ÓÔÚÉÏ´Î×Ö·û´®µÄÊä³öÎ»ÖÃÖ®ºó¡£
-// Argumant		: int nY      ×Ö·û´®ÏÔÊ¾Æğµã×ø±êY, Èç¹û´«ÈëÖµÎªKF_FOLLOW£¬
-//							  ´Ë×Ö·û´®ÓëÇ°Ò»´ÎÊä³ö×Ö·û´®ÔÚÍ¬Ò»ĞĞµÄÎ»ÖÃ¡£
-// Argumant		: uint nColor ×Ö·û´®ÏÔÊ¾ÑÕÉ«£¬Ä¬ÈÏÎªºÚÉ«£¬ÓÃ32bitÊıÒÔARGBµÄ¸ñ
-//							  Ê½±íÊ¾ÑÕÉ«£¬Ã¿¸ö·ÖÁ¿8bit¡£
-// Argumant     : nLineWidth  ×Ô¶¯»»ĞĞµÄĞĞ¿íÏŞÖÆ£¬Èç¹ûÆäÖµĞ¡ÓÚÒ»¸öÈ«½Ç×Ö·û¿í¶È
-//							  Ôò²»×ö×Ô¶¯»»ĞĞ´¦Àí¡£Ä¬ÈÏÖµÎª0£¬¼È²»×ö×Ô¶¯»»ĞĞ´¦Àí¡£
+// Purpose		: æ˜¾ç¤ºå­—ç¬¦ä¸²
+// Argumant		: cosnt char *pszText å­—ç¬¦ä¸²
+// Argumant		: int nCount  å­—ç¬¦ä¸²çš„é•¿åº¦(BYTE)ï¼Œé»˜è®¤å€¼ä¸º-1ï¼Œè¡¨ç¤ºæ­¤å­—ç¬¦ä¸²æ˜¯ä»¥'\0'ç»“å°¾ã€‚
+// Argumant		: int nX	  å­—ç¬¦ä¸²æ˜¾ç¤ºèµ·ç‚¹åæ ‡Xï¼Œå¦‚æœä¼ å…¥å€¼ä¸ºKF_FOLLOWï¼Œ
+//							  åˆ™æ­¤å­—ç¬¦ä¸²ç´§æ¥åœ¨ä¸Šæ¬¡å­—ç¬¦ä¸²çš„è¾“å‡ºä½ç½®ä¹‹åã€‚
+// Argumant		: int nY      å­—ç¬¦ä¸²æ˜¾ç¤ºèµ·ç‚¹åæ ‡Y, å¦‚æœä¼ å…¥å€¼ä¸ºKF_FOLLOWï¼Œ
+//							  æ­¤å­—ç¬¦ä¸²ä¸å‰ä¸€æ¬¡è¾“å‡ºå­—ç¬¦ä¸²åœ¨åŒä¸€è¡Œçš„ä½ç½®ã€‚
+// Argumant		: uint nColor å­—ç¬¦ä¸²æ˜¾ç¤ºé¢œè‰²ï¼Œé»˜è®¤ä¸ºé»‘è‰²ï¼Œç”¨32bitæ•°ä»¥ARGBçš„æ ¼
+//							  å¼è¡¨ç¤ºé¢œè‰²ï¼Œæ¯ä¸ªåˆ†é‡8bitã€‚
+// Argumant     : nLineWidth  è‡ªåŠ¨æ¢è¡Œçš„è¡Œå®½é™åˆ¶ï¼Œå¦‚æœå…¶å€¼å°äºä¸€ä¸ªå…¨è§’å­—ç¬¦å®½åº¦
+//							  åˆ™ä¸åšè‡ªåŠ¨æ¢è¡Œå¤„ç†ã€‚é»˜è®¤å€¼ä¸º0ï¼Œæ—¢ä¸åšè‡ªåŠ¨æ¢è¡Œå¤„ç†ã€‚
 *****************************************************************************/
 void KFont2::OutputText(const char* pszText, int nCount/*= KF_ZERO_END*/,
                     int nX/*=KF_FOLLOW*/, int nY/*=KF_FOLLOW*/,
@@ -130,18 +131,21 @@ void KFont2::OutputText(const char* pszText, int nCount/*= KF_ZERO_END*/,
 
     while (nPos < nCount)
     {
-            nL = lpByte[nPos++];
-            DrawCharacter(nX + h, nY, nL, 0, sColor);
-            if (nL != 0x0a)
-            {
-                h += m_nFontHalfWidth[nHalfIndex];
-                nHalfIndex ^= 1;
-            }
-            else
-            {
-                h = 0;
-                nY += m_nOutputHeight;
-            }
+        // CR, LF and CRLF are layout controls, not glyphs. Drawing them
+        // indexes the original ASF font table and may show stray symbols.
+        const int nAfterBreak = PT_FontAfterLineBreak(lpByte, nCount, nPos);
+        if (nAfterBreak > nPos)
+        {
+            nPos = nAfterBreak;
+            h = 0;
+            nY += m_nOutputHeight;
+            nHalfIndex = 0;
+            continue;
+        }
+        nL = lpByte[nPos++];
+        DrawCharacter(nX + h, nY, nL, 0, sColor);
+        h += m_nFontHalfWidth[nHalfIndex];
+        nHalfIndex ^= 1;
         if (nLineWidth)
         {
             if (h + m_nOutputWidth > nLineWidth)
@@ -169,7 +173,7 @@ void KFont2::OutputText(const char* pszText, int nCount/*= KF_ZERO_END*/,
     m_nLastPosV = nY;
 }
 
-//ÉèÖÃ»æÖÆÊ±×Ö·û±ßÔµµÄÑÕÉ«£¬ÈçalphaÎª0±íÊ¾×Ö·û±ßÔµ²»µ¥¶À´¦Àí
+//è®¾ç½®ç»˜åˆ¶æ—¶å­—ç¬¦è¾¹ç¼˜çš„é¢œè‰²ï¼Œå¦‚alphaä¸º0è¡¨ç¤ºå­—ç¬¦è¾¹ç¼˜ä¸å•ç‹¬å¤„ç†
 void KFont2::SetBorderColor(unsigned int uColor)
 {
 //	if (uColor & 0xff000000)
@@ -187,15 +191,15 @@ void KFont2::SetBorderColor(unsigned int uColor)
 
 /*!*****************************************************************************
 // Function		: KFont2::TextOut
-// Purpose		: »æÖÆµ¥¸ö×Ö·û
-// Argumant		: unsigned char cFirst ×Ö·û±àÂëµÄÇ°¸ö×Ö½Ú
-// Argumant		: unsigned char cNext  ×Ö·û±àÂëµÄºó¸ö×Ö½Ú
+// Purpose		: ç»˜åˆ¶å•ä¸ªå­—ç¬¦
+// Argumant		: unsigned char cFirst å­—ç¬¦ç¼–ç çš„å‰ä¸ªå­—èŠ‚
+// Argumant		: unsigned char cNext  å­—ç¬¦ç¼–ç çš„åä¸ªå­—èŠ‚
 *****************************************************************************/
 void KFont2::DrawCharacter(int x, int y, unsigned char cFirst, unsigned char cNext, int nColor) const
 {
 	if (m_pDevice && m_bLoaded)
 	{
-		//È¡µÃ×Ö·ûÔÚ×Ö¿âÀïµÄÊı¾İÇøÖ¸Õë
+		//å–å¾—å­—ç¬¦åœ¨å­—åº“é‡Œçš„æ•°æ®åŒºæŒ‡é’ˆ
 		unsigned char* pCharacterData = m_Resources.GetCharacterData(cFirst, cNext);		
 		if (pCharacterData)
 		{
@@ -215,7 +219,7 @@ void KFont2::GetFontSize(int* pWidth, int* pHeight)
 		*pHeight = m_nFontHeight;
 }
 
-//ÉèÖÃ×Ö·û»æÖÆËõ½ø
+//è®¾ç½®å­—ç¬¦ç»˜åˆ¶ç¼©è¿›
 void KFont2::SetOutputSize(int nOutputWith, int nOutputHeight)
 {
 	if (nOutputWith > 0)
@@ -230,7 +234,7 @@ void KFont2::SetOutputSize(int nOutputWith, int nOutputHeight)
 	m_nFontHalfWidth[1] = (m_nOutputWidth + 1) / 2;
 }
 
-//¿ËÂ¡Ò»¸ö½Ó¿Ú¶ÔÏóÖ¸Õë
+//å…‹éš†ä¸€ä¸ªæ¥å£å¯¹è±¡æŒ‡é’ˆ
 iFont* KFont2::Clone()
 {
 	if (m_nRefCount < 0xffff)
@@ -241,7 +245,7 @@ iFont* KFont2::Clone()
 	return NULL;
 }
 
-//ÊÍ·Å½Ó¿Ú¶ÔÏó
+//é‡Šæ”¾æ¥å£å¯¹è±¡
 void KFont2::Release()
 {
 	if ((--m_nRefCount) == 0)
