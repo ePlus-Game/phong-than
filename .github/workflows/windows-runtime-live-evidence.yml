@@ -8,6 +8,7 @@ on:
       - 'tools/Restore-SplitPaks.ps1'
       - 'tests/Test-RestoreSplitPaks.ps1'
       - 'AdminWeb/PhongThan-RunAll.ps1'
+      - 'AdminWeb/PhongThan-Admin-Console.ps1'
       - 'tests/Test-RunAllReadiness.ps1'
       - 'PhongThanSource/Tests/Test-NativeRuntime.ps1'
       - '.github/workflows/windows-runtime-live-evidence.yml'
@@ -19,6 +20,7 @@ on:
       - 'tools/Restore-SplitPaks.ps1'
       - 'tests/Test-RestoreSplitPaks.ps1'
       - 'AdminWeb/PhongThan-RunAll.ps1'
+      - 'AdminWeb/PhongThan-Admin-Console.ps1'
       - 'tests/Test-RunAllReadiness.ps1'
       - 'PhongThanSource/Tests/Test-NativeRuntime.ps1'
       - '.github/workflows/windows-runtime-live-evidence.yml'
@@ -44,6 +46,7 @@ jobs:
             /tools/Restore-SplitPaks.ps1
             /tests/Test-RestoreSplitPaks.ps1
             /AdminWeb/PhongThan-RunAll.ps1
+            /AdminWeb/PhongThan-Admin-Console.ps1
             /tests/Test-RunAllReadiness.ps1
       - name: Verify AST syntax, world marker and port ownership
         shell: powershell
