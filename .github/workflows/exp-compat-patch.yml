@@ -38,6 +38,8 @@ jobs:
             /PhongThanSource/Sources/Core/Src/KPlayerSet.cpp
             /PhongThanSource/Sources/Core/Src/KPlayer.cpp
             /tests/exp_compat_test.cpp
+            /PhongThanRuntime-Staging/Server/settings/npc/player/level_exp.txt
+            /PhongThanRuntime-Staging/Client/settings/npc/player/level_exp.txt
       - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
