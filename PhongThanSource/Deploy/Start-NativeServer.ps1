@@ -25,6 +25,12 @@ function Read-NativeWorldReadyMarker {
 & (Join-Path $ProjectRoot 'Tests\Test-NativeRuntime.ps1') -ProjectRoot $ProjectRoot -RuntimeRoot $RuntimeRoot | Out-Null
 . (Join-Path $PSScriptRoot 'AccountDatabase.ps1')
 $serverRoot=Join-Path $RuntimeRoot 'Server'
+# No database setup or client changes are permitted if a runtime is already active.
+# Check before LocalDB setup/restore, which can change data and locks.
+$existing=@(Get-CimInstance Win32_Process -ErrorAction Stop | Where-Object {
+    $_.ExecutablePath -and $_.ExecutablePath.StartsWith($serverRoot+'\\',[StringComparison]::OrdinalIgnoreCase)
+})
+if($existing){throw "Server already running: $($existing.Name -join ', ')"}
 $manifest=Get-Content (Join-Path $PSScriptRoot 'RUNTIME_CONTENT_MANIFEST.json') -Raw | ConvertFrom-Json
 $pipe=Start-AccountLocalDb $manifest.RuntimeSettings.AccountLocalDbInstance
 $db=Set-AccountDatabaseIni (Join-Path $serverRoot 'DataBase.ini') $pipe
@@ -32,12 +38,7 @@ $db=Set-AccountDatabaseIni (Join-Path $serverRoot 'DataBase.ini') $pipe
 # PhongThanRuntime-State\sql, or restore Server\database\account.bak on a new machine.
 $ptSetup=Join-Path (Split-Path -Parent $ProjectRoot) 'AdminWeb\PhongThan-Setup.ps1'
 if(Test-Path -LiteralPath $ptSetup){ & powershell.exe -NoProfile -ExecutionPolicy Bypass -File $ptSetup -Step database | Out-Null }
-# Byte patches for client binaries (potion use etc.); skipped while Game.exe is running.
-$ptPatch=Join-Path (Split-Path -Parent $ProjectRoot) 'AdminWeb\PhongThan-ClientPatch.ps1'
-if(Test-Path -LiteralPath $ptPatch){ & powershell.exe -NoProfile -ExecutionPolicy Bypass -File $ptPatch | Out-Host }
 Test-AccountDatabase32 $db 'account'
-$existing=@(Get-CimInstance Win32_Process | Where-Object {$_.ExecutablePath -and $_.ExecutablePath.StartsWith($serverRoot+'\',[StringComparison]::OrdinalIgnoreCase)})
-if($existing){throw "Server already running: $($existing.Name -join ', ')"}
 $expectedMapCount=[int]$manifest.DataRegistries.Gameplay.Map.ExpectedActiveMapCount
 if($expectedMapCount -le 0){throw 'Missing ExpectedActiveMapCount in runtime content manifest.'}
 $serverConfig=Get-Content -LiteralPath (Join-Path $serverRoot 'ServerCfg.ini') -Raw
