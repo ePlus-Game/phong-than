@@ -2,6 +2,8 @@
 
 **Dự án phục dựng game Phong Thần (PTTK)** — lưu trữ mã nguồn C/C++, dữ liệu Client/Server, công cụ khôi phục tài nguyên và quy trình build/kiểm thử Windows x86.
 
+Tên hiển thị trong client/INI cũ: `Phong Than Truyen Ky` ([quy ước branding](docs/BRANDING.md)).
+
 > **Đang trong giai đoạn phục dựng và nghiệm thu.** Mã nguồn đã biên dịch thành công, nhưng **chưa xác nhận hoàn tất đăng nhập, lưu nhân vật và gameplay trên Windows VM**. Repository không phải bản game sẵn sàng phát hành công khai.
 
 ## Tiến độ hiện tại
