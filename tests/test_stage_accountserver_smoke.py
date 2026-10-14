@@ -34,6 +34,7 @@ class AccountServerStageTests(unittest.TestCase):
             self.assertIn("Sources/AccountServices/AccountServer/GatewayEndpointParser.h", patched_files)
             self.assertIn(b"static inline void sLogProgram", (target / ACCOUNT_PATCH_PATHS[1]).read_bytes())
             self.assertIn(b"PtRecovery::GatewayEndpoint endpoint", (target / ACCOUNT_PATCH_PATHS[2]).read_bytes())
+            self.assertIn(b"#include <winsock2.h>", (target / ACCOUNT_PATCH_PATHS[3]).read_bytes())
             self.assertIn(b"('/fo' + $resOut)", (target / ACCOUNT_PATCH_PATHS[0]).read_bytes())
             snapshot = {f: (target / f).read_bytes() for f in patched_files}
             self.assertEqual(prepare(target), patched_files)
