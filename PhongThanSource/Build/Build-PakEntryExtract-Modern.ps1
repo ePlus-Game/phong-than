@@ -8,13 +8,15 @@ $out = Join-Path $root 'OutputModern\Tools'
 $src = Join-Path $root 'Tests\Native\PakEntryExtract.cpp'
 $engineLib = Join-Path $root 'OutputModern\lib\Engine.lib'
 $engineDll = Join-Path $root 'OutputModern\Server\Engine.dll'
+$luaDll = Join-Path $root 'OutputModern\Server\LuaLibDll.dll'
+$luaCopy = Join-Path $out 'LuaLibDll.dll'
 $engineHeaders = Join-Path $root 'Sources\Engine\Src'
 $engineInc = Join-Path $root 'Sources\Engine\Include'
 $dxInc = Join-Path $root 'ThirdParty\dx9csdk\Include'
 $gdiInc = Join-Path $root 'ThirdParty\WindowsSDK\GDIPlus\Include'
 # Keep Windows SDK ahead of old DirectX SDK: old basetsd.h breaks winnt.h PVOID64.
 $env:INCLUDE = "$gdiInc;$($env:INCLUDE);$dxInc"
-foreach ($p in @($src,$engineLib,$engineDll,(Join-Path $engineHeaders 'KPakList.h'))) {
+foreach ($p in @($src,$engineLib,$engineDll,$luaDll,(Join-Path $engineHeaders 'KPakList.h'))) {
     if (-not (Test-Path -LiteralPath $p -PathType Leaf)) {
         throw "Missing fresh source dependency: $p"
     }
@@ -56,6 +58,7 @@ if ($status -ne 0 -or -not (Test-Path -LiteralPath $exe -PathType Leaf)) {
     throw "MSVC PakEntryExtract build failed: exit=$status"
 }
 Copy-Item -LiteralPath $engineDll -Destination $engineCopy -Force
+Copy-Item -LiteralPath $luaDll -Destination $luaCopy -Force
 Write-Host '=== PAK EXE IMPORTS ==='
 & dumpbin.exe /dependents $exe | ForEach-Object { Write-Host $_ }
 Write-Host '=== ENGINE DLL IMPORTS ==='
@@ -64,6 +67,8 @@ Write-Host '=== ENGINE DLL IMPORTS ==='
     Status='BUILT_NOT_RUNTIME_VERIFIED'
     Executable=$exe
     EngineDll=$engineCopy
+    LuaLibDll=$luaCopy
     ExeSha256=(Get-FileHash -LiteralPath $exe -Algorithm SHA256).Hash
     EngineSha256=(Get-FileHash -LiteralPath $engineCopy -Algorithm SHA256).Hash
+    LuaSha256=(Get-FileHash -LiteralPath $luaCopy -Algorithm SHA256).Hash
 }
