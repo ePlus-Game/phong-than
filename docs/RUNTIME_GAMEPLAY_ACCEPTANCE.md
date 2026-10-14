@@ -27,21 +27,21 @@ GitHub Actions đã **PASS** các bài kiểm tra C++ EXP, Core, Server, Client 
 
 ## 1A. Kiểm tra bundle/runtime tự động (chỉ đọc)
 
-Đã bổ sung công cụ [tools/runtime_preflight.py](../tools/runtime_preflight.py). Chạy trên bản sao **đã đóng gói đủ thư mục Client/Server**, tuyệt đối không trỏ vào runtime production. Công cụ xác minh 22 PE32/i386 (SHA-256, tên và role DLL/EXE), sự hiện diện của \`ServerCfg.ini\` và \`DataBase.ini\`, \`WorldSet.ini\` đúng 102 map, so khớp tên relay và cổng trong manifest. **Không khởi động game, mở DB, cập nhật cấu hình, thay PAK hoặc đọc mật khẩu**.
+Đã bổ sung công cụ [tools/runtime_preflight.py](../tools/runtime_preflight.py). Chạy trên bản sao **đã đóng gói đủ thư mục Client/Server**, tuyệt đối không trỏ vào runtime production. Công cụ xác minh 22 PE32/i386 (SHA-256, tên và role DLL/EXE), sự hiện diện của `ServerCfg.ini` và `DataBase.ini`, `WorldSet.ini` đúng 102 map, so khớp tên relay và cổng trong manifest. **Không khởi động game, mở DB, cập nhật cấu hình, thay PAK hoặc đọc mật khẩu**.
 
 Trên Windows VM, từ thư mục checkout repository:
 
-\`\`\`powershell
+```powershell
 python tools/runtime_preflight.py --root "D:\PT-UAT\PhongThanRuntime-Staging" --mode runtime --manifest "PhongThanSource\Deploy\RUNTIME_CONTENT_MANIFEST.json" --expected-maps 102 --report "D:\PT-UAT\reports\runtime-preflight.json"
-\`\`\`
+```
 
 Hoặc với bản build chỉ gồm 22 binary, chưa cấu hình chạy game:
 
-\`\`\`powershell
+```powershell
 python tools/runtime_preflight.py --root "D:\PT-UAT\OutputModern" --mode bundle --report "D:\PT-UAT\reports\bundle-preflight.json"
-\`\`\`
+```
 
-**Kết quả:** \`READY_FOR_RUNTIME_TEST\` = vượt qua kiểm tra **tĩnh**, **không phải** server/world/login/gameplay PASS; \`BLOCKED\` = thiếu file, sai PE32, sai map hoặc manifest. File báo cáo chỉ chứa tên file tương đối, SHA-256, tình trạng và số map; không lưu connection string, tài khoản hay dữ liệu game. Sau khi static preflight đạt, phải thực hiện RT-01..04, GP-01..06, EXP-01..06 trong VM mới được đánh dấu Runtime PASS.
+**Kết quả:** `READY_FOR_RUNTIME_TEST` = vượt qua kiểm tra **tĩnh**, **không phải** server/world/login/gameplay PASS; `BLOCKED` = thiếu file, sai PE32, sai map hoặc manifest. File báo cáo chỉ chứa tên file tương đối, SHA-256, tình trạng và số map; không lưu connection string, tài khoản hay dữ liệu game. Sau khi static preflight đạt, phải thực hiện RT-01..04, GP-01..06, EXP-01..06 trong VM mới được đánh dấu Runtime PASS.
 
 [Workflow kiểm thử công cụ](../.github/workflows/windows-runtime-preflight.yml) dùng các file PE giả để thử logic trên GitHub-hosted Windows. Workflow này **không** chạy game hoặc kiểm tra VM của bạn.
 
@@ -71,6 +71,20 @@ Các thành phần cần thử: **Goddess**, **PhongThanAccountServer**, **Phong
 | RT-02 | 5 services chạy | Mỗi service ổn định và có health/readiness thực tế |
 | RT-03 | World/map registry | 102 map (nếu cấu hình chuẩn có đủ) đăng ký và có thể vào map test |
 | RT-04 | Restart an toàn | Dừng từng service theo dependency, không nhân đôi session hay mất dữ liệu |
+
+### 3A. Thu thập bằng chứng dịch vụ đang chạy (chỉ đọc)
+
+Sau khi đã khởi động **bản sao server trên VM cách ly** bằng quy trình vận hành được kiểm soát, dùng script [Read-WindowsRuntimeEvidence.ps1](../tools/Read-WindowsRuntimeEvidence.ps1) để quan sát 5 service, PID của từng EXE, cổng TCP thực sự do PID đó sở hữu, cấu hình 102 map, và dấu `WORLD_READY` **mới** khớp Bishop PID/ServiceId/map count. Script chỉ đọc tiến trình/log/config và không tự bật/tắt game, không kết nối SQL. Cần tạo trước thư mục `D:\PT-UAT\reports` bên ngoài runtime.
+
+```powershell
+powershell.exe -NoProfile -File tools\Read-WindowsRuntimeEvidence.ps1 -RuntimeRoot "D:\PT-UAT\PhongThanRuntime-Staging" -ManifestPath "PhongThanSource\Deploy\RUNTIME_CONTENT_MANIFEST.json" -ExpectedMapCount 102 -CheckClient -ReportPath "D:\PT-UAT\reports\live-readiness.json"
+```
+
+- `READY_FOR_LOGIN_CHECK` = tất cả 5 service có một PID đúng đường dẫn, đúng cổng, và dấu WORLD_READY khớp phiên Bishop đang chạy. **Không đồng nghĩa đăng nhập hay lưu nhân vật đã PASS.**
+- `BLOCKED` (exit code 2) = thiếu dịch vụ, thiếu cổng, sai manifest, sai map hoặc không có marker mới. Xem trường `blockers` của JSON để xử lý, không tự restart khi có phiên chơi thật.
+- Báo cáo chỉ chứa tên dịch vụ, PID, cổng, cờ kết quả và tên lỗi; không chứa chuỗi cấu hình SQL, nội dung log, đường dẫn tuyệt đối hoặc danh tính người chơi. Chỉ dùng trên môi trường kiểm thử, tránh công khai port của server production.
+
+Workflow [Windows live readiness evidence tool tests](../.github/workflows/windows-runtime-live-evidence.yml) kiểm thử parser marker/port với dữ liệu giả trên GitHub-hosted Windows; CI **không** tự bật 5 dịch vụ hay login. Chỉ đánh dấu RT-02/RT-03 PASS sau khi có báo cáo từ VM thật và người kiểm thử đối chiếu các cổng, logs với phiên thử.
 
 ## 4. Gameplay người chơi mới
 

@@ -1,0 +1,38 @@
+name: Windows live readiness evidence tool tests
+
+on:
+  pull_request:
+    paths:
+      - 'tools/Read-WindowsRuntimeEvidence.ps1'
+      - 'tests/Test-WindowsRuntimeEvidence.ps1'
+      - '.github/workflows/windows-runtime-live-evidence.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'tools/Read-WindowsRuntimeEvidence.ps1'
+      - 'tests/Test-WindowsRuntimeEvidence.ps1'
+      - '.github/workflows/windows-runtime-live-evidence.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: windows-runtime-evidence-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test-readiness-helpers:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /tools/Read-WindowsRuntimeEvidence.ps1
+            /tests/Test-WindowsRuntimeEvidence.ps1
+      - name: Verify AST syntax, world marker and port ownership
+        shell: powershell
+        run: |
+          & .\tests\Test-WindowsRuntimeEvidence.ps1
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
