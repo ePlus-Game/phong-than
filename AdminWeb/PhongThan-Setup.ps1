@@ -17,9 +17,17 @@ $BakPath = Join-Path $ServerDir 'database\account.bak'
 $SqlDir = Join-Path $Root 'PhongThanRuntime-State\sql'
 $Mdf = Join-Path $SqlDir 'account_account_Data.mdf'
 $Ldf = Join-Path $SqlDir 'account_account_Log.ldf'
-$SetupDir = Join-Path $Root 'Setup'
-$Msi = Join-Path $SetupDir 'SqlLocalDB.msi'
-$Ssei = Join-Path $SetupDir 'SQL2022-SSEI-Expr.exe'
+# New repository layout: installer files live under install/.
+# Accept the historical Setup/ layout when running a copy of an older archive.
+$InstallDir = Join-Path $Root 'install'
+$LegacySetupDir = Join-Path $Root 'Setup'
+if (-not (Test-Path -LiteralPath (Join-Path $InstallDir 'SqlLocalDB.msi')) -and
+    -not (Test-Path -LiteralPath (Join-Path $InstallDir 'SQL2022-SSEI-Expr.exe')) -and
+    (Test-Path -LiteralPath $LegacySetupDir -PathType Container)) {
+    $InstallDir = $LegacySetupDir
+}
+$Msi = Join-Path $InstallDir 'SqlLocalDB.msi'
+$Ssei = Join-Path $InstallDir 'SQL2022-SSEI-Expr.exe'
 $DbIni = Join-Path $ServerDir 'DataBase.ini'
 
 function Write-Log([string]$m) {
@@ -101,7 +109,7 @@ function Install-LocalDb {
     if (Find-SqlLocalDb) { Write-Log 'SQL LocalDB da co san, bo qua buoc cai dat.'; return }
     $msi = $Msi
     if (-not (Test-Path -LiteralPath $msi)) {
-        if (-not (Test-Path -LiteralPath $Ssei)) { throw "Thieu bo cai: dat SqlLocalDB.msi vao $SetupDir" }
+        if (-not (Test-Path -LiteralPath $Ssei)) { throw "Thieu bo cai: dat SqlLocalDB.msi vao $InstallDir" }
         $media = Join-Path $env:TEMP 'pt_localdb_media'
         Write-Log 'Dang tai SQL LocalDB tu Microsoft (SQL2022-SSEI-Expr.exe)...'
         $p = Start-Process -FilePath $Ssei -ArgumentList '/ACTION=Download', "/MEDIAPATH=`"$media`"", '/MEDIATYPE=LocalDB', '/QUIET' -Wait -PassThru
