@@ -59,6 +59,31 @@ class WindowsLauncherTests(unittest.TestCase):
         self.assertIn("if ($LASTEXITCODE -ne 0) { throw 'Client patch", script)
         self.assertIn("$WithClient -and -not (Test-Path -LiteralPath $ClientExe -PathType Leaf)", script)
 
+    def test_runall_checks_live_cluster_before_database_setup(self):
+        script = read("AdminWeb/PhongThan-RunAll.ps1")
+        self.assertLess(script.index("$running = @(Get-ServerProcs)"), script.index("-Step all"))
+        self.assertIn("if ($running.Count -eq 0) {", script)
+        self.assertIn("Bo qua setup/restore DB", script)
+        self.assertLess(script.index("Server dang chay mot phan"), script.index("-Step all"))
+        self.assertLess(script.index("Server dang chay mot phan"), script.index("PhongThan-ClientPatch.ps1"))
+        self.assertIn("$running = @(Get-ServerProcs)", script)
+
+    def test_native_server_only_never_patches_client_or_database_before_duplicate_guard(self):
+        # Broad archive workflows checkout only selected paths; the dedicated
+        # Windows source smoke job includes Start-NativeServer.ps1.
+        if not (ROOT / "PhongThanSource/Deploy/Start-NativeServer.ps1").is_file():
+            self.skipTest("native server script omitted by sparse checkout")
+        # Protect the nested server script, not just RunAll's WithClient path.
+        script = read("PhongThanSource/Deploy/Start-NativeServer.ps1")
+        self.assertNotIn("PhongThan-ClientPatch.ps1", script)
+        self.assertNotIn("$ptPatch=", script)
+        self.assertIn("Get-CimInstance Win32_Process -ErrorAction Stop", script)
+        for side_effect in ("Start-AccountLocalDb", "Set-AccountDatabaseIni",
+                            "-Step database", "Start-Process -FilePath"):
+            with self.subTest(side_effect=side_effect):
+                self.assertLess(script.index("if($existing){throw"), script.index(side_effect))
+        self.assertIn("if ($LASTEXITCODE -ne 0) { throw 'Account database setup failed", script)
+
     def test_native_server_requires_full_topology_and_readiness(self):
         script = read("AdminWeb/PhongThan-RunAll.ps1")
         for name in (
