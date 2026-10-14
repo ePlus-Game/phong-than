@@ -20,4 +20,14 @@ Assert ($source.Contains("report.world_ready")) 'must require fresh world marker
 Assert ($source.Contains('$code -ne 0')) 'must propagate observer failures'
 Assert ($source.Contains("Assert-ExistingServerReady`n        Write-Host 'Da tim thay 5")) 'must recheck existing services before admin'
 Assert ($admin -gt $source.LastIndexOf('Assert-ExistingServerReady')) 'no admin before readiness'
-Write-Host 'PASS: reused native server must prove WORLD_READY before launcher success'
+Assert ($source.Contains("PhongThan-Admin-Console.ps1")) 'must launch dedicated admin console'
+Assert ($source.Contains("'-NoExit'")) 'admin console must stay open after error'
+$adminPath = Join-Path $PSScriptRoot '..\AdminWeb\PhongThan-Admin-Console.ps1'
+$admin = Get-Content -LiteralPath $adminPath -Raw
+[void][Management.Automation.Language.Parser]::ParseInput($admin, [ref]$tokens, [ref]$errors)
+Assert ($errors.Count -eq 0) 'admin console must parse on Windows PowerShell'
+Assert ($admin.Contains('Start-Transcript')) 'must persist admin startup log'
+Assert ($admin.Contains('Stop-Transcript')) 'must finish transcript'
+Assert ($admin.Contains('PhongThan-Admin.ps1')) 'must invoke original admin script'
+Assert ($admin.Contains('ADMIN STARTUP FAILED:')) 'must expose fatal startup error'
+Write-Host 'PASS: WORLD_READY guard and persistent Admin startup diagnostics'
