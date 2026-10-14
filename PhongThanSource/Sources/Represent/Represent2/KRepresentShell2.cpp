@@ -6,6 +6,7 @@
 *****************************************************************************************/
 #define _REPRESENT_INTERNAL_SIGNATURE_
 #include "KRepresentShell2.h"
+#include "FontIdSelection.h"
 #include "../iRepresent/KRepresentUnit.h"
 #include "../../Engine/src/KColors.h"
 #include "../iRepresent/Font/KFont2.h"
@@ -991,44 +992,25 @@ void KRepresentShell2::LookAt(int nX, int nY, int nZ)
 }
 
 //##ModelId=3DCA0BAE00E4
+int KRepresentShell2::FindFontSlot(int requestedFontId) const
+{
+	int ids[RS2_MAX_FONT_ITEM_NUM];
+	unsigned char loaded[RS2_MAX_FONT_ITEM_NUM];
+	for (int i = 0; i < RS2_MAX_FONT_ITEM_NUM; ++i)
+	{
+		ids[i] = m_FontTable[i].nId;
+		loaded[i] = m_FontTable[i].pFontObj != NULL ? 1 : 0;
+	}
+	return PT_SelectLoadedFont(requestedFontId, ids, loaded, RS2_MAX_FONT_ITEM_NUM);
+}
+
 void KRepresentShell2::OutputText(int nFontId, const char* psText, int nCount, int nX, int nY, unsigned int Color, int nLineWidth, int nZ, unsigned int BorderColor)
 {
 	if (psText == NULL || psText[0] == 0)
 		return;
 
-	int i;
-	for (i = 0; i < RS2_MAX_FONT_ITEM_NUM; i++)
-	{
-		if (m_FontTable[i].nId == nFontId && m_FontTable[i].pFontObj)
-			break;
-	}
-
-	// Phong Than VNG provides font ids 14/16/18. Some inherited VLTK
-	// call sites still request 10/12/13. Reuse the nearest loaded VNG font
-	// at the requested output size instead of silently dropping the text.
-	if (i == RS2_MAX_FONT_ITEM_NUM)
-	{
-		int nBest = -1;
-		int nBestDistance = 0x7fffffff;
-		for (int j = 0; j < RS2_MAX_FONT_ITEM_NUM; j++)
-		{
-			if (m_FontTable[j].pFontObj)
-			{
-				int nDistance = m_FontTable[j].nId - nFontId;
-				if (nDistance < 0)
-					nDistance = -nDistance;
-				if (nDistance < nBestDistance)
-				{
-					nBest = j;
-					nBestDistance = nDistance;
-				}
-			}
-		}
-		if (nBest >= 0)
-			i = nBest;
-	}
-
-	if (i < RS2_MAX_FONT_ITEM_NUM && m_FontTable[i].pFontObj)
+	const int i = FindFontSlot(nFontId);
+	if (i >= 0 && m_FontTable[i].pFontObj)
 	{
 		if (nZ != TEXT_IN_SINGLE_PLANE_COORD)
 			CoordinateTransform(nX, nY, nZ);
@@ -1040,12 +1022,8 @@ void KRepresentShell2::OutputText(int nFontId, const char* psText, int nCount, i
 }
 void KRepresentShell2::OutputVNText(int nFontId, char* psText, int nCount, int nX, int nY, unsigned int Color, int nLineWidth, int nZ, unsigned int BorderColor)
 {
-	for (int i = 0; i < RS2_MAX_FONT_ITEM_NUM; i++)
-	{
-		if (m_FontTable[i].nId == nFontId)
-			break;
-	}
-	if (i < RS2_MAX_FONT_ITEM_NUM && m_FontTable[i].pFontObj)
+	const int i = FindFontSlot(nFontId);
+	if (i >= 0 && m_FontTable[i].pFontObj)
 	{
 		if (nZ != TEXT_IN_SINGLE_PLANE_COORD)
 			CoordinateTransform(nX, nY, nZ);
@@ -1063,12 +1041,8 @@ int KRepresentShell2::OutputRichText(int nFontId, KOutputTextParam* pParam,
 {
 	if (pParam == NULL)
 		return 0;
-	for (int i = 0; i < RS2_MAX_FONT_ITEM_NUM; i++)
-	{
-		if (m_FontTable[i].nId == nFontId)
-			break;
-	}
-	if (i < RS2_MAX_FONT_ITEM_NUM && m_FontTable[i].pFontObj)
+	const int i = FindFontSlot(nFontId);
+	if (i >= 0 && m_FontTable[i].pFontObj)
 	{
 		KTextProcess	tp(psText, nCount, nLineWidth * 2 / nFontId);
 		if (pParam->nZ != TEXT_IN_SINGLE_PLANE_COORD)
@@ -1095,12 +1069,8 @@ int KRepresentShell2::LocateRichText(int nX, int nY,
 {
 	if (pParam == NULL)
 		return -1;
-	for (int i = 0; i < RS2_MAX_FONT_ITEM_NUM; i++)
-	{
-		if (m_FontTable[i].nId == nFontId)
-			break;
-	}
-	if (i < RS2_MAX_FONT_ITEM_NUM && m_FontTable[i].pFontObj)
+	const int i = FindFontSlot(nFontId);
+	if (i >= 0 && m_FontTable[i].pFontObj)
 	{
 		KTextProcess	tp(psText, nCount, nLineWidth * 2 / nFontId);
 		if (pParam->nZ != TEXT_IN_SINGLE_PLANE_COORD)
