@@ -29,6 +29,18 @@
 
 Trạng thái quy ước: **Planned → Implemented → CI PASS → Windows Build PASS → Runtime PASS → Gameplay/UAT PASS → Released**. Một feature chỉ được chuyển giai đoạn khi có artifact, log hoặc test ID tương ứng, không cập nhật theo phỏng đoán.
 
+## Tiến độ M1 chi tiết - cập nhật 14/10/2026
+
+| Pha | Trạng thái | Bằng chứng / Gate | Việc còn lại |
+| --- | --- | --- | --- |
+| **P1 - Core x86** | **PASS (7/7 module)** | [Windows Core #38523254976](https://github.com/ePlus-Game/phong-than-truyen-ky/actions/runs/38523254976) | Thư viện legacy vẫn là linker input; chưa kiểm thử chạy game |
+| **P2 - Native Server x86** | **PASS (15/15 module)** | [Windows Server #38526607624](https://github.com/ePlus-Game/phong-than-truyen-ky/actions/runs/38526607624): 5 service EXE mới, DLL/COFF + SHA-256 | Chưa khởi động server, DB hoặc world |
+| **P3 - Client x86** | **Đang triển khai / chưa PASS** | GitHub-hosted Windows build mới của `Represent2`, `Represent3`, `Game.exe` cùng phụ thuộc | Compiler/linker + PE32 + hash |
+| **P4 - Full release x86** | **Chưa nghiệm thu** | Cần một lần build mới có **22/22 role-specific EXE/DLL** và manifest độc lập | Kiểm tra dependency import / package / không dùng binary cũ |
+| **P5 - Runtime & Gameplay E2E** | **Chưa nghiệm thu** | Windows VM/runner cách ly; 5 tiến trình, 102 maps, login/save/relogin | Không dùng production account hoặc nhân vật thật |
+
+**Điều kiện:** P1 và P2 PASS *không* có nghĩa M1 hoàn tất, và mọi bản binary/PAK/SQL staging gốc phải được giữ nguyên. Chưa phát hành public trước khi hoàn thành P4/P5.
+
 ## Milestone bắt buộc theo thứ tự phụ thuộc
 
 | Milestone | Ưu tiên | Phạm vi và deliverable | Gate nghiệm thu | Trạng thái |
