@@ -37,6 +37,7 @@ jobs:
             /tools/runtime_preflight.py
             /tools/verify_windows_build.py
             /tests/test_runtime_preflight.py
+            /PhongThanSource/Deploy/RUNTIME_CONTENT_MANIFEST.json
       - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
