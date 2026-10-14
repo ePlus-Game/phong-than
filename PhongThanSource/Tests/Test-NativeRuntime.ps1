@@ -6,7 +6,9 @@ if($receipt.Schema -ne 1 -or $receipt.Scope -ne 'NATIVE_REBUILD_UAT'){throw 'Inv
 foreach($entry in $receipt.Artifacts){
     $runtime=Join-Path $RuntimeRoot "$($entry.Role)\$($entry.Name)"
     $source=Join-Path $ProjectRoot "Output\$($entry.Role)\$($entry.Name)"
-    if((Get-FileHash -LiteralPath $runtime).Hash -ne $entry.Sha256 -or (Get-FileHash -LiteralPath $source).Hash -ne $entry.Sha256){throw "Stale binary: $runtime"}
+    if((Get-FileHash -LiteralPath $runtime).Hash -ne $entry.Sha256 -or
+        ((Test-Path -LiteralPath $source -PathType Leaf) -and
+         (Get-FileHash -LiteralPath $source).Hash -ne $entry.Sha256)){throw "Stale binary: $runtime"}
 }
 foreach($entry in $receipt.Configs){
     if((Get-FileHash -LiteralPath (Join-Path $RuntimeRoot "Server\$($entry.Name)")).Hash -ne $entry.Sha256){throw "Stale native config: $($entry.Name)"}

@@ -5,9 +5,11 @@ Các launcher `PhongThan-*.cmd` tại root chỉ là **điểm vào**. Chúng **
 | Launcher | Hành vi | Khi lỗi |
 | --- | --- | --- |
 | `PhongThan-CaiDat.cmd` | Chạy `AdminWeb/PhongThan-Setup.ps1 -Step all` (có thể cài LocalDB, khôi phục DB) | Trả về exit code khác 0, giữ màn hình để xem log |
-| `PhongThan-ChayTatCa.cmd` | Chuẩn bị database, chạy 5 native services, mở admin; **không** tự vá client | Trả về lỗi nếu DB/server không sẵn sàng hoặc thấy server chỉ chạy một phần |
+| `PhongThan-ChayTatCa.cmd` | Khôi phục PAK thiếu bằng PowerShell (không cần Python), chuẩn bị database, chạy 5 native services, mở admin; **không** tự vá client | Trả về lỗi nếu DB/server không sẵn sàng hoặc thấy server chỉ chạy một phần |
 | `PhongThan-ChayTatCa.cmd game` | Như trên, thêm kiểm tra/vá client rồi khởi chạy `Game.exe` | Chặn nếu thiếu EXE hoặc script vá báo lỗi |
 | `PhongThan-MoGame.cmd` | Kiểm tra `Game.exe`, gọi script vá tương thích, rồi mở client | Mã 2 nếu thiếu EXE; mã 1 nếu vá/mở thất bại |
+
+Khôi phục PAK đọc `archive/PT_EXACT_ZIP_MANIFEST.csv` và chỉ ghép khi file chưa tồn tại; dữ liệu mới được xác minh kích thước và SHA-256 trước khi đưa vào runtime. Nếu thiếu phần hoặc hash sai, launcher dừng an toàn. File PAK đã tồn tại được kiểm tra kích thước để tránh đọc lại nhiều GB mỗi lần chạy; kiểm tra toàn bộ SHA-256 bằng `powershell.exe -NoProfile -File .\tools\Restore-SplitPaks.ps1 -RepoRoot . -VerifyExisting`. Không sửa PAK trong khi server đang chạy.
 
 Các file `.cmd` cài đặt và chạy tất cả có `pause` như trước để giữ cửa sổ sau khi hoàn thành/lỗi; mã thoát được chuyển tiếp khi đóng cửa sổ. Lệnh `start` của Windows chỉ xác nhận yêu cầu tạo tiến trình, **không** xác nhận client đã vào game thành công.
 

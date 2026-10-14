@@ -5,12 +5,20 @@ on:
     paths:
       - 'tools/Read-WindowsRuntimeEvidence.ps1'
       - 'tests/Test-WindowsRuntimeEvidence.ps1'
+      - 'tools/Restore-SplitPaks.ps1'
+      - 'tests/Test-RestoreSplitPaks.ps1'
+      - 'AdminWeb/PhongThan-RunAll.ps1'
+      - 'PhongThanSource/Tests/Test-NativeRuntime.ps1'
       - '.github/workflows/windows-runtime-live-evidence.yml'
   push:
     branches: [main]
     paths:
       - 'tools/Read-WindowsRuntimeEvidence.ps1'
       - 'tests/Test-WindowsRuntimeEvidence.ps1'
+      - 'tools/Restore-SplitPaks.ps1'
+      - 'tests/Test-RestoreSplitPaks.ps1'
+      - 'AdminWeb/PhongThan-RunAll.ps1'
+      - 'PhongThanSource/Tests/Test-NativeRuntime.ps1'
       - '.github/workflows/windows-runtime-live-evidence.yml'
 
 permissions:
@@ -31,8 +39,15 @@ jobs:
           sparse-checkout: |
             /tools/Read-WindowsRuntimeEvidence.ps1
             /tests/Test-WindowsRuntimeEvidence.ps1
+            /tools/Restore-SplitPaks.ps1
+            /tests/Test-RestoreSplitPaks.ps1
       - name: Verify AST syntax, world marker and port ownership
         shell: powershell
         run: |
           & .\tests\Test-WindowsRuntimeEvidence.ps1
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Restore split PAKs without Python (synthetic fixture)
+        shell: powershell
+        run: |
+          & .\tests\Test-RestoreSplitPaks.ps1
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
