@@ -109,8 +109,13 @@ try {
         Write-Host "Co dich vu tai http://localhost:$AdminPort/ (can xac minh day la web admin)"
         Start-Process "http://localhost:$AdminPort/"
     } else {
-        Start-Process -FilePath 'powershell.exe' -WorkingDirectory $PSScriptRoot -ArgumentList @('-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', "`"$(Join-Path $PSScriptRoot 'PhongThan-Admin.ps1')`"")
-        Write-Host "Dang mo web admin (cua so rieng): http://localhost:$AdminPort/"
+        $adminConsole = Join-Path $PSScriptRoot 'PhongThan-Admin-Console.ps1'
+        if (-not (Test-Path -LiteralPath $adminConsole -PathType Leaf)) {
+            throw "Khong tim thay admin console launcher: $adminConsole"
+        }
+        Start-Process -FilePath 'powershell.exe' -WorkingDirectory $PSScriptRoot -ArgumentList @('-NoProfile', '-NoExit', '-ExecutionPolicy', 'Bypass', '-File', "`"$adminConsole`"", '-Port', "$AdminPort")
+        Write-Host "Dang khoi dong web admin (cua so rieng, khong tu dong dong khi loi): http://localhost:$AdminPort/"
+        Write-Host "Neu admin loi, xem: $(Join-Path $Root 'PhongThanRuntime-State\logs\admin-startup.log')"
     }
 
     if ($WithClient) {
