@@ -54,16 +54,22 @@ FILES = {
 
 def transformed(path: Path, replacements: tuple, *, check: bool = False) -> bool:
     raw = path.read_bytes()
-    newline = b"\r\n" if b"\r\n" in raw else b"\n"
     data = raw
     for old, new in replacements:
-        old_bytes = old.encode("ascii").replace(b"\n", newline)
-        new_bytes = new.encode("ascii").replace(b"\n", newline)
-        if data.count(old_bytes) == 1:
-            data = data.replace(old_bytes, new_bytes, 1)
-        elif data.count(new_bytes) == 1:
-            pass  # idempotent after already applied
-        else:
+        # Legacy files can mix LF and CRLF in the same blob. Match each anchor
+        # independently; do not normalize or re-encode the rest of the file.
+        matched = False
+        for newline in (b"\n", b"\r\n"):
+            old_bytes = old.encode("ascii").replace(b"\n", newline)
+            new_bytes = new.encode("ascii").replace(b"\n", newline)
+            if data.count(old_bytes) == 1:
+                data = data.replace(old_bytes, new_bytes, 1)
+                matched = True
+                break
+            if data.count(new_bytes) == 1:
+                matched = True  # idempotent after already applied
+                break
+        if not matched:
             raise ValueError(f"expected unique patch anchor missing in {path}: {old[:80]}")
     if check and data != raw:
         raise ValueError(f"missing EXP patch in {path}")
