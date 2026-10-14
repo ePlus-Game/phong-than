@@ -8,6 +8,7 @@ on:
       - 'tools/Restore-SplitPaks.ps1'
       - 'tests/Test-RestoreSplitPaks.ps1'
       - 'AdminWeb/PhongThan-RunAll.ps1'
+      - 'tests/Test-RunAllReadiness.ps1'
       - 'PhongThanSource/Tests/Test-NativeRuntime.ps1'
       - '.github/workflows/windows-runtime-live-evidence.yml'
   push:
@@ -18,6 +19,7 @@ on:
       - 'tools/Restore-SplitPaks.ps1'
       - 'tests/Test-RestoreSplitPaks.ps1'
       - 'AdminWeb/PhongThan-RunAll.ps1'
+      - 'tests/Test-RunAllReadiness.ps1'
       - 'PhongThanSource/Tests/Test-NativeRuntime.ps1'
       - '.github/workflows/windows-runtime-live-evidence.yml'
 
@@ -41,6 +43,8 @@ jobs:
             /tests/Test-WindowsRuntimeEvidence.ps1
             /tools/Restore-SplitPaks.ps1
             /tests/Test-RestoreSplitPaks.ps1
+            /AdminWeb/PhongThan-RunAll.ps1
+            /tests/Test-RunAllReadiness.ps1
       - name: Verify AST syntax, world marker and port ownership
         shell: powershell
         run: |
@@ -50,4 +54,9 @@ jobs:
         shell: powershell
         run: |
           & .\tests\Test-RestoreSplitPaks.ps1
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Reused cluster must pass WORLD_READY gate
+        shell: powershell
+        run: |
+          & .\tests\Test-RunAllReadiness.ps1
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
