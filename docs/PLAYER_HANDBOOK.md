@@ -140,7 +140,7 @@ Nguồn [Hệ thống trang bị](https://phongthan.vinagame.com.vn/tin-tuc/can-
 
 ## 8. Cấp tối đa, chuyển sinh và những câu hỏi lớn
 
-- **Giới hạn cấp được khai báo trong source: 200** (`GameDataDef.h:74`, `KPlayer.cpp:3084`); bảng EXP server/client có dòng 1–200. **Chưa xác nhận đạt cấp 200 bằng gameplay.** Đặc biệt, EXP cấp 131–200 là 5.300.556.000 mỗi dòng, vượt signed-int32 trong khi engine đọc vào `int`; có nguy cơ lỗi từ cấp 131. Xem [GAMEPLAY_SOURCE_AUDIT](GAMEPLAY_SOURCE_AUDIT.md).
+- **Giới hạn cấp trong source: 200** (`GameDataDef.h:74`). Bản vá [PR #70](https://github.com/ePlus-Game/phong-than-truyen-ky/pull/70) đã xử lý placeholder EXP cấp 131–200 vượt int32 qua loader và bảo vệ phép cộng EXP; test C++ cùng build Windows Core/Client/Server/22 binary đã PASS. **Chưa có kiểm thử tăng cấp 131–200, save/relogin trong gameplay thật**. Xem [GAMEPLAY_SOURCE_AUDIT](GAMEPLAY_SOURCE_AUDIT.md) và [checklist runtime](RUNTIME_GAMEPLAY_ACCEPTANCE.md).
 - **Chuyển sinh:** có tài liệu VNG, **chưa xác minh script/điều kiện/tác động save** của bản phục dựng.
 - **Trang bị mạnh nhất:** phụ thuộc content/version/server; cần trích đủ bảng item, set, nâng cấp và kỹ năng liên quan.
 - **Điểm cộng tối ưu:** chưa có build benchmark; không phát tán bảng cộng điểm đoán.
@@ -152,7 +152,7 @@ Nguồn [Hệ thống trang bị](https://phongthan.vinagame.com.vn/tin-tuc/can-
 | --- | --- | --- | --- | --- |
 | 3 hệ phái | Có | `KProfession.cpp` xác minh ID 0/1/2 | Không | Kiểm tra UI tạo nhân vật, protocol và bộ kỹ năng theo nghề |
 | Nhiệm vụ đầu game | Có | Quest foundation, kiểm kê NPC | Không | Thử từng bước và phần thưởng |
-| Level cap | Có tài liệu VNG | MAX_LEVEL=200, bảng EXP 1–200; overflow risk cấp 131+ | Không | Test parsing EXP > int32 và tăng cấp đến 200 trong VM |
+| Level cap | Có tài liệu VNG | MAX_LEVEL=200; lỗi int32 đã vá trong PR #70, build và test dữ liệu PASS | Không | Test cấp 130–132 và 199–200, save/relogin trong VM |
 | Skill và điểm | Có mô tả VNG | Chưa tổng hợp skill IDs/công thức | Không | Xuất bảng kỹ năng, skill tests |
 | Trang bị | Có danh mục Lục/Cam/Hoàng Kim/... | Chưa tổng hợp item IDs/set | Không | Export bảng item, source drops/recipes |
 | Thú cưỡi/pet/Linh Thú | Có nội dung VNG và custom | Có các file/script được kiểm kê | Không | Kiểm thử nhận thú, tiến hóa, cấp thưởng |

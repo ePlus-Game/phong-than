@@ -6,7 +6,7 @@
 
 ## Nguyên tắc / Definition of Done
 
-1. **Bảo toàn dữ liệu gốc:** không sửa byte nguồn `PhongThanSource/`, runtime staging gốc, PAK, SQL/character save. Áp overlay lên **bản sao ngoài checkout**; kiểm tra hash/manifest trước và sau.
+1. **Bảo toàn dữ liệu gốc:** được phép vá source C++ đã kiểm soát trên nhánh/PR, nhưng không chỉnh sửa binary/PAK, dữ liệu runtime staging gốc, SQL/character save hoặc re-encode hàng loạt mã nguồn legacy. Build dùng **bản sao ngoài checkout**; kiểm tra hash/manifest trước và sau.
 2. **Tách hai loại bằng chứng:** source/unit test PASS != build Windows PASS != server smoke PASS != client gameplay PASS != Internet/public-ready.
 3. **Giữ tương thích:** ưu tiên sửa C++98/Lua 4 có giới hạn; không đổi ABI, network packet, save schema, ID vật phẩm/nhiệm vụ nếu chưa có migration/compat test.
 4. **Mỗi PR:** phạm vi nhỏ, mô tả mức rủi ro, test tái lập, cách rollback; không dùng thông tin tài khoản/nhân vật thật làm fixture hoặc upload log nhạy cảm.
@@ -30,6 +30,7 @@
 | F10 | GitHub-hosted Windows x86 Client: `Game.exe`, `Represent2`, `Represent3` và 10 dependency | **Windows Client build PASS** | [PR #57](https://github.com/ePlus-Game/phong-than-truyen-ky/pull/57), [run #38530141589](https://github.com/ePlus-Game/phong-than-truyen-ky/actions/runs/38530141589) | 13/13 module PASS, nhưng chưa có full build 22 role binaries trong một workspace hay gameplay |
 | F11 | Combined Windows x86 source build trong một workspace mới | **19/19 project, 22/22 EXE/DLL build PASS** | [PR #59](https://github.com/ePlus-Game/phong-than-truyen-ky/pull/59), [run #38531158753](https://github.com/ePlus-Game/phong-than-truyen-ky/actions/runs/38531158753) | PE32/i386 + SHA-256 đạt; import resolution, packaging, startup 5 service và gameplay chưa nghiệm thu |
 | F12 | Phân tích DLL imports của 22 binary mới, gồm delay-load | **Static dependency audit PASS** | [PR #65](https://github.com/ePlus-Game/phong-than-truyen-ky/pull/65), [run #38546154123](https://github.com/ePlus-Game/phong-than-truyen-ky/actions/runs/38546154123) | 22/22 phân tích; không thiếu DLL nội bộ trong role, 4 external imports chưa xác nhận trên Windows VM; không phải loader test |
+| F13 | Khắc phục EXP cấp 131–200 vượt `int32` | **Code merged / native tests + Windows builds PASS** | [PR #70](https://github.com/ePlus-Game/phong-than-truyen-ky/pull/70), [EXP tests #38564658247](https://github.com/ePlus-Game/phong-than-truyen-ky/actions/runs/38564658247), [22-binary #38564658067](https://github.com/ePlus-Game/phong-than-truyen-ky/actions/runs/38564658067) | Code dùng EXP tương thích int32; bảng level 1–130 và bytes dữ liệu gốc giữ nguyên. Chưa nghiệm thu EXP level 131–200 sau relogin trên Windows VM |
 
 Trạng thái quy ước: **Planned → Implemented → CI PASS → Windows Build PASS → Runtime PASS → Gameplay/UAT PASS → Released**. Một feature chỉ được chuyển giai đoạn khi có artifact, log hoặc test ID tương ứng, không cập nhật theo phỏng đoán.
 
@@ -41,9 +42,11 @@ Trạng thái quy ước: **Planned → Implemented → CI PASS → Windows Buil
 | **P2 - Native Server x86** | **PASS (15/15 module)** | [Windows Server #38526607624](https://github.com/ePlus-Game/phong-than-truyen-ky/actions/runs/38526607624): 5 service EXE mới, DLL/COFF + SHA-256 | Chưa khởi động server, DB hoặc world |
 | **P3 - Client x86** | **PASS (13/13 module)** | [PR #57](https://github.com/ePlus-Game/phong-than-truyen-ky/pull/57), [Windows Client #38530141589](https://github.com/ePlus-Game/phong-than-truyen-ky/actions/runs/38530141589) | Build mới Game.exe, Represent2/3 và các DLL; chưa chạy client/gameplay |
 | **P4 - Full release x86** | **22/22 build + static DLL imports PASS** | [Combined build #38531158753](https://github.com/ePlus-Game/phong-than-truyen-ky/actions/runs/38531158753), [import audit #38546154123](https://github.com/ePlus-Game/phong-than-truyen-ky/actions/runs/38546154123): PE32/i386, SHA-256, normal/delay-load DLL metadata đều đạt | Chưa nghiệm thu Windows loader, packaging, chạy 5 service, DB, 102 maps hoặc login |
-| **P5 - Runtime & Gameplay E2E** | **Chưa nghiệm thu** | Windows VM/runner cách ly; 5 tiến trình, 102 maps, login/save/relogin | Không dùng production account hoặc nhân vật thật |
+| **P5 - Runtime & Gameplay E2E** | **Chưa nghiệm thu** | [Issue #71](https://github.com/ePlus-Game/phong-than-truyen-ky/issues/71), [ma trận test](RUNTIME_GAMEPLAY_ACCEPTANCE.md) | VM: loader, 5 tiến trình, 102 maps, login/save/relogin và EXP 129–132/199–200; không dùng production account hoặc nhân vật thật |
 
 **Điều kiện:** P1-P4 đạt build PASS *không* đồng nghĩa Windows loader, runtime hoặc gameplay đã được nghiệm thu, và mọi bản binary/PAK/SQL staging gốc phải được giữ nguyên. Chưa phát hành public trước khi hoàn thành P4/P5.
+
+**Sau PR #70:** build lại Core, Server, Client và full 22 binary đều **PASS** ([Core](https://github.com/ePlus-Game/phong-than-truyen-ky/actions/runs/38564658059), [Server](https://github.com/ePlus-Game/phong-than-truyen-ky/actions/runs/38564658097), [Client](https://github.com/ePlus-Game/phong-than-truyen-ky/actions/runs/38564658060), [22 binary](https://github.com/ePlus-Game/phong-than-truyen-ky/actions/runs/38564658067)). Bản vá EXP được xác minh bằng native C++ + 200 hàng server/client ([run #38564658247](https://github.com/ePlus-Game/phong-than-truyen-ky/actions/runs/38564658247)); **Issue #68 closed (code fix), #69 closed (duplicate)**. P5 vẫn chưa PASS. Hướng dẫn và checklist E2E: [RUNTIME_GAMEPLAY_ACCEPTANCE.md](RUNTIME_GAMEPLAY_ACCEPTANCE.md), [Issue #71](https://github.com/ePlus-Game/phong-than-truyen-ky/issues/71).
 
 **P4 DLL import audit đã PASS:** [run #38546154123](https://github.com/ePlus-Game/phong-than-truyen-ky/actions/runs/38546154123) phân tích 22/22 PE32 (normal + delay-load). Không phát hiện import DLL nội bộ sai role; bốn DLL bên ngoài phải xác minh ở môi trường chạy là `dinput8.dll`, `odbc32.dll`, `msvcp140.dll`, `vcruntime140.dll` (hai DLL cuối thuộc VC++ redistributable). Test loader thật, DB, world 102 maps và login/relogin vẫn thuộc P5.
 
@@ -53,7 +56,7 @@ Trạng thái quy ước: **Planned → Implemented → CI PASS → Windows Buil
 | --- | --- | --- | --- | --- |
 | **M0 — Repository & CI baseline** | P0 | Tối giản job trùng, phân tầng PR/source/Windows, audit dữ liệu nhạy cảm, changelog và checklist | Test Python/C++98, quest provenance và smoke Windows hiện có PASS | **Một phần hoàn thành** |
 | **M1 — Reproducible Windows x86 build** | P0 | Build mới trên workspace riêng, xác nhận dependency EXE/DLL, compiler/linker, SHA-256, compatibility; sau đó incremental build theo graph | Tất cả module bắt buộc build PASS trên Windows x86, binary manifest hợp lệ, smoke test sau build | **22/22 build PASS; loader/import runtime chưa nghiệm thu** |
-| **M2 — Runtime & account persistence** | P0 | 5 native services, account/role, map registry, load/save, graceful stop, reconnect, crash recovery | World-ready 102 maps; login → tạo nhân vật → đi map → save → logout → relogin; không mất tiến độ | **Chưa nghiệm thu E2E** |
+| **M2 — Runtime & account persistence** | P0 | 5 native services, account/role, map registry, load/save, graceful stop, reconnect, crash recovery | World-ready 102 maps; login → tạo nhân vật → đi map → save → logout → relogin; không mất tiến độ | **Chưa nghiệm thu E2E — [Issue #71](https://github.com/ePlus-Game/phong-than-truyen-ky/issues/71)** |
 | **M3 — Inventory & reward transactions** | P0 | Transaction/receipt bền vững, idempotency key, ledger/GM reconciliation, nguyên liệu/tiền/quà, rollback | Túi đầy, tiền thiếu, bấm lặp, offline, crash từng bước, restart: không mất/nhân đôi item | **Chỉ có diagnostic overlay** |
 | **M4 — Network, protocol & resilience** | P1 | Packet bounds, ownership/RAII tương thích C++98, state machine login/reconnect/transfer, timeout và flood handling | Unit/fuzz protocol + integration session trùng/ngắt mạng; không crash, không session mồ côi | **Một phần source-tested** |
 | **M5 — Lua, Skills, Assets & Quest** | P1 | Đối chiếu skill `1973` và PAK, Lua registry, sprite/audio, nghiệp vụ 126 NPC, quest lifecycle | Test tất cả script quan trọng, kỹ năng các hệ phái, NPC/quest: nhận → hoàn thành → thưởng 1 lần → reload | **Chưa hoàn chỉnh** |
@@ -83,6 +86,8 @@ Trạng thái quy ước: **Planned → Implemented → CI PASS → Windows Buil
 - [ ] Phân loại thay đổi: **Lua/config/data: không rebuild EXE**; **C++: chỉ module & dependency**; **release: clean full build**.
 - [ ] Thiết kế incremental build không tái sử dụng cache không tương thích; kiểm tra clean vs incremental artifacts.
 - [ ] Tách content patching khỏi native binary delivery, ký/hash artifact; xác minh quyền phân phối assets.
+
+**Việc ưu tiên ngay:** Dùng [ma trận nghiệm thu Windows runtime](RUNTIME_GAMEPLAY_ACCEPTANCE.md) để chạy VM tách biệt, giữ evidence theo Test ID. Các job build thành công không thay thế runtime login/save hay kiểm tra giới hạn cấp 200.
 
 ### M2–M3 — Trước khi mở online
 
