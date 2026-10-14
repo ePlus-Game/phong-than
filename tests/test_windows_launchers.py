@@ -59,6 +59,19 @@ class WindowsLauncherTests(unittest.TestCase):
         self.assertIn("if ($LASTEXITCODE -ne 0) { throw 'Client patch", script)
         self.assertIn("$WithClient -and -not (Test-Path -LiteralPath $ClientExe -PathType Leaf)", script)
 
+    def test_native_server_only_never_patches_client_or_database_before_duplicate_guard(self):
+        # Admin-only launch passes through Start-NativeServer.ps1; protect the
+        # nested script rather than relying on RunAll's WithClient condition.
+        script = read("PhongThanSource/Deploy/Start-NativeServer.ps1")
+        self.assertNotIn("PhongThan-ClientPatch.ps1", script)
+        self.assertNotIn("$ptPatch=", script)
+        self.assertIn("Get-CimInstance Win32_Process -ErrorAction Stop", script)
+        for side_effect in ("Start-AccountLocalDb", "Set-AccountDatabaseIni",
+                            "-Step database", "Start-Process -FilePath"):
+            with self.subTest(side_effect=side_effect):
+                self.assertLess(script.index("if($existing){throw"), script.index(side_effect))
+        self.assertIn("if ($LASTEXITCODE -ne 0) { throw 'Account database setup failed", script)
+
     def test_native_server_requires_full_topology_and_readiness(self):
         script = read("AdminWeb/PhongThan-RunAll.ps1")
         for name in (
