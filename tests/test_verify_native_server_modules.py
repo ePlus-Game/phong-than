@@ -43,13 +43,15 @@ class ServerBuildEvidenceTests(unittest.TestCase):
     def test_server_dll_checks_pe_image_type(self):
         with tempfile.TemporaryDirectory() as d:
             root = Path(d)
-            path = root / "Server" / "Heaven.dll"
-            path.parent.mkdir(parents=True)
-            path.write_bytes(b"non-pe-test-fixture")
+            for relative in MODULE_OUTPUTS["Heaven"]:
+                path = root / relative
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_bytes(b"non-pe-test-fixture")
             with patch("tools.verify_native_module_build.inspect_pe", return_value=(512, "0" * 64)) as pe:
                 report = verify_modules(root, ["Heaven"])
             self.assertEqual(report["status"], "PASS")
-            self.assertTrue(pe.call_args.kwargs["require_dll"])
+            self.assertEqual(pe.call_count, 2)
+            self.assertTrue(all(c.kwargs["require_dll"] for c in pe.call_args_list))
 
 
 if __name__ == "__main__":
