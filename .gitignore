@@ -30,3 +30,24 @@ Server/lord/src/lord.cfg
 
 # Out-of-source CMake compile-only experiments
 build/
+
+# Prevent *new local* archive, runtime and build artifacts from entering Git.
+# Files already tracked by the PT.zip import remain tracked intentionally.
+/_backup/
+/PhongThanSource/Output/
+/PhongThanSource/OutputModern/
+/PhongThanSource/Build/LogsModern/
+/PhongThanRuntime-Staging/ControlLogs/
+/PhongThanRuntime-Staging/Client/UserData/
+/PhongThanRuntime-Staging/Client/Snapshot/
+/PhongThanRuntime-State/sql/
+/PhongThanRuntime-Staging/Server/CharacterStore/
+/PhongThanRuntime-Staging/Server/database/
+/PhongThanRuntime-Staging/Server/databasetong/
+/PhongThanRuntime-Staging/Server/databasetongmember/
+/PhongThanRuntime-Staging/Server/admin_bridge/heartbeat.txt
+/PhongThanRuntime-Staging/Server/admin_bridge/online.txt
+/PhongThanRuntime-Staging/Server/admin_bridge/pending.lua
+/PhongThanRuntime-Staging/Server/admin_bridge/token.log
+/PhongThanRuntime-Staging/Server/admin_bridge/result.log
+/hygiene-summary.json
