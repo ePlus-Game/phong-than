@@ -62,7 +62,7 @@ Các trang giới thiệu VNG có mục kỹ năng theo hệ phái; song **chưa
 | **65** | **Bình An** được ghi trong cẩm nang, phạm vi lớp cần đối chiếu | Như bên trái | Như bên trái | [VNG], chưa test |
 | **70** | **Thần Dụ Kính** (đối chiếu các nhánh) | Như bên trái | Như bên trái | [VNG], chưa test |
 | **111+** | Thập Tuyệt Trận — Nhân Tự Trận | Như bên trái | Như bên trái | [VNG], chưa xác nhận có ở runtime |
-| **131+** | Thập Tuyệt Trận — Hồng Sa Trận | Như bên trái | Như bên trái | [VNG], chưa xác nhận có ở runtime |
+- **Giới hạn cấp trong source: 200** (`GameDataDef.h:74`). Bản vá [PR #70](https://github.com/ePlus-Game/phong-than-truyen-ky/pull/70) đã xử lý placeholder EXP cấp 131–200 vượt int32 qua loader và bảo vệ phép cộng EXP; test C++ cùng build Windows Core/Client/Server/22 binary đã PASS. **Chưa có kiểm thử tăng cấp 131–200, save/relogin trong gameplay thật**. Xem [GAMEPLAY_SOURCE_AUDIT](GAMEPLAY_SOURCE_AUDIT.md) và [checklist runtime](RUNTIME_GAMEPLAY_ACCEPTANCE.md).
 
 **Chuỗi tân thủ theo nội dung VNG:**
 - Giáp Sĩ: Hộp Gấm → Tân Thức → Dũng Đao → Kiếm Ái → Trừ Họa → Giáo Huấn.
