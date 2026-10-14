@@ -1,35 +1,38 @@
-name: EXP 131+ int32 compatibility hotfix
+name: EXP 131+ int32 compatibility verification
 
 on:
-  push:
-    branches: [fix/exp-level-131-int32]
-    paths:
-      - 'tools/apply_exp_compat_patch.py'
-      - 'PhongThanSource/Sources/Core/Src/PhongThanExpCompat.h'
-      - 'tests/exp_compat_test.cpp'
-      - '.github/workflows/exp-compat-patch.yml'
   pull_request:
     paths:
       - 'tools/apply_exp_compat_patch.py'
       - 'PhongThanSource/Sources/Core/Src/PhongThanExpCompat.h'
       - 'PhongThanSource/Sources/Core/Src/KPlayerSet.cpp'
       - 'PhongThanSource/Sources/Core/Src/KPlayer.cpp'
+      - 'PhongThanRuntime-Staging/Server/settings/npc/player/level_exp.txt'
+      - 'PhongThanRuntime-Staging/Client/settings/npc/player/level_exp.txt'
+      - 'tests/exp_compat_test.cpp'
+      - '.github/workflows/exp-compat-patch.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'tools/apply_exp_compat_patch.py'
+      - 'PhongThanSource/Sources/Core/Src/PhongThanExpCompat.h'
+      - 'PhongThanSource/Sources/Core/Src/KPlayerSet.cpp'
+      - 'PhongThanSource/Sources/Core/Src/KPlayer.cpp'
+      - 'PhongThanRuntime-Staging/Server/settings/npc/player/level_exp.txt'
+      - 'PhongThanRuntime-Staging/Client/settings/npc/player/level_exp.txt'
       - 'tests/exp_compat_test.cpp'
       - '.github/workflows/exp-compat-patch.yml'
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  patch-and-check:
-    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'fix/exp-level-131-int32')
+  verify-exp-compatibility:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v5
         with:
-          persist-credentials: true
-          ref: ${{ github.head_ref || github.ref_name }}
           filter: blob:none
           sparse-checkout-cone-mode: false
           sparse-checkout: |
@@ -43,25 +46,11 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
-      - name: Preserve legacy source bytes and apply C++ hotfix
-        run: python tools/apply_exp_compat_patch.py --root .
-      - name: Verify all byte-preserving source anchors were applied
+      - name: Verify legacy byte-safe C++ patches already applied
         run: python tools/apply_exp_compat_patch.py --root . --check
-      - name: Compile and run native C++ arithmetic/level boundary tests
+      - name: Native C++ tests against original server/client EXP tables
         run: |
           g++ -std=c++11 -Wall -Wextra -Werror -o /tmp/pt-exp-test tests/exp_compat_test.cpp
           /tmp/pt-exp-test
-      - name: Reject whitespace errors
+      - name: Check whitespace
         run: git diff --check
-      - name: Commit fixes to review branch
-        if: github.repository == 'ePlus-Game/phong-than-truyen-ky' && (github.head_ref == 'fix/exp-level-131-int32' || github.ref == 'refs/heads/fix/exp-level-131-int32')
-        run: |
-          if git diff --quiet -- PhongThanSource/Sources/Core/Src/KPlayerSet.cpp PhongThanSource/Sources/Core/Src/KPlayer.cpp; then
-            echo "Already applied"
-            exit 0
-          fi
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -- PhongThanSource/Sources/Core/Src/KPlayerSet.cpp PhongThanSource/Sources/Core/Src/KPlayer.cpp
-          git commit -m 'fix(exp): prevent 131+ int32 overflow without altering legacy assets'
-          git push origin HEAD:fix/exp-level-131-int32
