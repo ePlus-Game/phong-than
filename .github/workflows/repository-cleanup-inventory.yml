@@ -29,8 +29,8 @@ jobs:
         run: |
           set -euo pipefail
           cd inventory
-          python3 tools/repository_hygiene.py --format markdown >> "$GITHUB_STEP_SUMMARY"
-          python3 tools/repository_hygiene.py --format markdown
+          python3 tools/repository_hygiene.py --no-sizes --format markdown >> "$GITHUB_STEP_SUMMARY"
+          python3 tools/repository_hygiene.py --no-sizes --format markdown
       - name: Redact authentication URL
         if: always()
         shell: bash
