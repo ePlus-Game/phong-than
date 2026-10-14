@@ -24,6 +24,7 @@
 | F05 | Đọc log Lua registry, kỹ năng và chẩn đoán sai lệch | **Implemented / source-tested** | [PR #30](https://github.com/ePlus-Game/phong-than-truyen-ky/pull/30) | Log lịch sử không chứng minh lỗi live |
 | F06 | Provenance quest / kiểm kê NPC | **Audited, not gameplay-accepted** | [PR #20](https://github.com/ePlus-Game/phong-than-truyen-ky/pull/20), [QUEST_SYSTEM_STATUS.md](QUEST_SYSTEM_STATUS.md) | 84 script NPC chỉ hướng dẫn; các nhánh khác chưa nghiệm thu hết |
 | F07 | GitHub-hosted Windows x86 module build: `LuaLibDll`, `Engine` | **Windows module build PASS** | [PR #50](https://github.com/ePlus-Game/phong-than-truyen-ky/pull/50), [run #38520540848](https://github.com/ePlus-Game/phong-than-truyen-ky/actions/runs/38520540848) | `Engine` vẫn liên kết thư viện legacy `Lib/release`; chưa full build 22 binary, chưa runtime/gameplay |
+| F08 | GitHub-hosted Windows x86 Core: `Common`, `ExpandPackageStaticLib`, `FilterTextStatic`, `CoreServer`, `CoreClient` | **Windows module build PASS** | [PR #52](https://github.com/ePlus-Game/phong-than-truyen-ky/pull/52), [run #38523254976](https://github.com/ePlus-Game/phong-than-truyen-ky/actions/runs/38523254976) | 7/7 module gate PASS với thư viện legacy; chưa full build 22 binary, chưa gameplay |
 
 Trạng thái quy ước: **Planned → Implemented → CI PASS → Windows Build PASS → Runtime PASS → Gameplay/UAT PASS → Released**. Một feature chỉ được chuyển giai đoạn khi có artifact, log hoặc test ID tương ứng, không cập nhật theo phỏng đoán.
 
@@ -58,6 +59,7 @@ Trạng thái quy ước: **Planned → Implemented → CI PASS → Windows Buil
 - [x] Thêm bộ xác minh 22 binary PE32/i386, loại EXE/DLL, kích thước và SHA-256 trên output build; test bằng fixture giả lập (chưa có kết quả build thực). Xem [M1_WINDOWS_BUILD.md](M1_WINDOWS_BUILD.md).
 - [x] Xác nhận 2 module native build/link Windows thật: `PhongThanRelay.exe` và `PhongThanAccountServer.exe` (MSVC x86, PE32, SHA-256), theo [M1_WINDOWS_BUILD.md](M1_WINDOWS_BUILD.md); **không thay thế gate full build/gameplay**.
 - [x] GitHub-hosted Windows đã build/link thêm `LuaLibDll.dll` và `Engine.dll` (fresh x86 PE32, SHA-256); `Engine` còn phụ thuộc thư viện legacy. [Bằng chứng](https://github.com/ePlus-Game/phong-than-truyen-ky/actions/runs/38520540848).
+- [x] Hosted Windows Core gate build/link 7/7 target, gồm `Common`, `ExpandPackageStaticLib`, `FilterTextStatic`, `CoreServer.dll`, `CoreClient.dll`; PE32/COFF + SHA-256 PASS. [Run #38523254976](https://github.com/ePlus-Game/phong-than-truyen-ky/actions/runs/38523254976).
 - [ ] Phân loại thay đổi: **Lua/config/data: không rebuild EXE**; **C++: chỉ module & dependency**; **release: clean full build**.
 - [ ] Thiết kế incremental build không tái sử dụng cache không tương thích; kiểm tra clean vs incremental artifacts.
 - [ ] Tách content patching khỏi native binary delivery, ký/hash artifact; xác minh quyền phân phối assets.
