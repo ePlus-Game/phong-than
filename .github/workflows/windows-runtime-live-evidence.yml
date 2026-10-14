@@ -9,6 +9,9 @@ on:
       - 'tests/Test-RestoreSplitPaks.ps1'
       - 'AdminWeb/PhongThan-RunAll.ps1'
       - 'AdminWeb/PhongThan-Admin-Console.ps1'
+      - 'AdminWeb/PhongThan-Admin.ps1'
+      - 'AdminWeb/Initialize-ItemTables.ps1'
+      - 'tests/Test-AdminItemTables.ps1'
       - 'tests/Test-RunAllReadiness.ps1'
       - 'PhongThanSource/Tests/Test-NativeRuntime.ps1'
       - '.github/workflows/windows-runtime-live-evidence.yml'
@@ -21,6 +24,9 @@ on:
       - 'tests/Test-RestoreSplitPaks.ps1'
       - 'AdminWeb/PhongThan-RunAll.ps1'
       - 'AdminWeb/PhongThan-Admin-Console.ps1'
+      - 'AdminWeb/PhongThan-Admin.ps1'
+      - 'AdminWeb/Initialize-ItemTables.ps1'
+      - 'tests/Test-AdminItemTables.ps1'
       - 'tests/Test-RunAllReadiness.ps1'
       - 'PhongThanSource/Tests/Test-NativeRuntime.ps1'
       - '.github/workflows/windows-runtime-live-evidence.yml'
@@ -47,6 +53,9 @@ jobs:
             /tests/Test-RestoreSplitPaks.ps1
             /AdminWeb/PhongThan-RunAll.ps1
             /AdminWeb/PhongThan-Admin-Console.ps1
+            /AdminWeb/PhongThan-Admin.ps1
+            /AdminWeb/Initialize-ItemTables.ps1
+            /tests/Test-AdminItemTables.ps1
             /tests/Test-RunAllReadiness.ps1
       - name: Verify AST syntax, world marker and port ownership
         shell: powershell
@@ -62,4 +71,9 @@ jobs:
         shell: powershell
         run: |
           & .\tests\Test-RunAllReadiness.ps1
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Missing PAK extractor uses safe item catalog fallback
+        shell: powershell
+        run: |
+          & .\tests\Test-AdminItemTables.ps1
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
