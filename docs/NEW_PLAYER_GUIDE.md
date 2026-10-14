@@ -8,36 +8,48 @@
 2. Chỉ tải client từ nguồn phát hành chính thức của dự án khi có bản phát hành được xác nhận. **Chưa có hướng dẫn đăng ký, tải và vào server được nghiệm thu**.
 3. Khi có bản chơi thử, ưu tiên trải nghiệm nhân vật mới với túi đồ trống và giữ lại thông tin lỗi để báo nhóm phát triển; không dùng tài khoản hoặc dữ liệu nhân vật quan trọng trên môi trường thử nghiệm.
 
-## 2. Chọn hệ phái
+## 2. Ba hệ phái trong game
 
-Dự án cần đối chiếu dữ liệu nhân vật và kỹ năng trong source/runtime để xác nhận **tên chính xác của ba hệ phái, nhánh phát triển, ưu nhược điểm và bộ kỹ năng khả dụng**. Không sử dụng tên, kỹ năng hoặc chỉ số của các phiên bản Phong Thần khác làm dữ liệu mặc định.
+Ba hệ phái đã được xác định trong đợt nghiên cứu trước: **Côn Lôn, Thiên Sơn và Tiêu Dao**. Tên hệ phái là dữ kiện nghiên cứu đã có; mô tả vai trò chiến đấu, kỹ năng cụ thể và điểm cộng tối ưu vẫn cần đối chiếu với phiên bản runtime hiện tại.
 
-| Hệ phái | Vai trò / cách chơi | Lộ trình kỹ năng | Trạng thái |
-| --- | --- | --- | --- |
-| Hệ phái 1 — chờ xác minh tên | Chưa kiểm chứng | Chưa kiểm chứng | Cần đối chiếu source/PAK |
-| Hệ phái 2 — chờ xác minh tên | Chưa kiểm chứng | Chưa kiểm chứng | Cần đối chiếu source/PAK |
-| Hệ phái 3 — chờ xác minh tên | Chưa kiểm chứng | Chưa kiểm chứng | Cần đối chiếu source/PAK |
+| Hệ phái | Đã xác định | Hướng dẫn chuyên sâu sẽ bổ sung |
+| --- | --- | --- |
+| **Côn Lôn** | Tên hệ phái | NPC gia nhập, vũ khí, hệ kỹ năng, điểm thuộc tính, trang bị cuối game |
+| **Thiên Sơn** | Tên hệ phái | NPC gia nhập, vũ khí, hệ kỹ năng, điểm thuộc tính, trang bị cuối game |
+| **Tiêu Dao** | Tên hệ phái | NPC gia nhập, vũ khí, hệ kỹ năng, điểm thuộc tính, trang bị cuối game |
 
-## 3. Cấp độ và tăng sức mạnh
+**Gợi ý tân thủ:** Hãy chọn hệ phái theo kỹ năng và phong cách chơi sau khi xem mô tả trong client. Chưa nên đầu tư toàn bộ điểm kỹ năng hoặc nguyên liệu hiếm theo build của một máy chủ khác.
 
-**Cấp tối đa của nhân vật: chưa xác minh.** Cần xác định giới hạn thực thi phía server, bảng EXP/cấp độ và UI client trước khi công bố. Không lấy level cap từ trang giới thiệu hoặc phiên bản máy chủ khác.
+## 3. Cấp độ và lộ trình phát triển
 
-Khi gameplay được nghiệm thu, phần này sẽ bổ sung:
-- Lộ trình từ cấp đầu đến cấp tối đa, chia theo mốc nhiệm vụ/bản đồ đã kiểm chứng.
-- Điểm thuộc tính, kỹ năng và điều kiện học kỹ năng riêng của từng hệ phái.
-- Cách kiếm tiền và vật phẩm phù hợp với người mới; không gợi ý địa điểm cày cấp chưa được kiểm thử.
+**Cấp tối đa theo kết quả nghiên cứu trước: 150.** Mốc này vẫn cần được tái đối chiếu bằng cấu hình/logic giới hạn cấp của server, bảng EXP và client trước khi gắn nhãn “đã kiểm thử gameplay”.
 
-## 4. Trang bị và vật phẩm
+### Lộ trình cho tân thủ
 
-**Bộ trang bị cao cấp nhất của mỗi hệ phái: chưa xác minh.** Cần đọc bảng vật phẩm/thuộc tính/điều kiện mặc trang bị, nguồn rơi hoặc đổi vật phẩm từ dữ liệu runtime; kiểm tra client thực sự hiển thị và server thực sự cấp được.
+1. **Bắt đầu:** tạo nhân vật, kiểm tra hướng dẫn và các nhiệm vụ đầu tiên trong client; làm quen di chuyển, NPC, túi đồ, kỹ năng.
+2. **Khi mở hệ phái:** tìm hiểu kỹ năng và điều kiện gia nhập trong bản đang chơi; tránh dựa vào tọa độ/NPC của phiên bản khác khi chưa xác nhận.
+3. **Trong quá trình tăng cấp:** ưu tiên nội dung nhiệm vụ có phần thưởng đã nghiệm thu; kiểm tra điều kiện cấp trước khi dùng hoặc nâng cấp trang bị.
+4. **Khi tiến tới cấp 150:** tra cứu bảng kinh nghiệm, điều kiện mở kỹ năng và nguồn đồ cuối game theo dữ liệu của server; các mốc EXP, khu luyện cấp và nhiệm vụ cụ thể còn phải xác minh.
 
-| Hệ phái | Trang bị khởi đầu | Trang bị nâng cấp | Trang bị cuối game | Nguồn sở hữu |
+## 4. Trang bị và nâng cấp
+
+Kết quả nghiên cứu trước xác định **chín nhóm trang bị**: **vũ khí, giáp, mũ, hộ uyển, hộ phù, ngọc bội, dây chuyền, nhẫn, giày**.
+
+| Nhóm | Điều nên kiểm tra trước khi sử dụng |
+| --- | --- |
+| Vũ khí | Yêu cầu hệ phái, cấp, thuộc tính và kỹ năng liên quan |
+| Giáp, mũ, hộ uyển, giày | Điều kiện trang bị, phòng thủ và các chỉ số bổ sung |
+| Hộ phù, ngọc bội, dây chuyền, nhẫn | Điều kiện cấp, thuộc tính đặc biệt, khả năng kết hợp bộ |
+
+**Trang bị cao cấp nhất theo từng hệ phái** chưa đủ dữ liệu để công bố tên/ID/chỉ số; không đồng nghĩa danh sách trang bị chưa được nghiên cứu. Bảng dưới đây là phần cần hoàn thiện bằng dữ liệu item thực tế:
+
+| Hệ phái | Trang bị cuối game | Cấp yêu cầu | Chỉ số / hiệu ứng | Cách sở hữu |
 | --- | --- | --- | --- | --- |
-| Hệ phái 1 | Chưa xác minh | Chưa xác minh | Chưa xác minh | Chưa xác minh |
-| Hệ phái 2 | Chưa xác minh | Chưa xác minh | Chưa xác minh | Chưa xác minh |
-| Hệ phái 3 | Chưa xác minh | Chưa xác minh | Chưa xác minh | Chưa xác minh |
+| Côn Lôn | Chưa đối chiếu ID/tên | Chưa đối chiếu | Chưa đối chiếu | Chưa đối chiếu |
+| Thiên Sơn | Chưa đối chiếu ID/tên | Chưa đối chiếu | Chưa đối chiếu | Chưa đối chiếu |
+| Tiêu Dao | Chưa đối chiếu ID/tên | Chưa đối chiếu | Chưa đối chiếu | Chưa đối chiếu |
 
-**Lưu ý an toàn vật phẩm trong bản thử nghiệm:** Một số luồng phát quà và hoàn nguyên liệu của Linh Thú đã được rà soát ở mức source, nhưng chưa đảm bảo giao dịch nguyên tử hoặc phục hồi sau crash. Không thử các thao tác trao đổi/nâng cấp có giá trị trên dữ liệu quan trọng. Xem [Phát quà và Linh Thú](REWARDS_AND_PETS.md).
+**Thận trọng khi cường hóa/trao đổi trong bản thử nghiệm:** các luồng phát quà và hoàn nguyên liệu Linh Thú chưa có bảo đảm giao dịch nguyên tử hoặc phục hồi khi crash. Xem [Phát quà và Linh Thú](REWARDS_AND_PETS.md).
 
 ## 5. Nhiệm vụ, bản đồ, thú
 
@@ -48,18 +60,21 @@ Khi gameplay được nghiệm thu, phần này sẽ bổ sung:
 
 ## 6. Câu hỏi thường gặp
 
-**Level tối đa là bao nhiêu?** Chưa có kết quả đối chiếu đủ tin cậy giữa server, bảng EXP và client.
+**Level tối đa là bao nhiêu?** Theo nghiên cứu trước là **150**, đang chờ kiểm thử trực tiếp với server/client hiện hành.
 
-**Nên chọn hệ phái nào cho người mới?** Chưa thể khuyến nghị trước khi xác nhận tên hệ phái, kỹ năng và độ cân bằng thực tế.
+**Có những hệ phái nào?** **Côn Lôn, Thiên Sơn và Tiêu Dao**. Khuyến nghị build cụ thể vẫn cần xác minh kỹ năng và độ cân bằng.
 
-**Trang bị mạnh nhất là gì?** Chưa xác minh bảng item và nguồn sở hữu; không nên dựa vào hình ảnh từ phiên bản khác.
+**Trang bị mạnh nhất là gì?** Đã ghi nhận chín nhóm trang bị; tên bộ cuối game, ID, chỉ số và nguồn sở hữu từng hệ phái chưa được đối chiếu đủ.
 
 **Đã có thể chơi ổn định chưa?** Chưa. Roadmap xác nhận một số bước build Windows x86 đã PASS nhưng full release và gameplay end-to-end vẫn chưa nghiệm thu. Xem [Master Roadmap](MASTER_ROADMAP.md).
 
 ## 7. Checklist để hoàn thiện cẩm nang
 
-- [ ] Trích tên ba hệ phái, nhánh kỹ năng, điểm thuộc tính từ source/runtime kèm đường dẫn và ID.
-- [ ] Xác định cap level bằng code server + EXP table + kiểm thử client.
+- [x] Khôi phục tên ba hệ phái từ nghiên cứu trước: Côn Lôn, Thiên Sơn, Tiêu Dao.
+- [ ] Đối chiếu nhánh kỹ năng, điểm thuộc tính từng hệ phái với source/runtime kèm đường dẫn và ID.
+- [x] Ghi lại mốc cấp tối đa **150** từ nghiên cứu trước (chưa kiểm thử runtime).
+- [ ] Kiểm tra lại cap level bằng code server + EXP table + kiểm thử client.
+- [x] Khôi phục danh sách chín nhóm trang bị từ nghiên cứu trước.
 - [ ] Đối chiếu danh sách trang bị (ID, tên, hệ phái, yêu cầu cấp, chỉ số, cách nhận).
 - [ ] Kiểm thử chuỗi nhiệm vụ tân thủ, NPC, bản đồ và phần thưởng bằng Windows client/server.
 - [ ] Viết lộ trình level 1 → tối đa và build đề xuất từng hệ phái trên gameplay đã nghiệm thu.
