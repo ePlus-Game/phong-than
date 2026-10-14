@@ -38,6 +38,12 @@ on:
       - 'PhongThanSource/Build/Build-Modern.ps1'
       - 'tools/verify_windows_build.py'
       - 'tools/stage_accountserver_smoke.py'
+      - 'AdminWeb/PhongThan-RunAll.ps1'
+      - 'AdminWeb/PhongThan-ClientPatch.ps1'
+      - 'PhongThan-MoGame.cmd'
+      - 'PhongThan-ChayTatCa.cmd'
+      - 'PhongThan-CaiDat.cmd'
+      - 'tests/test_windows_launchers.py'
       - 'PhongThanSource/Sources/AccountServices/AccountServer/**'
       - 'PhongThanSource/Sources/MultiServer/Heaven/Interface/**'
 permissions:
