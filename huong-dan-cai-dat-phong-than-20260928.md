@@ -37,6 +37,12 @@ Game.exe (client) ──5622──► Bishop.exe (gateway) ──5632──► G
 
 ### Bước 1 — Cài SQL Server Express LocalDB (một lần duy nhất)
 
+> Trong layout repository mới, hai bộ cài được đặt tại `install/SqlLocalDB.msi`
+> và `install/SQL2022-SSEI-Expr.exe` (trước đây là `Setup/`).
+> Có thể chạy `PhongThan-CaiDat.cmd` ở root để dùng installer trên máy thử nghiệm.
+> Tham khảo [`install/README.md`](install/README.md) và kiểm tra chữ ký số trước khi chạy.
+
+
 1. Tải **SQL Server 2022 Express** từ trang chính thức Microsoft: <https://www.microsoft.com/sql-server/sql-server-downloads> → mục **Express** → *Download now*.
 2. Chạy file tải về → chọn **Download Media** → chọn gói **LocalDB** (khoảng 50–60 MB) → tải về `SqlLocalDB.msi`.
 3. Chạy `SqlLocalDB.msi` → Next → chấp nhận điều khoản → Install.

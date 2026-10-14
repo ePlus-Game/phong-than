@@ -10,7 +10,8 @@ wrapper; it does not rebuild, re-encode or filter the archived game files.
 | `PhongThanRuntime-Staging/` | Original staged client/server runtime files and assets |
 | `PhongThanRuntime-State/` | Original runtime state archived in PT.zip |
 | `AdminWeb/` | Original administration utilities |
-| `Setup/`, `_backup/` | Original installation and backup materials |
+| `install/` | SQL LocalDB original installers, relocated byte-for-byte from historical `Setup/` |
+| `_backup/` | Archived backup materials (leave untouched) |
 | `PhongThan-*.cmd`, `CHANGELOG.md` | Original ZIP-root scripts and changelog |
 | `docs/original-pt/` | **Original PT/docs/**, kept separate from repository docs |
 | `archive/PT_EXACT_ZIP_MANIFEST.csv` | Unmodified import-time SHA-256 inventory |
@@ -25,9 +26,16 @@ The CSV manifests intentionally keep their **historical path names**
 (`source/PT/...`), because they are import evidence. Do not edit/recalculate
 them just to reflect a move.
 
-For the current layout, strip the `source/PT/` prefix. The sole collision
-with repository-maintained paths is the original archive's `PT/docs/`;
-those files are preserved unchanged under `docs/original-pt/`.
+For the current layout, strip the `source/PT/` prefix. There are **two
+explicit relocations**, with archived file blobs preserved unchanged:
+
+- `source/PT/docs/...` → `docs/original-pt/...` (original archive documentation);
+- `source/PT/Setup/SQL2022-SSEI-Expr.exe` and
+  `source/PT/Setup/SqlLocalDB.msi` → `install/...` (original SQL LocalDB installers).
+
+The archived manifest itself is **not** rewritten. The root `PhongThan-CaiDat.cmd`
+still launches the original admin setup entrypoint, which uses `install/` and
+accepts `Setup/` only for older copies. See [install/README.md](../install/README.md).
 
 Example: `source/PT/PhongThanRuntime-Staging/Client/data/a.pak` is now
 `PhongThanRuntime-Staging/Client/data/a.pak`. The old CSV entries may point

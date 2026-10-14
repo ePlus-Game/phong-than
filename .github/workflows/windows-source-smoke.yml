@@ -16,6 +16,7 @@ on:
       - 'PhongThanSource/Headers/PhongThanRelayProtocol.h'
       - 'tools/verify_windows_build.py'
       - 'tools/Build-PatchedGame.ps1'
+      - 'AdminWeb/PhongThan-Setup.ps1'
       - 'tools/stage_accountserver_smoke.py'
       - 'PhongThanSource/Sources/AccountServices/AccountServer/**'
       - 'PhongThanSource/Sources/MultiServer/Heaven/Interface/**'
@@ -73,6 +74,7 @@ jobs:
             /PhongThanSource/Deploy/Stop-StagingRuntime.ps1
             /PhongThanSource/Build/Build-Modern.ps1
             /tools/Build-PatchedGame.ps1
+            /AdminWeb/PhongThan-Setup.ps1
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -85,7 +87,8 @@ jobs:
             'PhongThanSource/Deploy/Start-StagingClient.ps1',
             'PhongThanSource/Deploy/Stop-StagingRuntime.ps1',
             'PhongThanSource/Build/Build-Modern.ps1',
-            'tools/Build-PatchedGame.ps1'
+            'tools/Build-PatchedGame.ps1',
+            'AdminWeb/PhongThan-Setup.ps1'
           )
           foreach ($file in $files) {
             $tokens = $null; $parseErrors = $null
