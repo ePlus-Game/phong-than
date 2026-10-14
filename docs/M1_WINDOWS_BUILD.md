@@ -60,6 +60,26 @@ not proof its Windows DLL imports resolve or the game can actually start.
 5. When this passes, move to M2's isolated Windows native service startup,
    world-ready 102 maps, test login, save/load and graceful shutdown.
 
+## Verified GitHub-hosted Windows module builds (14/10/2026)
+
+These are **native MSVC x86 compile/link tests on external copied source**, not runtime acceptance:
+
+| Module | Evidence | Result |
+| --- | --- | --- |
+| `PhongThanRelay.exe` | [Windows run #38496333559](https://github.com/ePlus-Game/phong-than-truyen-ky/actions/runs/38496333559) | Compile/link + PE32/i386 + SHA-256 **PASS** |
+| `PhongThanAccountServer.exe` | [Windows run #38497824476](https://github.com/ePlus-Game/phong-than-truyen-ky/actions/runs/38497824476) | Original-byte overlay (including explicit Winsock2) + compile/link + PE32/i386 + SHA-256 **PASS** |
+
+The AccountServer smoke patch source is staged using `python -m
+tools.stage_accountserver_smoke --target <external-workspace>`.
+A failed run exposed missing `SOCKET`/Winsock declarations in the legacy
+`GlobalFun.h`. The verified patch fixes this **in the copied source**;
+the archived source and runtime data remain unmodified.
+
+**Next:** build `Engine`, `LuaLibDll`, `CoreServer`, `GameServer` and
+`Game.exe` with all dependencies, then verify the complete 22-binary
+matrix. A module build may succeed while the real full build or live
+service startup fails.
+
 ## Existing guarantees and missing tests
 
 - **Present**: Python/C++98 static-source checks, PowerShell syntax checks,
