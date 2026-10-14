@@ -21,6 +21,32 @@ function Test-Port([int]$p) {
     finally { $c.Dispose() }
 }
 
+
+# An existing process is not evidence of a ready world. Observe the live
+# Bishop PID, TCP listeners and fresh WORLD_READY marker without touching DB.
+function Assert-ExistingServerReady {
+    $observer = Join-Path $Root 'tools\Read-WindowsRuntimeEvidence.ps1'
+    $manifest = Join-Path $Project 'Deploy\RUNTIME_CONTENT_MANIFEST.json'
+    if (-not (Test-Path -LiteralPath $observer -PathType Leaf)) {
+        throw "Khong tim thay cong cu kiem tra WORLD_READY: $observer"
+    }
+    $output = @(& powershell.exe -NoProfile -ExecutionPolicy Bypass -File $observer `
+        -RuntimeRoot $Runtime -ManifestPath $manifest -ExpectedMapCount 102 2>&1)
+    $code = $LASTEXITCODE
+    try {
+        $report = ($output -join [Environment]::NewLine) | ConvertFrom-Json -ErrorAction Stop
+    } catch {
+        throw "Khong doc duoc bao cao WORLD_READY; exit=$code. $($output -join ' ')"
+    }
+    if ($code -ne 0 -or $report.status -ne 'READY_FOR_LOGIN_CHECK' -or -not $report.world_ready) {
+        $reason = if (@($report.blockers).Count -gt 0) {
+            @($report.blockers) -join '; '
+        } else { 'WORLD_READY chua duoc xac nhan' }
+        throw "5 service dang chay nhung world CHUA SAN SANG: $reason. Khong mo client/admin, khong restart hoac sua database."
+    }
+    Write-Host 'Da xac nhan 5 service, cong TCP va WORLD_READY cho 102 maps.' -ForegroundColor Green
+}
+
 try {
     # Fail before database/server side effects if --WithClient has no executable.
     if ($WithClient -and -not (Test-Path -LiteralPath $ClientExe -PathType Leaf)) {
@@ -35,6 +61,8 @@ try {
         if ($missing.Count -gt 0) {
             throw "Server dang chay mot phan (thieu: $($missing -join ', ')). Khong setup DB hoac client cho den khi duoc xu ly."
         }
+        # Reject stale/unready clusters before client patches or database work.
+        Assert-ExistingServerReady
     }
 
     # Restore missing split PAKs before native runtime validation; never mutate
@@ -66,7 +94,8 @@ try {
         if ($missing.Count -gt 0) {
             throw "Server dang chay mot phan (thieu: $($missing -join ', ')). Kiem tra log va khoi phuc thu cong; khong tu dong khoi dong chong cheo."
         }
-        Write-Host 'Da tim thay 5 tien trinh server; bo qua khoi dong trung. Tinh trang WORLD_READY van can kiem tra trong log.'
+        Assert-ExistingServerReady
+        Write-Host 'Da tim thay 5 tien trinh server va xac nhan WORLD_READY; bo qua khoi dong trung.'
     } else {
         $startup = @(& (Join-Path $Project 'Deploy\Start-NativeServer.ps1') -ProjectRoot $Project -RuntimeRoot $Runtime)
         if (@($startup | Where-Object { $_.Status -eq 'READY_FOR_LOGIN' }).Count -eq 0) {
