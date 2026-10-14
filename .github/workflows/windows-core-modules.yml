@@ -113,13 +113,13 @@ jobs:
           $ErrorActionPreference = 'Continue'
           $modules = @('LuaLibDll','Engine','Common','ExpandPackageStaticLib','FilterTextStatic','CoreServer','CoreClient')
           $report = Join-Path $env:RUNNER_TEMP 'pt-core-module-evidence.json'
-          $args = @('-m','tools.verify_native_module_build','--output-root',(Join-Path $env:PT_CORE_WORKSPACE 'OutputModern'),'--report',$report)
-          foreach ($module in $modules) { $args += @('--module',$module) }
-          & python @args
+          $cliArgs = @('-m','tools.verify_native_module_build','--output-root',(Join-Path $env:PT_CORE_WORKSPACE 'OutputModern'),'--report',$report)
+          foreach ($module in $modules) { $cliArgs += @('--module',$module) }
+          & python @cliArgs
           $code = $LASTEXITCODE
           if (Test-Path -LiteralPath $report) {
             $data = Get-Content -LiteralPath $report -Raw | ConvertFrom-Json
-            "### Fresh Windows x86 core build — $($data.status)" | Out-File $env:GITHUB_STEP_SUMMARY -Append -Encoding utf8
+            "### Fresh Windows x86 core build - $($data.status)" | Out-File $env:GITHUB_STEP_SUMMARY -Append -Encoding utf8
             foreach ($module in $modules) {
               $result = $data.modules.$module.status
               "- $module : $result" | Out-File $env:GITHUB_STEP_SUMMARY -Append -Encoding utf8
