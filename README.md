@@ -9,6 +9,7 @@ Dự án gồm mã nguồn game, dữ liệu runtime và công cụ phục dựn
 - [Cập nhật tên hiển thị trong bản build](docs/BRANDING.md)
 - **[Master Roadmap — build, gameplay, online, multi-server](docs/MASTER_ROADMAP.md)**
 - [Lộ trình refactor engine và network](docs/REFACTORING.md)
+- **[Repository Hygiene — quản lý file rác, checkout gọn và kế hoạch tách archive](docs/REPOSITORY_HYGIENE.md)**
 - [Ma trận kiểm thử / tiêu chí nghiệm thu](docs/TEST_MATRIX.md)
 - **[EXE dùng để làm gì? Native/legacy server, client, test và bản build cũ](docs/EXECUTABLE_GUIDE.md)**
 - [Launcher Windows: khởi chạy, mã lỗi và an toàn dữ liệu](docs/LAUNCHER_BEHAVIOR.md)
