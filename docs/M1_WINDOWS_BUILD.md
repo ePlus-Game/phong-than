@@ -58,18 +58,20 @@ Run the verification only against a **fresh completed build**, not archived
 `OutputModern/` or a partly rebuilt directory. A structurally valid PE is
 not proof its Windows DLL imports resolve or the game can actually start.
 
-## GitHub-hosted native module baseline (new; pending CI evidence)
+## GitHub-hosted native module baseline (14/10/2026 — 2/2 PASS)
 
 `.github/workflows/windows-native-modules.yml` builds **LuaLibDll** and **Engine**
 from a fresh, source-only external copy on `windows-2022` (MSVC x86).
-It uses a sparse checkout of relevant source/headers and excludes
+It uses a sparse checkout of relevant source/headers plus the original
+`Lib/release/` libraries required for Engine linking; it excludes
 `Output/`, `OutputModern/`, PAK, SQL, runtime saves and staged binaries.
 The job compiles/links both projects and checks the freshly generated
 Client/Server DLL files as PE32/i386, with SHA-256 in a metadata-only artifact.
 Each target is reported independently even when another target fails.
 
 - Automatic: relevant PRs and changes on `main`; manual: `workflow_dispatch`.
-- **No** compilation success is claimed until the CI job itself is green.
+- [GitHub-hosted Windows run #38520540848](https://github.com/ePlus-Game/phong-than-truyen-ky/actions/runs/38520540848): **LuaLibDll PASS; Engine PASS** (freshly emitted DLL PE32/i386 plus SHA-256).
+- **Caveat:** Engine currently links some archived `Lib/release/` dependencies, including `JpgLib.lib`; this is not a clean rebuild of every transitive static library.
 - Green module CI is not the 22-binary full build and does not execute the game.
 - Next stage after module successes: dependency-aware `CoreServer` and
   `GameServer`/client build in an isolated workspace, then M2 runtime UAT.
@@ -98,6 +100,8 @@ These are **native MSVC x86 compile/link tests on external copied source**, not 
 | --- | --- | --- |
 | `PhongThanRelay.exe` | [Windows run #38496333559](https://github.com/ePlus-Game/phong-than-truyen-ky/actions/runs/38496333559) | Compile/link + PE32/i386 + SHA-256 **PASS** |
 | `PhongThanAccountServer.exe` | [Windows run #38497824476](https://github.com/ePlus-Game/phong-than-truyen-ky/actions/runs/38497824476) | Original-byte overlay (including explicit Winsock2) + compile/link + PE32/i386 + SHA-256 **PASS** |
+| `LuaLibDll.dll` (Client/Server roles) | [Windows run #38520540848](https://github.com/ePlus-Game/phong-than-truyen-ky/actions/runs/38520540848) | Fresh compiled DLL, PE32/i386 and SHA-256 **PASS** |
+| `Engine.dll` (Client/Server roles) | [Windows run #38520540848](https://github.com/ePlus-Game/phong-than-truyen-ky/actions/runs/38520540848) | Fresh compiled DLL linked with legacy static/import dependencies, PE32/i386 and SHA-256 **PASS** |
 
 The AccountServer smoke patch source is staged using `python -m
 tools.stage_accountserver_smoke --target <external-workspace>`.
@@ -105,9 +109,7 @@ A failed run exposed missing `SOCKET`/Winsock declarations in the legacy
 `GlobalFun.h`. The verified patch fixes this **in the copied source**;
 the archived source and runtime data remain unmodified.
 
-**Next:** build `Engine`, `LuaLibDll`, `CoreServer`, `GameServer` and
-`Game.exe` with all dependencies, then verify the complete 22-binary
-matrix. A module build may succeed while the real full build or live
+**Next:** build `CoreServer`, `GameServer` and `Game.exe` with dependency-aware stages; work towards a complete clean 22-binary matrix. Do not treat the existing staged binary inventory or the current two new DLLs as full M1 acceptance. A module build may succeed while the real full build or live
 service startup fails.
 
 ## Existing guarantees and missing tests
