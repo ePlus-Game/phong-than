@@ -46,6 +46,7 @@ jobs:
             /PhongThanSource/Sources/Engine/Engine.dsp
             /PhongThanSource/Sources/Engine/Include/
             /PhongThanSource/Sources/Engine/Src/
+            /PhongThanSource/Sources/Represent/iRepresent/
             /PhongThanSource/Sources/Library/LuaLib/LuaLibDll.dsp
             /PhongThanSource/Sources/Library/LuaLib/src/
             /PhongThanSource/Sources/Pack/ucl-1.01/include/
