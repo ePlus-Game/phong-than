@@ -62,12 +62,14 @@ def transformed(path: Path, replacements: tuple, *, check: bool = False) -> bool
         for newline in (b"\n", b"\r\n"):
             old_bytes = old.encode("ascii").replace(b"\n", newline)
             new_bytes = new.encode("ascii").replace(b"\n", newline)
+            # Some replacements (e.g. an include insertion) contain the
+            # old anchor. Check the full patched fragment *first*.
+            if data.count(new_bytes) == 1:
+                matched = True
+                break
             if data.count(old_bytes) == 1:
                 data = data.replace(old_bytes, new_bytes, 1)
                 matched = True
-                break
-            if data.count(new_bytes) == 1:
-                matched = True  # idempotent after already applied
                 break
         if not matched:
             raise ValueError(f"expected unique patch anchor missing in {path}: {old[:80]}")
