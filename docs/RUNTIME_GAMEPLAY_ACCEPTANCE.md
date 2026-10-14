@@ -25,6 +25,26 @@ GitHub Actions đã **PASS** các bài kiểm tra C++ EXP, Core, Server, Client 
 - Lấy binary từ quy trình build riêng đáng tin cậy, **không suy ra artifact được phát hành từ link Actions chỉ lưu hash/manifest**. Lưu commit SHA, compiler, architecture, danh sách DLL, SHA-256 và cách đóng gói.
 - Giữ nguyên bản PAK/asset và runtime gốc; dùng bản sao thử nghiệm. Kiểm tra quyền sử dụng nguồn/assets trước khi phân phối.
 
+## 1A. Kiểm tra bundle/runtime tự động (chỉ đọc)
+
+Đã bổ sung công cụ [tools/runtime_preflight.py](../tools/runtime_preflight.py). Chạy trên bản sao **đã đóng gói đủ thư mục Client/Server**, tuyệt đối không trỏ vào runtime production. Công cụ xác minh 22 PE32/i386 (SHA-256, tên và role DLL/EXE), sự hiện diện của \`ServerCfg.ini\` và \`DataBase.ini\`, \`WorldSet.ini\` đúng 102 map, so khớp tên relay và cổng trong manifest. **Không khởi động game, mở DB, cập nhật cấu hình, thay PAK hoặc đọc mật khẩu**.
+
+Trên Windows VM, từ thư mục checkout repository:
+
+\`\`\`powershell
+python tools/runtime_preflight.py --root "D:\PT-UAT\PhongThanRuntime-Staging" --mode runtime --manifest "PhongThanSource\Deploy\RUNTIME_CONTENT_MANIFEST.json" --expected-maps 102 --report "D:\PT-UAT\reports\runtime-preflight.json"
+\`\`\`
+
+Hoặc với bản build chỉ gồm 22 binary, chưa cấu hình chạy game:
+
+\`\`\`powershell
+python tools/runtime_preflight.py --root "D:\PT-UAT\OutputModern" --mode bundle --report "D:\PT-UAT\reports\bundle-preflight.json"
+\`\`\`
+
+**Kết quả:** \`READY_FOR_RUNTIME_TEST\` = vượt qua kiểm tra **tĩnh**, **không phải** server/world/login/gameplay PASS; \`BLOCKED\` = thiếu file, sai PE32, sai map hoặc manifest. File báo cáo chỉ chứa tên file tương đối, SHA-256, tình trạng và số map; không lưu connection string, tài khoản hay dữ liệu game. Sau khi static preflight đạt, phải thực hiện RT-01..04, GP-01..06, EXP-01..06 trong VM mới được đánh dấu Runtime PASS.
+
+[Workflow kiểm thử công cụ](../.github/workflows/windows-runtime-preflight.yml) dùng các file PE giả để thử logic trên GitHub-hosted Windows. Workflow này **không** chạy game hoặc kiểm tra VM của bạn.
+
 ## 2. Windows loader và phụ thuộc
 
 Audit tĩnh [P4](MASTER_ROADMAP.md) đã thấy bốn external import cần xác minh trên máy Windows: `dinput8.dll`, `odbc32.dll`, `msvcp140.dll`, `vcruntime140.dll`. Khi test, cài runtime Windows/DirectX/VC++ Redistributable từ nguồn được tin cậy rồi ghi kết quả tải từng EXE/DLL bằng Windows loader. **Không tải DLL lẻ từ nguồn không rõ ràng.**
