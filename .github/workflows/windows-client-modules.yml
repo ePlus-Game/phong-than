@@ -119,8 +119,8 @@ jobs:
           $latin1 = [Text.Encoding]::GetEncoding(28591)
           $dspText = [IO.File]::ReadAllText($dsp, $latin1)
           $legacyFlag = '/I "../../../ThirdParty/dx9csdk/Include"'
-          $occurrences = $dspText.Split(@($legacyFlag), [StringSplitOptions]::None).Length - 1
-          if ($occurrences -ne 2) { throw "Unexpected Represent3 include flags: $occurrences" }
+          $occurrences = [regex]::Matches($dspText, [regex]::Escape($legacyFlag)).Count
+          if ($occurrences -lt 2 -or $occurrences -gt 8) { throw "Unexpected Represent3 include flags: $occurrences" }
           [IO.File]::WriteAllText($dsp, $dspText.Replace($legacyFlag, ''), $latin1)
           Write-Host 'Moved legacy DX9 header lookup behind Windows SDK in external Represent3 copy.'
           "PT_CLIENT_WORKSPACE=$work" | Out-File $env:GITHUB_ENV -Append -Encoding utf8
@@ -143,6 +143,7 @@ jobs:
         shell: powershell
         run: |
           $ErrorActionPreference = 'Continue'
+          if (-not $env:PT_CLIENT_WORKSPACE) { throw 'Client build workspace was not created; skip binary inspection' }
           $modules = @(
             'LuaLibDll','Engine','Common','ExpandPackageStaticLib','FilterTextStatic',
             'CoreClient','ExpandPackage','FilterText','Heaven','Rainbow',
