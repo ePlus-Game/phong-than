@@ -18,7 +18,7 @@ jobs:
   verify-and-publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           filter: blob:none
           sparse-checkout-cone-mode: false
@@ -32,7 +32,7 @@ jobs:
             /PhongThanSource/Sources/AccountServices/AccountServer/S3PDBSocketPool.cpp
             /PhongThanSource/Build/Build-Modern.ps1
             /PhongThanSource/Build/Build-PhongThan.ps1
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
       - name: Test recovery toolkit and exact patch contexts (not game compilation)
@@ -52,7 +52,7 @@ jobs:
           python tools/package_recovery_toolkit.py --output dist/PT-Recovery-Toolkit-v0.1.0-recovery.1.zip
           cd dist
           sha256sum -c PT-Recovery-Toolkit-v0.1.0-recovery.1.sha256
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v6
         with:
           name: PT-Recovery-Toolkit-v0.1.0-recovery.1
           path: dist/*

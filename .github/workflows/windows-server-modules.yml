@@ -40,7 +40,7 @@ jobs:
     timeout-minutes: 95
     steps:
       - name: Sparse checkout native source; exclude actual game state
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           filter: blob:none
           sparse-checkout-cone-mode: false
@@ -82,7 +82,7 @@ jobs:
             /tools/legacy_hardening.py
             /overlays/legacy/
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
 
@@ -152,7 +152,7 @@ jobs:
 
       - name: Upload hashes only, never binaries, runtime or raw compiler logs
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: windows-server-module-evidence
           path: ${{ runner.temp }}/pt-server-module-evidence.json

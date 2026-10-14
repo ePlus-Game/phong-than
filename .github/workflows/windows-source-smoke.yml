@@ -58,7 +58,7 @@ jobs:
     runs-on: windows-latest
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           filter: blob:none
           sparse-checkout-cone-mode: false
@@ -98,7 +98,7 @@ jobs:
             /PhongThan-CaiDat.cmd
             /tests/test_windows_launchers.py
             /docs/LAUNCHER_BEHAVIOR.md
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
       - name: Parse Windows PowerShell 5.1 entry points

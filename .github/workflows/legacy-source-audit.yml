@@ -16,7 +16,7 @@ jobs:
   verify:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           # Avoid downloading multi-GiB PAKs from the exact ZIP mirror.
           filter: blob:none
@@ -56,7 +56,7 @@ jobs:
             /docs/LEGACY_HARDENING.md
             /docs/LAUNCHER_BEHAVIOR.md
             /docs/releases/v0.1.0-recovery.1.md
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
       - name: Compile-check Python tools and tests
@@ -65,7 +65,7 @@ jobs:
         run: python -m unittest discover -s tests -v
       - name: Generate Phong Than Truyen Ky branded UI overlay
         run: python tools/build_branding_overlay.py --output-dir "$RUNNER_TEMP/PhongThanTruyenKy-Branding" --write
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v6
         with:
           name: phong-than-truyen-ky-branding-overlay
           path: ${{ runner.temp }}/PhongThanTruyenKy-Branding/
@@ -88,7 +88,7 @@ jobs:
         run: |
           python tools/audit_sensitive_paths.py --json public-risk-audit.json --markdown public-risk-audit.md
           cat public-risk-audit.md >> "$GITHUB_STEP_SUMMARY"
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v6
         if: always()
         with:
           name: public-archive-filename-audit
