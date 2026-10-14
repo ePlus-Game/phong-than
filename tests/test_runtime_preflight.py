@@ -99,11 +99,10 @@ class ReadOnlyRuntimeTests(unittest.TestCase):
         ports = content["RuntimeSettings"]["ExpectedListeningPorts"]
         self.assertEqual(ports["PhongThanRelay.exe"], [5003])
         self.assertNotIn("S3Relay.exe", ports)
-        artifacts = content["RuntimeContent"]["Server"]["ArtifactFiles"] if "RuntimeContent" in content else None
-        if artifacts is not None:
-            self.assertIn("PhongThanRelay.exe", artifacts)
-            self.assertNotIn("S3Relay.exe", artifacts)
-            self.assertNotIn("PhongThanRelayServer.exe", artifacts)
+        artifacts = content["Roles"]["Server"]["ArtifactFiles"]
+        self.assertIn("PhongThanRelay.exe", artifacts)
+        self.assertNotIn("S3Relay.exe", artifacts)
+        self.assertNotIn("PhongThanRelayServer.exe", artifacts)
 
     def test_bundle_mode_never_claims_gameplay(self):
         with tempfile.TemporaryDirectory() as tmp:
