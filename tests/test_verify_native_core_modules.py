@@ -26,7 +26,7 @@ class CoreModuleEvidenceTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             archive = Path(d) / "lib" / "Common.lib"
             archive.parent.mkdir(parents=True)
-            archive.write_bytes(b"!<arch>\\n" + b"valid-fixture-data")
+            archive.write_bytes(b"!<arch>\n" + b"valid-fixture-data")
             report = verify_modules(Path(d), ["Common"])
         self.assertEqual(report["status"], "PASS", report)
         self.assertEqual(len(report["modules"]["Common"]["artifacts"][0]["sha256"]), 64)
