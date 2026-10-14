@@ -48,7 +48,7 @@ try {
         Write-Host 'Da tim thay 5 tien trinh server; bo qua khoi dong trung. Tinh trang WORLD_READY van can kiem tra trong log.'
     } else {
         $startup = @(& (Join-Path $Project 'Deploy\Start-NativeServer.ps1') -ProjectRoot $Project -RuntimeRoot $Runtime)
-        if (-not @($startup | Where-Object { $_.Status -eq 'READY_FOR_LOGIN' }).Count) {
+        if (@($startup | Where-Object { $_.Status -eq 'READY_FOR_LOGIN' }).Count -eq 0) {
             throw 'Script khoi dong khong tra ve READY_FOR_LOGIN; can kiem tra server.'
         }
         Write-Host 'Server da khoi dong va xac nhan WORLD_READY.'
