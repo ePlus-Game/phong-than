@@ -24,7 +24,7 @@ $vs = & $vswhere -latest -products * -requires Microsoft.VisualStudio.Component.
 if (-not $vs) { throw 'MSVC x86 C++ compiler is missing' }
 $vcvarsall = Join-Path $vs 'VC\Auxiliary\Build\vcvarsall.bat'
 $env:PATH = (Split-Path -Parent $vswhere) + ';' + $env:PATH
-$lines = & cmd.exe /c "\`"$vcvarsall\`" x86 >nul && set"
+$lines = & cmd.exe /c ('"' + $vcvarsall + '" x86 >nul && set')
 foreach ($line in $lines) {
     $i = $line.IndexOf('=')
     if ($i -gt 0) { [Environment]::SetEnvironmentVariable($line.Substring(0,$i),$line.Substring($i+1),'Process') }
