@@ -8,6 +8,7 @@ foreach ($file in @($helper, $admin)) {
     if ($errors.Count -gt 0) { throw "PowerShell parse failed: $file : $($errors[0])" }
 }
 $source = Get-Content -LiteralPath $admin -Raw
+if (-not $source.Contains("'bin\PakEntryExtract.exe'")) { throw 'Admin must prefer isolated tool bundle' }
 if (-not $source.Contains('Initialize-ItemTables.ps1') -or
     -not $source.Contains('if (-not $script:PakItemCatalogVerified)')) {
     throw 'Admin must use helper and block unverified item codes'
