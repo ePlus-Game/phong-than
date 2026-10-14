@@ -21,6 +21,15 @@ MODULE_OUTPUTS = {
     "FilterTextStatic": ("lib/FilterText_StaticLib.lib",),
     "CoreServer": ("Server/CoreServer.dll",),
     "CoreClient": ("Client/CoreClient.dll",),
+    "ExpandPackage": ("Server/ExpandPackage.dll",),
+    "FilterText": ("Server/FilterText.dll",),
+    "Heaven": ("Server/Heaven.dll",),
+    "Rainbow": ("Server/Rainbow.dll",),
+    "PhongThanRelay": ("Server/PhongThanRelay.exe",),
+    "AccountServer": ("Server/PhongThanAccountServer.exe",),
+    "Bishop": ("Server/Bishop.exe",),
+    "Goddess": ("Server/Goddess.exe",),
+    "GameServer": ("Server/GameServer.exe",),
 }
 
 
@@ -51,7 +60,7 @@ def verify_modules(root: Path, modules: list[str]) -> dict:
                     with candidate.open("rb") as handle:
                         digest = hashlib.file_digest(handle, "sha256").hexdigest()
                 else:
-                    size, digest = inspect_pe(candidate, require_dll=True)
+                    size, digest = inspect_pe(candidate, require_dll=candidate.suffix.lower() == ".dll")
             except (OSError, ValueError) as exc:
                 errors.append(f"{relative}: {exc}")
                 continue
