@@ -1,0 +1,42 @@
+name: Repository hygiene guard
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  guard-new-artifacts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Reject newly added generated or runtime-state files
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          violations=0
+          while IFS= read -r path; do
+            [[ -n "$path" ]] || continue
+            case "$path" in
+              _backup/*|PhongThanSource/Output/*|PhongThanSource/OutputModern/*|PhongThanSource/Build/LogsModern/*|PhongThanRuntime-Staging/ControlLogs/*|PhongThanRuntime-State/sql/*|PhongThanRuntime-Staging/Client/UserData/*|PhongThanRuntime-Staging/Client/Snapshot/*|PhongThanRuntime-Staging/Server/CharacterStore/*|PhongThanRuntime-Staging/Server/database/*|PhongThanRuntime-Staging/Server/databasetong/*|PhongThanRuntime-Staging/Server/databasetongmember/*|PhongThanRuntime-Staging/Server/admin_bridge/*)
+                echo "::error file=$path::New runtime/archive/build output is not allowed in source PRs"
+                violations=$((violations + 1))
+                ;;
+              *.pdb|*.idb|*.pch|*.obj|*.ilk|*.tlog|*.dmp|*.log|*.log.err|*.log.out|*.ncb|*.suo|*.VC.db|*.zip|*.rar)
+                echo "::error file=$path::New generated/debug/archive file is not allowed"
+                violations=$((violations + 1))
+                ;;
+            esac
+          done < <(gh api --paginate --jq '.[] | select(.status == "added") | .filename' "repos/$GH_REPO/pulls/$PR_NUMBER/files?per_page=100")
+          if (( violations > 0 )); then
+            echo "::error::$violations newly added artifact(s) detected. Use an external archive or build artifact instead."
+            exit 1
+          fi
+          echo "No newly added generated artifacts detected."
