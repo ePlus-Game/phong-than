@@ -9,7 +9,7 @@
       "Goddess.exe": [5001],
       "PhongThanAccountServer.exe": [5002],
       "Bishop.exe": [5622, 5632],
-      "S3Relay.exe": [5003, 5004, 5005],
+      "PhongThanRelay.exe": [5003],
       "GameServer.exe": [6666]
     }
   },
