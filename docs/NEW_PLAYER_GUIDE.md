@@ -8,28 +8,38 @@
 2. Chỉ tải client từ nguồn phát hành chính thức của dự án khi có bản phát hành được xác nhận. **Chưa có hướng dẫn đăng ký, tải và vào server được nghiệm thu**.
 3. Khi có bản chơi thử, ưu tiên trải nghiệm nhân vật mới với túi đồ trống và giữ lại thông tin lỗi để báo nhóm phát triển; không dùng tài khoản hoặc dữ liệu nhân vật quan trọng trên môi trường thử nghiệm.
 
-## 2. Ba hệ phái trong game
+## 2. Ba hệ phái: Giáp Sĩ, Đạo Sĩ, Dị Nhân
 
-Ba hệ phái đã được xác định trong đợt nghiên cứu trước: **Côn Lôn, Thiên Sơn và Tiêu Dao**. Tên hệ phái là dữ kiện nghiên cứu đã có; mô tả vai trò chiến đấu, kỹ năng cụ thể và điểm cộng tối ưu vẫn cần đối chiếu với phiên bản runtime hiện tại.
+**Đính chính:** Ba hệ phái theo cẩm nang Phong Thần VinaGame là **Giáp Sĩ, Đạo Sĩ và Dị Nhân**. Tài liệu trước đã nhầm Côn Lôn, Thiên Sơn, Tiêu Dao thành hệ phái. Không dùng ba tên này để hướng dẫn chọn lớp nhân vật.
 
-| Hệ phái | Đã xác định | Hướng dẫn chuyên sâu sẽ bổ sung |
+| Hệ phái | Phong cách chơi theo tài liệu VNG | Gợi ý tân thủ |
 | --- | --- | --- |
-| **Côn Lôn** | Tên hệ phái | NPC gia nhập, vũ khí, hệ kỹ năng, điểm thuộc tính, trang bị cuối game |
-| **Thiên Sơn** | Tên hệ phái | NPC gia nhập, vũ khí, hệ kỹ năng, điểm thuộc tính, trang bị cuối game |
-| **Tiêu Dao** | Tên hệ phái | NPC gia nhập, vũ khí, hệ kỹ năng, điểm thuộc tính, trang bị cuối game |
+| **Giáp Sĩ** | Cận chiến, sức mạnh, thể lực và giáp phòng ngự; có thể cưỡi thần thú | Hợp với người thích áp sát và chiến đấu trực diện |
+| **Đạo Sĩ** | Ma pháp âm dương, ngũ hành, địa/thủy/phong/hỏa; di chuyển bằng thần điểu | Hợp với người thích đánh bằng phép |
+| **Dị Nhân** | Triệu hồi trợ thủ như lực sĩ, tinh quân, thiên quân, thần thú; bùa chú tiêu hao đối phương; có cánh | Hợp với người thích triệu hồi và phối hợp hiệu ứng |
 
-**Gợi ý tân thủ:** Hãy chọn hệ phái theo kỹ năng và phong cách chơi sau khi xem mô tả trong client. Chưa nên đầu tư toàn bộ điểm kỹ năng hoặc nguyên liệu hiếm theo build của một máy chủ khác.
+Nguồn chính thức: [Giáp Sĩ](https://phongthan.vinagame.com.vn/cam-nang/gioi-thieu/tam-gioi-giap-si.html), [Đạo Sĩ](https://phongthan.vinagame.com.vn/cam-nang/gioi-thieu/tam-gioi-dao-si.html), [Dị Nhân](https://phongthan.vinagame.com.vn/cam-nang/gioi-thieu/tam-gioi-di-nhan.html). Đây là mô tả **bản gốc VNG**; kỹ năng và gameplay trong bản phục dựng cần kiểm thử riêng.
+
+### Ví dụ nhiệm vụ cấp 1 (theo VNG; chưa xác nhận ở bản phục dựng)
+
+| Hệ phái | Nhiệm vụ | NPC / vị trí |
+| --- | --- | --- |
+| Giáp Sĩ | Hộp Gấm | Tô Hộ (200,204), Sùng Thành Đại Doanh |
+| Đạo Sĩ | Bách Lý | Từ Hàng Đạo Nhân (206,196) |
+| Dị Nhân | Khai Trí | Thiếu Hạo (198,204) |
+
+**Lưu ý:** Không nhầm tên địa danh, ví dụ Côn Lôn, với tên hệ phái. Để có hướng dẫn kỹ năng, cộng điểm, nhiệm vụ và trang bị chính xác cho bản phục dựng, cần đối chiếu code và chạy gameplay.
 
 ## 3. Cấp độ và lộ trình phát triển
 
-**Cấp tối đa theo kết quả nghiên cứu trước: 150.** Mốc này vẫn cần được tái đối chiếu bằng cấu hình/logic giới hạn cấp của server, bảng EXP và client trước khi gắn nhãn “đã kiểm thử gameplay”.
+**Cấp tối đa của bản phục dựng chưa xác minh.** Con số 150 nêu trước đây chưa có bằng chứng cụ thể từ code. [Cẩm nang chuyển sinh của VNG](https://phongthan.vinagame.com.vn/cam-nang/tinh-nang/chuyen-sinh.html) đề cập mốc cấp 200, nhưng không được tự áp dụng cho bản phục dựng.
 
 ### Lộ trình cho tân thủ
 
 1. **Bắt đầu:** tạo nhân vật, kiểm tra hướng dẫn và các nhiệm vụ đầu tiên trong client; làm quen di chuyển, NPC, túi đồ, kỹ năng.
 2. **Khi mở hệ phái:** tìm hiểu kỹ năng và điều kiện gia nhập trong bản đang chơi; tránh dựa vào tọa độ/NPC của phiên bản khác khi chưa xác nhận.
 3. **Trong quá trình tăng cấp:** ưu tiên nội dung nhiệm vụ có phần thưởng đã nghiệm thu; kiểm tra điều kiện cấp trước khi dùng hoặc nâng cấp trang bị.
-4. **Khi tiến tới cấp 150:** tra cứu bảng kinh nghiệm, điều kiện mở kỹ năng và nguồn đồ cuối game theo dữ liệu của server; các mốc EXP, khu luyện cấp và nhiệm vụ cụ thể còn phải xác minh.
+4. **Khi đạt cấp cao:** tra cứu bảng kinh nghiệm, điều kiện mở kỹ năng và nguồn đồ cuối game theo dữ liệu của server; các mốc EXP, khu luyện cấp và nhiệm vụ cụ thể còn phải xác minh.
 
 ## 4. Trang bị và nâng cấp
 
@@ -45,9 +55,9 @@ Kết quả nghiên cứu trước xác định **chín nhóm trang bị**: **v�
 
 | Hệ phái | Trang bị cuối game | Cấp yêu cầu | Chỉ số / hiệu ứng | Cách sở hữu |
 | --- | --- | --- | --- | --- |
-| Côn Lôn | Chưa đối chiếu ID/tên | Chưa đối chiếu | Chưa đối chiếu | Chưa đối chiếu |
-| Thiên Sơn | Chưa đối chiếu ID/tên | Chưa đối chiếu | Chưa đối chiếu | Chưa đối chiếu |
-| Tiêu Dao | Chưa đối chiếu ID/tên | Chưa đối chiếu | Chưa đối chiếu | Chưa đối chiếu |
+| Giáp Sĩ | Chưa đối chiếu ID/tên | Chưa đối chiếu | Chưa đối chiếu | Chưa đối chiếu |
+| Đạo Sĩ | Chưa đối chiếu ID/tên | Chưa đối chiếu | Chưa đối chiếu | Chưa đối chiếu |
+| Dị Nhân | Chưa đối chiếu ID/tên | Chưa đối chiếu | Chưa đối chiếu | Chưa đối chiếu |
 
 **Thận trọng khi cường hóa/trao đổi trong bản thử nghiệm:** các luồng phát quà và hoàn nguyên liệu Linh Thú chưa có bảo đảm giao dịch nguyên tử hoặc phục hồi khi crash. Xem [Phát quà và Linh Thú](REWARDS_AND_PETS.md).
 
@@ -60,9 +70,9 @@ Kết quả nghiên cứu trước xác định **chín nhóm trang bị**: **v�
 
 ## 6. Câu hỏi thường gặp
 
-**Level tối đa là bao nhiêu?** Theo nghiên cứu trước là **150**, đang chờ kiểm thử trực tiếp với server/client hiện hành.
+**Level tối đa là bao nhiêu?** Chưa được chứng minh bằng source/runtime; mốc 150 trước đây chưa có chứng cứ, còn tài liệu VNG có đề cập cấp 200.
 
-**Có những hệ phái nào?** **Côn Lôn, Thiên Sơn và Tiêu Dao**. Khuyến nghị build cụ thể vẫn cần xác minh kỹ năng và độ cân bằng.
+**Có những hệ phái nào?** **Giáp Sĩ, Đạo Sĩ và Dị Nhân**. Khuyến nghị build cụ thể vẫn cần xác minh kỹ năng và độ cân bằng.
 
 **Trang bị mạnh nhất là gì?** Đã ghi nhận chín nhóm trang bị; tên bộ cuối game, ID, chỉ số và nguồn sở hữu từng hệ phái chưa được đối chiếu đủ.
 
@@ -70,9 +80,9 @@ Kết quả nghiên cứu trước xác định **chín nhóm trang bị**: **v�
 
 ## 7. Checklist để hoàn thiện cẩm nang
 
-- [x] Khôi phục tên ba hệ phái từ nghiên cứu trước: Côn Lôn, Thiên Sơn, Tiêu Dao.
+- [x] Xác minh tên ba hệ phái theo cẩm nang VNG: Giáp Sĩ, Đạo Sĩ, Dị Nhân.
 - [ ] Đối chiếu nhánh kỹ năng, điểm thuộc tính từng hệ phái với source/runtime kèm đường dẫn và ID.
-- [x] Ghi lại mốc cấp tối đa **150** từ nghiên cứu trước (chưa kiểm thử runtime).
+- [ ] Đối chiếu mốc 150 đã nêu trước đây với server, bảng EXP, client; không suy ra cap từ bản VNG.
 - [ ] Kiểm tra lại cap level bằng code server + EXP table + kiểm thử client.
 - [x] Khôi phục danh sách chín nhóm trang bị từ nghiên cứu trước.
 - [ ] Đối chiếu danh sách trang bị (ID, tên, hệ phái, yêu cầu cấp, chỉ số, cách nhận).
