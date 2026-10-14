@@ -1,5 +1,7 @@
 # Phong Thần Truyền Kỳ — Test matrix
 
+See [MASTER_ROADMAP.md](MASTER_ROADMAP.md) for milestone priorities, dependencies and release gates.
+
 This document distinguishes source verification from tests that actually execute a Windows x86 client/server. A green GitHub Actions badge is **not** evidence that the game is playable.
 
 | Tier | Execution | Scope | Acceptance |
