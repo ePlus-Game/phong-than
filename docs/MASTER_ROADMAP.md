@@ -29,6 +29,7 @@
 
 | F10 | GitHub-hosted Windows x86 Client: `Game.exe`, `Represent2`, `Represent3` và 10 dependency | **Windows Client build PASS** | [PR #57](https://github.com/ePlus-Game/phong-than-truyen-ky/pull/57), [run #38530141589](https://github.com/ePlus-Game/phong-than-truyen-ky/actions/runs/38530141589) | 13/13 module PASS, nhưng chưa có full build 22 role binaries trong một workspace hay gameplay |
 | F11 | Combined Windows x86 source build trong một workspace mới | **19/19 project, 22/22 EXE/DLL build PASS** | [PR #59](https://github.com/ePlus-Game/phong-than-truyen-ky/pull/59), [run #38531158753](https://github.com/ePlus-Game/phong-than-truyen-ky/actions/runs/38531158753) | PE32/i386 + SHA-256 đạt; import resolution, packaging, startup 5 service và gameplay chưa nghiệm thu |
+| F12 | Phân tích DLL imports của 22 binary mới, gồm delay-load | **Static dependency audit PASS** | [PR #65](https://github.com/ePlus-Game/phong-than-truyen-ky/pull/65), [run #38546154123](https://github.com/ePlus-Game/phong-than-truyen-ky/actions/runs/38546154123) | 22/22 phân tích; không thiếu DLL nội bộ trong role, 4 external imports chưa xác nhận trên Windows VM; không phải loader test |
 
 Trạng thái quy ước: **Planned → Implemented → CI PASS → Windows Build PASS → Runtime PASS → Gameplay/UAT PASS → Released**. Một feature chỉ được chuyển giai đoạn khi có artifact, log hoặc test ID tương ứng, không cập nhật theo phỏng đoán.
 
@@ -39,12 +40,12 @@ Trạng thái quy ước: **Planned → Implemented → CI PASS → Windows Buil
 | **P1 - Core x86** | **PASS (7/7 module)** | [Windows Core #38523254976](https://github.com/ePlus-Game/phong-than-truyen-ky/actions/runs/38523254976) | Thư viện legacy vẫn là linker input; chưa kiểm thử chạy game |
 | **P2 - Native Server x86** | **PASS (15/15 module)** | [Windows Server #38526607624](https://github.com/ePlus-Game/phong-than-truyen-ky/actions/runs/38526607624): 5 service EXE mới, DLL/COFF + SHA-256 | Chưa khởi động server, DB hoặc world |
 | **P3 - Client x86** | **PASS (13/13 module)** | [PR #57](https://github.com/ePlus-Game/phong-than-truyen-ky/pull/57), [Windows Client #38530141589](https://github.com/ePlus-Game/phong-than-truyen-ky/actions/runs/38530141589) | Build mới Game.exe, Represent2/3 và các DLL; chưa chạy client/gameplay |
-| **P4 - Full release x86** | **Combined build PASS (22/22 EXE/DLL)** | [PR #59](https://github.com/ePlus-Game/phong-than-truyen-ky/pull/59), [run #38531158753](https://github.com/ePlus-Game/phong-than-truyen-ky/actions/runs/38531158753): 19 project mới, PE32 + SHA-256 | Đang bổ sung import/delay-load DLL audit, packaging và chạy thử loader; không coi build PASS là game chơi được |
+| **P4 - Full release x86** | **22/22 build + static DLL imports PASS** | [Combined build #38531158753](https://github.com/ePlus-Game/phong-than-truyen-ky/actions/runs/38531158753), [import audit #38546154123](https://github.com/ePlus-Game/phong-than-truyen-ky/actions/runs/38546154123): PE32/i386, SHA-256, normal/delay-load DLL metadata đều đạt | Chưa nghiệm thu Windows loader, packaging, chạy 5 service, DB, 102 maps hoặc login |
 | **P5 - Runtime & Gameplay E2E** | **Chưa nghiệm thu** | Windows VM/runner cách ly; 5 tiến trình, 102 maps, login/save/relogin | Không dùng production account hoặc nhân vật thật |
 
 **Điều kiện:** P1-P4 đạt build PASS *không* đồng nghĩa Windows loader, runtime hoặc gameplay đã được nghiệm thu, và mọi bản binary/PAK/SQL staging gốc phải được giữ nguyên. Chưa phát hành public trước khi hoàn thành P4/P5.
 
-**P4 bổ sung kiểm thử tĩnh DLL imports:** parse PE import table và delay-load, fail nếu DLL nội bộ của game bị thiếu ở Client/Server; tên DLL bên ngoài chỉ được liệt kê để chuẩn bị VM (không được tự nhận là đã có hoặc nạp được). Test trên VM Windows sạch, runtime DB, world 102 maps, login/relogin vẫn thuộc P5.
+**P4 DLL import audit đã PASS:** [run #38546154123](https://github.com/ePlus-Game/phong-than-truyen-ky/actions/runs/38546154123) phân tích 22/22 PE32 (normal + delay-load). Không phát hiện import DLL nội bộ sai role; bốn DLL bên ngoài phải xác minh ở môi trường chạy là `dinput8.dll`, `odbc32.dll`, `msvcp140.dll`, `vcruntime140.dll` (hai DLL cuối thuộc VC++ redistributable). Test loader thật, DB, world 102 maps và login/relogin vẫn thuộc P5.
 
 ## Milestone bắt buộc theo thứ tự phụ thuộc
 
