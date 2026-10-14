@@ -1,5 +1,5 @@
 /*****************************************************************************************
-//	Êó±êÖ¸Õë´°¿Ú
+//	é¼ æ ‡æŒ‡é’ˆçª—å£
 //	Copyright : Kingsoft 2002
 //	Author	:   Wooy(Wu yue)
 //	CreateTime:	2002-8-17
@@ -9,6 +9,8 @@
 #include "KPakFile.h"
 
 #include "UiCursor.h"
+#include "CursorFallback.h"
+#include <stdio.h>
 #include "string.h"
 #include "../../../Represent/iRepresent/iRepresentShell.h"
 
@@ -17,7 +19,7 @@
 extern iRepresentShell *g_pRepresentShell;
 
 //--------------------------------------------------------------------------
-//	¹¦ÄÜ£º¹¹Ôìº¯Êı
+//	åŠŸèƒ½ï¼šæ„é€ å‡½æ•°
 //--------------------------------------------------------------------------
 KUiCursor::KUiCursor() {
     m_bShow = true;
@@ -44,7 +46,7 @@ KUiCursor::KUiCursor() {
 #endif
 }
 
-//Çå¿ÕÈ«²¿×ÊÔ´
+//æ¸…ç©ºå…¨éƒ¨èµ„æº
 void KUiCursor::Cleanup() {
 #ifdef  KUI_USE_HARDWARE_MOUSE
     {
@@ -71,14 +73,14 @@ void KUiCursor::Cleanup() {
 }
 
 //--------------------------------------------------------------------------
-//	¹¦ÄÜ£ºÎö¹¹º¯Êı
+//	åŠŸèƒ½ï¼šææ„å‡½æ•°
 //--------------------------------------------------------------------------
 KUiCursor::~KUiCursor() {
     Cleanup();
 }
 
 //--------------------------------------------------------------------------
-//	¹¦ÄÜ£ºÉèÖÃÊó±êÖ¸ÕëÎ»ÖÃ
+//	åŠŸèƒ½ï¼šè®¾ç½®é¼ æ ‡æŒ‡é’ˆä½ç½®
 //--------------------------------------------------------------------------
 void KUiCursor::SetPosition(int h, int v) {
     m_nPositionH = h;
@@ -86,7 +88,7 @@ void KUiCursor::SetPosition(int h, int v) {
 }
 
 //--------------------------------------------------------------------------
-//	¹¦ÄÜ£º»ñÈ¡Êó±êÖ¸ÕëÎ»ÖÃ
+//	åŠŸèƒ½ï¼šè·å–é¼ æ ‡æŒ‡é’ˆä½ç½®
 //--------------------------------------------------------------------------
 void KUiCursor::GetPosition(int &h, int &v) {
     h = m_nPositionH;
@@ -94,7 +96,7 @@ void KUiCursor::GetPosition(int &h, int &v) {
 }
 
 //--------------------------------------------------------------------------
-//	¹¦ÄÜ£ºÔØÈëÊó±êÖ¸ÕëÍ¼ĞÎ
+//	åŠŸèƒ½ï¼šè½½å…¥é¼ æ ‡æŒ‡é’ˆå›¾å½¢
 //--------------------------------------------------------------------------
 
 // Engine KPakFile
@@ -193,9 +195,22 @@ void KUiCursor::SetImage(int nIndex, const char *pImgFile) {
 #ifdef  KUI_USE_HARDWARE_MOUSE
     {
         if (nIndex >= 0 && nIndex < MAX_CURSOR_IMAGE && pImgFile) {
-            KUiLoadCursor(pImgFile, m_CursorImages[nIndex]);
+            HCURSOR hLoaded = NULL;
+            if (!pImgFile[0] || !KUiLoadCursor(pImgFile, hLoaded) || !hLoaded)
+            {
+                // Legacy Ui3 .cur assets are missing in some VNG runtimes.
+                // Never pass NULL to SetCursor: that hides the pointer.
+                FILE* pLog = fopen("ui_cursor_load.log", "a");
+                if (pLog)
+                {
+                    fprintf(pLog, "missing index=%d cursor=%s; using system arrow\n",
+                            nIndex, pImgFile);
+                    fclose(pLog);
+                }
+            }
+            m_CursorImages[nIndex] = PT_UsableCursor(hLoaded);
             if (m_nCurImage == nIndex)
-                SetCursor(m_CursorImages[m_nCurImage]);
+                ::SetCursor(PT_UsableCursor(m_CursorImages[m_nCurImage]));
         }
     }
 #else   // KUI_USE_HARDWARE_MOUSE
@@ -221,20 +236,16 @@ void KUiCursor::SetImage(int nIndex, const char *pImgFile) {
 }
 
 //--------------------------------------------------------------------------
-//	¹¦ÄÜ£ºÇĞ»»µ±Ç°Êó±êÖ¸ÕëÍ¼ĞÎ
+//	åŠŸèƒ½ï¼šåˆ‡æ¢å½“å‰é¼ æ ‡æŒ‡é’ˆå›¾å½¢
 //--------------------------------------------------------------------------
 int KUiCursor::SwitchImage(int nIndex) {
 #ifdef  KUI_USE_HARDWARE_MOUSE
     {
         if (nIndex >= 0 && nIndex < MAX_CURSOR_IMAGE) {
             m_nCurImage = nIndex;
-            if (m_CursorImages[m_nCurImage]) {
-                SetCursor(m_CursorImages[m_nCurImage]);
-            } else {
-                SetCursor(LoadCursor(NULL, MAKEINTRESOURCE(IDC_ARROW)));
-            }
+            ::SetCursor(PT_UsableCursor(m_CursorImages[m_nCurImage]));
         } else {
-            SetCursor(LoadCursor(NULL, MAKEINTRESOURCE(IDC_ARROW)));
+            ::SetCursor(PT_UsableCursor(NULL));
         }
         return m_nCurImage;
     }
@@ -248,7 +259,7 @@ int KUiCursor::SwitchImage(int nIndex) {
 }
 
 //--------------------------------------------------------------------------
-//	¹¦ÄÜ£ºÖØĞÂ¼¤»îÊó±ê
+//	åŠŸèƒ½ï¼šé‡æ–°æ¿€æ´»é¼ æ ‡
 //--------------------------------------------------------------------------
 void KUiCursor::RestoreCursor() {
     SwitchImage(m_nCurImage);
@@ -256,7 +267,7 @@ void KUiCursor::RestoreCursor() {
 
 
 //--------------------------------------------------------------------------
-//	¹¦ÄÜ£º»æÖÆÊó±êÖ¸Õë
+//	åŠŸèƒ½ï¼šç»˜åˆ¶é¼ æ ‡æŒ‡é’ˆ
 //--------------------------------------------------------------------------
 void KUiCursor::Paint() {
 #ifdef  KUI_USE_HARDWARE_MOUSE
@@ -277,11 +288,18 @@ void KUiCursor::Paint() {
 #endif
 }
 
-//ÉèÖÃÊó±êÖ¸ÕëµÄÏÔÊ¾×´Ì¬
+//è®¾ç½®é¼ æ ‡æŒ‡é’ˆçš„æ˜¾ç¤ºçŠ¶æ€
 void KUiCursor::Show(int bShow) {
-    m_bShow = bShow;
-
-#ifdef  KUI_USE_HARDWARE_MOUSE
-    ShowCursor(m_bShow);
+    const int bVisible = (bShow != 0);
+#ifdef KUI_USE_HARDWARE_MOUSE
+    // ShowCursor changes a Win32 display counter; it is not a setter.
+    // Avoid unbalancing that counter when Show(true) is called repeatedly.
+    if (PT_CursorVisibilityChanged(m_bShow, bVisible))
+        ::ShowCursor(bVisible);
+#endif
+    m_bShow = bVisible;
+#ifdef KUI_USE_HARDWARE_MOUSE
+    if (m_bShow)
+        ::SetCursor(PT_UsableCursor(m_CursorImages[m_nCurImage]));
 #endif
 }
