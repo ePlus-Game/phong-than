@@ -22,12 +22,14 @@ permissions:
 
 jobs:
   patch-and-check:
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'fix/exp-level-131-int32')
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v5
         with:
           persist-credentials: true
+          ref: ${{ github.head_ref || github.ref_name }}
           filter: blob:none
           sparse-checkout-cone-mode: false
           sparse-checkout: |
@@ -40,7 +42,6 @@ jobs:
         with:
           python-version: '3.12'
       - name: Preserve legacy source bytes and apply C++ hotfix
-        if: github.event_name == 'push'
         run: python tools/apply_exp_compat_patch.py --root .
       - name: Verify all byte-preserving source anchors were applied
         run: python tools/apply_exp_compat_patch.py --root . --check
@@ -51,7 +52,7 @@ jobs:
       - name: Reject whitespace errors
         run: git diff --check
       - name: Commit fixes to review branch
-        if: github.event_name == 'push' && github.repository == 'ePlus-Game/phong-than-truyen-ky' && github.ref == 'refs/heads/fix/exp-level-131-int32'
+        if: github.repository == 'ePlus-Game/phong-than-truyen-ky' && (github.head_ref == 'fix/exp-level-131-int32' || github.ref == 'refs/heads/fix/exp-level-131-int32')
         run: |
           if git diff --quiet -- PhongThanSource/Sources/Core/Src/KPlayerSet.cpp PhongThanSource/Sources/Core/Src/KPlayer.cpp; then
             echo "Already applied"
