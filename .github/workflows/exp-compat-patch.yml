@@ -1,0 +1,64 @@
+name: EXP 131+ int32 compatibility hotfix
+
+on:
+  push:
+    branches: [fix/exp-level-131-int32]
+    paths:
+      - 'tools/apply_exp_compat_patch.py'
+      - 'PhongThanSource/Sources/Core/Src/PhongThanExpCompat.h'
+      - 'tests/exp_compat_test.cpp'
+      - '.github/workflows/exp-compat-patch.yml'
+  pull_request:
+    paths:
+      - 'tools/apply_exp_compat_patch.py'
+      - 'PhongThanSource/Sources/Core/Src/PhongThanExpCompat.h'
+      - 'PhongThanSource/Sources/Core/Src/KPlayerSet.cpp'
+      - 'PhongThanSource/Sources/Core/Src/KPlayer.cpp'
+      - 'tests/exp_compat_test.cpp'
+      - '.github/workflows/exp-compat-patch.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch-and-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: true
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /tools/apply_exp_compat_patch.py
+            /PhongThanSource/Sources/Core/Src/PhongThanExpCompat.h
+            /PhongThanSource/Sources/Core/Src/KPlayerSet.cpp
+            /PhongThanSource/Sources/Core/Src/KPlayer.cpp
+            /tests/exp_compat_test.cpp
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Preserve legacy source bytes and apply C++ hotfix
+        if: github.event_name == 'push'
+        run: python tools/apply_exp_compat_patch.py --root .
+      - name: Verify all byte-preserving source anchors were applied
+        run: python tools/apply_exp_compat_patch.py --root . --check
+      - name: Compile and run native C++ arithmetic/level boundary tests
+        run: |
+          g++ -std=c++11 -Wall -Wextra -Werror -o /tmp/pt-exp-test tests/exp_compat_test.cpp
+          /tmp/pt-exp-test
+      - name: Reject whitespace errors
+        run: git diff --check
+      - name: Commit fixes to review branch
+        if: github.event_name == 'push' && github.repository == 'ePlus-Game/phong-than-truyen-ky' && github.ref == 'refs/heads/fix/exp-level-131-int32'
+        run: |
+          if git diff --quiet -- PhongThanSource/Sources/Core/Src/KPlayerSet.cpp PhongThanSource/Sources/Core/Src/KPlayer.cpp; then
+            echo "Already applied"
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- PhongThanSource/Sources/Core/Src/KPlayerSet.cpp PhongThanSource/Sources/Core/Src/KPlayer.cpp
+          git commit -m 'fix(exp): prevent 131+ int32 overflow without altering legacy assets'
+          git push origin HEAD:fix/exp-level-131-int32
