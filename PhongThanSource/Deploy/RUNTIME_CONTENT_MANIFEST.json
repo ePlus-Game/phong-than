@@ -335,10 +335,9 @@
         "Rainbow.dll",
         "Bishop.exe",
         "Goddess.exe",
-        "S3Relay.exe",
+        "PhongThanRelay.exe",
         "GameServer.exe",
-        "PhongThanAccountServer.exe",
-        "PhongThanRelayServer.exe"
+        "PhongThanAccountServer.exe"
       ],
       "ContentDirectories": [
         "data",
