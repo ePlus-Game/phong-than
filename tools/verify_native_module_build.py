@@ -43,7 +43,7 @@ def verify_modules(root: Path, modules: list[str]) -> dict:
                     # COFF archives have a stable eight-byte signature; do not
                     # accept the presence of a stale or empty lib as success.
                     with candidate.open("rb") as handle:
-                        if handle.read(8) != b"!<arch>\\n":
+                        if handle.read(8) != b"!<arch>\n":
                             raise ValueError("not a COFF .lib archive")
                     size = candidate.stat().st_size
                     if size <= 8:
