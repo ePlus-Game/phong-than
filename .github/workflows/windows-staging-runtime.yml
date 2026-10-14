@@ -1,0 +1,128 @@
+name: Windows staging runtime contract (no game process)
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/windows-staging-runtime.yml'
+      - 'PhongThanRuntime-Staging/**'
+      - 'PhongThanSource/Output/**'
+      - 'PhongThanSource/OutputModern/**'
+      - 'PhongThanSource/Deploy/**'
+      - 'AdminWeb/PhongThan-RunAll.ps1'
+      - 'AdminWeb/PhongThan-ClientPatch.ps1'
+      - 'tools/verify_windows_build.py'
+      - 'tests/test_windows_launchers.py'
+      - 'PhongThan-MoGame.cmd'
+      - 'PhongThan-ChayTatCa.cmd'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/windows-staging-runtime.yml'
+      - 'PhongThanRuntime-Staging/**'
+      - 'PhongThanSource/Output/**'
+      - 'PhongThanSource/OutputModern/**'
+      - 'PhongThanSource/Deploy/**'
+      - 'AdminWeb/PhongThan-RunAll.ps1'
+      - 'tools/verify_windows_build.py'
+      - 'PhongThan-MoGame.cmd'
+      - 'PhongThan-ChayTatCa.cmd'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pt-staging-runtime-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  staging-runtime-contract:
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout only native runtime executables and metadata
+        uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /PhongThanRuntime-Staging/Client/*.exe
+            /PhongThanRuntime-Staging/Client/*.dll
+            /PhongThanRuntime-Staging/Client/*.ini
+            /PhongThanRuntime-Staging/Client/Version.cfg
+            /PhongThanRuntime-Staging/Server/*.exe
+            /PhongThanRuntime-Staging/Server/*.dll
+            /PhongThanRuntime-Staging/Server/*.ini
+            /PhongThanRuntime-Staging/Server/*.cfg
+            /PhongThanRuntime-Staging/*.json
+            /PhongThanSource/Deploy/RUNTIME_CONTENT_MANIFEST.json
+            /PhongThanSource/Deploy/Start-NativeServer.ps1
+            /PhongThan-MoGame.cmd
+            /PhongThan-ChayTatCa.cmd
+            /AdminWeb/PhongThan-RunAll.ps1
+            /tools/verify_windows_build.py
+            /tests/test_windows_launchers.py
+            /docs/LAUNCHER_BEHAVIOR.md
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Check runtime configs, native topology and launcher targets
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $required = @(
+            'PhongThanRuntime-Staging/NATIVE_DEPLOYMENT.json',
+            'PhongThanRuntime-Staging/DEPLOYMENT_MANIFEST.json',
+            'PhongThanRuntime-Staging/Client/Game.exe',
+            'PhongThanRuntime-Staging/Client/serverlist.ini',
+            'PhongThanRuntime-Staging/Server/ServerCfg.ini',
+            'PhongThanRuntime-Staging/Server/DataBase.ini',
+            'PhongThanSource/Deploy/RUNTIME_CONTENT_MANIFEST.json'
+          )
+          foreach ($path in $required) {
+            if (-not (Test-Path -LiteralPath $path -PathType Leaf)) {
+              throw "Missing required staging runtime file: $path"
+            }
+          }
+          $gameLauncher = Get-Content -LiteralPath 'PhongThan-MoGame.cmd' -Raw
+          $allLauncher = Get-Content -LiteralPath 'PhongThan-ChayTatCa.cmd' -Raw
+          $serverScript = Get-Content -LiteralPath 'AdminWeb/PhongThan-RunAll.ps1' -Raw
+          if (-not $gameLauncher.Contains('PhongThanRuntime-Staging\Client')) { throw 'Client launcher no longer targets staging client' }
+          if (-not $allLauncher.Contains('PhongThan-RunAll.ps1')) { throw 'RunAll launcher target missing' }
+          if (-not $serverScript.Contains('PhongThanRuntime-Staging')) { throw 'Server launcher no longer targets staging runtime' }
+          if ($gameLauncher -match 'OutputModern' -or $allLauncher -match 'OutputModern') { throw 'Game launcher depends on removed build output' }
+          foreach ($exe in @('Goddess.exe','PhongThanAccountServer.exe','PhongThanRelay.exe','Bishop.exe','GameServer.exe')) {
+            if (-not $serverScript.Contains($exe)) { throw "Native service missing from launcher: $exe" }
+          }
+          $manifest = Get-Content -LiteralPath 'PhongThanSource/Deploy/RUNTIME_CONTENT_MANIFEST.json' -Raw | ConvertFrom-Json
+          if ([int]$manifest.DataRegistries.Gameplay.Map.ExpectedActiveMapCount -le 0) { throw 'Missing expected active map count' }
+          Write-Host 'PASS: native launcher/config topology remains intact (no game process executed).'
+
+      - name: Verify 22 staged Windows EXE/DLL files are valid PE32 x86
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Stop'
+          & python tools/verify_windows_build.py --output-root PhongThanRuntime-Staging --report (Join-Path $env:RUNNER_TEMP 'pt-staging-runtime-inventory.json')
+          if ($LASTEXITCODE -ne 0) { throw 'Required staged executable/DLL missing or invalid' }
+          $report = Get-Content -LiteralPath (Join-Path $env:RUNNER_TEMP 'pt-staging-runtime-inventory.json') -Raw | ConvertFrom-Json
+          if ($report.status -ne 'PASS' -or $report.verified_binary_count -ne 22) { throw 'Incomplete staged runtime binary matrix' }
+          "### Staging runtime (static verification)" | Out-File $env:GITHUB_STEP_SUMMARY -Append -Encoding utf8
+          "PASS: all 22 staged PE32/i386 files exist and have valid EXE/DLL headers. No services, client, database or gameplay were started." | Out-File $env:GITHUB_STEP_SUMMARY -Append -Encoding utf8
+
+      - name: Run launcher regression tests on Windows without executing game
+        shell: powershell
+        run: |
+          & python -m unittest discover -s tests -p test_windows_launchers.py -v
+          if ($LASTEXITCODE -ne 0) { throw 'Windows launcher contract tests failed' }
+
+      - name: Upload metadata-only runtime evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: staging-runtime-pe32-inventory
+          path: ${{ runner.temp }}/pt-staging-runtime-inventory.json
+          if-no-files-found: ignore
+          retention-days: 7
