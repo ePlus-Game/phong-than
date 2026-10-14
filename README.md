@@ -1,86 +1,98 @@
-# Phong Thần Truyền Kỳ — dự án phục dựng game
+# Phong Thần Truyền Kỳ
 
-**Tên game:** Phong Thần Truyền Kỳ (**PTTK**). Tên hiển thị cho client C++/INI cũ: `Phong Than Truyen Ky`.
+**Dự án phục dựng game Phong Thần (PTTK)** — lưu trữ mã nguồn C/C++, dữ liệu Client/Server, công cụ khôi phục tài nguyên và quy trình build/kiểm thử Windows x86.
 
-Repository: [ePlus-Game/phong-than-truyen-ky](https://github.com/ePlus-Game/phong-than-truyen-ky).
+> **Đang trong giai đoạn phục dựng và nghiệm thu.** Mã nguồn đã biên dịch thành công, nhưng **chưa xác nhận hoàn tất đăng nhập, lưu nhân vật và gameplay trên Windows VM**. Repository không phải bản game sẵn sàng phát hành công khai.
 
-Dự án gồm mã nguồn game, dữ liệu runtime và công cụ phục dựng, kiểm tra, build. Tên file chạy và đường dẫn kỹ thuật hiện có (`Game.exe`, `PhongThanSource`, `PhongThanRuntime-Staging`, `script/phongthan/*`) được giữ nguyên để tương thích.
+## Tiến độ hiện tại
 
-- [Cập nhật tên hiển thị trong bản build](docs/BRANDING.md)
-- **[Cẩm nang tổng hợp — hệ phái, nhiệm vụ, trang bị, kỹ năng, thú, hoạt động](docs/PLAYER_HANDBOOK.md)**
-- **[Cẩm nang tân thủ — cấp độ, hệ phái, trang bị và hướng dẫn bắt đầu](docs/NEW_PLAYER_GUIDE.md)**
-- **[Master Roadmap — build, gameplay, online, multi-server](docs/MASTER_ROADMAP.md)**
-- [Lộ trình refactor engine và network](docs/REFACTORING.md)
-- **[Repository Hygiene — quản lý file rác, checkout gọn và kế hoạch tách archive](docs/REPOSITORY_HYGIENE.md)**
-- [Ma trận kiểm thử / tiêu chí nghiệm thu](docs/TEST_MATRIX.md)
-- **[EXE dùng để làm gì? Native/legacy server, client, test và bản build cũ](docs/EXECUTABLE_GUIDE.md)**
-- [Launcher Windows: khởi chạy, mã lỗi và an toàn dữ liệu](docs/LAUNCHER_BEHAVIOR.md)
-- [M1: Full build Windows x86 và xác minh 22 EXE/DLL](docs/M1_WINDOWS_BUILD.md)
-- [Tình trạng hệ thống nhiệm vụ](docs/QUEST_SYSTEM_STATUS.md)
-- [Phát thưởng và Linh Thú](docs/REWARDS_AND_PETS.md)
-- [Bộ cài phụ thuộc và hướng dẫn cài lần đầu](install/README.md)
+| Hạng mục | Kết quả | Bằng chứng / bước tiếp theo |
+| --- | --- | --- |
+| Build Windows x86 | **PASS — 22/22 EXE/DLL** | [Build tổng hợp](https://github.com/ePlus-Game/phong-than-truyen-ky/actions/runs/38564658067) |
+| Kiểm tra EXP cấp 131–200 | **Đã sửa code, test PASS** | [PR #70](https://github.com/ePlus-Game/phong-than-truyen-ky/pull/70) · [Kiểm thử EXP](https://github.com/ePlus-Game/phong-than-truyen-ky/actions/runs/38564658247) |
+| Kiểm tra tĩnh runtime | **Có công cụ và CI** | [PR #73](https://github.com/ePlus-Game/phong-than-truyen-ky/pull/73) |
+| Khởi động server, login và chơi thử | **Chưa nghiệm thu** | [Issue #71](https://github.com/ePlus-Game/phong-than-truyen-ky/issues/71) |
 
-## Cấu trúc
+Xem [**Master Roadmap**](docs/MASTER_ROADMAP.md) để biết tiến độ theo từng giai đoạn và các điều kiện nghiệm thu. **Build PASS không đồng nghĩa game đã chạy ổn định.**
 
-```text
-pt/
-├── PhongThanSource/           # Source C/C++, build scripts gốc
-├── PhongThanRuntime-Staging/  # Runtime Client/Server gốc
-├── PhongThanRuntime-State/    # Dữ liệu trạng thái trong PT.zip gốc
-├── AdminWeb/                  # Công cụ quản trị gốc
-├── install/                   # Bộ cài ban đầu: SQL LocalDB (MSI, bootstrapper)
-├── PhongThan-*.cmd            # Script khởi chạy gốc (chưa xác minh an toàn)
-├── CHANGELOG.md               # Changelog gốc
-├── docs/
-│   ├── original-pt/           # Nội dung PT/docs/ của ZIP gốc
-│   └── REPOSITORY_LAYOUT.md   # Giải thích tổ chức source mới
-├── archive/                   # Manifest SHA-256 và đường dẫn lịch sử
-├── tools/                      # Công cụ kiểm tra, ghép PAK, thử build
-├── tests/                      # Kiểm thử công cụ
-└── .github/workflows/          # Kiểm thử CI
+## Bắt đầu
+
+### 1. Lấy source
+
+Clone repository bằng Git (khuyến nghị với kho dữ liệu lớn):
+
+```bash
+git clone https://github.com/ePlus-Game/phong-than-truyen-ky.git
+cd phong-than-truyen-ky
 ```
 
-Nội dung trước đây tại `source/PT/` đã được đưa lên **ngay thư mục gốc**.
-Không sao chép lại source cũ. Toàn bộ blob gốc được giữ nguyên SHA Git;
-riêng thư mục `PT/docs/` được chuyển sang `docs/original-pt/`
-để không trùng với tài liệu duy trì repository. Hai bộ cài gốc từ
-`Setup/` cũng được **đổi đường dẫn Git** sang `install/` (giữ nguyên blob SHA).
-Các lệnh mở game/cài đặt `.cmd` vẫn ở root để giữ khả năng chạy như cũ.
+Bạn cũng có thể chọn **Code → Download ZIP** trên GitHub. Tuy nhiên repository chứa nhiều dữ liệu game dung lượng lớn nên ZIP có thể tải lâu hoặc gặp giới hạn. Xem [Repository Hygiene](docs/REPOSITORY_HYGIENE.md) trước khi dọn dẹp hoặc tải lại dữ liệu.
 
-## Cleanup source outputs
+### 2. Khôi phục các PAK đã chia nhỏ
 
-Nhánh cleanup loại bỏ các output build/test đã track trong `PhongThanSource/Output/` (giữ thư mục bằng `.gitkeep`) và `OutputModern/`, đồng thời bỏ snapshot, log payserver và PDB debug tại runtime staging. Các file `.exe`/`.dll` chạy game, game assets, manifest archive và database gốc vẫn được giữ. Git history chưa được rewrite; muốn khôi phục file lịch sử dùng commit trước khi cleanup. Xem [repository hygiene](docs/REPOSITORY_HYGIENE.md).
-
-## Tải source về máy
-
-Mở trang repository và chọn **Code → Download ZIP**. Do dữ liệu rất lớn,
-GitHub có thể gặp giới hạn khi tạo/tải ZIP; dùng Git nếu cần độ tin cậy cao.
-
-Sau khi clone hoặc tải và giải nén toàn bộ dữ liệu, để ghép và kiểm tra
-**16 PAK lớn** đang chia thành **102 phần**, mở terminal tại thư mục `pt`:
+Một số tài nguyên lớn được lưu thành **16 PAK chia 102 phần**. Sau khi tải **đầy đủ** các phần, chạy tại thư mục gốc:
 
 ```powershell
 python tools/restore_split_files.py --repo-root .
 ```
 
-Các PAK được khôi phục về vị trí trực tiếp dưới root và được kiểm tra SHA-256.
-Phải có đủ các file `*.pak.parts/part-*.bin` và đủ dung lượng ổ đĩa.
+Công cụ sử dụng manifest để ghép và xác minh SHA-256; cần có đủ các tệp `*.pak.parts/part-*.bin` và dung lượng đĩa trống. Không sửa hoặc đổi mã hóa tài nguyên gốc.
 
-Để chạy bộ kiểm thử công cụ:
+### 3. Kiểm tra công cụ và bản build
 
 ```powershell
 python -m unittest discover -s tests -v
 ```
 
-Muốn thử build có kiểm soát, xem [hướng dẫn hardening](docs/LEGACY_HARDENING.md) và [lộ trình refactor](docs/REFACTORING.md).
-Source gốc không được chỉnh sửa trực tiếp; hãy build trên một **bản sao**
-ở ngoài checkout, tốt nhất trong Windows x86 VM cách ly.
+Nếu đã có **bản sao** runtime Windows với thư mục `Client/` và `Server/`, có thể chạy kiểm tra tĩnh:
 
-## Kiểm tra dữ liệu và môi trường
+```powershell
+python tools/runtime_preflight.py --root "D:\PT-UAT\PhongThanRuntime-Staging" --mode runtime --manifest "PhongThanSource\Deploy\RUNTIME_CONTENT_MANIFEST.json"
+```
 
-Manifest SHA-256 trong `archive/` và cách ánh xạ đường dẫn từ `source/PT/...`
-được mô tả tại [cấu trúc repository](docs/REPOSITORY_LAYOUT.md).
+Kết quả `READY_FOR_RUNTIME_TEST` **chỉ cho biết các tệp/cấu hình đạt kiểm tra ban đầu**, không phải kết quả chơi thử. Xem [hướng dẫn nghiệm thu Windows](docs/RUNTIME_GAMEPLAY_ACCEPTANCE.md).
 
-Kho có dữ liệu và file thực thi từ môi trường cũ. Khi thử nghiệm, sử dụng
-môi trường cách ly và bản sao bên ngoài checkout; không đưa tài khoản,
-dữ liệu nhân vật hoặc cấu hình riêng vào pull request.
+### 4. Cài đặt và khởi chạy thử
+
+Dự án hiện phục vụ **phục dựng/phát triển**, chưa cung cấp quy trình cài đặt đơn giản cho người chơi cuối. Trước khi chạy các file `.cmd` hoặc `.exe`, hãy đọc [hướng dẫn launcher](docs/LAUNCHER_BEHAVIOR.md), [vai trò các EXE](docs/EXECUTABLE_GUIDE.md) và [bộ cài phụ thuộc](install/README.md). Chỉ thử trên **Windows VM cách ly và bản sao dữ liệu**, không trỏ vào database/tài khoản thật.
+
+## Cấu trúc repository
+
+```text
+.
+├── PhongThanSource/          # Source C/C++ và công cụ build
+├── PhongThanRuntime-Staging/ # Client, Server và dữ liệu game
+├── PhongThanRuntime-State/   # Dữ liệu trạng thái kế thừa từ bản lưu gốc
+├── AdminWeb/                 # Công cụ quản trị
+├── install/                  # Bộ cài phụ thuộc
+├── archive/                  # Manifest/hash và dấu vết tài liệu lịch sử
+├── tools/                    # Khôi phục PAK, kiểm tra source/runtime
+├── tests/                    # Unit test và kiểm tra công cụ
+├── docs/                     # Tài liệu dự án và bản gốc
+└── .github/workflows/        # GitHub Actions
+```
+
+Nội dung `PT/` từ bản archive cũ đã được đưa lên thư mục gốc. Chi tiết ánh xạ đường dẫn, dữ liệu được giữ nguyên và cách khôi phục nằm tại [Repository Layout](docs/REPOSITORY_LAYOUT.md).
+
+## Tài liệu
+
+| Chủ đề | Tài liệu |
+| --- | --- |
+| **Người chơi** | [Cẩm nang tổng hợp](docs/PLAYER_HANDBOOK.md) · [Tân thủ](docs/NEW_PLAYER_GUIDE.md) · [Nhiệm vụ tân thủ](docs/BEGINNER_QUESTS.md) |
+| **Gameplay & dữ liệu** | [Đối chiếu gameplay với source](docs/GAMEPLAY_SOURCE_AUDIT.md) · [Hệ thống nhiệm vụ](docs/QUEST_SYSTEM_STATUS.md) · [Phần thưởng và Linh Thú](docs/REWARDS_AND_PETS.md) |
+| **Build & chạy thử** | [Windows x86 build](docs/M1_WINDOWS_BUILD.md) · [Nghiệm thu runtime](docs/RUNTIME_GAMEPLAY_ACCEPTANCE.md) · [Ma trận kiểm thử](docs/TEST_MATRIX.md) |
+| **Phát triển & quản lý** | [Roadmap](docs/MASTER_ROADMAP.md) · [Refactoring](docs/REFACTORING.md) · [Repository Hygiene](docs/REPOSITORY_HYGIENE.md) |
+| **Vận hành & nhận diện** | [Launcher](docs/LAUNCHER_BEHAVIOR.md) · [Danh mục EXE](docs/EXECUTABLE_GUIDE.md) · [Branding](docs/BRANDING.md) · [Cài đặt phụ thuộc](install/README.md) |
+
+**Lưu ý:** Cẩm nang có đối chiếu tài liệu Phong Thần VNG và code phục dựng. Các thông tin chưa kiểm thử trực tiếp được ghi rõ, không nên xem là gameplay đã vận hành.
+
+## Đóng góp & an toàn dữ liệu
+
+- Tạo branch/PR có phạm vi rõ ràng, mô tả cách kiểm thử và khả năng rollback; ưu tiên thay đổi nhỏ, có bằng chứng.
+- Không commit tài khoản, mật khẩu, dữ liệu nhân vật, database cá nhân, binary phát hành ngoài phạm vi cho phép hoặc log nhạy cảm.
+- Giữ nguyên dữ liệu/PAK gốc; với C++ và Lua mã hóa legacy, tránh chuyển mã hàng loạt. Build trên **bản sao ngoài checkout**.
+- Xem [roadmap](docs/MASTER_ROADMAP.md) và [test matrix](docs/TEST_MATRIX.md) trước khi bắt đầu một thay đổi lớn.
+
+---
+
+<sub>**Phong Thần Truyền Kỳ** · Source restoration project · [Theo dõi các đầu việc](https://github.com/ePlus-Game/phong-than-truyen-ky/issues) · [Lịch sử thay đổi](CHANGELOG.md)</sub>
