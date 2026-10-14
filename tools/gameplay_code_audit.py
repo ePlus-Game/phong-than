@@ -44,6 +44,41 @@ def scan_file(path: Path, root: Path) -> dict:
                              "snippet": re.sub(r"\s+", " ", line).strip()[:160]})
     return {"path": rel, "encoding": encoding, "name_hint": bool(NAME_HINT.search(path.name)), "hits": hits}
 
+def inspect_level_cap(root: Path) -> dict:
+    """Read the actual player cap macro + EXP rows; do not claim playability."""
+    macro = root / "PhongThanSource/Sources/Core/Src/GameDataDef.h"
+    server = root / "PhongThanRuntime-Staging/Server/settings/npc/player/level_exp.txt"
+    client = root / "PhongThanRuntime-Staging/Client/settings/npc/player/level_exp.txt"
+    result = {"declared_max_level": None, "exp_rows": 0,
+              "last_exp_level": None, "exp_over_int32_from": None,
+              "server_client_identical": None, "warnings": []}
+    if macro.is_file():
+        code, _ = decode_legacy(macro.read_bytes())
+        m = re.search(r"(?m)^\s*#define\s+MAX_LEVEL\s+(\d+)\b", code)
+        if m:
+            result["declared_max_level"] = int(m.group(1))
+    if server.is_file():
+        txt, _ = decode_legacy(server.read_bytes())
+        rows = []
+        for line in txt.splitlines():
+            m = re.match(r"^\s*(\d+)\s+(\d+)\s*$", line)
+            if m:
+                rows.append((int(m.group(1)), int(m.group(2))))
+        result["exp_rows"] = len(rows)
+        if rows:
+            result["last_exp_level"] = max(level for level, _ in rows)
+        large = [(level, exp) for level, exp in rows if exp > 2147483647]
+        if large:
+            result["exp_over_int32_from"] = large[0][0]
+            result["warnings"].append(
+                "EXP value above signed 32-bit range; inspect KTabFile::GetInteger (atoi) and KPlayerSet int arrays")
+    if server.is_file() and client.is_file():
+        result["server_client_identical"] = server.read_bytes() == client.read_bytes()
+    if result["declared_max_level"] and result["last_exp_level"]:
+        if result["last_exp_level"] != result["declared_max_level"]:
+            result["warnings"].append("MAX_LEVEL differs from last level in EXP file")
+    return result
+
 def audit(root: Path) -> dict:
     result = {"roots": [], "files_scanned": 0, "skipped": Counter(),
               "encodings": Counter(), "candidate_files": [], "hits": {k: [] for k in PATTERNS}}
@@ -75,6 +110,7 @@ def audit(root: Path) -> dict:
                 category = hit["topic"]
                 if len(result["hits"][category]) < LIMIT:
                     result["hits"][category].append(hit)
+    result["level_cap"] = inspect_level_cap(root)
     result["encodings"] = dict(result["encodings"])
     result["skipped"] = dict(result["skipped"])
     return result
@@ -90,6 +126,10 @@ def markdown(data: dict) -> str:
         "Files: " + str(data["files_scanned"]),
         "Encodings: " + json.dumps(data["encodings"], ensure_ascii=False),
         "Skipped: " + json.dumps(data["skipped"], ensure_ascii=False),
+        "",
+        "## Player level cap cross-check",
+        "",
+        json.dumps(data.get("level_cap", {}), ensure_ascii=False, indent=2),
         "",
         "## Candidate filenames (first 120)",
     ]
