@@ -41,6 +41,9 @@ jobs:
             /AdminWeb/index.html
             /AdminWeb/PhongThan-Setup.ps1
             /install/README.md
+            /PhongThan-MoGame.cmd
+            /AdminWeb/PhongThan-RunAll.ps1
+            /AdminWeb/PhongThan-ClientPatch.ps1
             /PhongThan-Admin.cmd
             /PhongThan-CaiDat.cmd
             /PhongThan-ChayTatCa.cmd
