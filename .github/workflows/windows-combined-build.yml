@@ -8,6 +8,13 @@ on:
       - 'PhongThanSource/Build/Build-Modern.ps1'
       - 'tools/stage_accountserver_smoke.py'
       - 'tools/verify_windows_build.py'
+      - 'tools/audit_windows_imports.py'
+      - 'tests/test_audit_windows_imports.py'
+      - 'PhongThanSource/Sources/**'
+      - 'PhongThanSource/Headers/**'
+      - 'PhongThanSource/Lib/release/**'
+      - 'PhongThanSource/ThirdParty/**'
+      - 'overlays/legacy/**'
   push:
     branches: [main]
     paths:
@@ -15,6 +22,13 @@ on:
       - 'PhongThanSource/Build/Build-Modern.ps1'
       - 'tools/stage_accountserver_smoke.py'
       - 'tools/verify_windows_build.py'
+      - 'tools/audit_windows_imports.py'
+      - 'tests/test_audit_windows_imports.py'
+      - 'PhongThanSource/Sources/**'
+      - 'PhongThanSource/Headers/**'
+      - 'PhongThanSource/Lib/release/**'
+      - 'PhongThanSource/ThirdParty/**'
+      - 'overlays/legacy/**'
   workflow_dispatch:
 
 permissions:
@@ -80,6 +94,7 @@ jobs:
             /PhongThanSource/ThirdParty/dx9csdk/Lib/
             /overlays/legacy/
             /tools/verify_windows_build.py
+            /tools/audit_windows_imports.py
             /tools/stage_accountserver_smoke.py
             /tools/legacy_hardening.py
 
@@ -165,11 +180,33 @@ jobs:
           }
           if ($code -ne 0) { throw '22-output release matrix failed' }
 
+      - name: Audit imports and delay-loaded DLL dependencies without executing game
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $output = Join-Path $env:PT_FULL_BUILD_WORKSPACE 'OutputModern'
+          $report = Join-Path $env:RUNNER_TEMP 'pt-combined-import-evidence.json'
+          & python -m tools.audit_windows_imports --output-root $output --report $report
+          if ($LASTEXITCODE -ne 0) { throw 'Windows PE import/delay-load audit failed' }
+          $data = Get-Content -LiteralPath $report -Raw | ConvertFrom-Json
+          if ($data.status -ne 'PASS' -or $data.analyzed_binary_count -ne 22) {
+            throw 'Incomplete static import audit coverage'
+          }
+          "### Static PE imports - 22/22 analyzed" | Out-File $env:GITHUB_STEP_SUMMARY -Append -Encoding utf8
+          $external = @($data.external_runtime_dependencies_unverified)
+          "External DLL names requiring runtime provisioning verification: $($external.Count)" | Out-File $env:GITHUB_STEP_SUMMARY -Append -Encoding utf8
+          if ($external.Count) {
+            "Not yet verified on a test VM: $($external -join ', ')" | Out-File $env:GITHUB_STEP_SUMMARY -Append -Encoding utf8
+          }
+          "No DLL was loaded; Windows loader and gameplay remain UNTESTED." | Out-File $env:GITHUB_STEP_SUMMARY -Append -Encoding utf8
+
       - name: Upload only hashes and artifact manifest
         if: always()
         uses: actions/upload-artifact@v6
         with:
           name: windows-combined-22-evidence
-          path: ${{ runner.temp }}/pt-combined-22-binary-evidence.json
+          path: |
+            ${{ runner.temp }}/pt-combined-22-binary-evidence.json
+            ${{ runner.temp }}/pt-combined-import-evidence.json
           if-no-files-found: warn
           retention-days: 7
