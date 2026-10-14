@@ -76,6 +76,25 @@ Each target is reported independently even when another target fails.
 - Next stage after module successes: dependency-aware `CoreServer` and
   `GameServer`/client build in an isolated workspace, then M2 runtime UAT.
 
+## GitHub-hosted Core module gate (14/10/2026 - 7/7 PASS)
+
+`.github/workflows/windows-core-modules.yml` extends the hosted MSVC x86
+build baseline to **Common**, **ExpandPackageStaticLib**, **FilterTextStatic**,
+**CoreServer.dll**, and **CoreClient.dll** alongside LuaLibDll and Engine.
+It uses a fresh, source-only external workspace, sparse-checkout headers and
+existing legacy `Lib/release` linker inputs. Game runtime, SQL, PAK and saves
+are not checked out or executed.
+
+[Windows Core run #38523254976](https://github.com/ePlus-Game/phong-than-truyen-ky/actions/runs/38523254976)
+reported **7/7 PASS**, with freshly emitted role-specific PE32/i386 DLLs
+and COFF static libraries checked for signatures and SHA-256. This is not
+a clean rebuild of all transitive archived libraries, not a completed
+22-binary release build and not runtime/gameplay acceptance.
+
+**Next:** dependent native server binaries (Bishop, Goddess, GameServer)
+and GameClient/Game.exe, then full 22-output verification in a clean
+release build; isolated Windows world-ready/login/save UAT follows.
+
 ## Manual execution and evidence
 
 1. Provision the dedicated trusted Windows x64 runner with MSVC x86 tools,
