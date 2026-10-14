@@ -12,6 +12,8 @@ $engineHeaders = Join-Path $root 'Sources\Engine\Src'
 $engineInc = Join-Path $root 'Sources\Engine\Include'
 $dxInc = Join-Path $root 'ThirdParty\dx9csdk\Include'
 $gdiInc = Join-Path $root 'ThirdParty\WindowsSDK\GDIPlus\Include'
+# Keep Windows SDK ahead of old DirectX SDK: old basetsd.h breaks winnt.h PVOID64.
+$env:INCLUDE = "$gdiInc;$($env:INCLUDE);$dxInc"
 foreach ($p in @($src,$engineLib,$engineDll,(Join-Path $engineHeaders 'KPakList.h'))) {
     if (-not (Test-Path -LiteralPath $p -PathType Leaf)) {
         throw "Missing fresh source dependency: $p"
@@ -37,7 +39,7 @@ $argv = @(
     '/nologo','/MD','/O2','/EHsc','/W3','/Zc:strictStrings-','/Zc:wchar_t-',
     '/DWIN32','/DNDEBUG','/D_CRT_SECURE_NO_WARNINGS','/D_CRT_NONSTDC_NO_DEPRECATE',
     '/D_USE_32BIT_TIME_T','/DHMONITOR_DECLARED',
-    "/I$engineHeaders","/I$engineInc","/I$dxInc","/I$gdiInc",
+    "/I$engineHeaders","/I$engineInc",
     "/Fe$exe",$src,$engineLib,
     '/link','/MACHINE:X86','/SUBSYSTEM:CONSOLE','/INCREMENTAL:NO',
     '/NODEFAULTLIB:libc.lib','/NODEFAULTLIB:libcd.lib',
