@@ -29,6 +29,8 @@ python -m unittest discover -s tests -p test_repository_hygiene.py -v
 
 Các category có thể chồng lặp. Logical bytes không phải network traffic hoặc dung lượng vật lý của Git object database.
 
+Để tránh làm PR CI tải cây Git khổng lồ, báo cáo toàn repo chỉ chạy theo yêu cầu qua GitHub Actions **Historical repository inventory (manual)**. Job có timeout 15 phút, chỉ checkout script và không xuất log/SQL/save.
+
 ## Clone gọn cho công việc tools/docs
 
 ```bash
