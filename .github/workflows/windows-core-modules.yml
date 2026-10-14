@@ -1,0 +1,147 @@
+name: Windows x86 Core modules (hosted build)
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/windows-core-modules.yml'
+      - 'PhongThanSource/Build/Build-Modern.ps1'
+      - 'PhongThanSource/Sources/Core/**'
+      - 'PhongThanSource/Sources/Engine/**'
+      - 'PhongThanSource/Sources/Library/LuaLib/**'
+      - 'PhongThanSource/Sources/MultiServer/Common/**'
+      - 'PhongThanSource/Sources/ExpandPackage*/**'
+      - 'PhongThanSource/Sources/FilterText/**'
+      - 'PhongThanSource/Headers/**'
+      - 'PhongThanSource/Lib/release/**'
+      - 'tools/verify_native_module_build.py'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/windows-core-modules.yml'
+      - 'PhongThanSource/Build/Build-Modern.ps1'
+      - 'PhongThanSource/Sources/Core/**'
+      - 'PhongThanSource/Sources/Engine/**'
+      - 'PhongThanSource/Sources/Library/LuaLib/**'
+      - 'PhongThanSource/Sources/MultiServer/Common/**'
+      - 'PhongThanSource/Sources/ExpandPackage*/**'
+      - 'PhongThanSource/Sources/FilterText/**'
+      - 'tools/verify_native_module_build.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pt-core-modules-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-core:
+    runs-on: windows-2022
+    timeout-minutes: 60
+    steps:
+      - name: Sparse checkout legacy C++ dependencies only
+        uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /PhongThanSource/Build/Build-Modern.ps1
+            /PhongThanSource/Headers/
+            /PhongThanSource/Lib/release/
+            /PhongThanSource/Sources/Core/Core.dsp
+            /PhongThanSource/Sources/Core/Src/
+            /PhongThanSource/Sources/Engine/Engine.dsp
+            /PhongThanSource/Sources/Engine/Include/
+            /PhongThanSource/Sources/Engine/Src/
+            /PhongThanSource/Sources/Represent/iRepresent/
+            /PhongThanSource/Sources/MultiServer/Common/
+            /PhongThanSource/Sources/MultiServer/Heaven/Interface/
+            /PhongThanSource/Sources/MultiServer/Heaven/*.h
+            /PhongThanSource/Sources/AccountServices/AccountServer/msado15.tlh
+            /PhongThanSource/Sources/AccountServices/AccountServer/msado15.tli
+            /PhongThanSource/Sources/AccountServices/AccountServer/*.h
+            /PhongThanSource/Sources/AccountServices/RelayServer/*.h
+            /PhongThanSource/Sources/GameClient/Ui/UiCase/
+            /PhongThanSource/Sources/GameClient/Ui/Elem/
+            /PhongThanSource/Sources/GameClient/Ui/*.h
+            /PhongThanSource/Sources/Library/LuaLib/LuaLibDll.dsp
+            /PhongThanSource/Sources/Library/LuaLib/src/
+            /PhongThanSource/Sources/ExpandPackageStaticLib/
+            /PhongThanSource/Sources/ExpandPackage2.0/
+            /PhongThanSource/Sources/FilterText/
+            /PhongThanSource/Sources/Pack/ucl-1.01/include/
+            /PhongThanSource/ThirdParty/WindowsSDK/GDIPlus/Include/
+            /PhongThanSource/ThirdParty/WindowsSDK/GDIPlus/Lib/x86/
+            /PhongThanSource/ThirdParty/dx9csdk/Include/
+            /PhongThanSource/ThirdParty/dx9csdk/Lib/
+            /tools/verify_native_module_build.py
+            /tools/verify_windows_build.py
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Build only in fresh external workspace
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $source = (Resolve-Path 'PhongThanSource').Path
+          foreach ($old in @('OutputModern', 'Output', 'Build/LogsModern')) {
+            if (Test-Path -LiteralPath (Join-Path $source $old)) {
+              throw "Refusing historical output in source checkout: $old"
+            }
+          }
+          $work = Join-Path $env:RUNNER_TEMP ("pt-core-${{ github.run_id }}-${{ github.run_attempt }}")
+          if (Test-Path -LiteralPath $work) { throw 'Refusing reused workspace' }
+          Copy-Item -LiteralPath $source -Destination $work -Recurse -ErrorAction Stop
+          "PT_CORE_WORKSPACE=$work" | Out-File $env:GITHUB_ENV -Append -Encoding utf8
+
+      - name: Compile and link Common, static libs, CoreServer and CoreClient
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $targets = @('LuaLibDll','Engine','Common','ExpandPackageStaticLib','FilterTextStatic','CoreServer','CoreClient')
+          & (Join-Path $env:PT_CORE_WORKSPACE 'Build/Build-Modern.ps1') -Targets $targets -Jobs 2 -Clean -KeepGoing
+          if ($LASTEXITCODE -ne 0) { throw 'One or more C++ modules failed; see per-module diagnostics' }
+
+      - name: Verify fresh PE32 DLLs and COFF static libraries
+        if: always()
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Continue'
+          $modules = @('LuaLibDll','Engine','Common','ExpandPackageStaticLib','FilterTextStatic','CoreServer','CoreClient')
+          $report = Join-Path $env:RUNNER_TEMP 'pt-core-module-evidence.json'
+          $cliArgs = @('-m','tools.verify_native_module_build','--output-root',(Join-Path $env:PT_CORE_WORKSPACE 'OutputModern'),'--report',$report)
+          foreach ($module in $modules) { $cliArgs += @('--module',$module) }
+          & python @cliArgs
+          $code = $LASTEXITCODE
+          if (Test-Path -LiteralPath $report) {
+            $data = Get-Content -LiteralPath $report -Raw | ConvertFrom-Json
+            "### Fresh Windows x86 core build - $($data.status)" | Out-File $env:GITHUB_STEP_SUMMARY -Append -Encoding utf8
+            foreach ($module in $modules) {
+              $result = $data.modules.$module.status
+              "- $module : $result" | Out-File $env:GITHUB_STEP_SUMMARY -Append -Encoding utf8
+            }
+          }
+          foreach ($module in $modules) {
+            $log = Join-Path $env:PT_CORE_WORKSPACE "Build/LogsModern/$module.log"
+            if (Test-Path -LiteralPath $log) {
+              $errors = @(Select-String -LiteralPath $log -Pattern 'fatal error|error C[0-9]+|error LNK[0-9]+|THIEU FILE' | Select-Object -First 8)
+              if ($errors.Count) {
+                Write-Host "First $($errors.Count) diagnostics in $module"
+                $errors | ForEach-Object { Write-Host $_.Line }
+              }
+            }
+          }
+          if ($code -ne 0) { throw 'Not all fresh Core and dependency artifacts verified' }
+
+      - name: Upload metadata only (never binaries, game state or raw logs)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-core-modules-evidence
+          path: ${{ runner.temp }}/pt-core-module-evidence.json
+          if-no-files-found: warn
+          retention-days: 7

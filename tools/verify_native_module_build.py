@@ -7,6 +7,7 @@ checks its outputs; a staging EXE/DLL is never accepted as proof of compilation.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 from pathlib import Path
 
@@ -15,6 +16,11 @@ from .verify_windows_build import inspect_pe
 MODULE_OUTPUTS = {
     "LuaLibDll": ("Client/LuaLibDll.dll", "Server/LuaLibDll.dll"),
     "Engine": ("Client/Engine.dll", "Server/Engine.dll"),
+    "Common": ("lib/Common.lib",),
+    "ExpandPackageStaticLib": ("lib/ExpandPackageStaticLib.lib",),
+    "FilterTextStatic": ("lib/FilterText_StaticLib.lib",),
+    "CoreServer": ("Server/CoreServer.dll",),
+    "CoreClient": ("Client/CoreClient.dll",),
 }
 
 
@@ -30,10 +36,22 @@ def verify_modules(root: Path, modules: list[str]) -> dict:
                 errors.append(f"{relative}: symlink not allowed")
                 continue
             if not candidate.is_file():
-                errors.append(f"{relative}: missing freshly-built DLL")
+                errors.append(f"{relative}: missing freshly-built artifact")
                 continue
             try:
-                size, digest = inspect_pe(candidate, require_dll=True)
+                if candidate.suffix.lower() == ".lib":
+                    # COFF archives have a stable eight-byte signature; do not
+                    # accept the presence of a stale or empty lib as success.
+                    with candidate.open("rb") as handle:
+                        if handle.read(8) != b"!<arch>\n":
+                            raise ValueError("not a COFF .lib archive")
+                    size = candidate.stat().st_size
+                    if size <= 8:
+                        raise ValueError("empty COFF archive")
+                    with candidate.open("rb") as handle:
+                        digest = hashlib.file_digest(handle, "sha256").hexdigest()
+                else:
+                    size, digest = inspect_pe(candidate, require_dll=True)
             except (OSError, ValueError) as exc:
                 errors.append(f"{relative}: {exc}")
                 continue
