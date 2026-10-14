@@ -39,6 +39,8 @@ jobs:
             /PhongThanRuntime-Staging/Client/Ui/Setting.ini
             /PhongThanRuntime-Staging/Client/serverlist.ini
             /AdminWeb/index.html
+            /AdminWeb/PhongThan-Setup.ps1
+            /install/README.md
             /PhongThan-Admin.cmd
             /PhongThan-CaiDat.cmd
             /PhongThan-ChayTatCa.cmd
