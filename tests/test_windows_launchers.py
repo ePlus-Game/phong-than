@@ -69,8 +69,11 @@ class WindowsLauncherTests(unittest.TestCase):
         self.assertIn("$running = @(Get-ServerProcs)", script)
 
     def test_native_server_only_never_patches_client_or_database_before_duplicate_guard(self):
-        # Admin-only launch passes through Start-NativeServer.ps1; protect the
-        # nested script rather than relying on RunAll's WithClient condition.
+        # Broad archive workflows checkout only selected paths; the dedicated
+        # Windows source smoke job includes Start-NativeServer.ps1.
+        if not (ROOT / "PhongThanSource/Deploy/Start-NativeServer.ps1").is_file():
+            self.skipTest("native server script omitted by sparse checkout")
+        # Protect the nested server script, not just RunAll's WithClient path.
         script = read("PhongThanSource/Deploy/Start-NativeServer.ps1")
         self.assertNotIn("PhongThan-ClientPatch.ps1", script)
         self.assertNotIn("$ptPatch=", script)
