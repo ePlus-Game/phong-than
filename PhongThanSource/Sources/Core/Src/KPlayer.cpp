@@ -19,6 +19,7 @@
 #include "KNpcSet.h"
 #include "KSubWorld.h"
 #include "KPlayer.h"
+#include "PhongThanExpCompat.h"
 #include "PhongThanScriptWire.h"
 #include "ImgRef.h"
 
@@ -2964,7 +2965,7 @@ void	KPlayer::AddSelfExp(int nExp, int nTarLevel)
 	int	nGetExp = 0;
 	int	nSubLevel = abs(Npc[m_nIndex].m_Level - nTarLevel);
 
-	nExp *= g_ExpRate;
+	nExp = PhongThanClampPositiveExp(static_cast<long long>(nExp) * g_ExpRate);
 
 	// Phong Than 2026-10-03 noexppenalty (user request): full EXP whatever the level difference, on every
 	// map. Was -0.5%/level for lower monsters and the desertexp -5%/level (floor 50%) for higher ones.
@@ -2977,12 +2978,13 @@ void	KPlayer::AddSelfExp(int nExp, int nTarLevel)
 	// VNG getmoreexp_p stores a percentage bonus. A value of 100 means
 	// +100% (double experience), not 100% of the original experience.
 	if(Npc[m_nIndex].m_CurrentExpEnhance)
-		nGetExp = nGetExp *
-		(MAX_PERCENT + Npc[m_nIndex].m_CurrentExpEnhance) / MAX_PERCENT;
-	m_nExp += nGetExp;
+		nGetExp = PhongThanClampPositiveExp(
+		static_cast<long long>(nGetExp) *
+		(MAX_PERCENT + static_cast<long long>(Npc[m_nIndex].m_CurrentExpEnhance)) / MAX_PERCENT);
+	m_nExp = PhongThanClampSignedExp(static_cast<long long>(m_nExp) + nGetExp);
 
 	if(g_Skill120ExpRate)
-		AddSkillExp(nGetExp * g_Skill120ExpRate / MAX_PERCENT);
+		AddSkillExp(PhongThanClampSignedExp(static_cast<long long>(nGetExp) * g_Skill120ExpRate / MAX_PERCENT));
 
 	if (m_nExp > m_nNextLevelExp)	// ����
 	{
@@ -3046,7 +3048,7 @@ void KPlayer::AddSkillExp(int nExp)
 //-------------------------------------------------------------------------
 void	KPlayer::DirectAddExp(int nExp)
 {
-	m_nExp += nExp;
+	m_nExp = PhongThanClampSignedExp(static_cast<long long>(m_nExp) + nExp);
 	if (m_nExp < 0)
 	{
 		if (-m_nExp > m_nNextLevelExp)

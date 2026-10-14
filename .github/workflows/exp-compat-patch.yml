@@ -1,0 +1,56 @@
+name: EXP 131+ int32 compatibility verification
+
+on:
+  pull_request:
+    paths:
+      - 'tools/apply_exp_compat_patch.py'
+      - 'PhongThanSource/Sources/Core/Src/PhongThanExpCompat.h'
+      - 'PhongThanSource/Sources/Core/Src/KPlayerSet.cpp'
+      - 'PhongThanSource/Sources/Core/Src/KPlayer.cpp'
+      - 'PhongThanRuntime-Staging/Server/settings/npc/player/level_exp.txt'
+      - 'PhongThanRuntime-Staging/Client/settings/npc/player/level_exp.txt'
+      - 'tests/exp_compat_test.cpp'
+      - '.github/workflows/exp-compat-patch.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'tools/apply_exp_compat_patch.py'
+      - 'PhongThanSource/Sources/Core/Src/PhongThanExpCompat.h'
+      - 'PhongThanSource/Sources/Core/Src/KPlayerSet.cpp'
+      - 'PhongThanSource/Sources/Core/Src/KPlayer.cpp'
+      - 'PhongThanRuntime-Staging/Server/settings/npc/player/level_exp.txt'
+      - 'PhongThanRuntime-Staging/Client/settings/npc/player/level_exp.txt'
+      - 'tests/exp_compat_test.cpp'
+      - '.github/workflows/exp-compat-patch.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  verify-exp-compatibility:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /tools/apply_exp_compat_patch.py
+            /PhongThanSource/Sources/Core/Src/PhongThanExpCompat.h
+            /PhongThanSource/Sources/Core/Src/KPlayerSet.cpp
+            /PhongThanSource/Sources/Core/Src/KPlayer.cpp
+            /tests/exp_compat_test.cpp
+            /PhongThanRuntime-Staging/Server/settings/npc/player/level_exp.txt
+            /PhongThanRuntime-Staging/Client/settings/npc/player/level_exp.txt
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Verify legacy byte-safe C++ patches already applied
+        run: python tools/apply_exp_compat_patch.py --root . --check
+      - name: Native C++ tests against original server/client EXP tables
+        run: |
+          g++ -std=c++11 -Wall -Wextra -Werror -o /tmp/pt-exp-test tests/exp_compat_test.cpp
+          /tmp/pt-exp-test
+      - name: Check whitespace
+        run: git diff --check
