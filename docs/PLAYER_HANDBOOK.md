@@ -140,7 +140,7 @@ Nguồn [Hệ thống trang bị](https://phongthan.vinagame.com.vn/tin-tuc/can-
 
 ## 8. Cấp tối đa, chuyển sinh và những câu hỏi lớn
 
-- **Cấp tối đa bản phục dựng:** **chưa xác minh**. Phát biểu “150” trước đây thiếu chứng cứ trong source; [cẩm nang chuyển sinh VNG](https://phongthan.vinagame.com.vn/cam-nang/tinh-nang/chuyen-sinh.html) còn đề cập cấp 200. Không suy ra server này là cấp 150 hay 200.
+- **Giới hạn cấp được khai báo trong source: 200** (`GameDataDef.h:74`, `KPlayer.cpp:3084`); bảng EXP server/client có dòng 1–200. **Chưa xác nhận đạt cấp 200 bằng gameplay.** Đặc biệt, EXP cấp 131–200 là 5.300.556.000 mỗi dòng, vượt signed-int32 trong khi engine đọc vào `int`; có nguy cơ lỗi từ cấp 131. Xem [GAMEPLAY_SOURCE_AUDIT](GAMEPLAY_SOURCE_AUDIT.md).
 - **Chuyển sinh:** có tài liệu VNG, **chưa xác minh script/điều kiện/tác động save** của bản phục dựng.
 - **Trang bị mạnh nhất:** phụ thuộc content/version/server; cần trích đủ bảng item, set, nâng cấp và kỹ năng liên quan.
 - **Điểm cộng tối ưu:** chưa có build benchmark; không phát tán bảng cộng điểm đoán.
@@ -152,7 +152,7 @@ Nguồn [Hệ thống trang bị](https://phongthan.vinagame.com.vn/tin-tuc/can-
 | --- | --- | --- | --- | --- |
 | 3 hệ phái | Có | Chưa đối chiếu đầy đủ mapping | Không | Mapping class IDs, UI tạo nhân vật, kỹ năng |
 | Nhiệm vụ đầu game | Có | Quest foundation, kiểm kê NPC | Không | Thử từng bước và phần thưởng |
-| Level cap | Nguồn khác phiên bản, có mốc 200 | Chưa chỉ ra cấu hình cap | Không | EXP table, code giới hạn cấp |
+| Level cap | Có tài liệu VNG | MAX_LEVEL=200, bảng EXP 1–200; overflow risk cấp 131+ | Không | Test parsing EXP > int32 và tăng cấp đến 200 trong VM |
 | Skill và điểm | Có mô tả VNG | Chưa tổng hợp skill IDs/công thức | Không | Xuất bảng kỹ năng, skill tests |
 | Trang bị | Có danh mục Lục/Cam/Hoàng Kim/... | Chưa tổng hợp item IDs/set | Không | Export bảng item, source drops/recipes |
 | Thú cưỡi/pet/Linh Thú | Có nội dung VNG và custom | Có các file/script được kiểm kê | Không | Kiểm thử nhận thú, tiến hóa, cấp thưởng |
