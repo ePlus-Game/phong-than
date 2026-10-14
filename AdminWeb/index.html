@@ -46,13 +46,38 @@ th{color:var(--muted);font-weight:600;font-size:12px}
 .act{border:1px dashed var(--line);border-radius:8px;padding:10px;margin-top:10px}
 .muted{color:var(--muted)}
 @media (max-width:600px){nav{margin-left:0}header{padding:10px 16px}}
+/* Admin workspace: grouped navigation and consistent form rhythm. */
+:root{--bg:#f3f5f8;--panel:#fff;--ink:#202c3d;--muted:#617086;--line:#dce3ed;--accent:#215caa;--accent-2:#376fc0;--chip:#edf2f9}
+@media(prefers-color-scheme:dark){:root{--bg:#111923;--panel:#1b2533;--ink:#e8eef7;--muted:#a6b4c7;--line:#344256;--accent:#426fba;--accent-2:#83b1f3;--chip:#26354a}}
+header{height:72px;flex-wrap:nowrap;padding:16px 28px;z-index:6}
+header h1{white-space:nowrap}#bridge{margin-left:auto;text-align:right}
+nav{position:fixed;left:0;top:72px;bottom:0;width:244px;display:block;overflow-y:auto;margin:0;padding:18px 14px;background:var(--panel);border-right:1px solid var(--line)}
+.nav-group{margin-bottom:18px}.nav-label{padding:0 12px;margin:0 0 6px;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--muted)}
+nav button{display:block;width:100%;text-align:left;padding:9px 12px;margin:2px 0;border-radius:8px;font-size:13px}nav button:hover{background:var(--chip)}nav button.on{background:var(--accent);color:#fff;font-weight:600}
+main{max-width:1600px;margin:0 0 0 244px;padding:28px 30px 60px;min-width:0}
+.page-heading{margin-bottom:24px}.page-heading h2{font-size:25px;line-height:1.3;margin:0 0 6px;letter-spacing:-.4px}.page-heading p{margin:0;color:var(--muted)}
+.grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));align-items:start;gap:20px}
+.card{padding:22px;border-radius:12px;min-width:0;box-shadow:0 2px 6px rgba(25,45,75,.03)}.card h2{font-size:16px;line-height:1.4}
+.row{gap:12px;align-items:flex-end}.row>*{min-width:min(150px,100%)}
+input,select,textarea{background:var(--panel);min-height:40px}input[type=checkbox],input[type=radio]{width:auto;min-height:0;accent-color:var(--accent)}input[type=range]{padding:0;accent-color:var(--accent)}
+button.btn{min-height:40px;padding:9px 14px;line-height:1.4}button.btn.small{min-height:32px}button:hover{filter:brightness(.96)}button:disabled{opacity:.5;cursor:wait}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid var(--accent-2);outline-offset:2px}
+.hint{line-height:1.65;margin-top:8px}.list{max-height:360px}.list div{padding:10px 12px}.list small{white-space:normal;text-align:right}
+.table-scroll{overflow-x:auto;max-width:100%}th{background:var(--chip)}th,td{padding:10px 12px}td{overflow-wrap:anywhere}
+.tool-block{border-top:1px solid var(--line);margin-top:20px;padding-top:16px}.tool-block summary{cursor:pointer;font-size:14px;font-weight:600;padding:4px 0}.tool-block[open] summary{margin-bottom:12px}.tool-block .row button{flex:1 1 180px}
+#give>.grid{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr)}
+.nav-toggle{display:none;background:var(--chip);color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:7px 12px;font:inherit}
+#toast{max-width:min(420px,calc(100vw - 32px))}
+@media(max-width:1000px){header{padding:12px 20px}nav{width:216px}main{margin-left:216px;padding:24px 20px}#give>.grid{grid-template-columns:1fr}}
+@media(max-width:720px){header{height:auto;min-height:72px;flex-wrap:wrap;gap:8px 12px;padding:12px 16px}.nav-toggle{display:block}header h1{font-size:16px}#bridge{width:100%;margin:0;text-align:left;font-size:12px}nav{display:none;position:static;width:100%;max-height:55vh;border:1px solid var(--line);border-radius:8px}nav.expanded{display:block}main{margin:0;padding:22px 16px 48px}.card{padding:18px}.page-heading h2{font-size:22px}.row>*{flex-basis:150px}}
 </style>
 </head>
 <body>
 <header>
+  <button type="button" class="nav-toggle" id="navToggle" aria-controls="tabs" aria-expanded="false">Menu</button>
   <h1>Phong Thần Admin</h1>
   <span id="bridge"><span class="dot"></span>Đang kiểm tra server…</span>
-  <nav id="tabs">
+  <nav id="tabs" aria-label="Chức năng quản trị">
     <button data-t="overview" class="on">Tổng quan</button>
     <button data-t="give">Phát đồ</button>
     <button data-t="skills">Bí kíp / Kỹ năng</button>
@@ -80,6 +105,7 @@ th{color:var(--muted);font-weight:600;font-size:12px}
   </nav>
 </header>
 <main>
+<div class="page-heading"><h2 id="pageTitle">Tổng quan</h2><p id="pageDescription">Theo dõi hoạt động server và người chơi đang online.</p></div>
 
 <section id="overview" class="on">
   <div class="grid">
@@ -644,7 +670,7 @@ th{color:var(--muted);font-weight:600;font-size:12px}
 </section>
 </main>
 <datalist id="playerNames"></datalist><datalist id="accNames"></datalist>
-<div id="toast"></div>
+<div id="toast" role="status" aria-live="polite"></div>
 <script>
 const TOKEN='__PT_TOKEN__';
 const $=id=>document.getElementById(id);
@@ -658,7 +684,23 @@ async function api(path,body){
 }
 function toast(msg,err){const t=$('toast');t.textContent=msg;t.className=err?'err':'';t.style.display='block';clearTimeout(t._h);t._h=setTimeout(()=>t.style.display='none',err?7000:4000)}
 async function run(fn){try{const j=await fn();if(j&&j.message)toast(j.message);return j}catch(e){toast(e.message,true)}}
-document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#tabs button').forEach(x=>x.classList.toggle('on',x===b));document.querySelectorAll('section').forEach(s=>s.classList.toggle('on',s.id===b.dataset.t));
+const NAV_GROUPS=[
+  ['Theo dõi','overview','history'],
+  ['Người chơi','accounts','chars'],
+  ['Vật phẩm & phát thưởng','give','skills','mounts','gear','weapons','maxgear','upgrade','dailygift'],
+  ['Thế giới & sự kiện','boss','worldboss','vantien','matdo','bots','botparty','news','events','evsched'],
+  ['Hệ thống','health','backups','setup']
+];
+const PAGE_DESCRIPTIONS={overview:'Theo dõi hoạt động server và người chơi đang online.',history:'Kiểm tra lệnh đã gửi, trạng thái xử lý và kết quả.',accounts:'Quản lý tài khoản và quyền truy cập.',chars:'Tra cứu và quản lý dữ liệu nhân vật.',give:'Chọn vật phẩm và nhân vật nhận; mở các nhóm bên dưới khi cần thao tác thêm.',skills:'Chọn hệ phái, kỹ năng và bí kíp cho nhân vật.',mounts:'Tra cứu và phát thú cưỡi theo hệ phái.',gear:'Chọn bộ trang bị lục phù hợp với nhân vật.',weapons:'Tra cứu và phát vũ khí lục.',maxgear:'Chọn mẫu trang bị và pháp bảo.',upgrade:'Xem trang bị của nhân vật và đặt mức cường hóa.',dailygift:'Cài đặt quà tặng và phần thưởng thành tích.',boss:'Tra cứu Boss / NPC và chọn vị trí tạo.',worldboss:'Theo dõi và quản lý Boss thế giới.',vantien:'Theo dõi và điều khiển Vạn Tiên trận.',matdo:'Điều chỉnh mật độ quái và thời gian hồi sinh.',bots:'Cài đặt bot và vị trí hoạt động.',botparty:'Quản lý bot theo tổ đội và từng nhân vật.',news:'Gửi thông báo đến người chơi trong game.',events:'Tạo và quản lý nội dung sự kiện.',evsched:'Cài đặt thời gian chạy các sự kiện.',health:'Kiểm tra dịch vụ, kết nối và nhật ký server.',backups:'Quản lý bản sao lưu và khôi phục dữ liệu.',setup:'Cài đặt server và tùy chỉnh hiển thị, âm thanh client.'};
+NAV_GROUPS.forEach(([label,...ids])=>{const group=document.createElement('div');group.className='nav-group';const title=document.createElement('p');title.className='nav-label';title.textContent=label;group.append(title);ids.forEach(id=>{const b=document.querySelector(`#tabs [data-t="${id}"]`);if(b)group.append(b)});$('tabs').append(group)});
+$('navToggle').onclick=()=>{const open=$('tabs').classList.toggle('expanded');$('navToggle').setAttribute('aria-expanded',String(open))};
+// Keep the shared recipient visible and collapse optional operations into named groups.
+const giveCard=$('givePlayer').closest('.card');
+let giveBlock=null;
+[...giveCard.children].forEach(el=>{if(el.matches('h2')&&el.style.marginTop){giveBlock=document.createElement('details');giveBlock.className='tool-block';const summary=document.createElement('summary');summary.textContent=el.textContent;giveBlock.append(summary);el.before(giveBlock);el.remove()}else if(giveBlock)giveBlock.append(el)});
+document.querySelectorAll('main table').forEach(table=>{const wrap=document.createElement('div');wrap.className='table-scroll';table.before(wrap);wrap.append(table)});
+document.querySelectorAll('label').forEach(label=>{const field=label.nextElementSibling;if(!label.htmlFor&&field&&field.matches('input[id],select[id],textarea[id]'))label.htmlFor=field.id});
+document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#tabs button').forEach(x=>{x.classList.toggle('on',x===b);if(x===b)x.setAttribute('aria-current','page');else x.removeAttribute('aria-current')});document.querySelectorAll('main>section').forEach(s=>s.classList.toggle('on',s.id===b.dataset.t));$('pageTitle').textContent=b.textContent;$('pageDescription').textContent=PAGE_DESCRIPTIONS[b.dataset.t]||'';$('tabs').classList.remove('expanded');$('navToggle').setAttribute('aria-expanded','false');window.scrollTo({top:0,behavior:'instant'});
   if(b.dataset.t==='worldboss')loadWorldBoss();if(b.dataset.t==='vantien')loadVanTien();if(b.dataset.t==='accounts')loadAccounts();if(b.dataset.t==='history')loadHistory();if(b.dataset.t==='events')loadEvents();if(b.dataset.t==='setup'){loadSetup();loadClientCfg();loadClientSound();}});
 function debounce(fn,ms){let h;return(...a)=>{clearTimeout(h);h=setTimeout(()=>fn(...a),ms)}}
 
