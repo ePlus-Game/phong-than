@@ -41,6 +41,9 @@ jobs:
             /AdminWeb/index.html
             /AdminWeb/PhongThan-Setup.ps1
             /install/README.md
+            /PhongThan-MoGame.cmd
+            /AdminWeb/PhongThan-RunAll.ps1
+            /AdminWeb/PhongThan-ClientPatch.ps1
             /PhongThan-Admin.cmd
             /PhongThan-CaiDat.cmd
             /PhongThan-ChayTatCa.cmd
@@ -51,6 +54,7 @@ jobs:
             /README.md
             /docs/BRANDING.md
             /docs/LEGACY_HARDENING.md
+            /docs/LAUNCHER_BEHAVIOR.md
             /docs/releases/v0.1.0-recovery.1.md
       - uses: actions/setup-python@v5
         with:
