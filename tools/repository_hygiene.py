@@ -47,10 +47,10 @@ def parse_tree(data: bytes):
             raise ValueError("Malformed Git tree entry") from exc
         if kind != b"blob":
             continue
-        if len(raw_sha) != 40 or not raw_size.isdigit():
+        if len(raw_sha) != 40 or (not raw_size.isdigit() and raw_size != b"-"):
             raise ValueError("Malformed Git blob metadata")
         path = raw_path.decode("utf-8", "surrogateescape")
-        yield path, int(raw_size), raw_sha.decode("ascii")
+        yield path, (int(raw_size) if raw_size.isdigit() else None), raw_sha.decode("ascii")
 
 
 def groups_for(path: str):
@@ -92,28 +92,32 @@ def summarize(entries) -> dict:
     blobs: Counter[str] = Counter()
     number = 0
     bytes_total = 0
+    sizes_available = True
     for path, size, sha in entries:
         number += 1
-        bytes_total += size
+        if size is None:
+            sizes_available = False
+        else:
+            bytes_total += size
         root = path.split("/", 1)[0]
         if root not in VISIBLE_ROOTS:
             root = "Other root items"
         root_count[root] += 1
-        root_bytes[root] += size
+        root_bytes[root] += size or 0
         blobs[sha] += 1
         for group in groups_for(path):
             class_count[group] += 1
-            class_bytes[group] += size
+            class_bytes[group] += size or 0
     return {
         "tracked_files": number,
-        "logical_bytes": bytes_total,
+        "logical_bytes": bytes_total if sizes_available else None,
         "repeated_blob_references": sum(count - 1 for count in blobs.values() if count > 1),
         "roots": [
-            {"group": key, "files": root_count[key], "logical_bytes": root_bytes[key]}
-            for key in sorted(root_count, key=lambda x: (-root_bytes[x], x))
+            {"group": key, "files": root_count[key], "logical_bytes": root_bytes[key] if sizes_available else None}
+            for key in sorted(root_count, key=lambda x: (-root_count[x] if not sizes_available else -root_bytes[x], x))
         ],
         "categories": [
-            {"group": key, "files": class_count[key], "logical_bytes": class_bytes[key]}
+            {"group": key, "files": class_count[key], "logical_bytes": class_bytes[key] if sizes_available else None}
             for key in GROUPS
         ],
         "note": (
@@ -126,7 +130,7 @@ def summarize(entries) -> dict:
 
 def markdown(report: dict) -> str:
     def mib(size: int) -> str:
-        return f"{size / 1048576:,.1f} MiB"
+        return f"{size / 1048576:,.1f} MiB" if size is not None else "not measured"
 
     lines = [
         "### Repository hygiene (read-only Git tree)",
@@ -160,9 +164,10 @@ def main() -> int:
     parser.add_argument("--repo-root", type=Path, default=Path(__file__).resolve().parents[1])
     parser.add_argument("--format", choices=("markdown", "json"), default="markdown")
     parser.add_argument("--output", type=Path)
+    parser.add_argument("--no-sizes", action="store_true", help="Count paths and blob references without fetching blobs in partial clone")
     args = parser.parse_args()
     result = subprocess.run(
-        ["git", "-C", str(args.repo_root), "ls-tree", "-r", "-l", "-z", "HEAD"],
+        ["git", "-C", str(args.repo_root), "ls-tree", "-r"] + ([] if args.no_sizes else ["-l"]) + ["-z", "HEAD"],
         stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=False,
     )
     if result.returncode:
