@@ -40,6 +40,14 @@ try {
     New-Item -ItemType Directory -Path $parent -Force | Out-Null
     Copy-Item -LiteralPath $source -Destination $work -Recurse -ErrorAction Stop
 
+    # The copied archive may already contain OutputModern binaries and old logs.
+    # Purge these from the EXTERNAL COPY before patching/building so a full-build
+    # verifier can never accept historical binaries for an unbuilt module.
+    if ($Toolchain -eq 'Modern') {
+        & $python.Source (Join-Path $repo 'tools/prepare_modern_build.py') '--work-root' $work '--source-root' $source '--repo-root' $repo
+        if ($LASTEXITCODE -ne 0) { throw 'Could not remove stale Modern outputs from external copy.' }
+    }
+
     & $python.Source (Join-Path $repo 'tools/legacy_hardening.py') '--target' $work '--apply'
     if ($LASTEXITCODE -ne 0) { throw 'Failed to apply security/build fixes.' }
 
@@ -50,6 +58,7 @@ try {
     }
     $arguments = @('-NoProfile','-ExecutionPolicy','Bypass','-File',$build)
     if ($Toolchain -eq 'VC6') { $arguments += @('-Configuration',$Configuration) }
+    if ($Toolchain -eq 'Modern') { $arguments += '-Clean' }
     if ($Toolchain -eq 'Modern' -and $KeepGoing) { $arguments += '-KeepGoing' }
     $powershell = Join-Path $PSHOME 'powershell.exe'
     if (-not (Test-Path -LiteralPath $powershell)) {
