@@ -17,6 +17,7 @@ This document distinguishes source verification from tests that actually execute
 - `legacy-source-audit.yml` invokes `python -m unittest discover -s tests -v`, two portable C++98 tests, a static build preflight, and produces a separately downloadable branding overlay.
 - `quest-content-integrity.yml` validates selected quest assets, SHA-256 provenance, and contract fixtures only when quest-related files change.
 - `windows-native-modules.yml` compiles and links `LuaLibDll` and `Engine` from a fresh external copy on GitHub-hosted Windows (MSVC x86), validating PE32/i386 and hashes for newly built Client/Server DLL outputs. [PASS run #38520540848](https://github.com/ePlus-Game/phong-than-truyen-ky/actions/runs/38520540848). Engine still uses historical `Lib/release` libraries; this is not all-dependency source rebuild or a playable runtime test.
+- `windows-core-modules.yml` adds `Common`, `ExpandPackageStaticLib`, `FilterTextStatic`, `CoreServer`, `CoreClient` to the fresh x86 build sequence. [7/7 PASS run #38523254976](https://github.com/ePlus-Game/phong-than-truyen-ky/actions/runs/38523254976), checking new PE32 DLL and COFF LIB signatures with SHA-256. Legacy static dependencies remain; neither full 22-binary build nor native game runtime has been tested.
 - Older PowerShell and native test programs under `PhongThanSource/Tests/` are **not** all executed by these GitHub workflows.
 - `tests/test_reward_pet_overlay.py` is included in `unittest discover`; do **not** run it twice in the same job.
 
