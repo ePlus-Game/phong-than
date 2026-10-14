@@ -12,6 +12,9 @@ on:
       - 'PhongThanSource/Sources/Core/Src/KSkills.cpp'
       - 'PhongThanSource/Sources/Core/Src/KPlayer.cpp'
       - 'PhongThanSource/Build/Build-Modern.ps1'
+      - 'PhongThanSource/Sources/MultiServer/PhongThanRelay/**'
+      - 'PhongThanSource/Headers/PhongThanRelayProtocol.h'
+      - 'tools/verify_windows_build.py'
       - 'tools/Build-PatchedGame.ps1'
     branches: [main]
   push:
@@ -21,6 +24,9 @@ on:
       - 'PhongThanSource/Deploy/Start-NativeServer.ps1'
       - 'PhongThanSource/Tests/test_server_readiness.py'
       - 'PhongThanSource/Tests/Test-SkillMigrationGuards.ps1'
+      - 'PhongThanSource/Sources/MultiServer/PhongThanRelay/**'
+      - 'PhongThanSource/Build/Build-Modern.ps1'
+      - 'tools/verify_windows_build.py'
 permissions:
   contents: read
 concurrency:
@@ -42,6 +48,9 @@ jobs:
             /PhongThanSource/Sources/Core/Src/KSkills.cpp
             /PhongThanSource/Sources/Core/Src/KPlayer.cpp
             /PhongThanSource/Sources/MultiServer/Bishop/GameServer.cpp
+            /PhongThanSource/Sources/MultiServer/PhongThanRelay/
+            /PhongThanSource/Headers/
+            /tools/verify_windows_build.py
             /PhongThanSource/Deploy/Start-NativeServer.ps1
             /PhongThanSource/Deploy/Start-StagingClient.ps1
             /PhongThanSource/Deploy/Stop-StagingRuntime.ps1
@@ -73,3 +82,21 @@ jobs:
       - name: Skill level and profession static guards
         shell: powershell
         run: '& .\PhongThanSource\Tests\Test-SkillMigrationGuards.ps1'
+      - name: Compile and link native PhongThanRelay.exe on GitHub Windows runner
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Stop'
+          # Build in a new external copy; do not modify original archived source.
+          $work = Join-Path $env:RUNNER_TEMP ('pt-relay-' + $env:GITHUB_RUN_ID + '-' + $env:GITHUB_RUN_ATTEMPT)
+          if (Test-Path -LiteralPath $work) { throw 'Refusing to reuse test build workspace' }
+          New-Item -Path $work -ItemType Directory -Force | Out-Null
+          Copy-Item -LiteralPath 'PhongThanSource/Build' -Destination (Join-Path $work 'Build') -Recurse
+          Copy-Item -LiteralPath 'PhongThanSource/Headers' -Destination (Join-Path $work 'Headers') -Recurse
+          New-Item -Path (Join-Path $work 'Sources/MultiServer') -ItemType Directory -Force | Out-Null
+          Copy-Item -LiteralPath 'PhongThanSource/Sources/MultiServer/PhongThanRelay' -Destination (Join-Path $work 'Sources/MultiServer/PhongThanRelay') -Recurse
+          & powershell.exe -NoProfile -ExecutionPolicy Bypass -File (Join-Path $work 'Build/Build-Modern.ps1') -Targets PhongThanRelay -Jobs 2
+          if ($LASTEXITCODE -ne 0) { throw 'Native PhongThanRelay.exe compilation/link failed' }
+          $exe = Join-Path $work 'OutputModern/Server/PhongThanRelay.exe'
+          & python -c "import sys; from pathlib import Path; from tools.verify_windows_build import inspect_pe; s,h = inspect_pe(Path(sys.argv[1]), require_dll=False); print('PASS x86 PE32 relay bytes=',s,'sha256=',h)" $exe
+          if ($LASTEXITCODE -ne 0) { throw 'Native relay output is not valid PE32 i386' }
+          "PASS: GitHub-hosted Windows actually compiled and linked PhongThanRelay.exe. This is a **partial** binary smoke, not a complete game build." | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append -Encoding utf8
