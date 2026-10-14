@@ -7,6 +7,7 @@ Repository: [ePlus-Game/phong-than-truyen-ky](https://github.com/ePlus-Game/phon
 Dự án gồm mã nguồn game, dữ liệu runtime và công cụ phục dựng, kiểm tra, build. Tên file chạy và đường dẫn kỹ thuật hiện có (`Game.exe`, `PhongThanSource`, `PhongThanRuntime-Staging`, `script/phongthan/*`) được giữ nguyên để tương thích.
 
 - [Cập nhật tên hiển thị trong bản build](docs/BRANDING.md)
+- **[Cẩm nang tân thủ — cấp độ, hệ phái, trang bị và hướng dẫn bắt đầu](docs/NEW_PLAYER_GUIDE.md)**
 - **[Master Roadmap — build, gameplay, online, multi-server](docs/MASTER_ROADMAP.md)**
 - [Lộ trình refactor engine và network](docs/REFACTORING.md)
 - **[Repository Hygiene — quản lý file rác, checkout gọn và kế hoạch tách archive](docs/REPOSITORY_HYGIENE.md)**
