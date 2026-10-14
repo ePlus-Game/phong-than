@@ -121,6 +121,27 @@ Next: complete the missing Client modules and `Game.exe`, verify the
 entire fresh 22-role EXE/DLL matrix in a release workspace, and then
 perform M2 testing using an isolated test-only Windows runner/VM.
 
+## GitHub-hosted native Client build (14/10/2026 - 13/13 PASS)
+
+[Windows Client run #38530141589](https://github.com/ePlus-Game/phong-than-truyen-ky/actions/runs/38530141589)
+compiled and linked **13/13 source projects** in an isolated external Windows
+x86 workspace, including freshly built `Game.exe`, `Represent2.dll`,
+`Represent3.dll`, `CoreClient.dll`, and both Client/Server role copies of
+shared DLLs. Metadata-only PE32/i386, COFF and SHA-256 checks passed.
+[PR #57](https://github.com/ePlus-Game/phong-than-truyen-ky/pull/57)
+provides the reproducible workflow and tests.
+
+The build uses legacy `Lib/release` linker inputs where needed. The
+Represent3 workaround only changes the **temporary copied DSP/builder**
+to avoid old DX9 headers shadowing the modern Windows SDK and to order
+`windows.h` before DirectDraw. Tracked historical source bytes remain
+unchanged.
+
+**Next P4:** compile Client and Server **together** in one fresh source
+workspace, verify **22/22 role-specific EXE/DLL** via
+`tools/verify_windows_build.py`, and inspect native import dependencies.
+A successful Client build alone is not evidence of playable gameplay or DB.
+
 ## Manual execution and evidence
 
 1. Provision the dedicated trusted Windows x64 runner with MSVC x86 tools,
