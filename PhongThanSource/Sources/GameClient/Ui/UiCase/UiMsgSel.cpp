@@ -1,8 +1,8 @@
 // -------------------------------------------------------------------------
-//	ÎÄ¼şÃû		£º	UiMsgSel.h
-//	´´½¨Õß		£º	Wooy(Wu yue)
-//	´´½¨Ê±¼ä	£º	2003-1-6
-//	¹¦ÄÜÃèÊö	£º	´ø¹ö¶¯ÌõµÄÏûÏ¢Ñ¡Ôñ
+//	æ–‡ä»¶å		ï¼š	UiMsgSel.h
+//	åˆ›å»ºè€…		ï¼š	Wooy(Wu yue)
+//	åˆ›å»ºæ—¶é—´	ï¼š	2003-1-6
+//	åŠŸèƒ½æè¿°	ï¼š	å¸¦æ»šåŠ¨æ¡çš„æ¶ˆæ¯é€‰æ‹©
 // -------------------------------------------------------------------------
 #include "KWin32.h"
 #include "KIniFile.h"
@@ -37,7 +37,7 @@ KUiMsgSel::~KUiMsgSel() {
 }
 
 //--------------------------------------------------------------------------
-//	¹¦ÄÜ£º´ò¿ª´°¿Ú£¬·µ»ØÎ¨Ò»µÄÒ»¸öÀà¶ÔÏóÊµÀı
+//	åŠŸèƒ½ï¼šæ‰“å¼€çª—å£ï¼Œè¿”å›å”¯ä¸€çš„ä¸€ä¸ªç±»å¯¹è±¡å®ä¾‹
 //--------------------------------------------------------------------------
 KUiMsgSel *KUiMsgSel::OpenWindow(KUiQuestionAndAnswer *pQAA, KUiImage *pPic) {
     if (!pQAA || pQAA->AnswerCount < 0 || pQAA->AnswerCount > MAX_ANSWERNUM)
@@ -59,7 +59,7 @@ KUiMsgSel *KUiMsgSel::OpenWindow(KUiQuestionAndAnswer *pQAA, KUiImage *pPic) {
 }
 
 //--------------------------------------------------------------------------
-//	¹¦ÄÜ£º¹Ø±ÕÏú»Ù´°¿Ú
+//	åŠŸèƒ½ï¼šå…³é—­é”€æ¯çª—å£
 //--------------------------------------------------------------------------
 void KUiMsgSel::CloseWindow(bool bDestroy) {
     if (m_pSelf) {
@@ -83,7 +83,7 @@ KUiMsgSel *KUiMsgSel::GetIfVisible() {
 }
 
 //--------------------------------------------------------------------------
-//	¹¦ÄÜ£º³õÊ¼»¯
+//	åŠŸèƒ½ï¼šåˆå§‹åŒ–
 //--------------------------------------------------------------------------
 int KUiMsgSel::Initialize(KUiImage *pPic) {
     if (pPic) {
@@ -95,6 +95,7 @@ int KUiMsgSel::Initialize(KUiImage *pPic) {
     AddChild(&m_MsgScrollList);
     AddChild(&m_MessageScroll);
     AddChild(&m_MessageList);
+    AddChild(&m_CloseBtn);
     m_MessageList.SetScrollbar(&m_MessageScroll);
     char Scheme[256];
     g_UiBase.GetCurSchemePath(Scheme, 256);
@@ -112,7 +113,7 @@ int KUiMsgSel::Initialize(KUiImage *pPic) {
 }
 
 //--------------------------------------------------------------------------
-//	¹¦ÄÜ£ºÔØÈë´°¿ÚµÄ½çÃæ·½°¸
+//	åŠŸèƒ½ï¼šè½½å…¥çª—å£çš„ç•Œé¢æ–¹æ¡ˆ
 //--------------------------------------------------------------------------
 void KUiMsgSel::LoadScheme(const char *pScheme) {
     if (m_pSelf == NULL)
@@ -125,39 +126,36 @@ void KUiMsgSel::LoadScheme(const char *pScheme) {
         m_pSelf->m_MsgScrollList.Init(&Ini, "Select");
         m_pSelf->m_MessageScroll.Init(&Ini, "MessageScroll");
         m_pSelf->m_MessageList.Init(&Ini, "MessageList");
+        m_pSelf->m_CloseBtn.Init(&Ini, "CloseBtn");
+        int nCloseWidth = 0, nCloseHeight = 0;
+        Ini.GetInteger("CloseBtn", "Width", 0, &nCloseWidth);
+        Ini.GetInteger("CloseBtn", "Height", 0, &nCloseHeight);
+        if (nCloseWidth <= 0 || nCloseHeight <= 0)
+            m_pSelf->m_CloseBtn.Hide();
+        else
+            m_pSelf->m_CloseBtn.Show();
+        // TCVN3 bytes for the Vietnamese label: Káº¿t thÃºc.
+        m_pSelf->m_CloseBtn.SetText("K\xD5t th\xF3" "c");
     }
 }
 
 //--------------------------------------------------------------------------
-//	¹¦ÄÜ£º´°¿ÚÏûÏ¢º¯Êı
+//	åŠŸèƒ½ï¼šçª—å£æ¶ˆæ¯å‡½æ•°
 //--------------------------------------------------------------------------
 int KUiMsgSel::WndProc(unsigned int uMsg, unsigned int uParam, int nParam) {
     int nRet = 0;
     switch (uMsg) {
-        case WM_MOUSEMOVE: {
-            int x = LOWORD(nParam) - m_nAbsoluteLeft;
-            int y = HIWORD(nParam) - m_nAbsoluteTop;
-            if (x >= 0 && x <= m_Width &&
-                y >= 0 && y <= m_Height) {
-                int nMLeft = 0;
-                int nMTop = 0;
-                m_MsgScrollList.GetMessageListBox()->GetPosition(&nMLeft, &nMTop);
-                int nMWidth = 0;
-                int nMHeight = 0;
-                m_MsgScrollList.GetMessageListBox()->GetSize(&nMWidth, &nMHeight);
-                if (x >= nMLeft && x <= nMLeft + nMWidth) {
-                    if (y <= nMTop && y >= nMTop - 50)
-                        m_bAutoUp = true;
-                    else
-                        m_bAutoUp = false;
-
-                    if (y >= nMTop + nMHeight && y <= nMTop + nMHeight + 50)
-                        m_bAutoDown = true;
-                    else
-                        m_bAutoDown = false;
-                }
+        case WND_N_BUTTON_CLICK:
+            if (uParam == (unsigned int)(KWndWindow*)&m_CloseBtn) {
+                CloseWindow(true);
+                return 1;
             }
-        }
+            break;
+        case WM_MOUSEMOVE:
+        case WND_M_MOUSE_LEAVE:
+            // Only explicit keyboard input or a hovered answer changes selection.
+            m_bAutoUp = false;
+            m_bAutoDown = false;
             break;
         case WND_N_LIST_ITEM_HIGHLIGHT:
             m_bAutoUp = false;
@@ -175,9 +173,6 @@ int KUiMsgSel::WndProc(unsigned int uMsg, unsigned int uParam, int nParam) {
                     m_Image.GetSize(&nMWidth, &nMHeight);
                     m_Image.SetPosition(70 - nMWidth / 2, 70 - nMHeight / 2);
                 }
-            } else {
-                ChangeCurSel(true);    //¾­Êµ¼Ê²âÊÔÔÚnParam < 0 Ê±ÊÇÏòÏÂ
-                nRet = 1;
             }
             break;
         case WND_N_LIST_ITEM_ACTIVE:
@@ -210,14 +205,15 @@ int KUiMsgSel::WndProc(unsigned int uMsg, unsigned int uParam, int nParam) {
             nRet = KWndShowAnimate::WndProc(uMsg, uParam, nParam);
             break;
     }
-    return 0;
+    return nRet;
 }
 
 //--------------------------------------------------------------------------
-//	¹¦ÄÜ£ºÏìÓ¦µã»÷°´Å¥
+//	åŠŸèƒ½ï¼šå“åº”ç‚¹å‡»æŒ‰é’®
 //--------------------------------------------------------------------------
 void KUiMsgSel::OnClickMsg(int nMsg) {
-    if (m_pSelf) {
+    if (m_pSelf && nMsg >= 0 &&
+        nMsg < m_pSelf->m_MsgScrollList.GetMessageListBox()->GetMsgCount()) {
         m_pSelf->CloseWindow(true);
         g_pCoreShell->OperationRequest(GOI_QUESTION_CHOOSE, 0, nMsg);
     }
@@ -235,7 +231,7 @@ void KUiMsgSel::ChangeCurSel(bool bNext) {
 }
 
 //--------------------------------------------------------------------------
-//	¹¦ÄÜ£ºÏÔÊ¾´°¿Ú
+//	åŠŸèƒ½ï¼šæ˜¾ç¤ºçª—å£
 //--------------------------------------------------------------------------
 void KUiMsgSel::Show(KUiQuestionAndAnswer *pQAA) {
     if (!pQAA || pQAA->AnswerCount < 0 || pQAA->AnswerCount > MAX_ANSWERNUM)
@@ -245,9 +241,11 @@ void KUiMsgSel::Show(KUiQuestionAndAnswer *pQAA) {
         m_MessageList.Clear();
         m_MessageList.AddOneMessage(pQAA->Question, pQAA->QuestionLen);
         int i = 0;
-        if (pQAA->AnswerCount <= 0) {
-            m_MsgScrollList.GetMessageListBox()->AddOneMessage("KÕt thóc ®èi tho¹i", -1);
-        } else {
+        if (pQAA->AnswerCount <= 0 && !m_CloseBtn.IsVisible()) {
+            m_MsgScrollList.GetMessageListBox()->AddOneMessage("Kèª¸ théª³ î†¿i thoç­°", -1);
+
+        }
+        if (pQAA->AnswerCount > 0) {
             for (i = 0; i < pQAA->AnswerCount; i++) {
                 char *pAnswer = strstr(pQAA->Answer[i].AnswerText, "LINK:");
                 if (m_pPic.Name[0] && pAnswer) {
@@ -255,12 +253,12 @@ void KUiMsgSel::Show(KUiQuestionAndAnswer *pQAA) {
                     *pAnswer = 0;
                     if (!m_MsgScrollList.GetMessageListBox()->AddOneMessage(pQAA->Answer[i].AnswerText,
                                                                             pQAA->Answer[i].AnswerLen))
-                        m_MsgScrollList.GetMessageListBox()->AddOneMessage("[--KŞch b¶n xö lı lçi--]", -1);
+                        m_MsgScrollList.GetMessageListBox()->AddOneMessage("[--Kè¾Œh bç§ xï¿½ lï¿½ lé¸--]", -1);
                 } else {
                     m_szPic[i][0] = 0;
                     if (!m_MsgScrollList.GetMessageListBox()->AddOneMessage(pQAA->Answer[i].AnswerText,
                                                                             pQAA->Answer[i].AnswerLen))
-                        m_MsgScrollList.GetMessageListBox()->AddOneMessage("[--KŞch b¶n xö lı lçi--]", -1);
+                        m_MsgScrollList.GetMessageListBox()->AddOneMessage("[--Kè¾Œh bç§ xï¿½ lï¿½ lé¸--]", -1);
                 }
             }
         }
