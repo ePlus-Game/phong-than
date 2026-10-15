@@ -111,6 +111,19 @@ try {
     if($childExit -eq 0 -or ($log -join "`n") -notmatch 'DEFAULT_ROOT_VERIFIER_REACHED') {
         throw "Default RepoRoot did not reach the verifier: $($log -join ' | ')"
     }
+    # Bundled reader must reach the same verifier without ZIP, gh or download.
+    foreach($name in $names) {Copy-Item -LiteralPath (Join-Path $bundle $name) -Destination (Join-Path $installBin $name) -Force}
+    $savedPreference=$ErrorActionPreference
+    try {
+        $ErrorActionPreference='Continue'
+        $log=@(& powershell.exe -NoProfile -ExecutionPolicy Bypass -File $fixtureInstaller 2>&1 | ForEach-Object { "$_" })
+        $childExit=$LASTEXITCODE
+    } finally {$ErrorActionPreference=$savedPreference}
+    if($childExit -eq 0 -or ($log -join "`n") -notmatch 'DEFAULT_ROOT_VERIFIER_REACHED' -or
+        ($log -join "`n") -notmatch 'Use official reader bundled with source') {
+        throw "Bundled reader must verify PAK without downloading: $($log -join ' | ')"
+    }
+    foreach($name in $names) {[IO.File]::WriteAllText((Join-Path $installBin $name),'original')}
     foreach($audit in @(
         '[pscustomobject]@{PakVerified=$false;Tables=15;VerifiedTables=14;Issues=@("fixture failure")}',
         '[pscustomobject]@{PakVerified=$true;Tables=15;VerifiedTables=14;Issues=@("inconsistent count")}'

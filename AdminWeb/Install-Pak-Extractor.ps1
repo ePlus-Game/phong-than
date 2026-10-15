@@ -1,6 +1,6 @@
 # Install the official GitHub Actions PAK reader without modifying any game DLL/PAK/SQL.
-# PowerShell 5.1. Either supply -ZipPath from the Actions artifact, or use gh CLI
-# authenticated to GitHub to download the latest successful main workflow build.
+# PowerShell 5.1. Prefer the reader shipped with source (no gh/network needed).
+# -ZipPath or -RunId explicitly selects an alternative official Actions build.
 [CmdletBinding()]
 param(
     [string]$ZipPath,
@@ -52,6 +52,13 @@ try {
             throw "ZIP not found: $file"
         }
         Expand-Archive -LiteralPath $file -DestinationPath $ExtractDir -Force
+    } elseif ($RunId -eq 0 -and @($Need | Where-Object {
+        -not (Test-Path -LiteralPath (Join-Path $Target $_) -PathType Leaf)
+    }).Count -eq 0) {
+        Step '1/3 Use official reader bundled with source (no GitHub CLI required)'
+        foreach($name in $Need) {
+            Copy-Item -LiteralPath (Join-Path $Target $name) -Destination (Join-Path $ExtractDir $name)
+        }
     } else {
         Step '1/3 Download official GitHub Actions artifact'
         $gh = Get-Command gh -ErrorAction SilentlyContinue
