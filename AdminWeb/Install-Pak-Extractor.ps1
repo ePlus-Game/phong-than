@@ -70,7 +70,7 @@ try {
         if ($LASTEXITCODE -ne 0) { throw "Cannot inspect GitHub run $RunId. $($run -join ' ')" }
         $meta = ($run -join [Environment]::NewLine) | ConvertFrom-Json
         if ($meta.headBranch -ne 'main' -or $meta.conclusion -ne 'success') {
-            throw "Refusing run $RunId: only a successful MAIN-branch artifact can be installed automatically."
+            throw "Refusing run ${RunId}: only a successful MAIN-branch artifact can be installed automatically."
         }
         & $gh.Source run download $RunId --repo $Repo --name $Artifact --dir $ExtractDir
         if ($LASTEXITCODE -ne 0) { throw "Download failed for run $RunId. Check gh auth status or use -ZipPath." }
