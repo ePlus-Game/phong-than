@@ -7,8 +7,10 @@ const vm=require('node:vm');
 const root=path.join(__dirname,'..');
 const html=fs.readFileSync(path.join(root,'AdminWeb/index.html'),'utf8');
 const server=fs.readFileSync(path.join(root,'AdminWeb/PhongThan-Admin.ps1'),'utf8');
-const sections=[...html.matchAll(/<section\s+id="([^"]+)"/g)].map(x=>x[1]);
-const buttons=[...html.matchAll(/<button\s+[^>]*data-t="([^"]+)"/g)].map(x=>x[1]);
+const markup=html.slice(0,html.indexOf('<script>'));
+
+const sections=[...markup.matchAll(/<section\s+id="([^"]+)"/g)].map(x=>x[1]);
+const buttons=[...markup.matchAll(/<button\s+[^>]*data-t="([^"]+)"/g)].map(x=>x[1]);
 const groupMatch=html.match(/const NAV_GROUPS=\[([\s\S]*?)\];/);
 const groups=groupMatch?vm.runInNewContext('['+groupMatch[1]+']'):null;
 
@@ -29,7 +31,7 @@ test('eight logical workspaces cover every existing screen exactly once',()=>{
   assert.ok(groups.some(g=>g[0]==='Sự kiện'&&g.includes('events')&&g.includes('evsched')));
 });
 test('one-of-a-kind static HTML IDs and modern JS parser succeed',()=>{
-  const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(x=>x[1]);
+  const ids=[...markup.matchAll(/\bid="([^"]+)"/g)].map(x=>x[1]);
   const duplicated=ids.filter((id,i)=>ids.indexOf(id)!==i);
   assert.deepEqual(duplicated,[]);
   const scripts=[...html.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g)].map(x=>x[1]);
@@ -66,7 +68,7 @@ test('consolidated token picker delegates to all existing actions without changi
     assert.ok(html.includes("$('"+id+"').onclick")||html.includes("$('"+id+"').addEventListener"),'Original handler missing: '+id);
   }
   assert.match(html,/original\.click\(\)/);
-  assert.match(html,/id='tokenActionSelect'/);
+  assert.match(html,/select\.id='tokenActionSelect'/);
   assert.match(html,/const ptTokenButtons=ptTokenIds/);
   assert.match(html,/type:'give'/);
 });
