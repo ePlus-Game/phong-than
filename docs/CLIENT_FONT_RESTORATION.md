@@ -91,3 +91,14 @@ search path; an older packed PAK entry may take precedence over the loose INI.
 **CI validates source bytes, not the final in-game appearance.** Never update
 live Client DLLs or PAKs solely to test this change. Stage in a separate Windows
 test copy and compare actual character sheet screenshots.
+
+## Phase 2C: authored NPC dialogue text is ASCII-only (Lão Rùa reproduction)
+
+The newly generated `PhongThanSource/Deploy/ProjectContent/NpcRestoration/compiled/script/phongthan/npc_restore/*.lua` menu literals were actually authored **without Vietnamese accents**. This is a separate content-authoring problem, not a missing glyph from a bitmap font. It is reproducible in the Xi Vưu Mộ Lão Rùa dialog (world 1004, at 200/202).
+
+- `PhongThanSource/Tools/build_authored_npcs.py` now quotes localized author text using Lua decimal escapes (`\\ddd`) for **single-byte TCVN3**. The Lua source stays ASCII, so the script loader does not need a UTF-8 decoder. Missing TCVN3 glyph mappings fail loudly rather than dropping accents.
+- The menu labels (`Vai trò và hướng dẫn`, `NPC liên quan`, `Trạng thái chức năng`, `Đóng`, `Quay lại`) and recurring status text are localized for **future generated** authored NPC scripts, without altering callback names or original VNG Lua prefixes.
+- The three verified **Lão Rùa** variants (world 1002/1003/1004) have been synchronized into **compiled** Lua files and **staged server** Lua files, including map title and route text for known NPC names; the SHA256 deployment report was updated.
+- Other precompiled authored NPC menus are **not yet regenerated**. Their role guides and other names need manual, verified translations before a safe full NPC-language rollout. Do not treat this scoped fix as a complete Vietnamese-localization pass.
+
+Run `python -m unittest PhongThanSource.Tests.test_authored_npcs` on a complete source checkout, followed by the Windows client/server test copy and screenshots of Lão Rùa (1004/200/202) before merging. The source/manifest tests verify bytes, **not in-game glyphs or option layout**. To see changed dialogue in an already running server, publish the staged Lua into the actual server resource path and reload/restart the server safely; updating GitHub files alone does not alter a running game. Do not modify original PAKs.
