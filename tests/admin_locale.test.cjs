@@ -69,7 +69,7 @@ test('unknown game data, account identifiers, paths and payload values are not r
   assert.equal(tr(null),null);
   assert.equal(tr(53),53);
   assert.ok([...ps].every(ch=>ch.codePointAt(0)<128),'PowerShell 5.1 source deliberately keeps ASCII to prevent active codepage corruption');
-  assert.ok(!localeRaw.charCodeAt(0)===0xfeff || !localeRaw.startsWith('\ufeff'));
+  assert.notEqual(localeRaw.charCodeAt(0),0xfeff,'UTF-8 locale JSON must not have BOM');
   assert.match(ps,/Import-PtAdminLocale \$UiLocalePath/);
   assert.match(ps,/ConvertTo-PtLocalizedJson \$json/);
   assert.match(ps,/Replace\('__PT_LOCALE_JSON__'/);
