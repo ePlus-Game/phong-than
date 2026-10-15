@@ -64,15 +64,15 @@ if ($lastBishopStage -and $lastBishopStage.phase -eq 'ready_log_open_failed') {
 } elseif ($lastServerStage -in @('world_register_blocked','world_hello_send_failed','world_map_count_invalid','world_registry_send_failed','world_service_registration_failed')) {
     $classification = 'GAMESERVER_REGISTRATION_FAILED'
     $nextAction = 'Inspect GameServer relay state, gateway connection and loaded-map count.'
-} elseif ($null -ne $lastSlot -and ($lastSlot+1) -lt $ExpectedMapCount) {
-    $classification = 'MAP_PROGRESS_PARTIAL_OR_STALE'
-    $nextAction = 'Check map load errors and whether log events came from the current process.'
 } elseif ($lastBishopStage -and $lastBishopStage.phase -eq 'registry_accepted' -and -not $markerSeen) {
     $classification = 'REGISTRY_ACCEPTED_BUT_NO_MARKER'
     $nextAction = 'Check Bishop marker file creation in Server working directory.'
 } elseif ($markerSeen) {
     $classification = 'HISTORICAL_WORLD_READY_MARKER_PRESENT'
     $nextAction = 'Verify PID, ServiceId and freshness with Read-WindowsRuntimeEvidence.ps1 before login.'
+} elseif ($null -ne $lastSlot -and ($lastSlot+1) -lt $ExpectedMapCount) {
+    $classification = 'MAP_PROGRESS_PARTIAL_OR_STALE'
+    $nextAction = 'Check map load errors and whether log events came from the current process.'
 } elseif ($null -ne $lastSlot -and ($lastSlot+1) -ge $ExpectedMapCount) {
     $classification = 'MAPS_OBSERVED_WAITING_FOR_REGISTRATION'
     $nextAction = 'Check world hello/map registry handshake; map loading alone is not WORLD_READY.'
