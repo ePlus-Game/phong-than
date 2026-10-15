@@ -116,7 +116,7 @@ BOOL KSubWorldSet::Load(LPSTR szFileName)
 		FILE *pMapDiag = fopen("core_map_load_diag.log", "a");
 		if (pMapDiag)
 		{
-			fprintf(pMapDiag, "world_slot=%d configured_id=%d runtime_id=%d index=%d region=%p total=%d\\n",
+			fprintf(pMapDiag, "world_slot=%d configured_id=%d runtime_id=%d index=%d region=%p total=%d\n",
 				i, nWorldID, SubWorld[i].m_SubWorldID, SubWorld[i].m_nIndex,
 				(void *)SubWorld[i].m_Region, SubWorld[i].m_nTotalRegion);
             int placed = 0;
