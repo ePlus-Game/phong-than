@@ -1,4 +1,4 @@
-![Thông báo Phong Thần Truyền Kỳ ngừng phát triển và cập nhật](.github/assets/development-discontinued.svg)
+![Thông báo Phong Thần Truyền Kỳ ngừng phát triển và cập nhật](.github/assets/67C72157-A6D6-4229-A694-78EEC5D9BFAB.png)
 
 > **THÔNG BÁO — DỰ ÁN NGỪNG PHÁT TRIỂN VÀ CẬP NHẬT TỪ NGÀY 16/10/2026**
 >
