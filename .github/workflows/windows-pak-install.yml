@@ -1,0 +1,42 @@
+name: Web Admin PAK installer safety
+on:
+  pull_request:
+    paths:
+      - 'AdminWeb/Install-Pak-Extractor.ps1'
+      - 'AdminWeb/Initialize-ItemTables.ps1'
+      - 'AdminWeb/PhongThan-Admin.ps1'
+      - 'AdminWeb/index.html'
+      - 'tests/Test-PakItem-Verification.ps1'
+      - '.github/workflows/windows-pak-install.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  pak-gate:
+    runs-on: windows-2022
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          sparse-checkout: |
+            AdminWeb
+            tests
+          sparse-checkout-cone-mode: true
+      - name: PowerShell 5.1 parser and synthetic all-15-table safety gate
+        shell: powershell
+        run: |
+          $ErrorActionPreference='Stop'
+          & .\tests\Test-PakItem-Verification.ps1 -RepoRoot (Get-Location).Path
+          if ($LASTEXITCODE -ne 0) { throw 'PAK gate regression failed' }
+      - name: Require secure installer and meaningful UI status
+        shell: powershell
+        run: |
+          $installer=Get-Content AdminWeb/Install-Pak-Extractor.ps1 -Raw
+          $admin=Get-Content AdminWeb/PhongThan-Admin.ps1 -Raw
+          $ui=Get-Content AdminWeb/index.html -Raw
+          foreach($token in @('Assert-X86Pe','PakVerified','-ne 15','run view','--branch main','-ZipPath')) {
+            if (-not $installer.Contains($token)) { throw "Installer missing safety guard: $token" }
+          }
+          if (-not $admin.Contains('itemCatalogIssues = @($script:PakItemCatalogIssues)')) { throw 'Admin missing diagnostic status' }
+          if (-not $ui.Contains('s.itemCatalogIssues')) { throw 'UI missing diagnostic rendering' }
+          Write-Host 'PASS: installer, server and Give UI keep item grant safety conditions'
