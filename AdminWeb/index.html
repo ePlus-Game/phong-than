@@ -788,6 +788,7 @@ function ptViMessage(text,depth=0){
 async function api(path,body){
   const r=await fetch(path,{method:body?'POST':'GET',headers:{'X-PT-Token':TOKEN,'Content-Type':'application/json'},body:body?JSON.stringify(body):undefined});
   const j=await r.json().catch(()=>({error:'Phản hồi không hợp lệ'}));
+  if(j===null||typeof j!=='object'||Array.isArray(j))throw new Error('Phản hồi không hợp lệ');
   if(!r.ok||j.error)throw new Error(ptViMessage(j.error||('HTTP '+r.status)));if(typeof j.message==='string')j.message=ptViMessage(j.message);return j;
 }
 function toast(msg,err){const t=$('toast');t.textContent=ptViMessage(msg);t.className=err?'err':'';t.style.display='block';clearTimeout(t._h);t._h=setTimeout(()=>t.style.display='none',err?7000:4000)}
@@ -1556,3 +1557,4 @@ document.querySelector('#tabs [data-t=upgrade]').addEventListener('click',()=>{f
 </script>
 </body>
 </html>
+

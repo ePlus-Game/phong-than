@@ -659,7 +659,10 @@ $ClientCfgPath = Join-Path $Root 'PhongThanRuntime-Staging\Client\config.ini'
 function Get-ClientCfg {
     $w = 1024; $h = 768; $f = 0
     if (Test-Path -LiteralPath $ClientCfgPath) {
+        $sec = ''
         foreach ($l in [IO.File]::ReadAllLines($ClientCfgPath, $Enc1252)) {
+            if ($l -match '^\s*\[(.+)\]') { $sec = $Matches[1]; continue }
+            if ($sec -ne 'Client') { continue }
             if ($l -match '^\s*ScreenWidth\s*=\s*(\d+)') { $w = [int]$Matches[1] }
             elseif ($l -match '^\s*ScreenHeight\s*=\s*(\d+)') { $h = [int]$Matches[1] }
             elseif ($l -match '^\s*FullScreen\s*=\s*(\d+)') { $f = [int]$Matches[1] }
@@ -675,15 +678,16 @@ function Set-ClientCfg($a) {
     New-Item -ItemType Directory -Force -Path (Split-Path -Parent $bak) | Out-Null
     Copy-Item -LiteralPath $ClientCfgPath -Destination $bak
     $lines = [Collections.Generic.List[string]]([IO.File]::ReadAllLines($ClientCfgPath, $Enc1252))
-    $sec = ''; $seen = @{}; $clientEnd = -1
+    $sec = ''; $seen = @{}; $clientEnd = -1; $hasClient = $false
     for ($i = 0; $i -lt $lines.Count; $i++) {
         $l = $lines[$i]
-        if ($l -match '^\s*\[(.+)\]') { if ($sec -eq 'Client') { $clientEnd = $i }; $sec = $Matches[1]; continue }
+        if ($l -match '^\s*\[(.+)\]') { if ($sec -eq 'Client') { $clientEnd = $i }; $sec = $Matches[1]; if ($sec -eq 'Client') { $hasClient = $true }; continue }
         if ($sec -ne 'Client') { continue }
         if ($l -match '^\s*ScreenWidth\s*=') { $lines[$i] = "ScreenWidth=$w"; $seen.w = 1 }
         elseif ($l -match '^\s*ScreenHeight\s*=') { $lines[$i] = "ScreenHeight=$h"; $seen.h = 1 }
         elseif ($l -match '^\s*FullScreen\s*=') { $lines[$i] = "FullScreen=$f"; $seen.f = 1 }
     }
+    if (-not $hasClient) { $lines.Add('[Client]') }
     if ($clientEnd -lt 0) { $clientEnd = $lines.Count }
     if (-not $seen.f) { $lines.Insert($clientEnd, "FullScreen=$f") }
     if (-not $seen.h) { $lines.Insert($clientEnd, "ScreenHeight=$h") }
@@ -1691,7 +1695,9 @@ function Invoke-Action($a) {
         }
         'upgradeset' {
             # 2026-10-05 natives: SetItemUpgrade(item, +0..+12) on an online player; offline -> FAIL (nothing queued for login)
-            $name = Assert-Name $a.player; $lv = Clamp $a.level 0 12; $id = [double]"0$($a.itemId)"
+            $name = Assert-Name $a.player; $lv = Clamp $a.level 0 12
+            if ("$($a.itemId)" -notmatch '\A[0-9]{1,10}\z') { throw 'Chua chon mon trang bi.' }
+            $id = [long]$a.itemId
             if ($id -lt 1 -or $id -gt 4294967295) { throw 'Chua chon mon trang bi.' }
             $ids = '{0:F0}' -f $id
             $msg = ConvertTo-LuaString ("Admin: trang b" + [char]0x1ECB + " " + [char]0x111 + [char]0x1B0 + [char]0x1EE3 + "c " + [char]0x111 + [char]0x1EB7 + "t c" + [char]0x1B0 + [char]0x1EDD + "ng h" + [char]0xF3 + "a +")
@@ -1700,10 +1706,18 @@ function Invoke-Action($a) {
         'exp' { $name = Assert-Name $a.player; $v = Clamp $a.amount 1 2000000000; Add-BridgeCommand 'Tang kinh nghiem' "$name +$v exp" "PTAdm_Exp({ID}, $(ConvertTo-LuaString $name), $v)" }
         'news' { $t = "$($a.text)".Trim(); if (-not $t -or $t.Length -gt 250) { throw 'Noi dung thong bao 1-250 ky tu.' }; Add-BridgeCommand 'Thong bao' $t "PTAdm_News({ID}, $(ConvertTo-LuaString $t))" }
         'spawn' {
-            $npc = Clamp $a.npc 0 ($Npcs.Count - 1); $lv = Clamp $a.level 1 200; $n = Clamp $a.count 1 30
-            $label = "$($Npcs[$npc].name) (#$npc) lv$lv x$n"
+            $npc = [int]$a.npc; $lv = Clamp $a.level 1 200; $n = Clamp $a.count 1 30
+            $npcRow = @($Npcs | Where-Object { $_.id -eq $npc })[0]
+            if (-not $npcRow) { throw 'Khong tim thay NPC.' }
+            if ($a.mode -ne 'player' -and $a.mode -ne 'map') { throw 'Che do tao NPC khong hop le.' }
+            $label = "$($npcRow.name) (#$npc) lv$lv x$n"
             if ($a.mode -eq 'player') { $name = Assert-Name $a.player; Add-BridgeCommand 'Tao boss/NPC' "$label canh $name" "PTAdm_SpawnNear({ID}, $npc, $lv, $(ConvertTo-LuaString $name), $n)" }
-            else { $m = [int]$a.map; $x = Clamp $a.x 0 100000; $y = Clamp $a.y 0 100000; Add-BridgeCommand 'Tao boss/NPC' "$label tai $m ($x,$y)" "PTAdm_SpawnAt({ID}, $npc, $lv, $m, $x, $y, $n)" }
+            else {
+                $m = [int]$a.map
+                if (@($Maps | ForEach-Object { [int]$_.id }) -notcontains $m) { throw "Ban do $m khong co trong danh sach ban do cua server." }
+                $x = Clamp $a.x 0 100000; $y = Clamp $a.y 0 100000
+                Add-BridgeCommand 'Tao boss/NPC' "$label tai $m ($x,$y)" "PTAdm_SpawnAt({ID}, $npc, $lv, $m, $x, $y, $n)"
+            }
         }
         'clear' { Add-BridgeCommand 'Xoa boss/NPC' 'Xoa tat ca NPC tao tu web' 'PTAdm_ClearSpawned({ID})' }
         'wbspawn' {
@@ -1809,7 +1823,7 @@ function Invoke-Action($a) {
             # Online (online.txt): SetExpandBox through the bridge. Offline: patch the character file now (backup data\chest_backup);
             # the bridge command still runs and applies SetExpandBox if the character is in game after all. Never lowers the count.
             $name = Assert-Name $a.player; $ln = ConvertTo-LuaString $name
-            $online = @(Get-Online | Where-Object { $_.name -eq $name }).Count -gt 0
+            $online = @((Get-Online).players | Where-Object { $_.name -eq $name }).Count -gt 0
             if ($a.info) {
                 $f = $null; $ft = 'khong co file nhan vat'
                 try { $f = Read-ChestFile $name; if ($f) { $ft = "file: da mo den ruong $($f.box + 1)" } } catch { $ft = "file loi: $($_.Exception.Message)" }
@@ -1818,7 +1832,7 @@ function Invoke-Action($a) {
             } else {
                 $to = Clamp $a.to 2 6; $n = $to - 1
                 $ft = 'online, ap qua server'; $offStatus = 'FAIL'
-                if (-not $online) { $r = Set-ChestFile $name $n; $ft = $r.text; if ($r.ok) { $offStatus = 'OK' } }
+                if (-not $online) { Assert-AdminOpsCharOffline $name; $r = Set-ChestFile $name $n; $ft = $r.text; if ($r.ok) { $offStatus = 'OK' } }
                 else { $ft = 'luc xep lenh dang online nhung khi chay da thoat: bam lai de sua file' }
                 $ft = ($ft -replace '[^\x20-\x7E]', '?') -replace '["\\]', '/'
                 $msg = ConvertTo-LuaString ([regex]::Unescape("Admin: \u0111\u00e3 m\u1edf \u0111\u1ebfn R\u01b0\u01a1ng $to. M\u1edf r\u01b0\u01a1ng \u1edf Th\u1ee7 Kh\u1ed1, b\u1ea5m m\u0169i t\u00ean ph\u1ea3i trong khung r\u01b0\u01a1ng \u0111\u1ec3 sang R\u01b0\u01a1ng 2 - $to."))
@@ -1953,12 +1967,20 @@ function Invoke-Event($ev, [string]$Reason) {
     Save-Json $EventsPath $Events
     "Su kien '$($ev.name)' ($Reason): da xep $($ids.Count) lenh."
 }
+function Assert-EventTime([string]$Time) {
+    if ($Time -notmatch '\A([01]?[0-9]|2[0-3]):([0-5][0-9])\z') {
+        throw 'Can ten su kien va gio dang HH:mm.'
+    }
+    '{0:00}:{1:00}' -f [int]$Matches[1], [int]$Matches[2]
+}
 function Invoke-Scheduler {
     try { Invoke-AdminOpsTick } catch { }   # 2026-10-04 adminops: character backup at start + every 24 h
     $now = Get-Date; $today = $now.ToString('yyyy-MM-dd'); $dow = [int]$now.DayOfWeek
     foreach ($ev in $Events) {
-        if (-not $ev.enabled -or "$($ev.time)" -notmatch '^(\d{1,2}):(\d{2})$') { continue }
-        $at = $now.Date.AddHours([int]$Matches[1]).AddMinutes([int]$Matches[2])
+        if (-not $ev.enabled) { continue }
+        try { $time = Assert-EventTime "$($ev.time)" } catch { continue }
+        $parts = $time.Split(':')
+        $at = $now.Date.AddHours([int]$parts[0]).AddMinutes([int]$parts[1])
         $days = @($ev.days | Where-Object { "$_" -ne '' })
         if ($days.Count -and ($days -notcontains $dow) -and ($days -notcontains "$dow")) { continue }
         if ($now -ge $at -and $now -lt $at.AddMinutes(10) -and "$($ev.lastRun)" -notlike "$today*") { Write-Host (Invoke-Event $ev 'theo lich') }
@@ -2064,10 +2086,11 @@ function Invoke-Route($ctx) {
         'GET /api/events' { Send-Json $ctx @{ events = $Events.ToArray() } }
         'POST /api/events' {
             $b = Read-Body $ctx
-            if (-not $b.name -or "$($b.time)" -notmatch '^\d{1,2}:\d{2}$') { throw 'Can ten su kien va gio dang HH:mm.' }
+            if (-not "$($b.name)".Trim()) { throw 'Can ten su kien va gio dang HH:mm.' }
+            $eventTime = Assert-EventTime "$($b.time)"
             $existing = $null; foreach ($e in $Events) { if ($e.id -eq $b.id) { $existing = $e } }
             if ($existing) { [void]$Events.Remove($existing) }
-            $ev = [pscustomobject]@{ id = $(if ($b.id) { $b.id } else { 'e' + (Get-Date -Format 'yyyyMMddHHmmss') }); name = "$($b.name)"; enabled = [bool]$b.enabled; time = "$($b.time)"; days = @($b.days); lastRun = $(if ($existing) { $existing.lastRun } else { '' }); actions = @($b.actions) }
+            $ev = [pscustomobject]@{ id = $(if ($b.id) { $b.id } else { 'e' + [guid]::NewGuid().ToString('N') }); name = "$($b.name)"; enabled = [bool]$b.enabled; time = $eventTime; days = @($b.days); lastRun = $(if ($existing) { $existing.lastRun } else { '' }); actions = @($b.actions) }
             [void]$Events.Add($ev); Save-Json $EventsPath $Events
             Send-Json $ctx @{ ok = $true; message = "Da luu su kien '$($ev.name)'." }
         }
@@ -2144,3 +2167,4 @@ try {
         catch { try { Send-Json $ctx @{ error = $_.Exception.Message } 400 } catch {} }
     }
 } finally { $listener.Stop(); $listener.Close() }
+
