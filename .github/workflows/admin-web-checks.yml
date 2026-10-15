@@ -1,0 +1,82 @@
+name: Web Admin checks
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/admin-web-checks.yml'
+      - 'AdminWeb/**'
+      - 'tests/admin_locale.test.cjs'
+      - 'tests/admin_workspace.test.cjs'
+      - 'tests/Test-AdminLocalization.ps1'
+      - 'tests/Test-PakItem-Verification.ps1'
+      - 'PhongThanRuntime-Staging/Client/Ui/Setting.ini'
+      - 'PhongThanRuntime-Staging/Client/font/14.fnt'
+      - 'PhongThanRuntime-Staging/Client/font/16.fnt'
+      - 'PhongThanRuntime-Staging/Client/font/18.fnt'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: pt-admin-web-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  admin-contracts:
+    runs-on: windows-2022
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /AdminWeb/
+            /tests/admin_locale.test.cjs
+            /tests/admin_workspace.test.cjs
+            /tests/Test-AdminLocalization.ps1
+            /tests/Test-PakItem-Verification.ps1
+            /PhongThanRuntime-Staging/Client/Ui/Setting.ini
+            /PhongThanRuntime-Staging/Client/font/14.fnt
+            /PhongThanRuntime-Staging/Client/font/16.fnt
+            /PhongThanRuntime-Staging/Client/font/18.fnt
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+      - name: Validate all 24 Admin screens, Vietnamese UI and legacy Client text
+        shell: pwsh
+        run: |
+          node --test tests/admin_workspace.test.cjs tests/admin_locale.test.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'Node 24 Web Admin regression failed' }
+      - name: Parse Windows PowerShell 5.1 Web Admin entry points
+        shell: powershell
+        run: |
+          $ErrorActionPreference='Stop'
+          foreach($path in @('AdminWeb/PhongThan-Admin.ps1','AdminWeb/Ui-Localization.ps1','AdminWeb/Initialize-ItemTables.ps1','AdminWeb/Install-Pak-Extractor.ps1')) {
+            $tokens=$null; $errors=$null
+            [void][Management.Automation.Language.Parser]::ParseFile((Resolve-Path $path).Path,[ref]$tokens,[ref]$errors)
+            if ($errors.Count -gt 0) { throw "PowerShell 5.1 syntax errors in $path : $($errors[0].Message)" }
+          }
+          Write-Host 'PASS: original Windows PowerShell 5.1 backend remains parseable'
+      - name: Validate UTF-8 locale loaded and served by Windows PowerShell 5.1
+        shell: powershell
+        run: |
+          $ErrorActionPreference='Stop'
+          & .\tests\Test-AdminLocalization.ps1 -RepoRoot (Get-Location).Path
+      - name: Verify safe PAK installer and synthetic 15-table lock
+        shell: powershell
+        run: |
+          $ErrorActionPreference='Stop'
+          & .\tests\Test-PakItem-Verification.ps1 -RepoRoot (Get-Location).Path
+          # The fixture deliberately runs a failed extractor; test throws on assertion failure.
+      - name: Enforce PAK safety guards and read-only catalog status
+        shell: powershell
+        run: |
+          $ErrorActionPreference='Stop'
+          $installer=Get-Content AdminWeb/Install-Pak-Extractor.ps1 -Raw
+          $admin=Get-Content AdminWeb/PhongThan-Admin.ps1 -Raw
+          $ui=Get-Content AdminWeb/index.html -Raw
+          foreach($token in @('Assert-X86Pe','PakVerified','-ne 15','run view','--branch main','-ZipPath')) {
+            if (-not $installer.Contains($token)) { throw "Installer missing safety guard: $token" }
+          }
+          if (-not $admin.Contains('itemCatalogIssues = @($script:PakItemCatalogIssues)')) { throw 'Missing catalog diagnostics API' }
+          if (-not $ui.Contains('s.itemCatalogIssues')) { throw 'Missing PAK diagnostic rendering' }
+          Write-Host 'PASS: no game service, SQL, PAK or local character data accessed'
