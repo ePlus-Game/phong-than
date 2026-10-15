@@ -367,6 +367,15 @@ bool CGameServer::_QueryWorldService()
 		(const void*)&Request, sizeof(Request)) ? true : false;
 }
 
+// Named handshake stages only: no player names, IP addresses or credentials.
+static void BishopWorldDiag(const char* phase, unsigned int service, unsigned int value)
+{
+	FILE* out = fopen("bishop_world_diag.log", "ab");
+	if (!out) return;
+	fprintf(out, "phase=%s service=%u value=%u\n", phase, service, value);
+	fclose(out);
+}
+
 bool CGameServer::_UpdateWorldService(
 	const void *pData, size_t datalength)
 {
@@ -380,9 +389,11 @@ bool CGameServer::_UpdateWorldService(
 		!memchr(pResponse->InstanceName, 0,
 			sizeof(pResponse->InstanceName)))
 	{
+		BishopWorldDiag("world_hello_rejected", 0, 0);
 		return false;
 	}
 
+	BishopWorldDiag("world_hello_accepted", (unsigned int)pResponse->ServiceId, 0);
 	m_dwCapability = pResponse->Capacity;
 	m_nServerPort = pResponse->Port;
 	m_nServerIP_Internet = pResponse->PublicAddressV4;
@@ -414,6 +425,7 @@ bool CGameServer::_UpdateMapRegistry(
 		datalength != sizeof(*pRegistry) +
 			pRegistry->MapCount * sizeof(PHONGTHAN_S32))
 	{
+		BishopWorldDiag("registry_rejected", 0, 0);
 		return false;
 	}
 
@@ -434,9 +446,13 @@ bool CGameServer::_UpdateMapRegistry(
 		if (pMapIds[i] <= 0 ||
 			!RegisterServer((UINT)pMapIds[i], (IGServer*)this))
 		{
+			BishopWorldDiag("map_id_rejected", (unsigned int)pRegistry->ServiceId,
+				(unsigned int)pMapIds[i]);
 			return false;
 		}
 	}
+	BishopWorldDiag("registry_accepted", (unsigned int)pRegistry->ServiceId,
+		(unsigned int)pRegistry->MapCount);
 	printf("[LOGIN_DIAG][Bishop] world_maps service=%u count=%u\n",
 		(unsigned int)pRegistry->ServiceId,
 		(unsigned int)pRegistry->MapCount);
@@ -451,6 +467,11 @@ bool CGameServer::_UpdateMapRegistry(
 			(unsigned int)pRegistry->MapCount);
 		fflush(pReady);
 		fclose(pReady);
+	}
+	else
+	{
+		BishopWorldDiag("ready_log_open_failed", (unsigned int)pRegistry->ServiceId,
+			(unsigned int)pRegistry->MapCount);
 	}
 	return true;
 }
