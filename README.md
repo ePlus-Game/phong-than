@@ -1,12 +1,24 @@
+![Thông báo Phong Thần Truyền Kỳ ngừng phát triển và cập nhật](.github/assets/development-discontinued.svg)
+
+> **THÔNG BÁO — DỰ ÁN NGỪNG PHÁT TRIỂN VÀ CẬP NHẬT TỪ NGÀY 16/10/2026**
+>
+> **Phong Thần Truyền Kỳ** chính thức dừng phát triển, sửa lỗi và cập nhật nội dung mới. Đây là quyết định dừng hoạt động phát triển dự án, **không phải thông báo rằng game đã hoàn thiện hoặc vận hành ổn định**.
+>
+> Repository cùng mã nguồn, tài nguyên hiện có, lịch sử thay đổi và tài liệu **được giữ lại để tra cứu, học tập và lưu giữ dấu ấn của dự án**. Không cam kết duy trì máy chủ, hỗ trợ kỹ thuật, xử lý issue/PR hay phát hành phiên bản tiếp theo. Các bản build và hướng dẫn bên dưới được cung cấp **nguyên trạng, chỉ để tham khảo**.
+>
+> Chân thành cảm ơn mọi người đã quan tâm, đóng góp và đồng hành cùng dự án trong thời gian qua.
+
+---
+
 # Phong Thần Truyền Kỳ
 
 **Dự án phục dựng game Phong Thần (PTTK)** — lưu trữ mã nguồn C/C++, dữ liệu Client/Server, công cụ khôi phục tài nguyên và quy trình build/kiểm thử Windows x86.
 
 Tên hiển thị trong client/INI cũ: `Phong Than Truyen Ky` ([quy ước branding](docs/BRANDING.md)).
 
-> **Đang trong giai đoạn phục dựng và nghiệm thu.** Mã nguồn đã biên dịch thành công, nhưng **chưa xác nhận hoàn tất đăng nhập, lưu nhân vật và gameplay trên Windows VM**. Repository không phải bản game sẵn sàng phát hành công khai.
+> **Trạng thái kỹ thuật được ghi nhận trước khi dừng:** Mã nguồn từng biên dịch thành công, nhưng **chưa có xác nhận hoàn tất đăng nhập, lưu nhân vật và gameplay trên Windows VM**. Repository **không phải bản game sẵn sàng phát hành công khai**.
 
-## Tiến độ hiện tại
+## Trạng thái kỹ thuật tại thời điểm dừng
 
 | Hạng mục | Kết quả | Bằng chứng / bước tiếp theo |
 | --- | --- | --- |
@@ -15,9 +27,9 @@ Tên hiển thị trong client/INI cũ: `Phong Than Truyen Ky` ([quy ước bran
 | Kiểm tra tĩnh runtime | **Có công cụ và CI** | [PR #73](https://github.com/ePlus-Game/phong-than-truyen-ky/pull/73) |
 | Khởi động server, login và chơi thử | **Chưa nghiệm thu** | [Issue #71](https://github.com/ePlus-Game/phong-than-truyen-ky/issues/71) |
 
-Xem [**Master Roadmap**](docs/MASTER_ROADMAP.md) để biết tiến độ theo từng giai đoạn và các điều kiện nghiệm thu. **Build PASS không đồng nghĩa game đã chạy ổn định.**
+Xem [**Master Roadmap**](docs/MASTER_ROADMAP.md) để tra cứu kế hoạch và điều kiện nghiệm thu trước khi dự án dừng. Roadmap **không còn là cam kết triển khai**. **Build PASS không đồng nghĩa game đã chạy ổn định.**
 
-## Bắt đầu
+## Tra cứu và chạy thử bản lưu trữ
 
 ### 1. Lấy source
 
@@ -56,7 +68,7 @@ Kết quả `READY_FOR_RUNTIME_TEST` **chỉ cho biết các tệp/cấu hình �
 
 ### 4. Cài đặt và khởi chạy thử
 
-Dự án hiện phục vụ **phục dựng/phát triển**, chưa được xác nhận là game có thể chơi ổn định. Trên bản sao thử nghiệm Windows, `PhongThan-ChayTatCa.cmd game` sẽ khôi phục PAK còn thiếu, chuẩn bị SQL LocalDB, kiểm tra và khởi động server, sau đó mở admin/client. Trước khi chạy các file `.cmd` hoặc `.exe`, hãy đọc [hướng dẫn launcher](docs/LAUNCHER_BEHAVIOR.md), [vai trò các EXE](docs/EXECUTABLE_GUIDE.md) và [bộ cài phụ thuộc](install/README.md). Chỉ thử trên **Windows VM cách ly và bản sao dữ liệu**, không trỏ vào database/tài khoản thật.
+Đây là mã nguồn **lưu trữ**, chưa được xác nhận là game có thể chơi ổn định. Trên bản sao thử nghiệm Windows, `PhongThan-ChayTatCa.cmd game` sẽ khôi phục PAK còn thiếu, chuẩn bị SQL LocalDB, kiểm tra và khởi động server, sau đó mở admin/client. Trước khi chạy các file `.cmd` hoặc `.exe`, hãy đọc [hướng dẫn launcher](docs/LAUNCHER_BEHAVIOR.md), [vai trò các EXE](docs/EXECUTABLE_GUIDE.md) và [bộ cài phụ thuộc](install/README.md). Chỉ thử trên **Windows VM cách ly và bản sao dữ liệu**, không trỏ vào database/tài khoản thật.
 
 ### Web Admin: mở khóa phát vật phẩm đúng PAK
 
@@ -92,12 +104,12 @@ Nội dung `PT/` từ bản archive cũ đã được đưa lên thư mục gố
 
 **Lưu ý:** Cẩm nang có đối chiếu tài liệu Phong Thần VNG và code phục dựng. Các thông tin chưa kiểm thử trực tiếp được ghi rõ, không nên xem là gameplay đã vận hành.
 
-## Đóng góp & an toàn dữ liệu
+## Trạng thái tiếp nhận đóng góp & an toàn dữ liệu
 
-- Tạo branch/PR có phạm vi rõ ràng, mô tả cách kiểm thử và khả năng rollback; ưu tiên thay đổi nhỏ, có bằng chứng.
+- Dự án **không còn tiếp nhận và xử lý thường xuyên các thay đổi tính năng, lỗi hoặc yêu cầu hỗ trợ**. Bạn có thể fork để tự nghiên cứu; đừng hiểu tài liệu cũ là kế hoạch tiếp tục phát triển.
 - Không commit tài khoản, mật khẩu, dữ liệu nhân vật, database cá nhân, binary phát hành ngoài phạm vi cho phép hoặc log nhạy cảm.
 - Giữ nguyên dữ liệu/PAK gốc; với C++ và Lua mã hóa legacy, tránh chuyển mã hàng loạt. Build trên **bản sao ngoài checkout**.
-- Xem [roadmap](docs/MASTER_ROADMAP.md) và [test matrix](docs/TEST_MATRIX.md) trước khi bắt đầu một thay đổi lớn.
+- [Roadmap](docs/MASTER_ROADMAP.md) và [test matrix](docs/TEST_MATRIX.md) được giữ như **tư liệu lịch sử**, không còn được theo dõi như đầu việc đang triển khai.
 
 ---
 
