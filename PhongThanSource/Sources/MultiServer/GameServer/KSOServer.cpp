@@ -2511,6 +2511,9 @@ BOOL KSwordOnLineSever::RegisterGatewayWorldService(unsigned int nRequestId)
 	if (!m_pGatewayClient || !m_pCoreServerShell ||
 		!m_RelayClient.IsRegistered())
 	{
+		GameServerLoginDiag("world_register_blocked gateway=%u core=%u relay=%u",
+			m_pGatewayClient ? 1U : 0U, m_pCoreServerShell ? 1U : 0U,
+			m_RelayClient.IsRegistered() ? 1U : 0U);
 		return FALSE;
 	}
 
@@ -2530,6 +2533,7 @@ BOOL KSwordOnLineSever::RegisterGatewayWorldService(unsigned int nRequestId)
 	if (FAILED(m_pGatewayClient->SendPackToServer(
 			&Response, sizeof(Response))))
 	{
+		GameServerLoginDiag("world_hello_send_failed");
 		return FALSE;
 	}
 
@@ -2538,7 +2542,11 @@ BOOL KSwordOnLineSever::RegisterGatewayWorldService(unsigned int nRequestId)
 	const int nMapCount = m_pCoreServerShell->GetGameData(
 		SGDI_LOADEDMAP_ID, (unsigned int)MapIds, sizeof(MapIds));
 	if (nMapCount <= 0 || nMapCount > PHONGTHAN_WORLD_MAP_LIMIT)
+	{
+		GameServerLoginDiag("world_map_count_invalid count=%d limit=%d",
+			nMapCount, PHONGTHAN_WORLD_MAP_LIMIT);
 		return FALSE;
+	}
 
 	const PHONGTHAN_U32 nPacketSize =
 		(PHONGTHAN_U32)sizeof(PHONGTHAN_SERVICE_WORLD_MAP_REGISTRY_HEADER) +
@@ -2559,7 +2567,14 @@ BOOL KSwordOnLineSever::RegisterGatewayWorldService(unsigned int nRequestId)
 	const HRESULT hr = m_pGatewayClient->SendPackToServer(
 		pPacket, nPacketSize);
 	delete [] pPacket;
-	return FAILED(hr) ? FALSE : TRUE;
+	if (FAILED(hr))
+	{
+		GameServerLoginDiag("world_registry_send_failed maps=%d", nMapCount);
+		return FALSE;
+	}
+	GameServerLoginDiag("world_registry_sent maps=%d service=%u", nMapCount,
+		(unsigned int)m_RelayClient.GetServiceId());
+	return TRUE;
 }
 
 BOOL KSwordOnLineSever::NotifyGatewayWorldSession(
