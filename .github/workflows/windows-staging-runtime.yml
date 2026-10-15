@@ -15,18 +15,6 @@ on:
       - 'tests/test_windows_launchers.py'
       - 'PhongThan-MoGame.cmd'
       - 'PhongThan-ChayTatCa.cmd'
-  push:
-    branches: [main]
-    paths:
-      - '.github/workflows/windows-staging-runtime.yml'
-      - 'PhongThanRuntime-Staging/**'
-      - 'PhongThanSource/Output/**'
-      - 'PhongThanSource/OutputModern/**'
-      - 'PhongThanSource/Deploy/**'
-      - 'AdminWeb/PhongThan-RunAll.ps1'
-      - 'tools/verify_windows_build.py'
-      - 'PhongThan-MoGame.cmd'
-      - 'PhongThan-ChayTatCa.cmd'
   workflow_dispatch:
 
 permissions:

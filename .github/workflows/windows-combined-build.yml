@@ -15,20 +15,6 @@ on:
       - 'PhongThanSource/Lib/release/**'
       - 'PhongThanSource/ThirdParty/**'
       - 'overlays/legacy/**'
-  push:
-    branches: [main]
-    paths:
-      - '.github/workflows/windows-combined-build.yml'
-      - 'PhongThanSource/Build/Build-Modern.ps1'
-      - 'tools/stage_accountserver_smoke.py'
-      - 'tools/verify_windows_build.py'
-      - 'tools/audit_windows_imports.py'
-      - 'tests/test_audit_windows_imports.py'
-      - 'PhongThanSource/Sources/**'
-      - 'PhongThanSource/Headers/**'
-      - 'PhongThanSource/Lib/release/**'
-      - 'PhongThanSource/ThirdParty/**'
-      - 'overlays/legacy/**'
   workflow_dispatch:
 
 permissions:
