@@ -149,8 +149,8 @@ button.btn{border-radius:9px;min-height:40px;box-shadow:none;white-space:normal}
 </head>
 <body>
 <header>
-  <button type="button" class="nav-toggle" id="navToggle" aria-controls="tabs" aria-expanded="false">Menu</button>
-  <div class="brand"><span class="brand-mark" aria-hidden="true">PT</span><div class="brand-copy"><h1>Phong Thần Admin</h1><small>CONTROL CENTER</small></div></div>
+  <button type="button" class="nav-toggle" id="navToggle" aria-controls="tabs" aria-expanded="false">Danh mục</button>
+  <div class="brand"><span class="brand-mark" aria-hidden="true">PT</span><div class="brand-copy"><h1>Phong Thần Admin</h1><small>TRUNG TÂM QUẢN TRỊ</small></div></div>
   <span id="bridge"><span class="dot"></span>Đang kiểm tra server…</span>
   <nav id="tabs" aria-label="Chức năng quản trị">
     <div class="nav-search"><input id="navSearch" type="search" placeholder="Tìm chức năng..." autocomplete="off" aria-label="Tìm chức năng quản trị"></div>
@@ -182,13 +182,13 @@ button.btn{border-radius:9px;min-height:40px;box-shadow:none;white-space:normal}
 </header>
 <div id="navBackdrop" class="nav-backdrop" aria-hidden="true"></div>
 <main>
-<div class="page-heading"><div class="workspace-eyebrow" id="workspaceLabel">TỔNG QUAN / CONTROL CENTER</div><h2 id="pageTitle">Tổng quan</h2><p id="pageDescription">Theo dõi hoạt động server và người chơi đang online.</p></div>
+<div class="page-heading"><div class="workspace-eyebrow" id="workspaceLabel">TỔNG QUAN / QUẢN TRỊ</div><h2 id="pageTitle">Tổng quan</h2><p id="pageDescription">Theo dõi hoạt động server và người chơi đang online.</p></div>
 <div id="workspaceTabs" class="workspace-tabs" role="navigation" aria-label="Các chức năng trong nhóm"></div>
 
 <section id="overview" class="on">
   <div class="kpi-grid" aria-label="Trạng thái hệ thống">
     <div class="kpi"><span class="kpi-label">Dịch vụ chạy</span><strong id="kpiServices">—</strong></div>
-    <div class="kpi"><span class="kpi-label">Nhân vật online</span><strong id="kpiPlayers">—</strong></div>
+    <div class="kpi"><span class="kpi-label">Nhân vật trực tuyến</span><strong id="kpiPlayers">—</strong></div>
     <div class="kpi"><span class="kpi-label">Nhịp cầu nối</span><strong id="kpiHeartbeat">—</strong></div>
     <div class="kpi"><span class="kpi-label">Lệnh chờ</span><strong id="kpiQueue">—</strong></div>
   </div>
@@ -226,8 +226,8 @@ button.btn{border-radius:9px;min-height:40px;box-shadow:none;white-space:normal}
       <p class="hint">Bình Sinh Lực / Nội Lực Vĩnh Cửu: click phải hoặc đặt lên thanh phím nhanh (1–0) là hồi đầy ngay, dùng mãi không mất, hồi chiêu 2 giây, không dùng khi trọng thương; Tự đánh (Alt+A) cũng dùng được khi bình nằm ở thanh phím nhanh (cần CoreClient có <code>kytrancac:AF1</code>). Cũng bán ở Kỳ Trân Các (F2, tab Dược phẩm). Cần ptfix có plug-in <code>extra_kytrancac.py</code>, script <code>vinhcuu_sinhluc.lua</code> / <code>vinhcuu_noiluc.lua</code> và khởi động lại server.</p>
       <p class="hint">Lệnh Bài Vạn Tiên / Thương Chu: dùng vĩnh viễn, click phải là vào trận ngay (trận đang đóng sẽ được mở ngay), không cần đợi giờ, không phí, không giới hạn cấp. Mỗi lệnh bài hồi 60 phút. Cần ptfix có plug-in <code>extra_vtcc.py</code> và khởi động lại server.</p>
       <h2 style="margin-top:18px">Tăng level nhân vật</h2>
-      <div class="row"><div><label>Level mới (1–200)</label><input id="charLevel" type="number" min="1" max="200" value="90"></div></div>
-      <button class="btn" id="btnLevel">Đặt level cho nhân vật trên</button>
+      <div class="row"><div><label>Cấp mới (1–200)</label><input id="charLevel" type="number" min="1" max="200" value="90"></div></div>
+      <button class="btn" id="btnLevel">Đặt cấp cho nhân vật trên</button>
       <p class="hint">Điểm tiềm năng được hoàn lại để phân phối lại theo level mới; cấp các kỹ năng đã học được giữ nguyên.</p>
       <h2 style="margin-top:18px">Điểm thuộc tính</h2>
       <div class="row">
@@ -730,7 +730,7 @@ button.btn{border-radius:9px;min-height:40px;box-shadow:none;white-space:normal}
       <h2 style="margin-top:18px">Chuẩn bị gói chia sẻ</h2>
       <button class="btn alt" id="btnSetupBackup">Sao lưu account hiện tại → account.bak</button>
       <p class="hint">Bản <code>account.bak</code> cũ được giữ trong <code>_backup\</code>. Lưu ý: file này chứa toàn bộ tài khoản và mật khẩu đã mã hóa, chỉ chia sẻ cho người tin cậy.</p>
-      <p class="hint">Bước cài LocalDB cần quyền quản trị: Windows sẽ hiện hộp thoại UAC, bấm <b>Yes</b>. Bộ cài lấy từ thư mục <code>Setup\</code> (SqlLocalDB.msi); nếu thiếu thì tự tải từ Microsoft.</p>
+      <p class="hint">Bước cài LocalDB cần quyền quản trị: Windows sẽ hiện hộp thoại UAC, bấm <b>Có (Yes)</b>. Bộ cài lấy từ thư mục <code>Setup\</code> (SqlLocalDB.msi); nếu thiếu thì tự tải từ Microsoft.</p>
       <h2 style="margin-top:18px">Nhật ký</h2>
       <pre id="setupLog" style="max-height:260px;overflow:auto;white-space:pre-wrap;font-size:12px;margin:0"></pre>
     </div>
@@ -763,12 +763,104 @@ const $=id=>document.getElementById(id);
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 let pickedItem=null,pickedNpc=null,maps=[],events=[],online=[];
 const TYPES={give:'Phát đồ',giveall:'Phát đồ tất cả',news:'Thông báo',spawn:'Tạo boss',clear:'Xóa boss',money:'Tặng lượng',exp:'Tặng kinh nghiệm'};
+/* Vietnamese presentation only: never alter Lua commands, SQL, TCVN3 or API IDs. */
+const PT_VI_MESSAGES={
+  "Bang vat pham chua duoc xac minh voi PAK. Chuc nang phat vat pham da bi khoa de tranh sai item ID; chay AdminWeb\\Install-Pak-Extractor.cmd de xac minh 15 bang PAK va khoi dong lai Web Admin.": "Bảng vật phẩm chưa được xác minh với PAK. Chức năng phát vật phẩm đang bị khóa để tránh sai mã vật phẩm; chạy AdminWeb\\Install-Pak-Extractor.cmd để kiểm tra đủ 15 bảng PAK, sau đó mở lại Web Admin.",
+  "Sai token. Tai lai trang.": "Phiên quản trị không hợp lệ. Vui lòng tải lại trang.",
+  "Mat khau 6-16 ky tu ASCII, khong dau, khong khoang trang.": "Mật khẩu phải có 6–16 ký tự ASCII, không dấu và không có khoảng trắng.",
+  "Khong tim thay tai khoan.": "Không tìm thấy tài khoản.",
+  "Thao tac tai khoan khong hop le.": "Thao tác tài khoản không hợp lệ.",
+  "Ten nhan vat khong hop le.": "Tên nhân vật không hợp lệ.",
+  "Phai khong hop le.": "Hệ phái không hợp lệ.",
+  "Chua chon ky nang nao cua phai nay.": "Chưa chọn kỹ năng nào của hệ phái này.",
+  "Chua chon bi kip nao cua phai nay.": "Chưa chọn bí kíp nào của hệ phái này.",
+  "Chua chon chieu nao (hoac bam nut tat).": "Chưa chọn chiêu thức nào (hoặc nhấn nút Tắt).",
+  "Hay nhap so diem can cong.": "Hãy nhập số điểm cần cộng.",
+  "Chua chon mon trang bi.": "Chưa chọn món trang bị.",
+  "Chua nhap so luong nguyen lieu nao.": "Chưa nhập số lượng nguyên liệu.",
+  "Chua chon vien / tui nao.": "Chưa chọn viên hoặc túi nào.",
+  "Chua chon Than Ky nao.": "Chưa chọn Thần Khí nào.",
+  "Khong co mon hop le trong bo.": "Không có món hợp lệ trong bộ.",
+  "Khong tim thay boss the gioi.": "Không tìm thấy Boss thế giới.",
+  "Loai lenh bai khong hop le (1 Dao Si, 2 Di Nhan, 3 Giap Si).": "Loại lệnh bài không hợp lệ (1 Đạo Sĩ, 2 Dị Nhân, 3 Giáp Sĩ).",
+  "Che do khong hop le (1 = cho an day, 2 = tang cap toi da).": "Chế độ không hợp lệ (1 = cho ăn đầy, 2 = tăng cấp tối đa).",
+  "Loai do nuoi thu khong hop le.": "Loại đồ nuôi thú không hợp lệ.",
+  "Khong tim thay Client\\config.ini.": "Không tìm thấy Client\\config.ini.",
+  "Game dang mo: thoat game truoc (game ghi de UiCommon.ini khi thoat), roi luu lai.": "Game đang mở. Hãy thoát game trước khi lưu vì game sẽ ghi đè UiCommon.ini khi thoát.",
+  "File nhan vat sai dinh dang.": "File nhân vật sai định dạng.",
+  "File nhan vat sai checksum.": "File nhân vật không khớp mã kiểm tra (checksum).",
+  "Ten trong file nhan vat khong khop.": "Tên trong file nhân vật không khớp.",
+  "khong co file nhan vat": "Không có file nhân vật.",
+  "Nhat ky khong hop le.": "Nhật ký không hợp lệ.",
+  "Ten ban sao luu khong hop le.": "Tên bản sao lưu không hợp lệ.",
+  "Ban sao luu khong co file nao de khoi phuc.": "Bản sao lưu không có file nào để khôi phục.",
+  "Ngay sao luu khong hop le.": "Ngày sao lưu không hợp lệ.",
+  "Nhan vat khong co trong ban sao luu nay.": "Nhân vật không có trong bản sao lưu này.",
+  "Ban sao luu khong co file nhan vat.": "Bản sao lưu không có file nhân vật.",
+  "File nhan vat khong hop le.": "File nhân vật không hợp lệ.",
+  "Khong thay nhan vat nay (co the da bi xoa).": "Không tìm thấy nhân vật này (có thể đã bị xóa).",
+  "File nhan vat sai checksum: khong xoa tu web, hay kiem tra bang tay.": "File nhân vật có mã kiểm tra không hợp lệ: không xóa trên web; hãy kiểm tra thủ công.",
+  "Muc thung rac khong hop le.": "Mục thùng rác không hợp lệ.",
+  "Khong thay muc nay trong thung rac.": "Không tìm thấy mục này trong thùng rác.",
+  "Muc thung rac thieu file nhan vat.": "Mục trong thùng rác thiếu file nhân vật.",
+  "File trong thung rac sai checksum, khong khoi phuc.": "File trong thùng rác có mã kiểm tra sai, không thể khôi phục.",
+  "Toi da 50 nhan vat.": "Tối đa 50 nhân vật.",
+  "Hay danh dau it nhat mot ban do, hoac chon Moi ban do.": "Hãy chọn ít nhất một bản đồ hoặc chọn Tất cả bản đồ.",
+  "Buoc cai dat khong hop le.": "Bước cài đặt không hợp lệ.",
+  "Dang co mot buoc cai dat chay, hay doi.": "Đã có một bước cài đặt đang chạy, vui lòng chờ.",
+  "Can ten su kien va gio dang HH:mm.": "Cần nhập tên sự kiện và thời gian dạng HH:mm.",
+  "Da xoa su kien.": "Đã xóa sự kiện.",
+  "Ma xac nhan sai hoac het han (5 phut). Bam Khoi phuc lai tu dau.": "Mã xác nhận sai hoặc đã hết hạn (5 phút). Hãy thực hiện khôi phục lại từ đầu.",
+  "Cho server xu ly (toi da ~60 giay)": "Chờ server xử lý (tối đa khoảng 60 giây).",
+  "Tat het bot": "Tắt toàn bộ bot.",
+  "theo nguoi choi": "theo người chơi",
+  "di dao": "đi dạo",
+  " (cat con 100)": " (giới hạn còn 100)",
+  "; tat to doi bot": "; tắt tổ đội bot",
+  "theo Npcs.txt": "theo Npcs.txt",
+  "moi ban do co quai": "mọi bản đồ có quái",
+  "Khong tim thay su kien.": "Không tìm thấy sự kiện."
+};
+
+const PT_VI_PATTERNS=[
+  [/^Thieu PakEntryExtract\.exe tai (.+)\. Chay AdminWeb\\Install-Pak-Extractor\.cmd, sau do khoi dong lai Web Admin\.$/,v=>'Thiếu PakEntryExtract.exe tại '+v+'. Hãy chạy AdminWeb\\Install-Pak-Extractor.cmd, sau đó mở lại Web Admin.'],
+  [/^Khong trich duoc (.+) tu PAK va khong co bang loose: (.+)$/, (table,path)=>'Không trích xuất được '+table+' từ PAK và không có bảng dự phòng: '+path],
+  [/^Khong tim thay vat pham (.+)$/,v=>'Không tìm thấy vật phẩm '+v],
+  [/^Sach ky nang (\d+) khong ton tai$/,v=>'Sách kỹ năng '+v+' không tồn tại'],
+  [/^Bi kip (\d+) khong ton tai$/,v=>'Bí kíp '+v+' không tồn tại'],
+  [/^Ky nang (\d+) khong thuoc phai nay\.$/,v=>'Kỹ năng '+v+' không thuộc hệ phái này.'],
+  [/^Ban do (.+) khong co trong danh sach ban do cua server\.$/,v=>'Bản đồ '+v+' không có trong danh sách bản đồ của server.'],
+  [/^Ban do (.+) khong nam trong danh sach ban do co quai\.$/,v=>'Bản đồ '+v+' không nằm trong danh sách bản đồ có quái.'],
+  [/^Khong thay ban sao luu nhan vat (.+)\.$/,v=>'Không tìm thấy bản sao lưu nhân vật '+v+'.'],
+  [/^Khong thay ban sao luu (.+)\.$/,v=>'Không tìm thấy bản sao lưu '+v+'.'],
+  [/^File sao luu (.+) sai checksum, khong khoi phuc\.$/,v=>'File sao lưu '+v+' sai mã kiểm tra, không thể khôi phục.'],
+  [/^Nhan vat (.+) dang online\. Thoat nhan vat ra roi xoa\.$/,v=>'Nhân vật '+v+' đang trực tuyến. Hãy cho nhân vật thoát game trước khi xóa.'],
+  [/^Nhan vat (.+) bi lap trong danh sach\.$/,v=>'Nhân vật '+v+' bị trùng trong danh sách.'],
+  [/^Da luu su kien '(.+)'\.$/,v=>"Đã lưu sự kiện '"+v+"'."],
+  [/^Da xep lenh ([^:]+): (.+)$/, (id,desc)=>'Đã xếp lệnh '+id+': '+ptViMessage(desc)],
+  [/^Da xep lenh phat (\d+) mon do luc cho (.+)\.$/, (n,player)=>'Đã xếp lệnh phát '+n+' món đồ lục cho '+player+'.'],
+  [/^Da bat dau buoc '(.+)'\. Xem nhat ky ben duoi\.$/,v=>"Đã bắt đầu bước '"+v+"'. Xem nhật ký bên dưới."],
+  [/^Bot: tu do (\d+) \((theo nguoi choi|di dao)\), (\d+) dia diem, tong (\d+)(.*)$/, (followers,mode,spots,total,extra)=>'Bot: tự do '+followers+' ('+ptViMessage(mode)+'), '+spots+' địa điểm, tổng '+total+extra.replace('cat con 100','giới hạn còn 100').replace('to doi bot','tổ đội bot').replace('tat to doi bot','tắt tổ đội bot')],
+  [/^Hanh dong khong ho tro: (.+)$/,v=>'Hành động không hỗ trợ: '+v],
+  [/^Loai su kien khong hop le: (.+)$/,v=>'Loại sự kiện không hợp lệ: '+v],
+  [/^Khong tim thay su kien\.$/,()=>'Không tìm thấy sự kiện.']
+];
+function ptViMessage(text){
+  if(typeof text!=='string')return text;
+  if(Object.prototype.hasOwnProperty.call(PT_VI_MESSAGES,text))return PT_VI_MESSAGES[text];
+  for(const [pattern,localize] of PT_VI_PATTERNS){
+    const match=pattern.exec(text);
+    if(match)return localize(...match.slice(1));
+  }
+  return text; // Unknown/game-derived text stays untouched.
+}
+
 async function api(path,body){
   const r=await fetch(path,{method:body?'POST':'GET',headers:{'X-PT-Token':TOKEN,'Content-Type':'application/json'},body:body?JSON.stringify(body):undefined});
   const j=await r.json().catch(()=>({error:'Phản hồi không hợp lệ'}));
-  if(!r.ok||j.error)throw new Error(j.error||('HTTP '+r.status));return j;
+  if(!r.ok||j.error)throw new Error(ptViMessage(j.error||('HTTP '+r.status)));if(typeof j.message==='string')j.message=ptViMessage(j.message);return j;
 }
-function toast(msg,err){const t=$('toast');t.textContent=msg;t.className=err?'err':'';t.style.display='block';clearTimeout(t._h);t._h=setTimeout(()=>t.style.display='none',err?7000:4000)}
+function toast(msg,err){const t=$('toast');t.textContent=ptViMessage(msg);t.className=err?'err':'';t.style.display='block';clearTimeout(t._h);t._h=setTimeout(()=>t.style.display='none',err?7000:4000)}
 async function run(fn){try{const j=await fn();if(j&&j.message)toast(j.message);return j}catch(e){toast(e.message,true)}}
 // Eight workspaces consolidate navigation while preserving all data-t IDs.
 const NAV_GROUPS=[
@@ -838,7 +930,7 @@ $('navSearch').onkeydown=e=>{
 function ptRefreshWorkspaceTabs(id){
   const group=ptWorkspace(id),wrapper=$('workspaceTabs');wrapper.replaceChildren();
   if(!group)return;
-  $('workspaceLabel').textContent=group[0]+' / CONTROL CENTER';
+  $('workspaceLabel').textContent=group[0]+' / QUẢN TRỊ';
   group.slice(1).forEach(part=>{
     const original=ptButton(part);if(!original)return;
     const b=document.createElement('button');b.type='button';
@@ -939,7 +1031,7 @@ async function loadStatus(){
       const problems=Array.isArray(s.itemCatalogIssues)?s.itemCatalogIssues:[];
       catalog.textContent=verified
         ?'Đã xác minh đủ 15 bảng vật phẩm từ PAK · các lệnh vẫn cần server sẵn sàng.'
-        :'Chưa xác minh PAK: phát vật phẩm đang khóa. '+(problems.length?'Nguyên nhân: '+problems.slice(0,2).join(' · ')+(problems.length>2?' (và '+(problems.length-2)+' lỗi khác)':''):'Chạy AdminWeb/Install-Pak-Extractor.cmd rồi mở lại Web Admin.');
+        :'Chưa xác minh PAK: phát vật phẩm đang khóa. '+(problems.length?'Nguyên nhân: '+problems.slice(0,2).map(ptViMessage).join(' · ')+(problems.length>2?' (và '+(problems.length-2)+' lỗi khác)':''):'Chạy AdminWeb/Install-Pak-Extractor.cmd rồi mở lại Web Admin.');
     }
     $('bridge').innerHTML=`<span class="dot" style="background:${alive?'var(--ok)':running?'var(--warn)':'var(--bad)'}"></span>`+(alive?`Cầu nối hoạt động (nhịp ${s.heartbeat})`:running?'GameServer đang chạy, chờ nhịp cầu nối…':'GameServer chưa chạy')+(s.pendingQueued?' · có lệnh đang chờ':'');
     const all=['Goddess.exe','PhongThanAccountServer.exe','PhongThanRelay.exe','Bishop.exe','GameServer.exe'];
@@ -1420,7 +1512,7 @@ $('chTrash').onclick=async e=>{const d=e.target.dataset&&e.target.dataset.chund;
     const r=await api('/api/chars/undelete',{folder:d,code:c.trim()});toast(r.message);loadChars()}catch(err){toast(adminOpsOld(err),true)}};
 document.querySelector('#tabs [data-t=chars]').addEventListener('click',()=>loadChars());
 // history
-async function loadHistory(){try{const j=await api('/api/history');$('histBody').innerHTML=(j.history||[]).map(h=>`<tr><td>${esc(h.time)}</td><td>${esc(h.type)}</td><td>${esc(h.desc)}</td><td><span class="tag ${esc(h.status)}">${h.status==='PENDING'?'Đang chờ':h.status==='OK'?'Thành công':h.status==='FAIL'?'Lỗi':esc(h.status)}</span></td><td class="muted">${esc(h.detail)}</td></tr>`).join('')||'<tr><td colspan="5" class="muted">Chưa có lệnh.</td></tr>'}catch(e){}}
+async function loadHistory(){try{const j=await api('/api/history');$('histBody').innerHTML=(j.history||[]).map(h=>`<tr><td>${esc(h.time)}</td><td>${esc(h.type)}</td><td>${esc(ptViMessage(h.desc))}</td><td><span class="tag ${esc(h.status)}">${h.status==='PENDING'?'Đang chờ':h.status==='OK'?'Thành công':h.status==='FAIL'?'Lỗi':esc(h.status)}</span></td><td class="muted">${esc(ptViMessage(h.detail))}</td></tr>`).join('')||'<tr><td colspan="5" class="muted">Chưa có lệnh.</td></tr>'}catch(e){}}
 
 // server setup
 let setupTimer=null;

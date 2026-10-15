@@ -15,11 +15,21 @@ LEGACY_ENCODED_NAME = "Phong Than Truyen Ky"
 
 # Use byte-exact replacement to avoid corrupting the legacy CP936/TCVN3 text.
 # Locations like "Phong Than Dai" and all serialized identifiers stay intact.
+# Legacy input may be either imported ASCII text or the corrected single-byte
+# TCVN3 bitmap encoding. Both produce a branded string in the *same* encoding.
+EXIT_PROMPT_ASCII = (
+    b"22=Ban co muon thoat khoi Phong Than Online?",
+    b"22=Ban co muon thoat khoi Phong Than Truyen Ky?",
+)
+EXIT_PROMPT_TCVN = (
+    b"22=B\xb9n c\xe3 mu\xe8n tho\xb8t kh\xe1i Phong Th\xc7n Online?",
+    b"22=B\xb9n c\xe3 mu\xe8n tho\xb8t kh\xe1i Phong Th\xc7n Truy\xd2n K\xfa?",
+)
+
 REPLACEMENTS = {
     "PhongThanRuntime-Staging/Client/Ui/Setting.ini": [
         (b"GameName=Phong Than Online", b"GameName=Phong Than Truyen Ky"),
-        (b"22=Ban co muon thoat khoi Phong Than Online?",
-         b"22=Ban co muon thoat khoi Phong Than Truyen Ky?"),
+        EXIT_PROMPT_TCVN,
         (b"23=Phong Than Online", b"23=Phong Than Truyen Ky"),
     ],
     "PhongThanRuntime-Staging/Client/serverlist.ini": [
@@ -81,6 +91,15 @@ def brand_content(path: str, data: bytes) -> bytes:
         # Preserve original line endings, especially historic game/client files.
         if b"\r\n" in data and b"\r\n" not in replacement:
             replacement = replacement.replace(b"\n", b"\r\n")
+        # Keep fail-closed behavior, but accept the original ASCII archive as
+        # well as the now-corrected TCVN3 locale line without recoding the file.
+        if path == "PhongThanRuntime-Staging/Client/Ui/Setting.ini" and (original, replacement) == EXIT_PROMPT_TCVN:
+            exact = data.count(EXIT_PROMPT_TCVN[0])
+            legacy = data.count(EXIT_PROMPT_ASCII[0])
+            if exact + legacy != 1:
+                raise BrandError("Changed or repeated branding context: " + path)
+            if legacy:
+                original, replacement = EXIT_PROMPT_ASCII
         if data.count(original) != 1:
             raise BrandError("Changed or repeated branding context: " + path)
         data = data.replace(original, replacement, 1)

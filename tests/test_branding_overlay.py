@@ -7,7 +7,8 @@ import unittest
 from pathlib import Path
 
 from tools.build_branding_overlay import (
-    BrandError, DISPLAY_NAME, REPLACEMENTS, brand_content, generate,
+    BrandError, DISPLAY_NAME, REPLACEMENTS, EXIT_PROMPT_ASCII,
+    EXIT_PROMPT_TCVN, brand_content, generate,
 )
 
 REPO = Path(__file__).resolve().parents[1]
@@ -40,6 +41,21 @@ class BrandingOverlayTests(unittest.TestCase):
                         self.assertEqual(modified.count(original), 0)
                     self.assertIn(replacement.replace(b"\n", b"\r\n")
                                   if b"\r\n" in old else replacement, modified)
+
+
+    def test_exit_dialog_keeps_legacy_tcvn3_and_old_archive_compatibility(self):
+        path = "PhongThanRuntime-Staging/Client/Ui/Setting.ini"
+        current = (REPO / path).read_bytes()
+        self.assertEqual(current.count(EXIT_PROMPT_TCVN[0]), 1)
+        fixed = brand_content(path, current)
+        self.assertEqual(fixed.count(EXIT_PROMPT_TCVN[1]), 1)
+        self.assertNotIn("22=Bạn có muốn thoát".encode("utf-8"), fixed)
+        original_ascii = current.replace(EXIT_PROMPT_TCVN[0], EXIT_PROMPT_ASCII[0], 1)
+        old_branded = brand_content(path, original_ascii)
+        self.assertIn(EXIT_PROMPT_ASCII[1], old_branded)
+        self.assertNotIn(EXIT_PROMPT_TCVN[1], old_branded)
+        with self.assertRaisesRegex(BrandError, "branding context"):
+            brand_content(path, current + EXIT_PROMPT_ASCII[0])
 
     def test_generated_overlay_preserves_original_files(self):
         snapshot = {rel: (self.source / rel).read_bytes() for rel in REPLACEMENTS}
