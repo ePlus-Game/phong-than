@@ -67,6 +67,9 @@ if (-not (Test-Path -LiteralPath $pakTool -PathType Leaf)) {
 }
 $catalog = & (Join-Path $PSScriptRoot 'Initialize-ItemTables.ps1') -ServerRoot $ServerRoot -ItemDir $ItemDir -PakTool $pakTool
 $script:PakItemCatalogVerified = [bool]$catalog.PakVerified
+$script:PakItemCatalogSource = [string]$catalog.Source
+$script:PakItemCatalogIssues = @($catalog.Issues)
+if (-not $script:PakItemCatalogVerified) { $script:PakItemCatalogIssues | ForEach-Object { Write-Warning ('Item PAK: ' + $_) } }
 Write-Host "Bang vat pham: $($catalog.Tables) | Nguon: $($catalog.Source)"
 Write-Host 'Dang nap danh muc vat pham...'
 $Items = New-Object Collections.Generic.List[object]
@@ -262,7 +265,7 @@ $ThanKy = @{
 $ThanKyStones = @(6854, 6982) + @(6855..6866)
 $TableCache = @{}
 function Get-ItemCode([string]$Key) {
-    if (-not $script:PakItemCatalogVerified) { throw 'Bang vat pham chua duoc xac minh voi PAK. Chuc nang phat vat pham da bi khoa de tranh sai item ID; build PakEntryExtract.exe de bat lai.' }
+    if (-not $script:PakItemCatalogVerified) { throw 'Bang vat pham chua duoc xac minh voi PAK. Chuc nang phat vat pham da bi khoa de tranh sai item ID; chay AdminWeb\Install-Pak-Extractor.cmd de xac minh 15 bang PAK va khoi dong lai Web Admin.' }
     # Project starter bag (Sources\Core\Src\PhongThanStarterBag.h): reusable item picker.
     if ($Key -eq 'StarterBag') { return @{ g = 6; d = 61000; p = 0; lv = 1; se = 0; name = 'Tui tan thu' } }
     # World-boss token (ptfix.pak magicscript row 61001, script\phongthan\item\boss_lenhbai.lua).
@@ -468,6 +471,8 @@ function Get-Status {
         heartbeatAgeSec = $(if (Test-Path -LiteralPath $hb) { [int]((Get-Date) - (Get-Item -LiteralPath $hb).LastWriteTime).TotalSeconds } else { -1 })
         pendingQueued = (Test-Path -LiteralPath (Join-Path $Bridge 'pending.lua'))
         itemCatalogVerified = [bool]$script:PakItemCatalogVerified
+        itemCatalogSource = [string]$script:PakItemCatalogSource
+        itemCatalogIssues = @($script:PakItemCatalogIssues)
         services = $procs
         now = (Get-Date -Format 'yyyy-MM-dd HH:mm:ss')
     }
