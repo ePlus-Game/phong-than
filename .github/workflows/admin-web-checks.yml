@@ -9,6 +9,7 @@ on:
       - 'tests/admin_workspace.test.cjs'
       - 'tests/admin_behavior.test.cjs'
       - 'tests/Test-AdminBehavior.ps1'
+      - 'tests/Test-AdminFeatures.ps1'
       - 'tests/Test-AdminLocalization.ps1'
       - 'tests/Test-PakItem-Verification.ps1'
       - 'PhongThanRuntime-Staging/Client/Ui/Setting.ini'
@@ -36,6 +37,7 @@ jobs:
             /tests/admin_workspace.test.cjs
             /tests/admin_behavior.test.cjs
             /tests/Test-AdminBehavior.ps1
+            /tests/Test-AdminFeatures.ps1
             /tests/Test-AdminLocalization.ps1
             /tests/Test-PakItem-Verification.ps1
             /PhongThanRuntime-Staging/Client/Ui/Setting.ini
@@ -70,6 +72,11 @@ jobs:
         run: |
           $ErrorActionPreference='Stop'
           & .\tests\Test-AdminBehavior.ps1 -RepoRoot (Get-Location).Path
+      - name: Exercise all action handlers and disposable configuration/character files
+        shell: powershell
+        run: |
+          $ErrorActionPreference='Stop'
+          & .\tests\Test-AdminFeatures.ps1 -RepoRoot (Get-Location).Path
       - name: Verify safe PAK installer and synthetic 15-table lock
         shell: powershell
         run: |
