@@ -810,7 +810,16 @@ const PT_VI_MESSAGES={
   "Dang co mot buoc cai dat chay, hay doi.": "Đã có một bước cài đặt đang chạy, vui lòng chờ.",
   "Can ten su kien va gio dang HH:mm.": "Cần nhập tên sự kiện và thời gian dạng HH:mm.",
   "Da xoa su kien.": "Đã xóa sự kiện.",
-  "Ma xac nhan sai hoac het han (5 phut). Bam Khoi phuc lai tu dau.": "Mã xác nhận sai hoặc đã hết hạn (5 phút). Hãy thực hiện khôi phục lại từ đầu."
+  "Ma xac nhan sai hoac het han (5 phut). Bam Khoi phuc lai tu dau.": "Mã xác nhận sai hoặc đã hết hạn (5 phút). Hãy thực hiện khôi phục lại từ đầu.",
+  "Cho server xu ly (toi da ~60 giay)": "Chờ server xử lý (tối đa khoảng 60 giây).",
+  "Tat het bot": "Tắt toàn bộ bot.",
+  "theo nguoi choi": "theo người chơi",
+  "di dao": "đi dạo",
+  " (cat con 100)": " (giới hạn còn 100)",
+  "; tat to doi bot": "; tắt tổ đội bot",
+  "theo Npcs.txt": "theo Npcs.txt",
+  "moi ban do co quai": "mọi bản đồ có quái",
+  "Khong tim thay su kien.": "Không tìm thấy sự kiện."
 };
 
 const PT_VI_PATTERNS=[
@@ -826,9 +835,10 @@ const PT_VI_PATTERNS=[
   [/^Nhan vat (.+) dang online\. Thoat nhan vat ra roi xoa\.$/,v=>'Nhân vật '+v+' đang trực tuyến. Hãy cho nhân vật thoát game trước khi xóa.'],
   [/^Nhan vat (.+) bi lap trong danh sach\.$/,v=>'Nhân vật '+v+' bị trùng trong danh sách.'],
   [/^Da luu su kien '(.+)'\.$/,v=>"Đã lưu sự kiện '"+v+"'."],
-  [/^Da xep lenh ([^:]+): (.+)$/, (id,desc)=>'Đã xếp lệnh '+id+': '+desc],
+  [/^Da xep lenh ([^:]+): (.+)$/, (id,desc)=>'Đã xếp lệnh '+id+': '+ptViMessage(desc)],
   [/^Da xep lenh phat (\d+) mon do luc cho (.+)\.$/, (n,player)=>'Đã xếp lệnh phát '+n+' món đồ lục cho '+player+'.'],
   [/^Da bat dau buoc '(.+)'\. Xem nhat ky ben duoi\.$/,v=>"Đã bắt đầu bước '"+v+"'. Xem nhật ký bên dưới."],
+  [/^Bot: tu do (\d+) \((theo nguoi choi|di dao)\), (\d+) dia diem, tong (\d+)(.*)$/, (followers,mode,spots,total,extra)=>'Bot: tự do '+followers+' ('+ptViMessage(mode)+'), '+spots+' địa điểm, tổng '+total+extra.replace('cat con 100','giới hạn còn 100').replace('to doi bot','tổ đội bot').replace('tat to doi bot','tắt tổ đội bot')],
   [/^Hanh dong khong ho tro: (.+)$/,v=>'Hành động không hỗ trợ: '+v],
   [/^Loai su kien khong hop le: (.+)$/,v=>'Loại sự kiện không hợp lệ: '+v],
   [/^Khong tim thay su kien\.$/,()=>'Không tìm thấy sự kiện.']
