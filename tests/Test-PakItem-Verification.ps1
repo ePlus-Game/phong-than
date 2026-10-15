@@ -45,6 +45,9 @@ try {
     }
     Write-Host 'PASS: missing tool, success protocol, failed PAK lookup all follow safe gate.'
     Write-Host 'Synthetic test does not verify real game PAK data.'
+    # Clear the deliberate exit 4 from the fake broken extractor so that
+    # the invoking Windows PowerShell GitHub Actions step exits successfully.
+    $global:LASTEXITCODE=0
 } finally {
     if (Test-Path -LiteralPath $root -PathType Container) {
         Remove-Item -LiteralPath $root -Force -Recurse
