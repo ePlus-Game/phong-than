@@ -1,0 +1,35 @@
+name: Vietnamese Admin and legacy Client text
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'AdminWeb/index.html'
+      - 'tests/admin_locale.test.cjs'
+      - 'PhongThanRuntime-Staging/Client/Ui/Setting.ini'
+      - '.github/workflows/admin-locale-checks.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  locale-regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /AdminWeb/index.html
+            /AdminWeb/PhongThan-Admin.ps1
+            /tests/admin_locale.test.cjs
+            /tests/admin_workspace.test.cjs
+            /PhongThanRuntime-Staging/Client/Ui/Setting.ini
+            /PhongThanRuntime-Staging/Client/font/14.fnt
+            /PhongThanRuntime-Staging/Client/font/16.fnt
+            /PhongThanRuntime-Staging/Client/font/18.fnt
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+      - name: Validate Vietnamese labels, API error localization and TCVN3 bytes
+        run: node --test tests/admin_locale.test.cjs tests/admin_workspace.test.cjs
