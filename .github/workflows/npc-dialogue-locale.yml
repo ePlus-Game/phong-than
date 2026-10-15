@@ -1,0 +1,47 @@
+name: Authored NPC Vietnamese dialogue
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/npc-dialogue-locale.yml'
+      - 'PhongThanSource/Tools/build_authored_npcs.py'
+      - 'PhongThanSource/Tests/test_authored_npcs.py'
+      - 'PhongThanSource/Docs/NPC_RESTORATION_DEPLOYMENT.json'
+      - 'PhongThanSource/Deploy/ProjectContent/NpcRestoration/coordinates.json'
+      - 'PhongThanSource/Deploy/ProjectContent/NpcRestoration/compiled/script/phongthan/npc_restore/**'
+      - 'PhongThanRuntime-Staging/Server/script/phongthan/npc_restore/**'
+
+permissions:
+  contents: read
+
+jobs:
+  npc-legacy-text:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /PhongThanSource/Tools/build_authored_npcs.py
+            /PhongThanSource/Tools/prepare_npc_restoration.py
+            /PhongThanSource/Tests/test_authored_npcs.py
+            /PhongThanSource/Docs/NPC_RESTORATION_DEPLOYMENT.json
+            /PhongThanSource/Deploy/ProjectContent/NpcRestoration/coordinates.json
+            /PhongThanSource/Deploy/ProjectContent/NpcRestoration/compiled/script/phongthan/npc_restore/1002_19.lua
+            /PhongThanSource/Deploy/ProjectContent/NpcRestoration/compiled/script/phongthan/npc_restore/1003_11.lua
+            /PhongThanSource/Deploy/ProjectContent/NpcRestoration/compiled/script/phongthan/npc_restore/1004_11.lua
+            /PhongThanRuntime-Staging/Server/script/phongthan/npc_restore/1002_19.lua
+            /PhongThanRuntime-Staging/Server/script/phongthan/npc_restore/1003_11.lua
+            /PhongThanRuntime-Staging/Server/script/phongthan/npc_restore/1004_11.lua
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Compile-check NPC generator
+        run: python -m py_compile PhongThanSource/Tools/build_authored_npcs.py PhongThanSource/Tests/test_authored_npcs.py
+      - name: Verify TCVN3 Lua dialogue, staging parity and manifest
+        run: |
+          python -m unittest -v \
+            PhongThanSource.Tests.test_authored_npcs.AuthoredTests.test_authored_vietnamese_menu_uses_tcvn3_lua_byte_escapes \
+            PhongThanSource.Tests.test_authored_npcs.AuthoredTests.test_lao_rua_compiled_scripts_match_generator_and_manifest

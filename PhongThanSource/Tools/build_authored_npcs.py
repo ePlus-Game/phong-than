@@ -19,8 +19,72 @@ BASE = PROJECT.parent
 OUT = PROJECT / 'Deploy/ProjectContent/NpcRestoration/compiled'
 
 
+# These are the original one-byte TCVN3 glyph slots used by the VNG ASF
+# bitmap fonts. The authored Lua source stays ASCII by using Lua \ddd escapes;
+# the Lua VM emits actual TCVN3 bytes to the legacy game client.
+_TCVN_BYTES = bytes.fromhex(
+    'B5 B8 B6 B7 B9 A8 BB BE BC BD C6 A9 C7 CA C8 C9 CB AE CC D0 CE CF D1 AA '
+    'D2 D5 D3 D4 D6 D7 DD D8 DC DE DF E3 E1 E2 E4 AB E5 E8 E6 E7 E9 AC EA ED '
+    'EB EC EE EF F3 F1 F2 F4 AD F5 F8 F6 F7 F9 FA FD FB FC FE A1 A2 A7 A3 A4 A5 A6'
+)
+_TCVN_POINTS = tuple(int(x, 16) for x in (
+    'E0 E1 1EA3 E3 1EA1 103 1EB1 1EAF 1EB3 1EB5 1EB7 E2 1EA7 1EA5 1EA9 '
+    '1EAB 1EAD 111 E8 E9 1EBB 1EBD 1EB9 EA 1EC1 1EBF 1EC3 1EC5 1EC7 EC '
+    'ED 1EC9 129 1ECB F2 F3 1ECF F5 1ECD F4 1ED3 1ED1 1ED5 1ED7 1ED9 '
+    '1A1 1EDD 1EDB 1EDF 1EE1 1EE3 F9 FA 1EE7 169 1EE5 1B0 1EEB 1EE9 '
+    '1EED 1EEF 1EF1 1EF3 FD 1EF7 1EF9 1EF5 102 C2 110 CA D4 1A0 1AF'
+).split())
+assert len(_TCVN_BYTES) == len(_TCVN_POINTS)
+_TCVN_MAP = {chr(cp): byte for cp, byte in zip(_TCVN_POINTS, _TCVN_BYTES)}
+
+# These are display strings only. Keep the ASCII source identifiers/record_name,
+# Lua callback paths, world IDs and original VNG/Pak payloads unchanged.
+_NPC_DISPLAY = {
+    'Lao Rua': 'Lão Rùa',
+    'Thuong Nhan Tay Vuc': 'Thương Nhân Tây Vực',
+    'Sinh Hoat Su': 'Sinh Hoạt Sư',
+    'Thieu Hao': 'Thiếu Hạo',
+    'Hau Tho': 'Hậu Thổ',
+    'Chuyen Sinh Lao Lao': 'Chuyển Sinh Lão Lão',
+    'Thu Kho': 'Thủ Kho',
+    'Tan Thu Thi Luyen': 'Tân Thủ Thí Luyện',
+    'Au Thien Hoa': 'Âu Thiên Hóa',
+}
+_MAP_DISPLAY = {
+    'Xi Vuu Mo': 'Xi Vưu Mộ',
+    'Sung Thanh doanh': 'Sùng Thành Doanh',
+    'Ngoc Hu cung': 'Ngọc Hư Cung',
+}
+_ROLE_DISPLAY = {
+    'Lao Rua': ('Đầu mối Lão Rùa được tái dựng theo danh mục đã duyệt. '
+                'Có thể hỏi địa chỉ và tra cứu những NPC liên quan trong bản đồ.'),
+}
+
+
 def quote(text):
-    return '"' + text.replace('\\','\\\\').replace('"','\\"').replace('\n','\\n') + '"'
+    """Return a quoted, ASCII-only Lua string emitting single-byte TCVN3.
+
+    ASCII callback names and '/' delimiters remain unchanged. Reject any
+    unsupported glyph rather than silently strip accents or emit UTF-8.
+    """
+    out = []
+    for char in text:
+        code = ord(char)
+        if char == '\\':
+            out.append('\\\\')
+        elif char == '"':
+            out.append('\\"')
+        elif char == '\n':
+            out.append('\\n')
+        elif code < 32:
+            raise ValueError(f'Unsupported control code: {code}')
+        elif code < 128:
+            out.append(char)
+        elif char in _TCVN_MAP:
+            out.append('\\%03d' % _TCVN_MAP[char])
+        else:
+            raise ValueError(f'Unsupported TCVN3 glyph: U+{code:04X}')
+    return '"' + ''.join(out) + '"'
 
 
 def guide_lua(npc, peers, original):
@@ -31,9 +95,9 @@ def guide_lua(npc, peers, original):
     """
     nearby=sorted((p for p in peers if p['name']!=npc['name']),
                   key=lambda p:(p['x']-npc['x'])**2+(p['y']-npc['y'])**2)[:5]
-    routes='; '.join(f"{p['name']} ({p['x']}/{p['y']})" for p in nearby) or 'Khong co NPC khac trong danh muc map nay.'
-    status=('Co nhanh Lua VNG goc trong PAK. Cac dieu kien va giao dich do nhanh goc kiem tra; chua nghiem thu toan bo nhiem vu.'
-            if original else 'Dang mo: doi thoai, huong dan va tra cuu. Nhan/tra nhiem vu, doi thuong va giao dich chua mo khi chua du ma du lieu.')
+    routes='; '.join(f"{_NPC_DISPLAY.get(p['name'], p['name'])} ({p['x']}/{p['y']})" for p in nearby) or 'Không có NPC khác trong danh mục bản đồ này.'
+    status=('Có nhánh Lua VNG gốc trong PAK. Các điều kiện và giao dịch do nhánh gốc kiểm tra; chưa nghiệm thu toàn bộ nhiệm vụ.'
+            if original else 'Đang mở: đối thoại, hướng dẫn và tra cứu. Nhận/trả nhiệm vụ, đổi thưởng và giao dịch chưa mở khi chưa đủ mã dữ liệu.')
     prefix = b''
     if original:
         patch=b''
@@ -41,9 +105,9 @@ def guide_lua(npc, peers, original):
             patch=b'\n-- Reviewed project quest transaction compatibility.\n'+npc['quest_appendix']
         prefix=(b'-- Original VNG source payload; provenance in deployment report.\n'+original+patch+
                 b'\npt_original_main = main\n-- Authored restoration menu begins here.\n')
-    options=['"Vai tro va huong dan/pt_about"','"NPC lien quan/pt_routes"','"Trang thai chuc nang/pt_status"']
-    if original:options.append('"Chuc nang VNG goc/pt_original"')
-    options.append('"Dong/pt_close"')
+    options=[quote('Vai trò và hướng dẫn/pt_about'),quote('NPC liên quan/pt_routes'),quote('Trạng thái chức năng/pt_status')]
+    if original:options.append(quote('Chức năng VNG gốc/pt_original'))
+    options.append(quote('Đóng/pt_close'))
     text=f'''-- AUTHORED NPC {npc['key']}; not a claim of original appearance.
 function pt_guard()
     local w = GetWorldPos()
@@ -52,19 +116,19 @@ function pt_guard()
 end
 function main()
     if pt_guard() == 0 then return end
-    Say({quote(npc['name']+' - '+npc['map_name']+' ('+str(npc['x'])+'/'+str(npc['y'])+')')}, {len(options)}, {', '.join(options)})
+    Say({quote(_NPC_DISPLAY.get(npc['name'], npc['name'])+' - '+_MAP_DISPLAY.get(npc['map_name'], npc['map_name'])+' ('+str(npc['x'])+'/'+str(npc['y'])+')')}, {len(options)}, {', '.join(options)})
 end
 function pt_about()
     if pt_guard() == 0 then return end
-    Say({quote(npc['role_guide'])}, 2, "Quay lai/main", "Dong/pt_close")
+    Say({quote(_ROLE_DISPLAY.get(npc['name'], npc['role_guide']))}, 2, {quote('Quay lại/main')}, {quote('Đóng/pt_close')})
 end
 function pt_routes()
     if pt_guard() == 0 then return end
-    Say({quote(routes)}, 2, "Quay lai/main", "Dong/pt_close")
+    Say({quote(routes)}, 2, {quote('Quay lại/main')}, {quote('Đóng/pt_close')})
 end
 function pt_status()
     if pt_guard() == 0 then return end
-    Say({quote(status)}, 2, "Quay lai/main", "Dong/pt_close")
+    Say({quote(status)}, 2, {quote('Quay lại/main')}, {quote('Đóng/pt_close')})
 end
 function pt_close()
     CloseDialog()

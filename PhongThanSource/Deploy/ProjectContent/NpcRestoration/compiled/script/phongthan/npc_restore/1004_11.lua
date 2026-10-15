@@ -6,19 +6,19 @@ function pt_guard()
 end
 function main()
     if pt_guard() == 0 then return end
-    Say("Lao Rua - Xi Vuu Mo (200/202)", 4, "Vai tro va huong dan/pt_about", "NPC lien quan/pt_routes", "Trang thai chuc nang/pt_status", "Dong/pt_close")
+    Say("L\183o R\239a - Xi V\173u M\233 (200/202)", 4, "Vai tr\223 v\181 h\173\237ng d\201n/pt_about", "NPC li\170n quan/pt_routes", "Tr\185ng th\184i ch\248c n\168ng/pt_status", "\167\227ng/pt_close")
 end
 function pt_about()
     if pt_guard() == 0 then return end
-    Say("Dau moi Lao Rua duoc tai dung theo danh muc da duyet. Co the hoi dia chi va tra cuu nhung NPC lien quan trong map.", 2, "Quay lai/main", "Dong/pt_close")
+    Say("\167\199u m\232i L\183o R\239a \174\173\238c t\184i d\249ng theo danh m\244c \174\183 duy\214t. C\227 th\211 h\225i \174\222a ch\216 v\181 tra c\248u nh\247ng NPC li\170n quan trong b\182n \174\229.", 2, "Quay l\185i/main", "\167\227ng/pt_close")
 end
 function pt_routes()
     if pt_guard() == 0 then return end
-    Say("Thuong Nhan Tay Vuc (200/200); Sinh Hoat Su (200/200); Thieu Hao (198/204); Hau Tho (202/204); Chuyen Sinh Lao Lao (196/202)", 2, "Quay lai/main", "Dong/pt_close")
+    Say("Th\173\172ng Nh\169n T\169y V\249c (200/200); Sinh Ho\185t S\173 (200/200); Thi\213u H\185o (198/204); H\203u Th\230 (202/204); Chuy\211n Sinh L\183o L\183o (196/202)", 2, "Quay l\185i/main", "\167\227ng/pt_close")
 end
 function pt_status()
     if pt_guard() == 0 then return end
-    Say("Dang mo: doi thoai, huong dan va tra cuu. Nhan/tra nhiem vu, doi thuong va giao dich chua mo khi chua du ma du lieu.", 2, "Quay lai/main", "Dong/pt_close")
+    Say("\167ang m\235: \174\232i tho\185i, h\173\237ng d\201n v\181 tra c\248u. Nh\203n/tr\182 nhi\214m v\244, \174\230i th\173\235ng v\181 giao d\222ch ch\173a m\235 khi ch\173a \174\241 m\183 d\247 li\214u.", 2, "Quay l\185i/main", "\167\227ng/pt_close")
 end
 function pt_close()
     CloseDialog()

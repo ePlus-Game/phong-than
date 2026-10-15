@@ -1318,9 +1318,9 @@
       "lua_status": "AUTHORED_GUIDE_RULES_NOT_TRANSACTIONAL",
       "lua": {
         "logical": "\\script\\phongthan\\npc_restore\\1002_19.lua",
-        "sha256": "1b2c9cf28be73e8e7ac7e4d625811a3d57004ddbb9b809e18e1d4fb9ba834cf6",
+        "sha256": "1373b544c73e8bc8313e2c7f4e628cc19b8d94b81015a6fdd890e4a35f6cd0f7",
         "relative": "script/phongthan/npc_restore/1002_19.lua",
-        "bytes": 1139
+        "bytes": 1430
       },
       "record_name": "Lao Rua",
       "npc_res_type": "passerby046",
@@ -2101,9 +2101,9 @@
       "lua_status": "AUTHORED_GUIDE_RULES_NOT_TRANSACTIONAL",
       "lua": {
         "logical": "\\script\\phongthan\\npc_restore\\1003_11.lua",
-        "sha256": "0efee0ef469fd38271bad5f775c376dac4b7eed4b8595c3c15e316e78d28a3e6",
+        "sha256": "9678e4c1752ea600c7fb4e1782b8c8cb3862aadd3f4403d1cf950c8b16b3d545",
         "relative": "script/phongthan/npc_restore/1003_11.lua",
-        "bytes": 1137
+        "bytes": 1410
       },
       "record_name": "Lao Rua",
       "npc_res_type": "passerby046",
@@ -3000,9 +3000,9 @@
       "lua_status": "AUTHORED_GUIDE_RULES_NOT_TRANSACTIONAL",
       "lua": {
         "logical": "\\script\\phongthan\\npc_restore\\1004_11.lua",
-        "sha256": "69c69d1cbb2162f35bee2484c22c6e1d29f423e40a6829fe52652f54b0ab0b0d",
+        "sha256": "c60764350fba4d7bedfa59082d2a4c09fc77ce43710349700b63ed6da20b7124",
         "relative": "script/phongthan/npc_restore/1004_11.lua",
-        "bytes": 1124
+        "bytes": 1409
       },
       "record_name": "Lao Rua",
       "npc_res_type": "passerby046",
@@ -8608,8 +8608,8 @@
     },
     {
       "relative": "script/phongthan/npc_restore/1002_19.lua",
-      "sha256": "1b2c9cf28be73e8e7ac7e4d625811a3d57004ddbb9b809e18e1d4fb9ba834cf6",
-      "bytes": 1139
+      "sha256": "1373b544c73e8bc8313e2c7f4e628cc19b8d94b81015a6fdd890e4a35f6cd0f7",
+      "bytes": 1430
     },
     {
       "relative": "script/phongthan/npc_restore/1002_20.lua",
@@ -8653,8 +8653,8 @@
     },
     {
       "relative": "script/phongthan/npc_restore/1003_11.lua",
-      "sha256": "0efee0ef469fd38271bad5f775c376dac4b7eed4b8595c3c15e316e78d28a3e6",
-      "bytes": 1137
+      "sha256": "9678e4c1752ea600c7fb4e1782b8c8cb3862aadd3f4403d1cf950c8b16b3d545",
+      "bytes": 1410
     },
     {
       "relative": "script/phongthan/npc_restore/1003_12.lua",
@@ -8728,8 +8728,8 @@
     },
     {
       "relative": "script/phongthan/npc_restore/1004_11.lua",
-      "sha256": "69c69d1cbb2162f35bee2484c22c6e1d29f423e40a6829fe52652f54b0ab0b0d",
-      "bytes": 1124
+      "sha256": "c60764350fba4d7bedfa59082d2a4c09fc77ce43710349700b63ed6da20b7124",
+      "bytes": 1409
     },
     {
       "relative": "script/phongthan/npc_restore/1004_12.lua",
