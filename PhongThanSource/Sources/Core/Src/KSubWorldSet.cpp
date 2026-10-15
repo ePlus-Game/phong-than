@@ -51,7 +51,7 @@ int KSubWorldSet::SearchWorld(DWORD dwID)
 				FILE *pMapDiag = fopen("core_map_load_diag.log", "a");
 				if (pMapDiag)
 				{
-					fprintf(pMapDiag, "search_world id=%lu result=%d slot_id=%d region=%p total=%d\\n",
+					fprintf(pMapDiag, "search_world id=%lu result=%d slot_id=%d region=%p total=%d\n",
 						(unsigned long)dwID, i, SubWorld[i].m_SubWorldID,
 						(void *)SubWorld[i].m_Region, SubWorld[i].m_nTotalRegion);
 					fclose(pMapDiag);
