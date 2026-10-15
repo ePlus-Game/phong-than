@@ -7,6 +7,7 @@ $ast=[Management.Automation.Language.Parser]::ParseFile((Join-Path $RepoRoot 'Ad
 if ($parseErrors.Count) { throw 'Backend parse errors' }
 $names=@('ConvertFrom-Tcvn','ConvertTo-Tcvn','ConvertTo-LuaString','Get-Plain','Get-ItemCode','Assert-Name','Clamp','Invoke-Action','Get-Online','Set-Bots','Get-BotsConfig','Set-MatDo','Get-MatDoConfig','Set-BotParty','Get-BotPartyConfig','ConvertTo-BotPartyKey','Set-EventSched','Get-EvConfig','New-DgRow','ConvertTo-DgRow','Set-DailyGift','Get-DgConfig','Get-ClientCfg','Set-ClientCfg','Get-ClientSound','Set-ClientSound','Get-ChestPath','Get-ChestFnv','Read-ChestFile','Set-ChestFile','Invoke-AccountAction','Get-Md5Upper','Get-AdminOpsFnv','Test-AdminOpsPthc','Read-AdminOpsRole','Get-AdminOpsCharName','Get-AdminOpsCharFile','Get-AdminOpsTrashEntry','Get-CharDeletePlan','Invoke-CharDelete','Get-CharUndeletePlan','Invoke-CharUndelete','Assert-AdminOpsCharOffline','New-AdminOpsCode','Confirm-AdminOpsCode','Write-AdminOpsLog','Get-CharRestoreFiles','Get-CharRestorePlan','Invoke-CharRestore','Assert-AdminOpsStopped','Invoke-CharBackup','Get-CharBackups','Read-JsonList','Save-Json','Update-Results')
 $names += @('Get-AdminOpsOnlineState','Get-AdminOpsLogTail','ConvertFrom-AdminOpsBytes','Get-AdminOpsKind','Get-AdminOpsRestoreMap','Get-AdminOpsBackupDir','Get-AdminOpsRollbackPlan','Invoke-AdminOpsRollback','Update-AdminOpsReceipt','Invoke-Route')
+$names += @('Get-Status','Format-HHMM','Get-WorldBoss','Get-VanTien','Get-Bots','Get-MatDo','Get-BotParty','Get-Characters','Get-DailyGift','Get-UpgradeItems','Get-HanhTrangLog')
 foreach($name in $names) {
  $found=@($ast.FindAll({param($node) $node -is [Management.Automation.Language.FunctionDefinitionAst] -and $node.Name -eq $name},$true))
  if($found.Count -ne 1){throw "Missing production function $name"}
@@ -290,6 +291,38 @@ try {
   $GearPieces=@([pscustomobject]@{key='MagicScript|1';prof=0;set=1;variant=0;ilv=1;tier=1;piece='head';name='Head';req=10},[pscustomobject]@{key='other';prof=0;set=1;variant=0;ilv=1;tier=1;piece='body';name='Body';req=10});$setName=@{'1|0|0'='Fixture set'}
   $ctx=[pscustomobject]@{Request=[pscustomobject]@{Url=[uri]'http://localhost/api/gearsets';QueryString=@{prof='0'};Headers=@{'X-PT-Token'=$Token};HttpMethod='GET'}}
   Invoke-Route $ctx;Assert ($script:reply.sets.Count -eq 1 -and $script:reply.sets[0].pieces.Count -eq 2) 'gear grouping failed'
+ }
+ Case 'overview missing heartbeat and queue state' {
+  $status=Get-Status;Assert ($status.heartbeatAgeSec -eq -1 -and $status.pendingQueued) 'overview empty heartbeat/queue incorrect'
+ }
+ Case 'world boss status and killer readback' {
+  [IO.File]::WriteAllText((Join-Path $Bridge 'worldboss.txt'),"stamp`ntest_boss`t-1`t2000`t2030`t2100`tHero`n",$Enc1252)
+  $boss=(Get-WorldBoss).bosses[0];Assert ($boss.state -eq 'killed' -and $boss.death -eq '20:30' -and $boss.killer -eq 'Hero') 'world boss parsing failed'
+ }
+ Case 'Van Tien state and boss kill mask readback' {
+  [IO.File]::WriteAllText((Join-Path $Bridge 'vantien.txt'),"stamp`n1`t2`t31`t3`t120`n",$Enc1252)
+  $result=Get-VanTien;Assert ($result.trans.Count -eq 4 -and $result.trans[0].tien -eq 4 -and $result.trans[0].thongThien -and $result.trans[0].inside -eq 3) 'Van Tien parsing failed'
+ }
+ Case 'bots live counts readback' {
+  [IO.File]::WriteAllText((Join-Path $Bridge 'bots.txt'),"stamp`ntotal`t5`t8`nparty`t1`t4`t15`t2`t5`t1`n",$Enc1252)
+  $status=(Get-Bots).status;Assert ($status.alive -eq 5 -and $status.target -eq 8 -and $status.partyExp) 'bot status parsing failed'
+ }
+ Case 'density live map readback' {
+  [IO.File]::WriteAllText((Join-Path $Bridge 'matdo.txt'),"stamp`nmap`t1001`t10`t5`t5`t5`t1`t1`t10`n",$Enc1252)
+  $map=(Get-MatDo).maps[0];Assert ($map.extras -eq 5 -and $map.hot -and $map.scope) 'density status parsing failed'
+ }
+ Case 'bot party combines saved config and live counts' {Assert ((Get-BotParty).status.alive -eq 5) 'party live count unavailable'}
+ Case 'daily achievement readback' {
+  [IO.File]::WriteAllText((Join-Path $Bridge 'thanhtich.txt'),"stamp`nHero`t20`t1`t2`t3`t4`t5`t6`tclaim`t7`t8`tday`t9`t10`tseen`n",$Enc1252)
+  $char=(Get-DailyGift).chars[0];Assert ($char.name -eq 'Hero' -and $char.streak -eq 7 -and $char.pendBig -eq 10) 'achievement status parsing failed'
+ }
+ Case 'upgrade inventory readback and malformed row filtering' {
+  [IO.File]::WriteAllText((Join-Path $Bridge 'upgrade_items.txt'),"stamp`tHero`tOK`n1`t123`t0`t1`t2`t5`t1`tSword`ninvalid`n",$Enc1252)
+  $result=Get-UpgradeItems;Assert ($result.items.Count -eq 1 -and $result.items[0].id -eq 123 -and $result.items[0].level -eq 5) 'upgrade inventory parsing failed'
+ }
+ Case 'auto-sell bag history readback' {
+  [IO.File]::WriteAllText((Join-Path $Bridge 'hanhtrang_sell.log'),"stamp`tHero`tmanual`tSword`t100`n",$Enc1252)
+  $result=Get-HanhTrangLog;Assert ($result.rows.Count -eq 1 -and $result.rows[0].money -eq '100') 'bag history parsing failed'
  }
  Case 'all action types exercised' {
   $actionNode=@($ast.FindAll({param($node)$node -is [Management.Automation.Language.FunctionDefinitionAst] -and $node.Name -eq 'Invoke-Action'},$true))[0]
