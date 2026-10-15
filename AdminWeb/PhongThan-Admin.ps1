@@ -1953,12 +1953,20 @@ function Invoke-Event($ev, [string]$Reason) {
     Save-Json $EventsPath $Events
     "Su kien '$($ev.name)' ($Reason): da xep $($ids.Count) lenh."
 }
+function Assert-EventTime([string]$Time) {
+    if ($Time -notmatch '\A([01]?[0-9]|2[0-3]):([0-5][0-9])\z') {
+        throw 'Can ten su kien va gio dang HH:mm.'
+    }
+    '{0:00}:{1:00}' -f [int]$Matches[1], [int]$Matches[2]
+}
 function Invoke-Scheduler {
     try { Invoke-AdminOpsTick } catch { }   # 2026-10-04 adminops: character backup at start + every 24 h
     $now = Get-Date; $today = $now.ToString('yyyy-MM-dd'); $dow = [int]$now.DayOfWeek
     foreach ($ev in $Events) {
-        if (-not $ev.enabled -or "$($ev.time)" -notmatch '^(\d{1,2}):(\d{2})$') { continue }
-        $at = $now.Date.AddHours([int]$Matches[1]).AddMinutes([int]$Matches[2])
+        if (-not $ev.enabled) { continue }
+        try { $time = Assert-EventTime "$($ev.time)" } catch { continue }
+        $parts = $time.Split(':')
+        $at = $now.Date.AddHours([int]$parts[0]).AddMinutes([int]$parts[1])
         $days = @($ev.days | Where-Object { "$_" -ne '' })
         if ($days.Count -and ($days -notcontains $dow) -and ($days -notcontains "$dow")) { continue }
         if ($now -ge $at -and $now -lt $at.AddMinutes(10) -and "$($ev.lastRun)" -notlike "$today*") { Write-Host (Invoke-Event $ev 'theo lich') }
@@ -2064,10 +2072,11 @@ function Invoke-Route($ctx) {
         'GET /api/events' { Send-Json $ctx @{ events = $Events.ToArray() } }
         'POST /api/events' {
             $b = Read-Body $ctx
-            if (-not $b.name -or "$($b.time)" -notmatch '^\d{1,2}:\d{2}$') { throw 'Can ten su kien va gio dang HH:mm.' }
+            if (-not "$($b.name)".Trim()) { throw 'Can ten su kien va gio dang HH:mm.' }
+            $eventTime = Assert-EventTime "$($b.time)"
             $existing = $null; foreach ($e in $Events) { if ($e.id -eq $b.id) { $existing = $e } }
             if ($existing) { [void]$Events.Remove($existing) }
-            $ev = [pscustomobject]@{ id = $(if ($b.id) { $b.id } else { 'e' + (Get-Date -Format 'yyyyMMddHHmmss') }); name = "$($b.name)"; enabled = [bool]$b.enabled; time = "$($b.time)"; days = @($b.days); lastRun = $(if ($existing) { $existing.lastRun } else { '' }); actions = @($b.actions) }
+            $ev = [pscustomobject]@{ id = $(if ($b.id) { $b.id } else { 'e' + [guid]::NewGuid().ToString('N') }); name = "$($b.name)"; enabled = [bool]$b.enabled; time = $eventTime; days = @($b.days); lastRun = $(if ($existing) { $existing.lastRun } else { '' }); actions = @($b.actions) }
             [void]$Events.Add($ev); Save-Json $EventsPath $Events
             Send-Json $ctx @{ ok = $true; message = "Da luu su kien '$($ev.name)'." }
         }
@@ -2144,3 +2153,4 @@ try {
         catch { try { Send-Json $ctx @{ error = $_.Exception.Message } 400 } catch {} }
     }
 } finally { $listener.Stop(); $listener.Close() }
+
