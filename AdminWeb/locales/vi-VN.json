@@ -1,0 +1,162 @@
+{
+  "locale": "vi-VN",
+  "messages": {
+    "Bang vat pham chua duoc xac minh voi PAK. Chuc nang phat vat pham da bi khoa de tranh sai item ID; chay AdminWeb\\Install-Pak-Extractor.cmd de xac minh 15 bang PAK va khoi dong lai Web Admin.": "Bảng vật phẩm chưa được xác minh với PAK. Chức năng phát vật phẩm đang bị khóa để tránh sai mã vật phẩm; chạy AdminWeb\\Install-Pak-Extractor.cmd để kiểm tra đủ 15 bảng PAK, sau đó mở lại Web Admin.",
+    "Sai token. Tai lai trang.": "Phiên quản trị không hợp lệ. Vui lòng tải lại trang.",
+    "Mat khau 6-16 ky tu ASCII, khong dau, khong khoang trang.": "Mật khẩu phải có 6–16 ký tự ASCII, không dấu và không có khoảng trắng.",
+    "Khong tim thay tai khoan.": "Không tìm thấy tài khoản.",
+    "Thao tac tai khoan khong hop le.": "Thao tác tài khoản không hợp lệ.",
+    "Ten nhan vat khong hop le.": "Tên nhân vật không hợp lệ.",
+    "Phai khong hop le.": "Hệ phái không hợp lệ.",
+    "Chua chon ky nang nao cua phai nay.": "Chưa chọn kỹ năng nào của hệ phái này.",
+    "Chua chon bi kip nao cua phai nay.": "Chưa chọn bí kíp nào của hệ phái này.",
+    "Chua chon chieu nao (hoac bam nut tat).": "Chưa chọn chiêu thức nào (hoặc nhấn nút Tắt).",
+    "Hay nhap so diem can cong.": "Hãy nhập số điểm cần cộng.",
+    "Chua chon mon trang bi.": "Chưa chọn món trang bị.",
+    "Chua nhap so luong nguyen lieu nao.": "Chưa nhập số lượng nguyên liệu.",
+    "Chua chon vien / tui nao.": "Chưa chọn viên hoặc túi nào.",
+    "Chua chon Than Ky nao.": "Chưa chọn Thần Khí nào.",
+    "Khong co mon hop le trong bo.": "Không có món hợp lệ trong bộ.",
+    "Khong tim thay boss the gioi.": "Không tìm thấy Boss thế giới.",
+    "Loai lenh bai khong hop le (1 Dao Si, 2 Di Nhan, 3 Giap Si).": "Loại lệnh bài không hợp lệ (1 Đạo Sĩ, 2 Dị Nhân, 3 Giáp Sĩ).",
+    "Che do khong hop le (1 = cho an day, 2 = tang cap toi da).": "Chế độ không hợp lệ (1 = cho ăn đầy, 2 = tăng cấp tối đa).",
+    "Loai do nuoi thu khong hop le.": "Loại đồ nuôi thú không hợp lệ.",
+    "Khong tim thay Client\\config.ini.": "Không tìm thấy Client\\config.ini.",
+    "Game dang mo: thoat game truoc (game ghi de UiCommon.ini khi thoat), roi luu lai.": "Game đang mở. Hãy thoát game trước khi lưu vì game sẽ ghi đè UiCommon.ini khi thoát.",
+    "File nhan vat sai dinh dang.": "File nhân vật sai định dạng.",
+    "File nhan vat sai checksum.": "File nhân vật không khớp mã kiểm tra (checksum).",
+    "Ten trong file nhan vat khong khop.": "Tên trong file nhân vật không khớp.",
+    "khong co file nhan vat": "Không có file nhân vật.",
+    "Nhat ky khong hop le.": "Nhật ký không hợp lệ.",
+    "Ten ban sao luu khong hop le.": "Tên bản sao lưu không hợp lệ.",
+    "Ban sao luu khong co file nao de khoi phuc.": "Bản sao lưu không có file nào để khôi phục.",
+    "Ngay sao luu khong hop le.": "Ngày sao lưu không hợp lệ.",
+    "Nhan vat khong co trong ban sao luu nay.": "Nhân vật không có trong bản sao lưu này.",
+    "Ban sao luu khong co file nhan vat.": "Bản sao lưu không có file nhân vật.",
+    "File nhan vat khong hop le.": "File nhân vật không hợp lệ.",
+    "Khong thay nhan vat nay (co the da bi xoa).": "Không tìm thấy nhân vật này (có thể đã bị xóa).",
+    "File nhan vat sai checksum: khong xoa tu web, hay kiem tra bang tay.": "File nhân vật có mã kiểm tra không hợp lệ: không xóa trên web; hãy kiểm tra thủ công.",
+    "Muc thung rac khong hop le.": "Mục thùng rác không hợp lệ.",
+    "Khong thay muc nay trong thung rac.": "Không tìm thấy mục này trong thùng rác.",
+    "Muc thung rac thieu file nhan vat.": "Mục trong thùng rác thiếu file nhân vật.",
+    "File trong thung rac sai checksum, khong khoi phuc.": "File trong thùng rác có mã kiểm tra sai, không thể khôi phục.",
+    "Toi da 50 nhan vat.": "Tối đa 50 nhân vật.",
+    "Hay danh dau it nhat mot ban do, hoac chon Moi ban do.": "Hãy chọn ít nhất một bản đồ hoặc chọn Tất cả bản đồ.",
+    "Buoc cai dat khong hop le.": "Bước cài đặt không hợp lệ.",
+    "Dang co mot buoc cai dat chay, hay doi.": "Đã có một bước cài đặt đang chạy, vui lòng chờ.",
+    "Can ten su kien va gio dang HH:mm.": "Cần nhập tên sự kiện và thời gian dạng HH:mm.",
+    "Da xoa su kien.": "Đã xóa sự kiện.",
+    "Ma xac nhan sai hoac het han (5 phut). Bam Khoi phuc lai tu dau.": "Mã xác nhận sai hoặc đã hết hạn (5 phút). Hãy thực hiện khôi phục lại từ đầu.",
+    "Cho server xu ly (toi da ~60 giay)": "Chờ server xử lý (tối đa khoảng 60 giây).",
+    "Tat het bot": "Tắt toàn bộ bot.",
+    "theo nguoi choi": "theo người chơi",
+    "di dao": "đi dạo",
+    " (cat con 100)": " (giới hạn còn 100)",
+    "; tat to doi bot": "; tắt tổ đội bot",
+    "theo Npcs.txt": "theo Npcs.txt",
+    "moi ban do co quai": "mọi bản đồ có quái",
+    "Khong tim thay su kien.": "Không tìm thấy sự kiện."
+  },
+  "patterns": [
+    {
+      "regex": "^Thieu PakEntryExtract\\.exe tai (.+)\\. Chay AdminWeb\\\\Install-Pak-Extractor\\.cmd, sau do khoi dong lai Web Admin\\.$",
+      "template": "Thiếu PakEntryExtract.exe tại {0}. Hãy chạy AdminWeb\\Install-Pak-Extractor.cmd, sau đó mở lại Web Admin."
+    },
+    {
+      "regex": "^Khong trich duoc (.+) tu PAK va khong co bang loose: (.+)$",
+      "template": "Không trích xuất được {0} từ PAK và không có bảng dự phòng: {1}"
+    },
+    {
+      "regex": "^Khong tim thay vat pham (.+)$",
+      "template": "Không tìm thấy vật phẩm {0}"
+    },
+    {
+      "regex": "^Sach ky nang (\\d+) khong ton tai$",
+      "template": "Sách kỹ năng {0} không tồn tại"
+    },
+    {
+      "regex": "^Bi kip (\\d+) khong ton tai$",
+      "template": "Bí kíp {0} không tồn tại"
+    },
+    {
+      "regex": "^Ky nang (\\d+) khong thuoc phai nay\\.$",
+      "template": "Kỹ năng {0} không thuộc hệ phái này."
+    },
+    {
+      "regex": "^Ban do (.+) khong co trong danh sach ban do cua server\\.$",
+      "template": "Bản đồ {0} không có trong danh sách bản đồ của server."
+    },
+    {
+      "regex": "^Ban do (.+) khong nam trong danh sach ban do co quai\\.$",
+      "template": "Bản đồ {0} không nằm trong danh sách bản đồ có quái."
+    },
+    {
+      "regex": "^Khong thay ban sao luu nhan vat (.+)\\.$",
+      "template": "Không tìm thấy bản sao lưu nhân vật {0}."
+    },
+    {
+      "regex": "^Khong thay ban sao luu (.+)\\.$",
+      "template": "Không tìm thấy bản sao lưu {0}."
+    },
+    {
+      "regex": "^File sao luu (.+) sai checksum, khong khoi phuc\\.$",
+      "template": "File sao lưu {0} sai mã kiểm tra, không thể khôi phục."
+    },
+    {
+      "regex": "^Nhan vat (.+) dang online\\. Thoat nhan vat ra roi xoa\\.$",
+      "template": "Nhân vật {0} đang trực tuyến. Hãy cho nhân vật thoát game trước khi xóa."
+    },
+    {
+      "regex": "^Nhan vat (.+) bi lap trong danh sach\\.$",
+      "template": "Nhân vật {0} bị trùng trong danh sách."
+    },
+    {
+      "regex": "^Da luu su kien '(.+)'\\.$",
+      "template": "Đã lưu sự kiện '{0}'."
+    },
+    {
+      "regex": "^Da xep lenh ([^:]+): (.+)$",
+      "template": "Đã xếp lệnh {0}: {1}"
+    },
+    {
+      "regex": "^Da xep lenh phat (\\d+) mon do luc cho (.+)\\.$",
+      "template": "Đã xếp lệnh phát {0} món đồ lục cho {1}."
+    },
+    {
+      "regex": "^Da bat dau buoc '(.+)'\\. Xem nhat ky ben duoi\\.$",
+      "template": "Đã bắt đầu bước '{0}'. Xem nhật ký bên dưới."
+    },
+    {
+      "regex": "^Hanh dong khong ho tro: (.+)$",
+      "template": "Hành động không hỗ trợ: {0}"
+    },
+    {
+      "regex": "^Loai su kien khong hop le: (.+)$",
+      "template": "Loại sự kiện không hợp lệ: {0}"
+    },
+    {
+      "regex": "^Khong tim thay su kien\\.$",
+      "template": "Không tìm thấy sự kiện."
+    },
+    {
+      "regex": "^Bot: tu do (\\d+) \\((theo nguoi choi|di dao)\\), (\\d+) dia diem, tong (\\d+)(.*)$",
+      "template": "Bot: tự do {0} ({1}), {2} địa điểm, tổng {3}{4}"
+    },
+    {
+      "regex": "^Da luu lich su kien: (\\d+) dong \\((\\d+) dang bat\\)(.*)$",
+      "template": "Đã lưu lịch sự kiện: {0} dòng ({1} đang bật){2}."
+    },
+    {
+      "regex": "^Mat do x([\\d.,]+), hoi (.+)$",
+      "template": "Mật độ x{0}, hồi {1}"
+    },
+    {
+      "regex": "^Da luu am luong: nhac nen (\\d+), hieu ung (\\d+)(.*)$",
+      "template": "Đã lưu âm lượng: nhạc nền {0}, hiệu ứng {1}{2}"
+    },
+    {
+      "regex": "^Da luu (\\d+)x(\\d+), (.+)$",
+      "template": "Đã lưu độ phân giải {0}×{1}, {2}"
+    }
+  ]
+}

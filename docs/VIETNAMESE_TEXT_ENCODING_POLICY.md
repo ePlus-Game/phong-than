@@ -59,3 +59,37 @@ Bộ kiểm thử kiểm tra nhãn giao diện, thông báo API và đường d�
 đổi, cũng như byte TCVN3 và glyph thực tế trong các font ASF 14/16/18.
 Không cần Python. Đây là **regression source/byte**, không phải ảnh
 nghiệm thu gameplay.
+
+## Cấu trúc mới: một nguồn bản dịch UTF-8 cho Web Admin
+
+Thay vì tiếp tục viết các câu tiếng Việt không dấu trong PowerShell rồi duy
+trì một bảng sửa riêng trong JavaScript, Web Admin sử dụng
+`AdminWeb/locales/vi-VN.json` làm **nguồn nội dung duy nhất**:
+
+- `messages`: câu chính xác bằng tiếng Việt có dấu.
+- `patterns`: thông báo có biến như tên nhân vật, ID lệnh, đường dẫn hoặc
+  mã vật phẩm, dùng `{0}`, `{1}` cho dữ liệu thực tế.
+- `AdminWeb/Ui-Localization.ps1`: Windows PowerShell 5.1 đọc file bằng
+  **UTF-8 được khai báo tường minh** (không phụ thuộc code page), đồng thời
+  dịch các trường thông báo của API ngay trước khi trả JSON.
+- Trang `index.html` nhận cùng dữ liệu JSON đã được escape an toàn để
+  hiển thị lịch sử hoặc xử lý tương thích với các API cũ. Không còn bản
+  dịch nhân đôi nằm trong HTML.
+
+**Chỉ các trường hiển thị** như `message`, `error`, `desc`, `detail`
+và lý do lỗi PAK được dịch trong **bản JSON trả về**. Dữ liệu trong bộ nhớ,
+các file trạng thái, ký tự tên nhân vật, SQL, Lua, PAK và ID không được sửa.
+Các câu chưa xác nhận nghĩa chính xác vẫn giữ nguyên, tránh tự đoán dấu.
+
+Thêm thông báo mới: viết tiếng Việt có dấu tại
+`AdminWeb/locales/vi-VN.json` và thêm regression test. Không được tạo
+thêm bảng dịch cố định tại HTML hay thay đổi byte trong dữ liệu game.
+
+**Với Client**: file TCVN3 và bitmap FNT giữ nguyên kiến trúc cho đến khi
+có lộ trình Unicode cho toàn bộ engine/renderer. UTF-8 của Web Admin không
+có nghĩa rằng có thể đưa Unicode trực tiếp vào các file PAK của game.
+
+Kiểm thử:
+`node --test tests/admin_locale.test.cjs tests/admin_workspace.test.cjs`
+và Windows PowerShell 5.1:
+`powershell.exe -NoProfile -File tests/Test-AdminLocalization.ps1`.

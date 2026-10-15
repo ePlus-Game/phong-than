@@ -11,11 +11,14 @@ const ini=fs.readFileSync(path.join(root,'PhongThanRuntime-Staging/Client/Ui/Set
 const script=(html.match(/<script>([\s\S]*?)<\/script>/)||[])[1];
 assert.ok(script,'Admin UI script missing');
 
-const start=script.indexOf('const PT_VI_MESSAGES=');
-const end=script.indexOf('async function api(path,body)',start);
-assert.ok(start>=0&&end>start,'UI localization module missing');
+const localeRaw=fs.readFileSync(path.join(root,'AdminWeb/locales/vi-VN.json'),'utf8');
+const locale=JSON.parse(localeRaw);
+const renderedScript=script.replace('__PT_LOCALE_JSON__',JSON.stringify(locale));
+const start=renderedScript.indexOf('const PT_LOCALE=');
+const end=renderedScript.indexOf('async function api(path,body)',start);
+assert.ok(start>=0&&end>start,'Shared locale binding is missing');
 const context=vm.createContext({});
-vm.runInContext(script.slice(start,end)+'\nthis.ptViMessage=ptViMessage;this.map=PT_VI_MESSAGES;',context);
+vm.runInContext(renderedScript.slice(start,end)+'\nthis.ptViMessage=ptViMessage;this.map=PT_VI_MESSAGES;',context);
 const tr=context.ptViMessage;
 
 test('HTML uses Vietnamese workspace labels and UTF-8, while API contracts remain unchanged',()=>{
@@ -33,6 +36,11 @@ test('HTML uses Vietnamese workspace labels and UTF-8, while API contracts remai
   assert.match(script,/j\.message=ptViMessage\(j\.message\)/);
   assert.match(script,/ptViMessage\(j\.error\|\|/);
   assert.match(script,/problems\.slice\(0,2\)\.map\(ptViMessage\)/);
+  assert.match(script,/const PT_LOCALE=__PT_LOCALE_JSON__;/);
+  assert.ok(!script.includes('const PT_VI_MESSAGES={'),'There must be no duplicated hard-coded translations in HTML');
+  assert.equal(locale.locale,'vi-VN');
+  assert.ok(Object.keys(locale.messages).length>=50);
+  assert.ok(locale.patterns.length>=20);
   assert.match(script,/'X-PT-Token':TOKEN/);
 });
 
@@ -61,6 +69,11 @@ test('unknown game data, account identifiers, paths and payload values are not r
   assert.equal(tr(null),null);
   assert.equal(tr(53),53);
   assert.ok([...ps].every(ch=>ch.codePointAt(0)<128),'PowerShell 5.1 source deliberately keeps ASCII to prevent active codepage corruption');
+  assert.notEqual(localeRaw.charCodeAt(0),0xfeff,'UTF-8 locale JSON must not have BOM');
+  assert.match(ps,/Import-PtAdminLocale \$UiLocalePath/);
+  assert.match(ps,/ConvertTo-PtLocalizedJson \$json/);
+  assert.match(ps,/Replace\('__PT_LOCALE_JSON__'/);
+  assert.ok(!ps.includes('Get-Content -Raw -Encoding Default'));
 });
 
 function parseTcvnMap(variable){

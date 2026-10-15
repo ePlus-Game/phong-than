@@ -18,6 +18,11 @@ $Enc1252 = [Text.Encoding]::GetEncoding(1252)
 $EncGbk = [Text.Encoding]::GetEncoding(936)
 $Utf8 = New-Object Text.UTF8Encoding($false)
 $Token = [guid]::NewGuid().ToString('N')
+# Import UTF-8 Vietnamese user messages without changing Windows PowerShell 5.1
+# script encoding or the game's separate TCVN3/PAK/Lua formats.
+. (Join-Path $PSScriptRoot 'Ui-Localization.ps1')
+$UiLocalePath = Join-Path $PSScriptRoot 'locales\vi-VN.json'
+Import-PtAdminLocale $UiLocalePath
 New-Item -ItemType Directory -Force $Bridge, $DataDir | Out-Null
 
 # ---------------------------------------------------------------- TCVN3 text
@@ -1962,7 +1967,10 @@ function Invoke-Scheduler {
 
 # ---------------------------------------------------------------- http
 function Send-Json($ctx, $obj, [int]$Code = 200) {
-    $bytes = $Utf8.GetBytes((ConvertTo-Json -InputObject $obj -Depth 8 -Compress))
+    # Translate only transient JSON presentation fields. Original objects,
+    # queued Lua, SQL data, game names and saved history stay untouched.
+    $json = ConvertTo-Json -InputObject $obj -Depth 8 -Compress
+    $bytes = $Utf8.GetBytes((ConvertTo-PtLocalizedJson $json))
     $ctx.Response.StatusCode = $Code; $ctx.Response.ContentType = 'application/json; charset=utf-8'
     $ctx.Response.OutputStream.Write($bytes, 0, $bytes.Length); $ctx.Response.Close()
 }
@@ -1990,7 +1998,7 @@ function Find-Npcs([string]$q, [string]$kind) {
 function Invoke-Route($ctx) {
     $req = $ctx.Request; $path = $req.Url.AbsolutePath; $qs = $req.QueryString
     if ($path -eq '/' -or $path -eq '/index.html') {
-        $html = [IO.File]::ReadAllText((Join-Path $PSScriptRoot 'index.html'), $Utf8).Replace('__PT_TOKEN__', $Token)
+        $html = [IO.File]::ReadAllText((Join-Path $PSScriptRoot 'index.html'), $Utf8).Replace('__PT_TOKEN__', $Token).Replace('__PT_LOCALE_JSON__', $script:PtLocaleJsonForPage)
         $bytes = $Utf8.GetBytes($html); $ctx.Response.ContentType = 'text/html; charset=utf-8'
         $ctx.Response.OutputStream.Write($bytes, 0, $bytes.Length); $ctx.Response.Close(); return
     }
