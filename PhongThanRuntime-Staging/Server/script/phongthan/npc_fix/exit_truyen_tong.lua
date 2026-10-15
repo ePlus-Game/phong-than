@@ -2,7 +2,8 @@
 Include("\\script\\phongthan\\lib\\vng_tasknote.lua")
 -- VNG "SuperTrap" (author yichuan 2004/6/29, script.pak id 0xCE741D0E, trap cells at
 -- 1002 r103-104,100 / 1003 r103-104,96 / 1004 r98,102-103) whose logical path is unknown,
--- so the trap cannot be registered with ReLoadScript. Same destinations and level-based fee.
+-- KSortScript maps the original trap ID to this replacement when absent from the registry.
+-- Same destinations and level-based fee; charge only after a confirmed NewWorld success.
 
 function gettranscost()
 	local lv = GetLevel()
@@ -41,7 +42,11 @@ function PTExit_Go(w, x, y, fight)
 		CloseDialog()
 		return
 	end
-	NewWorld(w, x, y)
+	if NewWorld(w, x, y) ~= 1 then
+		Msg2Player("Khong the chuyen ban do. Vui long thu lai; chua tru tien.")
+		CloseDialog()
+		return
+	end
 	if fight then SetFightState(fight) end
 	Pay(cost)
 	CloseDialog()
@@ -84,7 +89,11 @@ function ygzc()
 	elseif GetCamp() == 0 then
 		Msg2Player("T©n thñ kh«ng thÓ vµo ViÔn Cæ.")
 	elseif GetCash() >= cost then
-		NewWorld(64,1600,3238)
+		if NewWorld(64,1600,3238) ~= 1 then
+			Msg2Player("Khong the chuyen ban do. Vui long thu lai; chua tru tien.")
+			CloseDialog()
+			return
+		end
 		SetFightState(0)
 		SetRevPos(64,216)
 		Pay(cost)

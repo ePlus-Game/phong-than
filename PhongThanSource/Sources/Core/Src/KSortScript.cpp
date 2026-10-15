@@ -1,5 +1,6 @@
 #include "KCore.h"
 #include "KSortScript.h"
+#include "PhongThanTrapScript.h"
 #include "LuaFuns.h"
 #include "KFilePath.h"
 #include "KDebug.h"
@@ -75,6 +76,10 @@ const KScript * g_GetScript(DWORD dwScriptId)
 	{
 		return ScriptNode.GetScript();
 	}
+	// Preserve an original registered script; otherwise resolve the authored
+	// replacement on every lookup so reloads and dialog callbacks stay valid.
+	const char* fallback = PhongThanTrapFallback(dwScriptId);
+	if (fallback) return g_GetScript(fallback);
 	return NULL;
 }
 const KScript * g_GetScript(const char * szRelativeScriptFile)

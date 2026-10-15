@@ -1,0 +1,36 @@
+name: Town portal Lua 4 regression
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'PhongThanSource/Sources/Core/Src/KSortScript.cpp'
+      - 'PhongThanSource/Sources/Core/Src/PhongThanTrapScript.h'
+      - 'PhongThanSource/Tests/Native/TownPortalTests.cpp'
+      - 'PhongThanSource/Build/Test-TownPortal.ps1'
+      - 'PhongThanRuntime-Staging/Server/script/phongthan/npc_fix/exit_truyen_tong.lua'
+      - 'tests/town_portal.lua'
+      - 'AdminWeb/bin/LuaLibDll.dll'
+      - '.github/workflows/town-portal-checks.yml'
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  portal:
+    runs-on: windows-2022
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          filter: blob:none
+          sparse-checkout: |
+            PhongThanSource/Build
+            PhongThanSource/Tests/Native
+            PhongThanSource/Sources/Core/Src
+            PhongThanRuntime-Staging/Server/script/phongthan/npc_fix
+            tests
+            AdminWeb/bin
+      - name: Test actual portal script using bundled Lua 4 x86 runtime
+        shell: powershell
+        run: .\PhongThanSource\Build\Test-TownPortal.ps1
