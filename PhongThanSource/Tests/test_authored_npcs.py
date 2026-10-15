@@ -53,7 +53,7 @@ class AuthoredTests(unittest.TestCase):
     def test_lao_rua_compiled_scripts_match_generator_and_manifest(self):
         report=json.loads((ROOT/'Docs/NPC_RESTORATION_DEPLOYMENT.json').read_text('utf8'))
         catalog=json.loads((ROOT/'Deploy/ProjectContent/NpcRestoration/coordinates.json').read_text('utf8'))
-        bykey={r['key']:r for r in report['rows']}
+        bykey={r['key']:r for r in report['rows'] if r.get('key')}
         for key in ('1002_19','1003_11','1004_11'):
             n=bykey[key]
             peers=[dict(name=p[0], x=p[2], y=p[3]) for p in catalog['maps'][str(n['world'])]]
