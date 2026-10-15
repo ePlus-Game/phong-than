@@ -1630,6 +1630,11 @@ function Get-UpgradeItems {
     [pscustomobject]$res
 }
 function Invoke-Action($a) {
+    # Direct item grants also need the PAK gate (they do not call Get-ItemCode).
+    if ($a.type -in @('give','giveall','nuoithugive','bikipmats','bikip') -or
+        ($a.type -eq 'thanky' -and $a.mode -notin @('info','teach'))) {
+        if (-not $script:PakItemCatalogVerified) { throw 'Bang vat pham chua duoc xac minh voi PAK. Chuc nang phat vat pham da bi khoa de tranh sai item ID; chay AdminWeb\Install-Pak-Extractor.cmd de xac minh 15 bang PAK va khoi dong lai Web Admin.' }
+    }
     switch ($a.type) {
         'give' {
             $code = Get-ItemCode $a.itemKey; $n = Clamp $a.count 1 50; $name = Assert-Name $a.player

@@ -74,6 +74,23 @@ try {
  Case 'giveall dispatch' {Action @{type='giveall';itemKey='MagicScript|1';count=2} 'PTAdm_GiveAll.*2,'}
  Case 'unknown item blocked' {BadAction @{type='give';player='Hero';itemKey='missing';count=1}}
  Case 'unverified PAK blocks item dispatch' {$script:PakItemCatalogVerified=$false;try{BadAction @{type='give';player='Hero';itemKey='StarterBag';count=1}}finally{$script:PakItemCatalogVerified=$true}}
+ Case 'unverified PAK blocks every direct grant before queueing' {
+  $script:PakItemCatalogVerified=$false
+  try {
+   foreach($request in @(
+    @{type='giveall';itemKey='MagicScript|1';count=1},
+    @{type='nuoithugive';player='Hero';itemKey='NuoiThuLTDon';count=1},
+    @{type='bikipmats';player='Hero';bundle=1;tiers=@(139)},
+    @{type='bikip';player='Hero';prof=0;skills=@(27);count=1}
+   )) {BadAction $request}
+   foreach($mode in @('book','manh','stone','unexpected','')) {
+    BadAction @{type='thanky';mode=$mode;player='Hero';skills=@(1986);stones=@(6854);count=1;cap=1}
+   }
+   # Non-item modes must remain usable while PAK is unavailable.
+   Action @{type='thanky';mode='info';player='Hero'} 'PTAdm_FindPlayer'
+   Action @{type='thanky';mode='teach';player='Hero';skills=@(1986);level=2} 'SetSkillLevel'
+  } finally {$script:PakItemCatalogVerified=$true}
+ }
  Case 'money limit' {Action @{type='money';player='Hero';amount=-1} 'PTAdm_Money.* 1\)'}
  Case 'coin account currency' {Action @{type='coin';player='Hero';amount=9999999} 'AddExtPoint\(1000000\)'}
  Case 'experience limit' {Action @{type='exp';player='Hero';amount=5} 'PTAdm_Exp.* 5\)'}

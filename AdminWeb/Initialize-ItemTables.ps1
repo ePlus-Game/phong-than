@@ -5,12 +5,17 @@ param(
     [Parameter(Mandatory=$true)][string]$PakTool
 )
 $ErrorActionPreference = 'Stop'
+# Resolve before Push-Location; otherwise relative arguments change meaning.
+$ServerRoot = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($ServerRoot)
+$ItemDir = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($ItemDir)
+$PakTool = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($PakTool)
 $tables = @('meleeweapon','rangeweapon','armor','ring','amulet','boot','belt',
             'helm','cuff','pendant','horse','ibitem','magicscript','material','questkey')
 $looseRoot = Join-Path $ServerRoot 'settings\item\001'
 $package = Join-Path $ServerRoot 'package.ini'
 $toolAvailable = Test-Path -LiteralPath $PakTool -PathType Leaf
 $verified = $toolAvailable
+$verifiedTables = 0
 $source = if ($toolAvailable) { 'PAK' } else { 'LOOSE_FALLBACK' }
 $issues = New-Object Collections.Generic.List[string]
 New-Item -ItemType Directory -Force -Path $ItemDir | Out-Null
@@ -35,7 +40,8 @@ foreach ($t in $tables) {
     $tmp = Join-Path $ItemDir ("$t." + [guid]::NewGuid().ToString('N') + '.tmp')
     try {
         if ($toolAvailable) {
-            [IO.File]::WriteAllBytes($pathFile, $enc.GetBytes("\settings\item\001\$t.txt"))
+            $virtualPath = "\settings\item\001\$t.txt"
+            [IO.File]::WriteAllBytes($pathFile, $enc.GetBytes($virtualPath))
             Push-Location $ServerRoot
             try {
                 $nativeOutput = @(& $PakTool $package "@$pathFile" $tmp 2>&1 | ForEach-Object { "$_" })
@@ -49,8 +55,18 @@ foreach ($t in $tables) {
             }
             if ($exit -eq 0 -and (Test-Path -LiteralPath $tmp -PathType Leaf) -and
                 (Get-Item -LiteralPath $tmp).Length -gt 0) {
-                Move-Item -LiteralPath $tmp -Destination $destination -Force
-                $extracted = $true
+                # The native reader emits these only after a complete PAK-only
+                # read and output write. Exit 0/nonempty output alone is insufficient.
+                $entry = @($nativeOutput | Where-Object { $_ -eq "PAK_ENTRY=$virtualPath" })
+                $index = @($nativeOutput | Where-Object { $_ -match '^PAK_INDEX=\d+$' })
+                $size = @($nativeOutput | Where-Object { $_ -eq ('BYTES=' + (Get-Item -LiteralPath $tmp).Length) })
+                if ($entry.Count -eq 1 -and $index.Count -eq 1 -and $size.Count -eq 1) {
+                    Move-Item -LiteralPath $tmp -Destination $destination -Force
+                    $extracted = $true
+                    $verifiedTables++
+                } else {
+                    $issues.Add("$t.txt : missing or inconsistent PAK_ENTRY/PAK_INDEX/BYTES receipt from reader.")
+                }
             }
         }
         if (-not $extracted) {
@@ -73,4 +89,4 @@ foreach ($t in $tables) {
         }
     }
 }
-[pscustomobject]@{ Source=$source; PakVerified=[bool]$verified; Tables=$tables.Count; ToolAvailable=[bool]$toolAvailable; Issues=@($issues.ToArray()) }
+[pscustomobject]@{ Source=$source; PakVerified=[bool]($verified -and $verifiedTables -eq $tables.Count); Tables=$tables.Count; VerifiedTables=$verifiedTables; ToolAvailable=[bool]$toolAvailable; Issues=@($issues.ToArray()) }

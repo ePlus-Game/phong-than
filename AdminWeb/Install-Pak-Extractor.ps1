@@ -88,7 +88,7 @@ try {
 
     Step '2/3 Verify ALL 15 actual PAK tables in a disposable directory'
     $result = & $InstallerSource -ServerRoot $ServerRoot -ItemDir $VerifyDir -PakTool $resolved['PakEntryExtract.exe']
-    if (-not $result -or -not $result.PakVerified -or $result.Tables -ne 15) {
+    if (-not $result -or -not $result.PakVerified -or $result.Tables -ne 15 -or $result.VerifiedTables -ne 15) {
         $details = if ($result -and $result.Issues) { @($result.Issues) -join ' | ' } else { 'PAK verification returned no details' }
         throw "PAK NOT VERIFIED; no tool files installed. $details"
     }
