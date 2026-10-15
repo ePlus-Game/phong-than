@@ -150,8 +150,7 @@ void KFont2::OutputText(const char* pszText, int nCount/*= KF_ZERO_END*/,
         {
             if (h + m_nOutputWidth > nLineWidth)
             {
-                if (nPos < nCount && lpByte[nPos] == 0x0a)
-                    nPos++;
+                nPos = PT_FontAfterLineBreak(lpByte, nCount, nPos);
                 h = 0;
                 nY += m_nOutputHeight;
                 nHalfIndex = 0;
