@@ -92,7 +92,7 @@ jobs:
         run: |
           $ErrorActionPreference='Stop'
           & .\tests\Test-WorldRegistrationDiagnosis.ps1 -RepoRoot (Get-Location).Path
-          if ($LASTEXITCODE -ne 0) { throw 'World diagnosis regression failed' }
+          # Test throws for failed assertions; do not inherit LASTEXITCODE from nested external commands.
       - name: Check map and Bishop logging instrumentation
         shell: powershell
         run: |
