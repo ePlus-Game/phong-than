@@ -11,18 +11,6 @@ on:
       - 'PhongThanRuntime-Staging/Client/settings/npc/player/level_exp.txt'
       - 'tests/exp_compat_test.cpp'
       - '.github/workflows/exp-compat-patch.yml'
-  push:
-    branches: [main]
-    paths:
-      - 'tools/apply_exp_compat_patch.py'
-      - 'PhongThanSource/Sources/Core/Src/PhongThanExpCompat.h'
-      - 'PhongThanSource/Sources/Core/Src/KPlayerSet.cpp'
-      - 'PhongThanSource/Sources/Core/Src/KPlayer.cpp'
-      - 'PhongThanRuntime-Staging/Server/settings/npc/player/level_exp.txt'
-      - 'PhongThanRuntime-Staging/Client/settings/npc/player/level_exp.txt'
-      - 'tests/exp_compat_test.cpp'
-      - '.github/workflows/exp-compat-patch.yml'
-
 permissions:
   contents: read
 

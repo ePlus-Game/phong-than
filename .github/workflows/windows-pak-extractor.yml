@@ -3,28 +3,29 @@ on:
   push:
     branches: [main]
     paths:
-      - 'AdminWeb/Install-Pak-Extractor.ps1'
-      - 'AdminWeb/Initialize-ItemTables.ps1'
-      - 'AdminWeb/PhongThan-Admin.ps1'
       - '.github/workflows/windows-pak-extractor.yml'
       - 'PhongThanSource/Build/Build-PakEntryExtract-Modern.ps1'
       - 'PhongThanSource/Tests/Native/PakEntryExtract.cpp'
       - 'PhongThanSource/Sources/Engine/**'
+      - 'PhongThanSource/Sources/Library/LuaLib/**'
+      - 'PhongThanSource/Headers/**'
       - 'PhongThanSource/Build/Build-Modern.ps1'
   pull_request:
     branches: [main]
     paths:
-      - 'AdminWeb/Install-Pak-Extractor.ps1'
-      - 'AdminWeb/Initialize-ItemTables.ps1'
-      - 'AdminWeb/PhongThan-Admin.ps1'
       - '.github/workflows/windows-pak-extractor.yml'
       - 'PhongThanSource/Build/Build-PakEntryExtract-Modern.ps1'
       - 'PhongThanSource/Tests/Native/PakEntryExtract.cpp'
       - 'PhongThanSource/Sources/Engine/**'
+      - 'PhongThanSource/Sources/Library/LuaLib/**'
+      - 'PhongThanSource/Headers/**'
       - 'PhongThanSource/Build/Build-Modern.ps1'
   workflow_dispatch:
 permissions:
   contents: read
+concurrency:
+  group: pt-pak-extractor-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   build-reader:
     runs-on: windows-2022

@@ -20,27 +20,6 @@ on:
       - 'tests/Test-RunAllReadiness.ps1'
       - 'PhongThanSource/Tests/Test-NativeRuntime.ps1'
       - '.github/workflows/windows-runtime-live-evidence.yml'
-  push:
-    branches: [main]
-    paths:
-      - 'tools/Read-WindowsRuntimeEvidence.ps1'
-      - 'tools/Diagnose-WorldRegistration.ps1'
-      - 'tests/Test-WorldRegistrationDiagnosis.ps1'
-      - 'PhongThanSource/Sources/Core/Src/KSubWorldSet.cpp'
-      - 'PhongThanSource/Sources/MultiServer/GameServer/KSOServer.cpp'
-      - 'PhongThanSource/Sources/MultiServer/Bishop/GameServer.cpp'
-      - 'tests/Test-WindowsRuntimeEvidence.ps1'
-      - 'tools/Restore-SplitPaks.ps1'
-      - 'tests/Test-RestoreSplitPaks.ps1'
-      - 'AdminWeb/PhongThan-RunAll.ps1'
-      - 'AdminWeb/PhongThan-Admin-Console.ps1'
-      - 'AdminWeb/PhongThan-Admin.ps1'
-      - 'AdminWeb/Initialize-ItemTables.ps1'
-      - 'tests/Test-AdminItemTables.ps1'
-      - 'tests/Test-RunAllReadiness.ps1'
-      - 'PhongThanSource/Tests/Test-NativeRuntime.ps1'
-      - '.github/workflows/windows-runtime-live-evidence.yml'
-
 permissions:
   contents: read
 

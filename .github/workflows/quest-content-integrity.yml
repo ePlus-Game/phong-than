@@ -13,19 +13,6 @@ on:
       - 'PhongThanSource/Tests/fixtures/NpcQuestOriginal/**'
       - 'PhongThanSource/Tests/fixtures/XichTungTu/**'
       - 'PhongThanSource/SourceMigration/NpcLuaLibrary/objects/**'
-  push:
-    branches: [main]
-    paths:
-      - 'tools/quest_content_audit.py'
-      - 'tests/test_quest_content_audit.py'
-      - '.github/workflows/quest-content-integrity.yml'
-      - 'PhongThanSource/Deploy/ProjectContent/NpcQuests/**'
-      - 'PhongThanSource/Deploy/ProjectContent/NpcRestoration/quest_overrides/**'
-      - 'PhongThanSource/Deploy/VNG_TASK_NOTE_CONTRACT.json'
-      - 'PhongThanSource/Tests/fixtures/NpcQuestOriginal/**'
-      - 'PhongThanSource/Tests/fixtures/XichTungTu/**'
-      - 'PhongThanSource/SourceMigration/NpcLuaLibrary/objects/**'
-
 permissions:
   contents: read
 
