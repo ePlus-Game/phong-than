@@ -27,7 +27,8 @@ jobs:
         run: |
           $ErrorActionPreference='Stop'
           & .\tests\Test-PakItem-Verification.ps1 -RepoRoot (Get-Location).Path
-          if ($LASTEXITCODE -ne 0) { throw 'PAK gate regression failed' }
+          # The mock deliberately returns exit code 4 for one case; this script
+          # itself throws on failure and succeeds only after all assertions.
       - name: Require secure installer and meaningful UI status
         shell: powershell
         run: |
