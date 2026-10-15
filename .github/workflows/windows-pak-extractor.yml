@@ -1,8 +1,20 @@
 name: Windows PAK extractor build
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'AdminWeb/Install-Pak-Extractor.ps1'
+      - 'AdminWeb/Initialize-ItemTables.ps1'
+      - 'AdminWeb/PhongThan-Admin.ps1'
+      - '.github/workflows/windows-pak-extractor.yml'
+      - 'PhongThanSource/Build/Build-PakEntryExtract-Modern.ps1'
+      - 'PhongThanSource/Tests/Native/PakEntryExtract.cpp'
   pull_request:
     branches: [main]
     paths:
+      - 'AdminWeb/Install-Pak-Extractor.ps1'
+      - 'AdminWeb/Initialize-ItemTables.ps1'
+      - 'AdminWeb/PhongThan-Admin.ps1'
       - '.github/workflows/windows-pak-extractor.yml'
       - 'PhongThanSource/Build/Build-PakEntryExtract-Modern.ps1'
       - 'PhongThanSource/Tests/Native/PakEntryExtract.cpp'
@@ -73,4 +85,4 @@ jobs:
             PhongThanSource/OutputModern/Tools/Engine.dll
             PhongThanSource/OutputModern/Tools/LuaLibDll.dll
           if-no-files-found: error
-          retention-days: 14
+          retention-days: 90
