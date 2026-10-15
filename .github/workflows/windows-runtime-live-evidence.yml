@@ -4,6 +4,11 @@ on:
   pull_request:
     paths:
       - 'tools/Read-WindowsRuntimeEvidence.ps1'
+      - 'tools/Diagnose-WorldRegistration.ps1'
+      - 'tests/Test-WorldRegistrationDiagnosis.ps1'
+      - 'PhongThanSource/Sources/Core/Src/KSubWorldSet.cpp'
+      - 'PhongThanSource/Sources/MultiServer/GameServer/KSOServer.cpp'
+      - 'PhongThanSource/Sources/MultiServer/Bishop/GameServer.cpp'
       - 'tests/Test-WindowsRuntimeEvidence.ps1'
       - 'tools/Restore-SplitPaks.ps1'
       - 'tests/Test-RestoreSplitPaks.ps1'
@@ -19,6 +24,11 @@ on:
     branches: [main]
     paths:
       - 'tools/Read-WindowsRuntimeEvidence.ps1'
+      - 'tools/Diagnose-WorldRegistration.ps1'
+      - 'tests/Test-WorldRegistrationDiagnosis.ps1'
+      - 'PhongThanSource/Sources/Core/Src/KSubWorldSet.cpp'
+      - 'PhongThanSource/Sources/MultiServer/GameServer/KSOServer.cpp'
+      - 'PhongThanSource/Sources/MultiServer/Bishop/GameServer.cpp'
       - 'tests/Test-WindowsRuntimeEvidence.ps1'
       - 'tools/Restore-SplitPaks.ps1'
       - 'tests/Test-RestoreSplitPaks.ps1'
@@ -48,6 +58,11 @@ jobs:
           sparse-checkout-cone-mode: false
           sparse-checkout: |
             /tools/Read-WindowsRuntimeEvidence.ps1
+            /tools/Diagnose-WorldRegistration.ps1
+            /tests/Test-WorldRegistrationDiagnosis.ps1
+            /PhongThanSource/Sources/Core/Src/KSubWorldSet.cpp
+            /PhongThanSource/Sources/MultiServer/GameServer/KSOServer.cpp
+            /PhongThanSource/Sources/MultiServer/Bishop/GameServer.cpp
             /tests/Test-WindowsRuntimeEvidence.ps1
             /tools/Restore-SplitPaks.ps1
             /tests/Test-RestoreSplitPaks.ps1
@@ -72,6 +87,28 @@ jobs:
         run: |
           & .\tests\Test-RunAllReadiness.ps1
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Diagnose WORLD_READY using synthetic logs only
+        shell: powershell
+        run: |
+          $ErrorActionPreference='Stop'
+          & .\tests\Test-WorldRegistrationDiagnosis.ps1 -RepoRoot (Get-Location).Path
+          if ($LASTEXITCODE -ne 0) { throw 'World diagnosis regression failed' }
+      - name: Check map and Bishop logging instrumentation
+        shell: powershell
+        run: |
+          $ErrorActionPreference='Stop'
+          $core=Get-Content -LiteralPath 'PhongThanSource/Sources/Core/Src/KSubWorldSet.cpp' -Raw
+          $game=Get-Content -LiteralPath 'PhongThanSource/Sources/MultiServer/GameServer/KSOServer.cpp' -Raw
+          $bishop=Get-Content -LiteralPath 'PhongThanSource/Sources/MultiServer/Bishop/GameServer.cpp' -Raw
+          if ($core.Contains('total=%d\\n')) { throw 'Core map loader still writes literal escaped newlines' }
+          if (-not $core.Contains('total=%d\n')) { throw 'Map progress log format missing' }
+          foreach($event in @('world_map_count_invalid','world_registry_sent','world_hello_send_failed')) {
+            if (-not $game.Contains($event)) { throw "GameServer diagnostic missing: $event" }
+          }
+          foreach($event in @('registry_accepted','registry_rejected','map_id_rejected','ready_log_open_failed')) {
+            if (-not $bishop.Contains($event)) { throw "Bishop diagnostic missing: $event" }
+          }
+          Write-Host 'PASS: source contains map and handshake event diagnostics'
       - name: Missing PAK extractor uses safe item catalog fallback
         shell: powershell
         run: |
