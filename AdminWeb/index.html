@@ -765,30 +765,142 @@ async function api(path,body){
 }
 function toast(msg,err){const t=$('toast');t.textContent=msg;t.className=err?'err':'';t.style.display='block';clearTimeout(t._h);t._h=setTimeout(()=>t.style.display='none',err?7000:4000)}
 async function run(fn){try{const j=await fn();if(j&&j.message)toast(j.message);return j}catch(e){toast(e.message,true)}}
+// Eight workspaces consolidate navigation while preserving all data-t IDs.
 const NAV_GROUPS=[
-  ['Theo dõi','overview','history'],
+  ['Tổng quan','overview','history'],
   ['Người chơi','accounts','chars'],
-  ['Vật phẩm & phát thưởng','give','skills','mounts','gear','weapons','maxgear','upgrade','dailygift'],
-  ['Thế giới & sự kiện','boss','worldboss','vantien','matdo','bots','botparty','news','events','evsched'],
+  ['Phát thưởng','give','skills','mounts','dailygift'],
+  ['Trang bị','gear','weapons','maxgear','upgrade'],
+  ['Thế giới','boss','worldboss','vantien','matdo'],
+  ['Bot & tổ đội','bots','botparty'],
+  ['Sự kiện','news','events','evsched'],
   ['Hệ thống','health','backups','setup']
 ];
 const PAGE_DESCRIPTIONS={overview:'Theo dõi hoạt động server và người chơi đang online.',history:'Kiểm tra lệnh đã gửi, trạng thái xử lý và kết quả.',accounts:'Quản lý tài khoản và quyền truy cập.',chars:'Tra cứu và quản lý dữ liệu nhân vật.',give:'Chọn vật phẩm và nhân vật nhận; mở các nhóm bên dưới khi cần thao tác thêm.',skills:'Chọn hệ phái, kỹ năng và bí kíp cho nhân vật.',mounts:'Tra cứu và phát thú cưỡi theo hệ phái.',gear:'Chọn bộ trang bị lục phù hợp với nhân vật.',weapons:'Tra cứu và phát vũ khí lục.',maxgear:'Chọn mẫu trang bị và pháp bảo.',upgrade:'Xem trang bị của nhân vật và đặt mức cường hóa.',dailygift:'Cài đặt quà tặng và phần thưởng thành tích.',boss:'Tra cứu Boss / NPC và chọn vị trí tạo.',worldboss:'Theo dõi và quản lý Boss thế giới.',vantien:'Theo dõi và điều khiển Vạn Tiên trận.',matdo:'Điều chỉnh mật độ quái và thời gian hồi sinh.',bots:'Cài đặt bot và vị trí hoạt động.',botparty:'Quản lý bot theo tổ đội và từng nhân vật.',news:'Gửi thông báo đến người chơi trong game.',events:'Tạo và quản lý nội dung sự kiện.',evsched:'Cài đặt thời gian chạy các sự kiện.',health:'Kiểm tra dịch vụ, kết nối và nhật ký server.',backups:'Quản lý bản sao lưu và khôi phục dữ liệu.',setup:'Cài đặt server và tùy chỉnh hiển thị, âm thanh client.'};
-NAV_GROUPS.forEach(([label,...ids])=>{const group=document.createElement('div');group.className='nav-group';const title=document.createElement('p');title.className='nav-label';title.textContent=label;group.append(title);ids.forEach(id=>{const b=document.querySelector(`#tabs [data-t="${id}"]`);if(b)group.append(b)});$('tabs').append(group)});
-$('navToggle').onclick=()=>{const open=$('tabs').classList.toggle('expanded');$('navToggle').setAttribute('aria-expanded',String(open))};
+const ptWorkspace=id=>NAV_GROUPS.find(group=>group.slice(1).includes(id));
+const ptGroups=new Map();
+const ptButton=id=>Array.from(document.querySelectorAll('#tabs [data-t]')).find(b=>b.dataset.t===id);
+NAV_GROUPS.forEach((group,i)=>{
+  const [name,...ids]=group,holder=document.createElement('div');
+  holder.className='nav-group';holder.dataset.workspace=name;
+  const toggle=document.createElement('button');toggle.type='button';toggle.className='group-toggle';
+  const title=document.createElement('span');title.textContent=name;
+  const count=document.createElement('span');count.className='group-count';count.textContent=String(ids.length);
+  const arrow=document.createElement('span');arrow.className='group-arrow';arrow.textContent='›';arrow.setAttribute('aria-hidden','true');
+  toggle.append(title,count,arrow);
+  const children=document.createElement('div');children.className='nav-children';
+  ids.forEach(id=>{const b=ptButton(id);if(b)children.append(b)});
+  holder.append(toggle,children);$('tabs').append(holder);ptGroups.set(name,holder);
+  if(i===0){holder.classList.add('expanded','current');toggle.setAttribute('aria-expanded','true')}
+  else toggle.setAttribute('aria-expanded','false');
+  toggle.onclick=()=>{
+    const expand=!holder.classList.contains('expanded');
+    ptGroups.forEach(g=>{g.classList.remove('expanded');g.querySelector('.group-toggle').setAttribute('aria-expanded','false')});
+    holder.classList.toggle('expanded',expand);toggle.setAttribute('aria-expanded',String(expand));
+  };
+});
+function ptCloseMenu(){
+  $('tabs').classList.remove('expanded');$('navBackdrop').classList.remove('expanded');
+  $('navToggle').setAttribute('aria-expanded','false');
+}
+$('navToggle').onclick=()=>{
+  const open=$('tabs').classList.toggle('expanded');
+  $('navBackdrop').classList.toggle('expanded',open);
+  $('navToggle').setAttribute('aria-expanded',String(open));
+  if(open)$('navSearch').focus();
+};
+$('navBackdrop').onclick=ptCloseMenu;
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('tabs').classList.contains('expanded'))ptCloseMenu()});
+$('navSearch').oninput=()=>{
+  const term=$('navSearch').value.trim().toLocaleLowerCase('vi');
+  NAV_GROUPS.forEach(([label,...ids])=>{
+    const holder=ptGroups.get(label);let matches=0;
+    ids.forEach(id=>{
+      const b=ptButton(id);
+      if(!b)return;
+      const matched=!term||label.toLocaleLowerCase('vi').includes(term)||b.textContent.toLocaleLowerCase('vi').includes(term);
+      b.hidden=!matched;if(matched)matches++;
+    });
+    holder.hidden=!matches;
+    const expand=term?matches>0:holder.classList.contains('current');
+    holder.classList.toggle('expanded',expand);
+    holder.querySelector('.group-toggle').setAttribute('aria-expanded',String(expand));
+  });
+};
+$('navSearch').onkeydown=e=>{
+  if(e.key==='Escape'){$('navSearch').value='';$('navSearch').oninput();e.stopPropagation()}
+};
+function ptRefreshWorkspaceTabs(id){
+  const group=ptWorkspace(id),wrapper=$('workspaceTabs');wrapper.replaceChildren();
+  if(!group)return;
+  $('workspaceLabel').textContent=group[0]+' / CONTROL CENTER';
+  group.slice(1).forEach(part=>{
+    const original=ptButton(part);if(!original)return;
+    const b=document.createElement('button');b.type='button';
+    b.className='workspace-tab'+(part===id?' on':'');
+    if(part===id)b.setAttribute('aria-current','page');
+    b.textContent=original.textContent;b.onclick=()=>original.click();
+    wrapper.append(b);
+  });
+}
+function ptActivatePage(b){
+  const id=b.dataset.t,group=ptWorkspace(id);if(!group)return;
+  document.querySelectorAll('#tabs [data-t]').forEach(x=>{
+    x.classList.toggle('on',x===b);
+    if(x===b)x.setAttribute('aria-current','page');else x.removeAttribute('aria-current');
+    x.hidden=false;
+  });
+  document.querySelectorAll('main>section').forEach(section=>section.classList.toggle('on',section.id===id));
+  $('pageTitle').textContent=b.textContent;$('pageDescription').textContent=PAGE_DESCRIPTIONS[id]||'';
+  $('navSearch').value='';
+  ptGroups.forEach((holder,label)=>{
+    const current=label===group[0];
+    holder.hidden=false;holder.classList.toggle('current',current);holder.classList.toggle('expanded',current);
+    holder.querySelector('.group-toggle').setAttribute('aria-expanded',String(current));
+  });
+  ptRefreshWorkspaceTabs(id);ptCloseMenu();
+  if(location.hash!=='#'+id)history.replaceState(null,'','#'+id);
+  window.scrollTo({top:0,behavior:'instant'});
+}
 // Keep the shared recipient visible and collapse optional operations into named groups.
 const giveCard=$('givePlayer').closest('.card');
 let giveBlock=null;
 [...giveCard.children].forEach(el=>{if(el.matches('h2')&&el.style.marginTop){giveBlock=document.createElement('details');giveBlock.className='tool-block';const summary=document.createElement('summary');summary.textContent=el.textContent;giveBlock.append(summary);el.before(giveBlock);el.remove()}else if(giveBlock)giveBlock.append(el)});
 document.querySelectorAll('main table').forEach(table=>{const wrap=document.createElement('div');wrap.className='table-scroll';table.before(wrap);wrap.append(table)});
 document.querySelectorAll('label').forEach(label=>{const field=label.nextElementSibling;if(!label.htmlFor&&field&&field.matches('input[id],select[id],textarea[id]'))label.htmlFor=field.id});
-document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#tabs button').forEach(x=>{x.classList.toggle('on',x===b);if(x===b)x.setAttribute('aria-current','page');else x.removeAttribute('aria-current')});document.querySelectorAll('main>section').forEach(s=>s.classList.toggle('on',s.id===b.dataset.t));$('pageTitle').textContent=b.textContent;$('pageDescription').textContent=PAGE_DESCRIPTIONS[b.dataset.t]||'';$('tabs').classList.remove('expanded');$('navToggle').setAttribute('aria-expanded','false');window.scrollTo({top:0,behavior:'instant'});
-  if(b.dataset.t==='worldboss')loadWorldBoss();if(b.dataset.t==='vantien')loadVanTien();if(b.dataset.t==='accounts')loadAccounts();if(b.dataset.t==='history')loadHistory();if(b.dataset.t==='events')loadEvents();if(b.dataset.t==='setup'){loadSetup();loadClientCfg();loadClientSound();}});
+document.querySelectorAll('#tabs [data-t]').forEach(b=>b.onclick=()=>{
+  ptActivatePage(b);
+  if(b.dataset.t==='worldboss')loadWorldBoss();
+  if(b.dataset.t==='vantien')loadVanTien();
+  if(b.dataset.t==='accounts')loadAccounts();
+  if(b.dataset.t==='history')loadHistory();
+  if(b.dataset.t==='events')loadEvents();
+  if(b.dataset.t==='setup'){loadSetup();loadClientCfg();loadClientSound()}
+});
+$('overview').addEventListener('click',e=>{
+  const btn=e.target.closest('[data-jump]');
+  if(btn){const nav=ptButton(btn.dataset.jump);if(nav)nav.click()}
+});
+window.addEventListener('hashchange',()=>{
+  const id=decodeURIComponent(location.hash.slice(1));
+  const b=ptButton(id);if(b&&!b.classList.contains('on'))b.click();
+});
+ptRefreshWorkspaceTabs('overview');
+setTimeout(()=>{const b=ptButton(decodeURIComponent(location.hash.slice(1)));if(b)b.click()},0);
+function ptUpdateMetrics(s,o,alive){
+  const all=['Goddess.exe','PhongThanAccountServer.exe','PhongThanRelay.exe','Bishop.exe','GameServer.exe'];
+  $('kpiServices').textContent=String(all.filter(name=>(s.services||[]).includes(name)).length)+'/5';
+  $('kpiPlayers').textContent=String((o.players||[]).length);
+  $('kpiHeartbeat').textContent=alive?'Hoạt động':(s.heartbeatAgeSec>=0?'Trễ '+s.heartbeatAgeSec+'s':'Chưa có');
+  $('kpiQueue').textContent=s.pendingQueued?'Có lệnh chờ':'Không';
+}
 function debounce(fn,ms){let h;return(...a)=>{clearTimeout(h);h=setTimeout(()=>fn(...a),ms)}}
 
 // status
 async function loadStatus(){
   try{const j=await api('/api/status');const s=j.status,o=j.online;online=o.players||[];
     const age=s.heartbeatAgeSec,alive=age>=0&&age<150,running=(s.services||[]).includes('GameServer.exe');
+    ptUpdateMetrics(s,o,alive);
     $('bridge').innerHTML=`<span class="dot" style="background:${alive?'var(--ok)':running?'var(--warn)':'var(--bad)'}"></span>`+(alive?`Cầu nối hoạt động (nhịp ${s.heartbeat})`:running?'GameServer đang chạy, chờ nhịp cầu nối…':'GameServer chưa chạy')+(s.pendingQueued?' · có lệnh đang chờ':'');
     const all=['Goddess.exe','PhongThanAccountServer.exe','PhongThanRelay.exe','Bishop.exe','GameServer.exe'];
     $('svc').innerHTML='<table>'+all.map(n=>`<tr><td>${n}</td><td>${(s.services||[]).includes(n)?'<span class="tag OK">Đang chạy</span>':'<span class="tag FAIL">Tắt</span>'}</td></tr>`).join('')+'</table>';
@@ -796,7 +908,7 @@ async function loadStatus(){
     $('onlineBody').innerHTML=online.length?online.map(p=>`<tr><td><b>${esc(p.name)}</b></td><td>${esc(p.account)}</td><td>${esc(p.level)}${p.prof>=0?'<br><span class="muted">'+(PROF[p.prof]||p.prof)+'</span>':''}</td><td>${esc(p.mapName)} (${esc(p.map)})<br><span class="muted">${esc(p.x)}, ${esc(p.y)}</span></td><td><button class="btn alt small" data-give="${esc(p.name)}">Phát đồ</button> <button class="btn alt small" data-boss="${esc(p.name)}">Boss</button></td></tr>`).join(''):'<tr><td colspan="5" class="muted">Chưa có dữ liệu hoặc không ai online.</td></tr>';
     $('playerNames').innerHTML=online.map(p=>`<option value="${esc(p.name)}">`).join('');
     fillMountPlayers();fillGearPlayers();fillWeaponPlayers();fillPresetPlayers();if(typeof fillWbPlayers==='function')fillWbPlayers();
-  }catch(e){$('bridge').innerHTML='<span class="dot" style="background:var(--bad)"></span>Mất kết nối web admin: '+esc(e.message)}
+  }catch(e){$('bridge').innerHTML='<span class="dot" style="background:var(--bad)"></span>Mất kết nối web admin: '+esc(e.message);['kpiServices','kpiPlayers','kpiHeartbeat','kpiQueue'].forEach(id=>$(id).textContent='—')}
 }
 $('onlineBody').onclick=e=>{const g=e.target.dataset.give,b=e.target.dataset.boss;
   if(g){$('givePlayer').value=g;document.querySelector('[data-t=give]').click()}
