@@ -141,6 +141,10 @@ button.btn{border-radius:9px;min-height:40px;box-shadow:none;white-space:normal}
 @media(max-width:390px){.brand-mark{display:none}.kpi{padding:12px}.kpi strong{font-size:21px}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 
+
+.catalog-notice{margin:0 0 17px;padding:12px 15px;background:var(--chip);border:1px solid var(--line);border-left:4px solid var(--muted);border-radius:10px;font-size:13px;color:var(--ink)}
+.catalog-notice.verified{border-left-color:var(--ok);background:var(--panel)}
+.catalog-notice.locked{border-left-color:var(--warn)}
 </style>
 </head>
 <body>
@@ -198,6 +202,7 @@ button.btn{border-radius:9px;min-height:40px;box-shadow:none;white-space:normal}
 </section>
 
 <section id="give">
+  <div id="catalogNotice" class="catalog-notice" role="status" aria-live="polite">Đang kiểm tra trạng thái bảng vật phẩm trong PAK…</div>
   <div class="grid">
     <div class="card"><h2>1. Chọn vật phẩm</h2>
       <div class="row"><div><label>Nhóm</label><select id="itemGroup"><option value="">Tất cả nhóm</option></select></div>
@@ -866,6 +871,32 @@ function ptActivatePage(b){
 const giveCard=$('givePlayer').closest('.card');
 let giveBlock=null;
 [...giveCard.children].forEach(el=>{if(el.matches('h2')&&el.style.marginTop){giveBlock=document.createElement('details');giveBlock.className='tool-block';const summary=document.createElement('summary');summary.textContent=el.textContent;giveBlock.append(summary);el.before(giveBlock);el.remove()}else if(giveBlock)giveBlock.append(el)});
+// One action selector replaces the twelve repeated lệnh-bài controls.
+// The original buttons and their server-validated event handlers remain intact.
+const ptTokenIds=['btnBag','btnSellToken','btnBossToken','btnLuyenCongToken','btnNhiemVuToken','btnTiepTeToken','btnThamQuanToken','btnVanTienToken','btnThuongChuToken','btnDaoSiToken2','btnDiNhanToken2','btnHanhTrangToken2'];
+const ptTokenButtons=ptTokenIds.map(id=>$(id));
+if(ptTokenButtons.every(Boolean)){
+  const picker=document.createElement('div');picker.className='action-picker';picker.id='tokenActionPicker';
+  const heading=document.createElement('strong');heading.textContent='Lệnh bài / túi hỗ trợ';
+  const row=document.createElement('div');row.className='row';
+  const select=document.createElement('select');select.id='tokenActionSelect';select.setAttribute('aria-label','Chọn loại lệnh bài');
+  ptTokenButtons.forEach(btn=>{
+    const option=document.createElement('option');option.value=btn.id;option.textContent=btn.textContent.replace(/^Phát\s+/,'');
+    select.append(option);btn.hidden=true;
+  });
+  const action=document.createElement('button');action.type='button';action.id='tokenActionApply';action.className='btn';
+  action.textContent='Phát cho nhân vật';
+  action.onclick=()=>{
+    if(!$('givePlayer').value.trim()){toast('Hãy nhập hoặc chọn nhân vật nhận trước.',true);return}
+    const original=$(select.value);if(original)original.click();
+  };
+  row.append(select,action);
+  const hint=document.createElement('p');hint.className='hint';
+  hint.textContent='Các lệnh sử dụng logic gốc. Khi bảng PAK chưa được xác minh, phát vật phẩm vẫn bị server từ chối.';
+  picker.append(heading,row,hint);
+  $('giveCount').after(picker);
+}
+
 document.querySelectorAll('main table').forEach(table=>{const wrap=document.createElement('div');wrap.className='table-scroll';table.before(wrap);wrap.append(table)});
 document.querySelectorAll('label').forEach(label=>{const field=label.nextElementSibling;if(!label.htmlFor&&field&&field.matches('input[id],select[id],textarea[id]'))label.htmlFor=field.id});
 document.querySelectorAll('#tabs [data-t]').forEach(b=>b.onclick=()=>{
@@ -901,6 +932,12 @@ async function loadStatus(){
   try{const j=await api('/api/status');const s=j.status,o=j.online;online=o.players||[];
     const age=s.heartbeatAgeSec,alive=age>=0&&age<150,running=(s.services||[]).includes('GameServer.exe');
     ptUpdateMetrics(s,o,alive);
+    const catalog=$('catalogNotice');
+    if(catalog){
+      const verified=s.itemCatalogVerified===true;
+      catalog.className='catalog-notice '+(verified?'verified':'locked');
+      catalog.textContent=verified?'Đã xác minh bảng vật phẩm với PAK · các thao tác phát đồ vẫn cần server đang hoạt động.':'Chưa xác minh bảng vật phẩm với PAK · phát vật phẩm đang khóa để tránh sai item ID. Các thao tác tài khoản vẫn khả dụng.';
+    }
     $('bridge').innerHTML=`<span class="dot" style="background:${alive?'var(--ok)':running?'var(--warn)':'var(--bad)'}"></span>`+(alive?`Cầu nối hoạt động (nhịp ${s.heartbeat})`:running?'GameServer đang chạy, chờ nhịp cầu nối…':'GameServer chưa chạy')+(s.pendingQueued?' · có lệnh đang chờ':'');
     const all=['Goddess.exe','PhongThanAccountServer.exe','PhongThanRelay.exe','Bishop.exe','GameServer.exe'];
     $('svc').innerHTML='<table>'+all.map(n=>`<tr><td>${n}</td><td>${(s.services||[]).includes(n)?'<span class="tag OK">Đang chạy</span>':'<span class="tag FAIL">Tắt</span>'}</td></tr>`).join('')+'</table>';
@@ -908,7 +945,7 @@ async function loadStatus(){
     $('onlineBody').innerHTML=online.length?online.map(p=>`<tr><td><b>${esc(p.name)}</b></td><td>${esc(p.account)}</td><td>${esc(p.level)}${p.prof>=0?'<br><span class="muted">'+(PROF[p.prof]||p.prof)+'</span>':''}</td><td>${esc(p.mapName)} (${esc(p.map)})<br><span class="muted">${esc(p.x)}, ${esc(p.y)}</span></td><td><button class="btn alt small" data-give="${esc(p.name)}">Phát đồ</button> <button class="btn alt small" data-boss="${esc(p.name)}">Boss</button></td></tr>`).join(''):'<tr><td colspan="5" class="muted">Chưa có dữ liệu hoặc không ai online.</td></tr>';
     $('playerNames').innerHTML=online.map(p=>`<option value="${esc(p.name)}">`).join('');
     fillMountPlayers();fillGearPlayers();fillWeaponPlayers();fillPresetPlayers();if(typeof fillWbPlayers==='function')fillWbPlayers();
-  }catch(e){$('bridge').innerHTML='<span class="dot" style="background:var(--bad)"></span>Mất kết nối web admin: '+esc(e.message);['kpiServices','kpiPlayers','kpiHeartbeat','kpiQueue'].forEach(id=>$(id).textContent='—')}
+  }catch(e){$('bridge').innerHTML='<span class="dot" style="background:var(--bad)"></span>Mất kết nối web admin: '+esc(e.message);['kpiServices','kpiPlayers','kpiHeartbeat','kpiQueue'].forEach(id=>$(id).textContent='—');const catalog=$('catalogNotice');if(catalog){catalog.className='catalog-notice locked';catalog.textContent='Không kết nối được Web Admin. Chưa xác minh trạng thái PAK.'}}
 }
 $('onlineBody').onclick=e=>{const g=e.target.dataset.give,b=e.target.dataset.boss;
   if(g){$('givePlayer').value=g;document.querySelector('[data-t=give]').click()}
