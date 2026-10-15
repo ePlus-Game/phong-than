@@ -5,9 +5,12 @@
 param(
     [string]$ZipPath,
     [long]$RunId = 0,
-    [string]$RepoRoot = (Split-Path -Parent $PSScriptRoot)
+    [string]$RepoRoot
 )
 $ErrorActionPreference = 'Stop'
+# Windows PowerShell 5.1 may evaluate parameter defaults before PSScriptRoot
+# is populated. Resolve the script location in the body, independent of cwd.
+if (-not $RepoRoot) { $RepoRoot = Split-Path -Parent $PSScriptRoot }
 $RepoRoot = [IO.Path]::GetFullPath($RepoRoot)
 $AdminRoot = Join-Path $RepoRoot 'AdminWeb'
 $ServerRoot = Join-Path $RepoRoot 'PhongThanRuntime-Staging\Server'

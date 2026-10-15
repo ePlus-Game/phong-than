@@ -1,7 +1,8 @@
 # Windows PowerShell 5.1: verify catalog gate using synthetic fixtures only.
 [CmdletBinding()]
-param([string]$RepoRoot = (Split-Path -Parent $PSScriptRoot))
+param([string]$RepoRoot)
 $ErrorActionPreference='Stop'
+if (-not $RepoRoot) { $RepoRoot = Split-Path -Parent $PSScriptRoot }
 $Admin = Join-Path $RepoRoot 'AdminWeb'
 $Script = Join-Path $Admin 'Initialize-ItemTables.ps1'
 $Installer = Join-Path $Admin 'Install-Pak-Extractor.ps1'
@@ -93,6 +94,23 @@ try {
     }
     $zip=Join-Path $root 'reader.zip'
     Compress-Archive -Path (Join-Path $bundle '*') -DestinationPath $zip
+    # Exercise the real -File entry point without -RepoRoot, from an unrelated
+    # working directory. Stop at the fixture verifier, before installing tools.
+    $fixtureInstaller=Join-Path $installAdmin 'Install-Pak-Extractor.ps1'
+    Copy-Item -LiteralPath $Installer -Destination $fixtureInstaller
+    [IO.File]::WriteAllText((Join-Path $installAdmin 'Initialize-ItemTables.ps1'),
+        'throw "DEFAULT_ROOT_VERIFIER_REACHED"')
+    Push-Location $bundle
+    $savedPreference=$ErrorActionPreference
+    try {
+        # The marker is an intentional child-process error, captured for assertion.
+        $ErrorActionPreference='Continue'
+        $log=@(& powershell.exe -NoProfile -ExecutionPolicy Bypass -File $fixtureInstaller -ZipPath $zip 2>&1 | ForEach-Object { "$_" })
+        $childExit=$LASTEXITCODE
+    } finally {$ErrorActionPreference=$savedPreference;Pop-Location}
+    if($childExit -eq 0 -or ($log -join "`n") -notmatch 'DEFAULT_ROOT_VERIFIER_REACHED') {
+        throw "Default RepoRoot did not reach the verifier: $($log -join ' | ')"
+    }
     foreach($audit in @(
         '[pscustomobject]@{PakVerified=$false;Tables=15;VerifiedTables=14;Issues=@("fixture failure")}',
         '[pscustomobject]@{PakVerified=$true;Tables=15;VerifiedTables=14;Issues=@("inconsistent count")}'
