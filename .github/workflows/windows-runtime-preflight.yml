@@ -8,14 +8,6 @@ on:
       - 'tests/test_runtime_preflight.py'
       - '.github/workflows/windows-runtime-preflight.yml'
       - 'PhongThanSource/Deploy/RUNTIME_CONTENT_MANIFEST.json'
-  push:
-    branches: [main]
-    paths:
-      - 'tools/runtime_preflight.py'
-      - 'tools/verify_windows_build.py'
-      - 'tests/test_runtime_preflight.py'
-      - '.github/workflows/windows-runtime-preflight.yml'
-      - 'PhongThanSource/Deploy/RUNTIME_CONTENT_MANIFEST.json'
   workflow_dispatch:
 
 permissions:
