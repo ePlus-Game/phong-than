@@ -12,6 +12,7 @@ $package = Join-Path $ServerRoot 'package.ini'
 $toolAvailable = Test-Path -LiteralPath $PakTool -PathType Leaf
 $verified = $toolAvailable
 $source = if ($toolAvailable) { 'PAK' } else { 'LOOSE_FALLBACK' }
+$issues = New-Object Collections.Generic.List[string]
 New-Item -ItemType Directory -Force -Path $ItemDir | Out-Null
 
 # Verify that every fallback exists before any attempt to populate the catalog.
@@ -23,7 +24,8 @@ if (-not $toolAvailable) {
             throw "Thieu PakEntryExtract.exe VA bang du phong: $loose. Can build bang PhongThanSource\Build\Build-PakEntryExtract.ps1 (yeu cau VC6 + Engine.lib)."
         }
     }
-    Write-Warning "Khong co PakEntryExtract.exe; nap bang item loose de Admin co the mo. Ma item chua duoc doi chieu voi PAK: khoa chuc nang phat vat pham."
+    $issues.Add("Thieu PakEntryExtract.exe tai $PakTool. Chay AdminWeb\Install-Pak-Extractor.cmd, sau do khoi dong lai Web Admin.")
+    Write-Warning $issues[0]
 }
 $enc = [Text.Encoding]::GetEncoding(1252)
 $pathFile = Join-Path $ItemDir '_path.txt'
@@ -36,10 +38,12 @@ foreach ($t in $tables) {
             [IO.File]::WriteAllBytes($pathFile, $enc.GetBytes("\settings\item\001\$t.txt"))
             Push-Location $ServerRoot
             try {
-                & $PakTool $package "@$pathFile" $tmp | Out-Null
+                $nativeOutput = @(& $PakTool $package "@$pathFile" $tmp 2>&1 | ForEach-Object { "$_" })
                 $exit = $LASTEXITCODE
+                if ($exit -ne 0) { $issues.Add("$t.txt : exit=$exit; $((@($nativeOutput) | Select-Object -Last 2) -join ' | ')") }
             } catch {
                 $exit = -1
+                $issues.Add("$t.txt : $($_.Exception.Message)")
             } finally {
                 Pop-Location
             }
@@ -59,6 +63,7 @@ foreach ($t in $tables) {
             $verified = $false
             $source = 'LOOSE_FALLBACK'
             if ($toolAvailable) {
+                if (-not @($issues | Where-Object { $_.StartsWith("$t.txt :") }).Count) { $issues.Add("$t.txt : extractor failed without diagnostic or empty output.") }
                 Write-Warning "PAK extract $t.txt that bai; dung bang loose. Khoa phat vat pham de tranh sai item ID."
             }
         }
@@ -68,4 +73,4 @@ foreach ($t in $tables) {
         }
     }
 }
-[pscustomobject]@{ Source=$source; PakVerified=[bool]$verified; Tables=$tables.Count }
+[pscustomobject]@{ Source=$source; PakVerified=[bool]$verified; Tables=$tables.Count; ToolAvailable=[bool]$toolAvailable; Issues=@($issues.ToArray()) }

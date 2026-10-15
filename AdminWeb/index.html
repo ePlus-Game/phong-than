@@ -936,7 +936,10 @@ async function loadStatus(){
     if(catalog){
       const verified=s.itemCatalogVerified===true;
       catalog.className='catalog-notice '+(verified?'verified':'locked');
-      catalog.textContent=verified?'Đã xác minh bảng vật phẩm với PAK · các thao tác phát đồ vẫn cần server đang hoạt động.':'Chưa xác minh bảng vật phẩm với PAK · phát vật phẩm đang khóa để tránh sai item ID. Các thao tác tài khoản vẫn khả dụng.';
+      const problems=Array.isArray(s.itemCatalogIssues)?s.itemCatalogIssues:[];
+      catalog.textContent=verified
+        ?'Đã xác minh đủ 15 bảng vật phẩm từ PAK · các lệnh vẫn cần server sẵn sàng.'
+        :'Chưa xác minh PAK: phát vật phẩm đang khóa. '+(problems.length?'Nguyên nhân: '+problems.slice(0,2).join(' · ')+(problems.length>2?' (và '+(problems.length-2)+' lỗi khác)':''):'Chạy AdminWeb/Install-Pak-Extractor.cmd rồi mở lại Web Admin.');
     }
     $('bridge').innerHTML=`<span class="dot" style="background:${alive?'var(--ok)':running?'var(--warn)':'var(--bad)'}"></span>`+(alive?`Cầu nối hoạt động (nhịp ${s.heartbeat})`:running?'GameServer đang chạy, chờ nhịp cầu nối…':'GameServer chưa chạy')+(s.pendingQueued?' · có lệnh đang chờ':'');
     const all=['Goddess.exe','PhongThanAccountServer.exe','PhongThanRelay.exe','Bishop.exe','GameServer.exe'];
