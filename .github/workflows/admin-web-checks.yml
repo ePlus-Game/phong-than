@@ -7,6 +7,8 @@ on:
       - 'AdminWeb/**'
       - 'tests/admin_locale.test.cjs'
       - 'tests/admin_workspace.test.cjs'
+      - 'tests/admin_behavior.test.cjs'
+      - 'tests/Test-AdminBehavior.ps1'
       - 'tests/Test-AdminLocalization.ps1'
       - 'tests/Test-PakItem-Verification.ps1'
       - 'PhongThanRuntime-Staging/Client/Ui/Setting.ini'
@@ -32,6 +34,8 @@ jobs:
             /AdminWeb/
             /tests/admin_locale.test.cjs
             /tests/admin_workspace.test.cjs
+            /tests/admin_behavior.test.cjs
+            /tests/Test-AdminBehavior.ps1
             /tests/Test-AdminLocalization.ps1
             /tests/Test-PakItem-Verification.ps1
             /PhongThanRuntime-Staging/Client/Ui/Setting.ini
@@ -44,7 +48,7 @@ jobs:
       - name: Validate all 24 Admin screens, Vietnamese UI and legacy Client text
         shell: pwsh
         run: |
-          node --test tests/admin_workspace.test.cjs tests/admin_locale.test.cjs
+          node --test tests/admin_workspace.test.cjs tests/admin_locale.test.cjs tests/admin_behavior.test.cjs
           if ($LASTEXITCODE -ne 0) { throw 'Node 24 Web Admin regression failed' }
       - name: Parse Windows PowerShell 5.1 Web Admin entry points
         shell: powershell
@@ -61,6 +65,11 @@ jobs:
         run: |
           $ErrorActionPreference='Stop'
           & .\tests\Test-AdminLocalization.ps1 -RepoRoot (Get-Location).Path
+      - name: Exercise isolated API auth, event scheduling and restore confirmations
+        shell: powershell
+        run: |
+          $ErrorActionPreference='Stop'
+          & .\tests\Test-AdminBehavior.ps1 -RepoRoot (Get-Location).Path
       - name: Verify safe PAK installer and synthetic 15-table lock
         shell: powershell
         run: |
@@ -80,3 +89,4 @@ jobs:
           if (-not $admin.Contains('itemCatalogIssues = @($script:PakItemCatalogIssues)')) { throw 'Missing catalog diagnostics API' }
           if (-not $ui.Contains('s.itemCatalogIssues')) { throw 'Missing PAK diagnostic rendering' }
           Write-Host 'PASS: no game service, SQL, PAK or local character data accessed'
+
