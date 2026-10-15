@@ -467,6 +467,7 @@ function Get-Status {
         heartbeat = $(if (Test-Path -LiteralPath $hb) { [IO.File]::ReadAllText($hb) } else { $null })
         heartbeatAgeSec = $(if (Test-Path -LiteralPath $hb) { [int]((Get-Date) - (Get-Item -LiteralPath $hb).LastWriteTime).TotalSeconds } else { -1 })
         pendingQueued = (Test-Path -LiteralPath (Join-Path $Bridge 'pending.lua'))
+        itemCatalogVerified = [bool]$script:PakItemCatalogVerified
         services = $procs
         now = (Get-Date -Format 'yyyy-MM-dd HH:mm:ss')
     }
