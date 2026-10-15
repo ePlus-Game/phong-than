@@ -374,7 +374,7 @@
         "relayserver_log"
       ],
       "GeneratedFilePatterns": [
-        "(?i)^(Startup|core_map_load_diag|core_server_pak_diag|server_npc_load_diag|server_npc_sync_diag|skill_loader_diag|ibshop_loader_diag|phase.*|bishop_entry|bishop_login_diag|gameserver_login_diag|core_login_diag|camnang_f4_diag|item_action_diag|di_ngoai_phu_grant|pham_nhan_an_grant)\\.log(?:\\..*)?$",
+        "(?i)^(Startup|core_map_load_diag|core_server_pak_diag|server_npc_load_diag|server_npc_sync_diag|skill_loader_diag|ibshop_loader_diag|phase.*|bishop_entry|bishop_login_diag|bishop_world_diag|gameserver_login_diag|core_login_diag|camnang_f4_diag|item_action_diag|di_ngoai_phu_grant|pham_nhan_an_grant)\\.log(?:\\..*)?$",
         "(?i)^phase.*\\.flag$",
         "(?i)^script_registry_diag\\.log$"
       ],
