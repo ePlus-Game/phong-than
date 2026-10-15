@@ -46,6 +46,11 @@ test('Vietnamese UI messages from ASCII-only PowerShell errors are translated',(
   assert.equal(tr('Da xep lenh 12: phat do'),'Đã xếp lệnh 12: phat do');
   assert.equal(tr('Ban do 98 khong co trong danh sach ban do cua server.'),'Bản đồ 98 không có trong danh sách bản đồ của server.');
   assert.match(tr('Bang vat pham chua duoc xac minh voi PAK. Chuc nang phat vat pham da bi khoa de tranh sai item ID; chay AdminWeb\\Install-Pak-Extractor.cmd de xac minh 15 bang PAK va khoi dong lai Web Admin.'),/^Bảng vật phẩm chưa được xác minh/);
+  const missingTool='Thieu PakEntryExtract.exe tai C:\\Game\\AdminWeb\\bin\\PakEntryExtract.exe. Chay AdminWeb\\Install-Pak-Extractor.cmd, sau do khoi dong lai Web Admin.';
+  const localizedTool=tr(missingTool);
+  assert.match(localizedTool,/^Thiếu PakEntryExtract.exe tại /);
+  assert.ok(localizedTool.includes('AdminWeb\\Install-Pak-Extractor.cmd'),'Display installation path must preserve Windows backslash');
+  assert.equal(tr('Khong trich duoc armor.txt tu PAK va khong co bang loose: C:\\Game\\armor.txt'), 'Không trích xuất được armor.txt từ PAK và không có bảng dự phòng: C:\\Game\\armor.txt');
   assert.ok(Object.keys(context.map).length>=40,'Maintain complete, centralized Vietnamese UI translations');
 });
 
