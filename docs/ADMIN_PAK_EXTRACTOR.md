@@ -1,34 +1,64 @@
-# PakEntryExtract for local Web Admin (Windows x86)
+# Mở khóa phát vật phẩm bằng cách xác minh PAK thật
 
-The Admin requires the **game's actual PAK item tables**, not only the loose data
-in Server/settings/item/001, before allowing item-code actions / item grants.
+## Vì sao `git pull` chưa đủ?
 
-## Windows distribution without Python or VC6
+Mã công cụ đọc PAK đã build được trên GitHub Actions, nhưng Git không mang
+theo các file EXE/DLL của Actions artifact. Web Admin cố ý khóa cấp vật phẩm
+nếu **không đọc thành công tất cả 15 bảng vật phẩm từ PAK mà Server sử dụng**.
+Giao diện vẫn mở và chức năng tài khoản vẫn dùng được.
 
-GitHub Actions workflow: `.github/workflows/windows-pak-extractor.yml`.
-It builds a fresh Engine.dll + LuaLibDll.dll + PakEntryExtract.exe with modern MSVC **outside**
-the game runtime. Once the workflow succeeds, download artifact
-`phongthan-pak-extractor-win32` from its Actions run and extract all three files to:
+## Cài tự động trên Windows (ưu tiên)
 
+1. `git pull --ff-only origin main` tại thư mục game (chỉ khi working tree sạch).
+2. Nếu đã có **GitHub CLI (`gh`) và đăng nhập**, nhấp đúp
+   `AdminWeb/Install-Pak-Extractor.cmd`.
+3. Script chỉ lấy artifact **Windows PAK extractor build** từ workflow
+   **thành công trên nhánh `main`**. Lần build `main` đầu tiên có thể cần
+   vài phút sau khi merge.
+4. Script kiểm tra đủ `PakEntryExtract.exe`, `Engine.dll`, `LuaLibDll.dll`
+   là PE32 x86, sau đó **thử trích xuất 15 bảng thật vào thư mục tạm**.
+5. Chỉ nếu 15/15 bảng đọc thành công, script mới sao lưu file công cụ cũ
+   (nếu có) rồi cài 3 file vào `AdminWeb/bin/`. Không ghi hay sửa PAK.
+6. Đóng **riêng cửa sổ Web Admin** rồi mở lại; không tắt SQL/GameServer/Bishop.
+   Trong màn hình Phát đồ sẽ thấy "Đã xác minh đủ 15 bảng vật phẩm từ PAK".
+
+Dùng PowerShell nếu muốn xem lỗi trực tiếp:
+
+```powershell
+.\AdminWeb\Install-Pak-Extractor.cmd
 ```
-AdminWeb/bin/PakEntryExtract.exe
-AdminWeb/bin/Engine.dll
-AdminWeb/bin/LuaLibDll.dll
+
+## Nếu máy chưa cài GitHub CLI
+
+Không bắt buộc cài thêm phần mềm. Mở:
+[Windows PAK extractor build – GitHub Actions](https://github.com/ePlus-Game/phong-than-truyen-ky/actions/workflows/windows-pak-extractor.yml)
+
+Chọn lần chạy **Success / main**, tải artifact
+`phongthan-pak-extractor-win32` (file ZIP) từ mục **Artifacts**.
+Sau đó chạy:
+
+```powershell
+.\AdminWeb\Install-Pak-Extractor.cmd -ZipPath "C:\Users\YourUser\Downloads\phongthan-pak-extractor-win32.zip"
 ```
 
-Do not copy the bundled Engine.dll or LuaLibDll.dll to `PhongThanRuntime-Staging/Client` or
-`PhongThanRuntime-Staging/Server`. It is an isolated dependency of this tool
-only and may be binary-incompatible with the live game DLL.
+Đường dẫn ZIP là ví dụ: thay bằng vị trí file bạn đã tải thực tế.
+Đừng dùng EXE/DLL từ trang tải không rõ nguồn.
 
-Restart **only Web Admin** after deployment. Web Admin will attempt to extract
-15 tables from the PAKs listed by the live Server/package.ini. It considers
-the catalog verified **only if all 15 extractions succeed and are nonempty**.
-If any extraction fails or dependencies are missing, Admin can still display
-loose tables but **item grants remain blocked**. Do not bypass this guard.
+## Khi cài nhưng vẫn báo khóa
 
-## Verification boundaries
+Bộ cài sẽ ghi cụ thể lỗi, chẳng hạn không tìm thấy file PAK, thiếu DLL,
+không tìm thấy một bảng `settings/item/001/*.txt` trong PAK, hoặc lỗi
+giải nén. Trang Phát đồ cũng hiển thị tối đa 2 lỗi đầu và số lỗi còn lại.
 
-The GitHub Actions job checks the x86 executable builds and starts without
-arguments. It does **not** verify the tool against real game PAKs, and does not
-certify the game server is WORLD_READY. Only a complete successful live PAK
-extraction will unlock item operations on the user's test installation.
+**Không mở khóa bằng cách sửa boolean**, vì một số mã item từ dữ liệu loose
+có thể khác PAK đang chạy. Nếu `PakVerified=false`, phát đồ vẫn khóa.
+
+## Phạm vi an toàn
+
+- Không thay đổi 16+ file PAK, SQL LocalDB, nhân vật, cấu hình server.
+- DLL của extractor chỉ được cài vào `AdminWeb/bin`, không sao chép vào
+  thư mục Client/Server, vì có thể không tương thích runtime đang chạy.
+- CI chỉ chứng minh công cụ build và khởi chạy không tham số; **không thử PAK
+  thật trên máy bạn**. Bước test 15/15 trên máy local là điều kiện để bật.
+- Số process không chứng minh Bishop đã hoàn tất `WORLD_READY`. Đây là
+  điều kiện riêng để đăng nhập game, không liên quan đến kiểm tra bảng item.
