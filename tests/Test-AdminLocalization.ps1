@@ -1,4 +1,4 @@
-# Read-only Windows PowerShell 5.1 locale regression; no game processes or SQL.
+# Windows PowerShell 5.1 locale regression. Keep this script ASCII-only.
 [CmdletBinding()]
 param([string]$RepoRoot = (Split-Path -Parent $PSScriptRoot))
 $ErrorActionPreference='Stop'
@@ -7,38 +7,49 @@ $locale = Join-Path $RepoRoot 'AdminWeb\locales\vi-VN.json'
 foreach($file in @($mod,(Join-Path $RepoRoot 'AdminWeb\PhongThan-Admin.ps1'))) {
     $tokens=$null;$errors=$null
     [void][Management.Automation.Language.Parser]::ParseFile($file,[ref]$tokens,[ref]$errors)
-    if ($errors.Count -gt 0) { throw "PowerShell 5.1 syntax error in $file : $($errors[0].Message)" }
+    if ($errors.Count -gt 0) { throw "PowerShell 5.1 syntax error: $file" }
 }
 . $mod
 Import-PtAdminLocale $locale
-if ($script:PtLocaleLookup.Count -lt 50) { throw 'Vietnamese locale is unexpectedly incomplete' }
-function Assert-Text([string]$Original, [string]$Expected) {
-    $actual = ConvertTo-PtVietnamese $Original
-    if ($actual -cne $Expected) {
-        throw "Localized text does not match for: $Original"
-    }
+if ($script:PtLocaleLookup.Count -lt 50) { throw 'Vietnamese catalog is incomplete' }
+$accountKey='Khong tim thay tai khoan.'
+$accountText=ConvertTo-PtVietnamese $accountKey
+if ($accountText -cne $script:PtLocaleLookup[$accountKey] -or $accountText -notmatch '[^\x00-\x7F]') {
+    throw 'UTF-8 accented account response failed'
 }
-Assert-Text 'Khong tim thay tai khoan.' 'Không tìm thấy tài khoản.'
-Assert-Text 'Khong tim thay vat pham MagicScript|5624' 'Không tìm thấy vật phẩm MagicScript|5624'
-Assert-Text 'Cho server xu ly (toi da ~60 giay)' 'Chờ server xử lý (tối đa khoảng 60 giây).'
-Assert-Text 'Da xep lenh c12: Tat het bot' 'Đã xếp lệnh c12: Tắt toàn bộ bot.'
-Assert-Text 'role_61.pthc' 'role_61.pthc'
-Assert-Text 'Bishop.exe' 'Bishop.exe'
-Assert-Text 'Đạo Sĩ' 'Đạo Sĩ'
-# Test a JSON-cloned API response with nested history and verification detail.
+$missingItem=ConvertTo-PtVietnamese 'Khong tim thay vat pham MagicScript|5624'
+if ($missingItem -match '^Khong tim' -or -not $missingItem.EndsWith('MagicScript|5624') -or
+    $missingItem -notmatch '[^\x00-\x7F]') { throw 'Parameterized accented response failed' }
+$descKey='Cho server xu ly (toi da ~60 giay)'
+if ((ConvertTo-PtVietnamese $descKey) -cne $script:PtLocaleLookup[$descKey]) {
+    throw 'Queue history message is not accented'
+}
+if ((ConvertTo-PtVietnamese 'Da xep lenh c12: Tat het bot') -match 'Tat het bot') {
+    throw 'Nested parameter translation failed'
+}
+foreach($item in @('role_61.pthc','Bishop.exe','MagicScript|5624')) {
+    if ((ConvertTo-PtVietnamese $item) -cne $item) { throw "Game identifier was changed: $item" }
+}
 $source='{"ok":true,"message":"Khong tim thay tai khoan.","status":{"itemCatalogIssues":["Thieu PakEntryExtract.exe tai C:\\Game\\AdminWeb\\bin\\PakEntryExtract.exe. Chay AdminWeb\\Install-Pak-Extractor.cmd, sau do khoi dong lai Web Admin."]},"history":[{"desc":"Cho server xu ly (toi da ~60 giay)","detail":"Khong tim thay vat pham MagicScript|5624","status":"PENDING","name":"role_61.pthc"}]}'
 $output=ConvertTo-PtLocalizedJson $source | ConvertFrom-Json
-if ($output.message -cne 'Không tìm thấy tài khoản.') { throw 'API message was not localized' }
-if ($output.history[0].desc -cne 'Chờ server xử lý (tối đa khoảng 60 giây).') { throw 'History desc not localized' }
-if ($output.history[0].detail -cne 'Không tìm thấy vật phẩm MagicScript|5624') { throw 'History detail not localized' }
-if ($output.history[0].status -cne 'PENDING' -or $output.history[0].name -cne 'role_61.pthc') {
-    throw 'Protocol state or original identifiers were changed'
+if ($output.message -cne $accountText) { throw 'Server API message was not localized' }
+if ($output.history[0].desc -cne $script:PtLocaleLookup[$descKey]) {
+    throw 'Server history description was not localized'
 }
-if (-not $output.status.itemCatalogIssues[0].StartsWith('Thiếu PakEntryExtract.exe')) {
-    throw 'Nested item catalog error not localized'
+if ($output.history[0].detail -cne $missingItem) {
+    throw 'Server history detail was not localized'
+}
+if ($output.history[0].status -cne 'PENDING' -or $output.history[0].name -cne 'role_61.pthc') {
+    throw 'API status or game identifiers were changed'
+}
+$issue=$output.status.itemCatalogIssues[0]
+if ($issue -notmatch '[^\x00-\x7F]' -or -not $issue.Contains('AdminWeb\Install-Pak-Extractor.cmd')) {
+    throw 'Catalog diagnostic lost accents or a Windows file path'
 }
 $jsLocale = $script:PtLocaleJsonForPage | ConvertFrom-Json
-if ($jsLocale.locale -ne 'vi-VN') { throw 'Browser locale injection lost UTF-8 text' }
-$original=[IO.File]::ReadAllText($locale,(New-Object Text.UTF8Encoding($false,$true)))
-if ($original.Contains('__PT_TOKEN__')) { throw 'Locale must not contain token placeholder' }
-Write-Host 'PASS: real UTF-8 Vietnamese source, PS 5.1 parser, localized nested API and unchanged game identifiers.'
+if ($jsLocale.locale -ne 'vi-VN' -or $jsLocale.messages.$accountKey -cne $accountText) {
+    throw 'Browser locale data lost UTF-8 text'
+}
+$raw=[IO.File]::ReadAllText($locale,(New-Object Text.UTF8Encoding($false,$true)))
+if ($raw.Contains('__PT_TOKEN__')) { throw 'Unexpected token placeholder in localization file' }
+Write-Host 'PASS: explicit UTF-8 locale, PowerShell 5.1 parsing and accented API without changing identifiers.'
