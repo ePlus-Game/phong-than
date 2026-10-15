@@ -57,7 +57,7 @@ compiles Relay and AccountServer a second time.
 ## Trigger policy
 
 - Do **not** automatically repeat the same full build on `push main` if a
-  PR already passed the equivalent check. Nine targeted workflows no longer
+  PR already passed the equivalent check. Eight targeted workflows no longer
   repeat after the merge.
 - **Exception:** `windows-pak-extractor.yml` retains `push main` so
   `AdminWeb/Install-Pak-Extractor.cmd` can download a **trusted, successful
