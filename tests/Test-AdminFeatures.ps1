@@ -6,6 +6,7 @@ $tokens=$null;$parseErrors=$null
 $ast=[Management.Automation.Language.Parser]::ParseFile((Join-Path $RepoRoot 'AdminWeb\PhongThan-Admin.ps1'),[ref]$tokens,[ref]$parseErrors)
 if ($parseErrors.Count) { throw 'Backend parse errors' }
 $names=@('ConvertFrom-Tcvn','ConvertTo-Tcvn','ConvertTo-LuaString','Get-Plain','Get-ItemCode','Assert-Name','Clamp','Invoke-Action','Get-Online','Set-Bots','Get-BotsConfig','Set-MatDo','Get-MatDoConfig','Set-BotParty','Get-BotPartyConfig','ConvertTo-BotPartyKey','Set-EventSched','Get-EvConfig','New-DgRow','ConvertTo-DgRow','Set-DailyGift','Get-DgConfig','Get-ClientCfg','Set-ClientCfg','Get-ClientSound','Set-ClientSound','Get-ChestPath','Get-ChestFnv','Read-ChestFile','Set-ChestFile','Invoke-AccountAction','Get-Md5Upper','Get-AdminOpsFnv','Test-AdminOpsPthc','Read-AdminOpsRole','Get-AdminOpsCharName','Get-AdminOpsCharFile','Get-AdminOpsTrashEntry','Get-CharDeletePlan','Invoke-CharDelete','Get-CharUndeletePlan','Invoke-CharUndelete','Assert-AdminOpsCharOffline','New-AdminOpsCode','Confirm-AdminOpsCode','Write-AdminOpsLog','Get-CharRestoreFiles','Get-CharRestorePlan','Invoke-CharRestore','Assert-AdminOpsStopped','Invoke-CharBackup','Get-CharBackups','Read-JsonList','Save-Json','Update-Results')
+$names += @('Get-AdminOpsOnlineState','Get-AdminOpsLogTail','ConvertFrom-AdminOpsBytes','Get-AdminOpsKind','Get-AdminOpsRestoreMap','Get-AdminOpsBackupDir','Get-AdminOpsRollbackPlan','Invoke-AdminOpsRollback','Update-AdminOpsReceipt','Invoke-Route')
 foreach($name in $names) {
  $found=@($ast.FindAll({param($node) $node -is [Management.Automation.Language.FunctionDefinitionAst] -and $node.Name -eq $name},$true))
  if($found.Count -ne 1){throw "Missing production function $name"}
@@ -20,10 +21,13 @@ foreach($name in @('tcvnFrom','tcvnTo','BiKipMats','BiKipTier','BiKipByProf','Th
 $TcvnToUni=@{};$UniToTcvn=@{}
 for($i=0;$i -lt $tcvnFrom.Count;$i++){ $TcvnToUni[[int]$tcvnFrom[$i]]=[char]$tcvnTo[$i];$UniToTcvn[[char]$tcvnTo[$i]]=[byte]$tcvnFrom[$i] }
 $Enc1252=[Text.Encoding]::GetEncoding(1252);$Utf8=New-Object Text.UTF8Encoding($false)
+$script:AdminOpsTcvn=New-Object char[] 256
+for($i=0;$i -lt 256;$i++){ $script:AdminOpsTcvn[$i]=$(if($TcvnToUni.ContainsKey($i)){$TcvnToUni[$i]}else{[char]$i}) }
 $Root=Join-Path ([IO.Path]::GetTempPath()) ('pt-admin-test-'+[guid]::NewGuid().ToString('N'))
 $Runtime=Join-Path $Root 'runtime';$ServerRoot=Join-Path $Runtime 'Server';$Bridge=Join-Path $ServerRoot 'admin_bridge';$DataDir=Join-Path $Root 'data'
 $CharStoreDir=Join-Path $ServerRoot 'CharacterStore';$CharBackupRoot=Join-Path $Root '_backup\characters';$CharTrashRoot=Join-Path $CharBackupRoot 'deleted';$CharAccountLimit=3;$CharBackupKeep=7
 $AdminOpsLogPath=Join-Path $DataDir 'adminops.log';$script:AdminOpsCodes=@{}
+$AdminOpsBackupRoot=Join-Path $Root '_backup';$AdminOpsOutputRoot=Join-Path $Root 'output';$AdminOpsReceipt=Join-Path $Runtime 'NATIVE_DEPLOYMENT.json';$AdminOpsLogs=@{result='result.log';tick_error='tick_error.log'}
 $ClientCfgPath=Join-Path $Runtime 'Client\config.ini';$ClientUiCommonPath=Join-Path $Runtime 'Client\UserData\UiCommon.ini'
 $BotsJsonPath=Join-Path $DataDir 'bots.json';$MatDoJsonPath=Join-Path $DataDir 'matdo.json';$BotPartyJsonPath=Join-Path $DataDir 'botparty.json';$EvJsonPath=Join-Path $DataDir 'eventsched.json';$DgJsonPath=Join-Path $DataDir 'dailygift.json'
 $HistoryPath=Join-Path $DataDir 'history.json';$script:History=New-Object Collections.ArrayList;$script:ResultOffset=0L
@@ -198,6 +202,94 @@ try {
   $entry=[pscustomobject]@{id='unit1';status='PENDING';detail=''};[void]$script:History.Add($entry)
   [IO.File]::WriteAllText((Join-Path $Bridge 'result.log'),"stamp`tunit1`tOK`tdone`r`n",$Enc1252);Update-Results
   Assert ($entry.status -eq 'OK' -and $entry.detail -match 'done') 'bridge result not applied'
+ }
+ Case 'account password and secondary password parameterization' {
+  function Assert-PhongThanAccountName($value) { if($value -cnotmatch '\A[A-Za-z0-9]{6,16}\z'){throw 'invalid account'} }
+  function Invoke-Sql($sql,$params) { $script:capturedSql=$sql;$script:capturedParams=$params;1 }
+  Invoke-AccountAction ([pscustomobject]@{op='password';account='player1';password='abcdef';alsoSecond=$true})
+  Assert ($script:capturedSql -match 'cSecPassword=@p' -and $script:capturedParams['@a'] -eq 'player1' -and $script:capturedParams['@p'] -eq 'E80B5017098950FC58AAD83C8C14978E') 'password SQL contract incorrect'
+ }
+ Case 'account currency update parameters and missing account' {
+  function Assert-PhongThanAccountName($value) { if($value -cnotmatch '\A[A-Za-z0-9]{6,16}\z'){throw 'invalid account'} }
+  function Invoke-Sql($sql,$params) { $script:capturedParams=$params;1 }
+  Invoke-AccountAction ([pscustomobject]@{op='extpoint';account='player1';value=-5})
+  Assert ($script:capturedParams['@v'] -eq 0) 'currency lower bound incorrect'
+  function Invoke-Sql($sql,$params) { 0 }
+  Reject {Invoke-AccountAction ([pscustomobject]@{op='extpoint';account='player1';value=5})}
+ }
+ Case 'account creation passes secure passwords to registration boundary' {
+  function New-PhongThanAccount($RuntimeRoot,$AccountName,$Password,$ConfirmPassword) {
+   Assert ($RuntimeRoot -eq $Runtime -and $AccountName -eq 'player1') 'wrong registration destination'
+   Assert ($Password -is [Security.SecureString] -and $ConfirmPassword -is [Security.SecureString]) 'plaintext password sent to registration boundary'
+   $script:created=$true
+  }
+  $script:created=$false;Invoke-AccountAction ([pscustomobject]@{op='create';account='player1';password='abcdef'})
+  Assert $script:created 'registration boundary not called'
+ }
+ Case 'unknown account operation rejected' {Reject {Invoke-AccountAction ([pscustomobject]@{op='unknown'})}}
+ Case 'actual bridge appends commands and stores pending history' {
+  $node=@($ast.FindAll({param($n)$n -is [Management.Automation.Language.FunctionDefinitionAst] -and $n.Name -eq 'Add-BridgeCommand'},$true))[0]
+  . ([scriptblock]::Create($node.Extent.Text))
+  $script:Seq=0
+  $one=Add-BridgeCommand 'fixture' 'first' 'PTAdm_ClearSpawned({ID})'
+  $two=Add-BridgeCommand 'fixture' 'second' 'PTAdm_ClearSpawned({ID})'
+  $pending=[IO.File]::ReadAllText((Join-Path $Bridge 'pending.lua'),$Enc1252)
+  Assert ($one.id -ne $two.id -and $pending.Contains($one.id) -and $pending.Contains($two.id)) 'bridge append lost a command'
+  Assert (-not $pending.Contains('{ID}')) 'bridge placeholder unresolved'
+  Assert ((Read-JsonList $HistoryPath).Count -ge 2 -and $two.status -eq 'PENDING') 'queue history not persisted'
+ }
+ Case 'diagnostic log tail reads requested lines only' {
+  [IO.File]::WriteAllText((Join-Path $Bridge 'result.log'),"one`r`ntwo`r`nthree`r`n",$Enc1252)
+  $log=Get-AdminOpsLogTail 'result' 2;Assert (($log.lines -join '|') -eq 'two|three') 'wrong log tail lines'
+ }
+ Case 'diagnostic log allowlist blocks traversal' {Reject {Get-AdminOpsLogTail '..\config.ini' 200}}
+ Case 'missing diagnostic log returns empty state' {Assert (-not (Get-AdminOpsLogTail 'tick_error' 200).exists) 'missing log not reported'}
+ Case 'deployment rollback fixture restores bytes and saves previous version' {
+  $name='server-deploy-20261015-120000-fixture';$dir=Join-Path $AdminOpsBackupRoot $name
+  New-Item -ItemType Directory -Force $dir | Out-Null
+  $src=Join-Path $dir 'PhongThanRuntime-Staging-CoreServer.dll';$dst=Join-Path $ServerRoot 'CoreServer.dll'
+  [IO.File]::WriteAllText($src,'fixture old bytes');[IO.File]::WriteAllText($dst,'fixture current bytes')
+  $plan=Get-AdminOpsRollbackPlan $name;Invoke-AdminOpsRollback $name $plan.code
+  Assert ([IO.File]::ReadAllText($dst) -eq 'fixture old bytes') 'rollback failed'
+  $safety=@(Get-ChildItem -LiteralPath $AdminOpsBackupRoot -Directory | Where-Object Name -like '*rollback*')
+  Assert ($safety.Count -eq 1 -and [IO.File]::ReadAllText((Join-Path $safety[0].FullName 'PhongThanRuntime-Staging-CoreServer.dll')) -eq 'fixture current bytes') 'rollback safety copy missing'
+ }
+ Case 'setup route rejects unsupported and concurrent steps before process start' {
+  $Token='test-token';$SetupScript=Join-Path $Root 'never-run.ps1'
+  function Send-Json($ctx,$obj,[int]$Code=200) {$script:reply=$obj}
+  function Read-Body($ctx) {$script:requestBody}
+  function Update-Results {}
+  function Start-Process {param($FilePath,[switch]$PassThru,$WindowStyle,$ArgumentList)throw 'TEST: process creation forbidden'}
+  $ctx=[pscustomobject]@{Request=[pscustomobject]@{Url=[uri]'http://localhost/api/setup/run';QueryString=@{};Headers=@{'X-PT-Token'=$Token};HttpMethod='POST'}}
+  $script:requestBody=@{step='bad'};$script:SetupProc=$null
+  Reject {Invoke-Route $ctx}
+  $script:requestBody=@{step='database'};$script:SetupProc=[pscustomobject]@{HasExited=$false}
+  Reject {Invoke-Route $ctx}
+  Assert (-not (Test-Path -LiteralPath (Join-Path $DataDir 'setup.log'))) 'blocked setup wrote logs'
+ }
+ Case 'mount route filters profession, search and duplicate entries' {
+  $Token='test-token'
+  function Send-Json($ctx,$obj,[int]$Code=200){$script:reply=$obj}
+  function Update-Results {}
+  $Mounts=@([pscustomobject]@{key='one';name='Horse';prof=0;req=10;plain='horse'},[pscustomobject]@{key='duplicate';name='Horse';prof=0;req=10;plain='horse'},[pscustomobject]@{key='wrong';name='Horse2';prof=1;req=10;plain='horse2'})
+  $ctx=[pscustomobject]@{Request=[pscustomobject]@{Url=[uri]'http://localhost/api/mounts';QueryString=@{prof='0';q='horse'};Headers=@{'X-PT-Token'=$Token};HttpMethod='GET'}}
+  Invoke-Route $ctx;Assert ($script:reply.mounts.Count -eq 1 -and $script:reply.mounts[0].key -eq 'one') 'mount filters failed'
+ }
+ Case 'weapon route filters profession and tier' {
+  $Token='test-token'
+  function Send-Json($ctx,$obj,[int]$Code=200){$script:reply=$obj}
+  function Update-Results {}
+  $Weapons=@([pscustomobject]@{key='one';name='Weapon';prof=0;req=10;ilv=1;green=$true},[pscustomobject]@{key='wrong';name='Weapon2';prof=1;req=10;ilv=1;green=$true})
+  $ctx=[pscustomobject]@{Request=[pscustomobject]@{Url=[uri]'http://localhost/api/weapons';QueryString=@{prof='0';tier='10';green='1'};Headers=@{'X-PT-Token'=$Token};HttpMethod='GET'}}
+  Invoke-Route $ctx;Assert ($script:reply.weapons.Count -eq 1 -and $script:reply.weapons[0].key -eq 'one') 'weapon filters failed'
+ }
+ Case 'gear route groups pieces by set' {
+  $Token='test-token'
+  function Send-Json($ctx,$obj,[int]$Code=200){$script:reply=$obj}
+  function Update-Results {}
+  $GearPieces=@([pscustomobject]@{key='MagicScript|1';prof=0;set=1;variant=0;ilv=1;tier=1;piece='head';name='Head';req=10},[pscustomobject]@{key='other';prof=0;set=1;variant=0;ilv=1;tier=1;piece='body';name='Body';req=10});$setName=@{'1|0|0'='Fixture set'}
+  $ctx=[pscustomobject]@{Request=[pscustomobject]@{Url=[uri]'http://localhost/api/gearsets';QueryString=@{prof='0'};Headers=@{'X-PT-Token'=$Token};HttpMethod='GET'}}
+  Invoke-Route $ctx;Assert ($script:reply.sets.Count -eq 1 -and $script:reply.sets[0].pieces.Count -eq 2) 'gear grouping failed'
  }
  Case 'all action types exercised' {
   $actionNode=@($ast.FindAll({param($node)$node -is [Management.Automation.Language.FunctionDefinitionAst] -and $node.Name -eq 'Invoke-Action'},$true))[0]
